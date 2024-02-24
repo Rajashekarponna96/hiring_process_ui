@@ -1,5 +1,86 @@
 # Ignore Compiled Class Files
 *.class
+# Ignore Compiled Class Files
+*.class
+
+# Ignore Log Files
+*.log
+
+# Ignore BlueJ files
+*.ctxt
+
+# Ignore Mobile Tools for Java (J2ME) temporary files
+.mtj.tmp/
+
+# Ignore Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Ignore virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore build and distribution directories
+build/
+dist/
+
+# Ignore hidden system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE and editor files
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Ignore profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# Ignore Angular-specific cache and cache files
+.angular/cache/
+.sass-cache/
+
+# Ignore lock files
+connect.lock
+
+# Ignore code coverage reports
+coverage/
+
+# Ignore peer connection log
+libpeerconnection.log
+
+# Ignore npm and yarn debug logs
+npm-debug.log
+yarn-error.log
+
+# Ignore testem log
+testem.log
+
+# Ignore TypeScript typings
+typings/
+
+# Ignore compiled CSS files
+theme.css
+layout.css
+
+# Ignore demo CSS files
+src/assets/demo/styles/badges.css
+src/assets/demo/styles/code.css
+
+# Ignore preloading CSS
 
 # Ignore Log Files
 *.log
