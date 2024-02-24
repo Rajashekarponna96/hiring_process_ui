@@ -307,3 +307,29 @@ src/assets/sass/theme/_vendor_extensions/
 
 # Exclude everything after src/assets
 src/assets/*
+
+# Ignore specific modified files
+src/app/layout/app.breadcrumb.component.html
+src/assets/layout/styles/layout/_animation.scss
+src/assets/layout/styles/layout/_breadcrumb.scss
+src/assets/layout/styles/layout/_config.scss
+src/assets/layout/styles/layout/_content.scss
+src/assets/layout/styles/layout/_fonts.scss
+src/assets/layout/styles/layout/_layout_dark.scss
+src/assets/layout/styles/layout/_layout_dim.scss
+src/assets/layout/styles/layout/_layout_light.scss
+src/assets/layout/styles/layout/_main.scss
+src/assets/layout/styles/layout/_profile.scss
+src/assets/layout/styles/layout/_responsive.scss
+src/assets/layout/styles/layout/_sidebar_drawer.scss
+src/assets/layout/styles/layout/_sidebar_horizontal.scss
+src/assets/layout/styles/layout/_sidebar_reveal.scss
+src/assets/layout/styles/layout/_sidebar_slim.scss
+src/assets/layout/styles/layout/_sidebar_slim_plus.scss
+src/assets/layout/styles/layout/_sidebar_vertical.scss
+src/assets/layout/styles/layout/_topbar.scss
+src/assets/layout/styles/layout/_typography.scss
+src/assets/layout/styles/layout/_utils.scss
+src/assets/layout/styles/layout/layout.scss
+src/assets/layout/styles/layout/menutheme/_colorscheme.scss
+src/assets/layout/styles/layout/menutheme/_men
