@@ -1,3 +1,13 @@
+# Ignore compiled files
+*.compiled
+
+# Ignore files that have been changed (assuming these files have some specific extension)
+*.changed
+
+# Ignore directories
+node_modules/
+dist/
+
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
