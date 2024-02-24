@@ -1,16 +1,16 @@
-# Compiled class file
+# Ignore Compiled Class Files
 *.class
 
-# Log file
+# Ignore Log Files
 *.log
 
-# BlueJ files
+# Ignore BlueJ files
 *.ctxt
 
-# Mobile Tools for Java (J2ME)
+# Ignore Mobile Tools for Java (J2ME) temporary files
 .mtj.tmp/
 
-# Package Files #
+# Ignore Package Files
 *.jar
 *.war
 *.nar
@@ -19,41 +19,23 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Ignore virtual machine crash logs
 hs_err_pid*
 replay_pid*
 
+# Ignore Node.js modules
+node_modules/
 
-node_modules
-node_modules
+# Ignore build and distribution directories
+build/
+dist/
 
-
-build
-dist
-node_modules
+# Ignore hidden system files
 .DS_Store
-.idea
-sassdoc
+Thumbs.db
 
-src/assets/theme/*/*.css
-src/assets/layout/css/*.css
-src/assets/sass/theme/designer
-src/assets/sass/theme/_vendor_extensions
-
-# compiled output
-/dist
-/tmp
-/out-tsc
-
-# dependencies
-/node_modules
-
-# profiling files
-chrome-profiler-events.json
-speed-measure-plugin.json
-
-# IDEs and editors
-/.idea
+# Ignore IDE and editor files
+.idea/
 .project
 .classpath
 .c9/
@@ -61,32 +43,52 @@ speed-measure-plugin.json
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Ignore profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
 
-# misc
-/.angular/cache
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
+# Ignore Angular-specific cache and cache files
+.angular/cache/
+.sass-cache/
+
+# Ignore lock files
+connect.lock
+
+# Ignore code coverage reports
+coverage/
+
+# Ignore peer connection log
+libpeerconnection.log
+
+# Ignore npm and yarn debug logs
 npm-debug.log
 yarn-error.log
+
+# Ignore testem log
 testem.log
-/typings
 
-# System Files
-.DS_Store
-Thumbs.db
+# Ignore TypeScript typings
+typings/
 
-# Compiled files
+# Ignore compiled CSS files
 theme.css
 layout.css
+
+# Ignore demo CSS files
 src/assets/demo/styles/badges.css
 src/assets/demo/styles/code.css
+
+# Ignore preloading CSS
 src/assets/layout/styles/layout/preloading.css
-src/assets/layout/styles/theme/designer
+
+# Ignore designer theme files
+src/assets/layout/styles/theme/designer/
+
+# Ignore specific Sass files
+src/assets/sass/theme/designer/
+src/assets/sass/theme/_vendor_extensions/
+
+# Exclude certain files from src folder
+!src/assets/theme/*.css
+!src/assets/layout/css/*.css
+!src/assets/layout/styles/layout/
