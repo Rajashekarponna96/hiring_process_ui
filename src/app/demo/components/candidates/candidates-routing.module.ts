@@ -8,14 +8,9 @@ import { CandidatesComponent } from './candidates.component';
 
 const routes: Routes = [];
 
-// @NgModule({
-//   imports: [RouterModule.forChild(routes)],
-//   exports: [RouterModule]
-// })
-
 @NgModule({
   imports: [RouterModule.forChild([
-      { path: '', component: CandidatesComponent }
+    { path: '', component: CandidatesComponent }
   ])],
   exports: [RouterModule]
 })

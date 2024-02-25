@@ -5,10 +5,6 @@ import { LoginoneComponent } from './loginone.component';
 
 const routes: Routes = [];
 
-// @NgModule({
-//   imports: [RouterModule.forChild(routes)],
-//   exports: [RouterModule]
-// })
 @NgModule({
       imports: [RouterModule.forChild([
           { path: '', component: LoginoneComponent }

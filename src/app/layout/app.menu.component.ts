@@ -11,12 +11,92 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         this.model = [
-          
+           
+                       //home
+
+
+            {
+                label: 'Home',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Home',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/home']
+                    },
+
+                ]
+            },
+            //jobs
+            {
+                label: 'Jobs',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Jobs',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/jobs']
+                    },
+
+                ]
+            },
+            //candidates
+            {
+                label: 'Candidates',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Candidates',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/candidates']
+                    },
+
+                ]
+            },
+            //pre-loading
+            {
+                label: 'Pre-boarding',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Pre-loading',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/pre-boarding']
+                    },
+
+                ]
+            },
+            //reports
+            {
+                label: 'Reports',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Reports',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/reports']
+                    },
+
+                ]
+            },
+            //settings
+            {
+                label: 'Settings',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Settings',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/settings']
+                    },
+
+                ]
+            },
             {
                 label: 'Pages',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
-                              {
+                    {
                         label: 'Auth',
                         icon: 'pi pi-fw pi-user',
                         items: [
@@ -67,10 +147,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/pages/crud']
                     },
-                    
+
                 ]
             },
-                     {
+
+            {
                 label: 'User Management',
                 icon: 'pi pi-fw pi-user',
                 items: [
@@ -86,103 +167,6 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
-            {
-                label: 'Login',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'login',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/loginone']
-                    },
-                    {
-                        label: 'Create',
-                        icon: 'pi pi-fw pi-plus',
-                        routerLink: ['profile/create']
-                    }
-                ]
-            },
-            //home
-
-
-            {
-                label: 'Home',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Home',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/home']
-                    },
-
-                ]
-            },
-            //jobs
-            {
-                label: 'Jobs',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Jobs',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/jobs']
-                    },
-
-                ]
-            },
-            //candidates
-            {
-                label: 'Candidates',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Candidates',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/candidates']
-                    },
-
-                ]
-            },
-            //pre-loading
-            {
-                label: 'Pre-loading',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Pre-loading',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/home']
-                    },
-
-                ]
-            },
-            //reports
-            {
-                label: 'Reports',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Reports',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/home']
-                    },
-
-                ]
-            },
-            //settings
-            {
-                label: 'Settings',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Settings',
-                        icon: 'pi pi-fw pi-list',
-                        routerLink: ['/loginone']
-                    },
-
-                ]
-            },
-
             // // {
             // //     label: 'Hierarchy',
             // //     icon: 'pi pi-fw pi-align-left',
