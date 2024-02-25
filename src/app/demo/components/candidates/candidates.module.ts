@@ -21,9 +21,9 @@ import { CandidatesComponent } from './candidates.component';
 import { CandidatesRoutingModule } from './candidates-routing.module';
 
 @NgModule({
- 
-  imports: [
-    CommonModule, 
+
+	imports: [
+		CommonModule,
 		TableModule,
 		FileUploadModule,
 		FormsModule,
@@ -38,9 +38,7 @@ import { CandidatesRoutingModule } from './candidates-routing.module';
 		RadioButtonModule,
 		InputNumberModule,
 		DialogModule,
-   // rootermodule,
-   // CommonModule,
-   CandidatesRoutingModule
-  ], declarations: [CandidatesComponent]
+		CandidatesRoutingModule
+	], declarations: [CandidatesComponent]
 })
 export class CandidatesModule { }

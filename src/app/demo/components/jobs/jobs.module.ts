@@ -7,7 +7,7 @@ import { JobsComponent } from './jobs.component';
 
 
 @NgModule({
- 
+
   imports: [
     RouterModule,
     CommonModule,
