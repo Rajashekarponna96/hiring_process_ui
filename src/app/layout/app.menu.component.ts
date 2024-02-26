@@ -11,91 +11,75 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         this.model = [
-            // {
-            //     label: 'Dashboards',
-            //     icon: 'pi pi-home',
-            //     items: [
-            //         {
-            //             label: 'E-Commerce',
-            //             icon: 'pi pi-fw pi-home',
-            //             routerLink: ['/']
-            //         },
-            //         {
-            //             label: 'Banking',
-            //             icon: 'pi pi-fw pi-image',
-            //             routerLink: ['/dashboard-banking']
-            //         }
-            //     ]
-            // },
-//home
+            //home
 
-{
-    label: 'Home',
-    icon: 'pi pi-home',
-    items: [
-        {
-            label: 'Home',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/home']
-        } 
-    ]
-},
- 
+            {
+                label: 'Home',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Home',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/home']
+                    }
+                ]
+            },
 
-//jobs
-{
-    label: 'Jobs',
-    icon: 'pi pi-home',
-    items: [
-        {
-            label: 'Jobs',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/jobs']
-        }
-        
-    ]
-},
-//pre-boarding
-{
-    label: 'Pre-Boarding',
-    icon: 'pi pi-home',
-    items: [
-        {
-            label: 'pre-boarding',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/pre-boarding']
-        }
-        
-    ]
-},
 
-//reports
-{
-    label: 'Reports',
-    icon: 'pi pi-home',
-    items: [
-        {
-            label: 'Reports',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/reports']
-        }
-        
-    ]
-},
+            //jobs
+            {
+                label: 'Jobs',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Jobs',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/jobs']
+                    }
 
-//settings
-{
-    label: 'Settings',
-    icon: 'pi pi-home',
-    items: [
-        {
-            label: 'Settings',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/settings']
-        }
-        
-    ]
-},
+                ]
+            },
+            //pre-boarding
+            {
+                label: 'Pre-Boarding',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'pre-boarding',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/pre-boarding']
+                    }
+
+                ]
+            },
+
+            //reports
+            {
+                label: 'Reports',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Reports',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/reports']
+                    }
+
+                ]
+            },
+
+            //settings
+            {
+                label: 'Settings',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Settings',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/settings']
+                    }
+
+                ]
+            },
 
 
 
