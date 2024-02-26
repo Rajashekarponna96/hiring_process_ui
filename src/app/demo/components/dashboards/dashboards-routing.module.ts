@@ -10,9 +10,13 @@ import { RouterModule } from '@angular/router';
         { path: 'registeruser', data: { breadcrumb: 'registeruser' }, loadChildren: () => import('./registeruser/registeruser.module').then(m => m.RegisteruserModule) },
         { path: 'home', data: { breadcrumb: 'home' }, loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
         { path: 'jobs', data: { breadcrumb: 'jobs' }, loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },
+        { path: 'createjob', data: {breadcrumb: 'Create'}, loadChildren: () => import('./jobs/createjob/createjob.module').then(m => m.CreatejobModule) },
+        { path: 'recruiter', data: { breadcrumb: 'recruiter' }, loadChildren: () => import('./recruiter/recriter.module').then(m => m.RecriterModule )}, 
+        { path: 'createrecruiter', data: {breadcrumb: 'Create'}, loadChildren: () => import('./recruiter/createrecruiter/createrecriter.module').then(m => m.CreaterecriterModule) },
         { path: 'pre-boarding', data: { breadcrumb: 'pre-boarding' }, loadChildren: () => import('./pre-boarding/pre-boarding.module').then(m => m.PreBoardingModule) },
         { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
-        { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) }
+        { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
+        { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) }
 
     ])],
     exports: [RouterModule]
