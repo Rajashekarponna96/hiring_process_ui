@@ -24,7 +24,32 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
-
+            //candidate
+            {
+                label: 'Candidate',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Candidate',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/candidate']
+                    } 
+                ]
+            },
+            
+            //recruiter
+            {
+                label: 'recruiter',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'recruiter',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/recruiter']
+                    }
+                    
+                ]
+            },
 
             //jobs
             {

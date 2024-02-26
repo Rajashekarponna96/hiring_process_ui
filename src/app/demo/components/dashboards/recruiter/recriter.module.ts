@@ -11,8 +11,8 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { JobsRoutingModule } from './jobs-routing.module';
-import { JobsComponent } from './jobs.component';
+import { RecriterRoutingModule } from './recriter-routing.module';
+import { RecruiterComponent } from './recruiter.component';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -24,14 +24,11 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
 
-
-
 @NgModule({
-  declarations: [JobsComponent],
+  declarations: [RecruiterComponent],
   imports: [
     CommonModule,
-    JobsRoutingModule,
-    FormsModule,
+    RecriterRoutingModule,FormsModule,
 		AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
@@ -54,4 +51,4 @@ import { CheckboxModule } from 'primeng/checkbox';
 		CheckboxModule
   ]
 })
-export class JobsModule { }
+export class RecriterModule { }

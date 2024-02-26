@@ -8,18 +8,17 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text"  placeholder="Global Search" class="w-full" />
                 </span>
-                <button (click)="navigateToCreateJob()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+                <button (click)="navigateToCreateRecruiter()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Title<p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="country.name" class="white-space-nowrap" style="width:25%">Description<p-sortIcon field="country.name"></p-sortIcon></th>
-                <th pSortableColumn="date" class="white-space-nowrap" style="width:25%">Department<p-sortIcon field="date"></p-sortIcon></th>
-                <th pSortableColumn="representative.name" class="white-space-nowrap" style="width:25%">Openings<p-sortIcon field="representative.name"></p-sortIcon></th>
-                <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">targetHireDate<p-sortIcon field="activity"></p-sortIcon></th>
-                <th pSortableColumn="representative.name" class="white-space-nowrap" style="width:25%">Experience<p-sortIcon field="representative.name"></p-sortIcon></th>
-                <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">Candidate<p-sortIcon field="activity"></p-sortIcon></th>
+                <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Firstname<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="country.name" class="white-space-nowrap" style="width:25%">Lastname<p-sortIcon field="country.name"></p-sortIcon></th>
+                <th pSortableColumn="date" class="white-space-nowrap" style="width:25%">Email<p-sortIcon field="date"></p-sortIcon></th>
+                <th pSortableColumn="representative.name" class="white-space-nowrap" style="width:25%">Mobile<p-sortIcon field="representative.name"></p-sortIcon></th>
+                <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">UserAccout<p-sortIcon field="activity"></p-sortIcon></th>
+                
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
