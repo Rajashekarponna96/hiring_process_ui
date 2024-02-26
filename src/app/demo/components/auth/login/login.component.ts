@@ -14,4 +14,5 @@ export class LoginComponent {
 		return this.layoutService.config.colorScheme !== 'light';
 	}
 
+	
 }
