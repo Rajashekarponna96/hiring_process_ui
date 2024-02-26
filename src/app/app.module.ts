@@ -4,9 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLayoutModule } from './layout/app.layout.module';
 import { CommonModule } from '@angular/common';
+
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         AppRoutingModule,
