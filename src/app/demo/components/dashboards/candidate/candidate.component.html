@@ -1,100 +1,425 @@
-<div class="grid">
-<div class="col-12">
-    <div class="card">
-        <h5>Create Candidate</h5>
-        <div class="p-fluid p-formgrid grid">
-            <div class="field col-12 md:col-6">
-                <label htmlFor="firstname">Firstname</label>
-                <input pInputText id="firstname" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="lastname">Lastname</label>
-                <input pInputText id="lastname" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="middlename">Middle Name</label>
-                <input pInputTextarea id="middlename" rows="4" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="email">Email</label>
-                <input pInputText id="email" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="mobile">Mobile</label>
-                <input pInputText id="mobile" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="source">Source</label>
-                <input pInputText id="source" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="hiringFlowType">HiringFlowType</label>
-                <input pInputText id="hiringFlowType" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="location">Current Location</label>
-                <input pInputText id="location" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="availtojoin">Avail To Join</label>
-                <input pInputText id="availtojoin" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="location">Preferred Location</label>
-                <input pInputText id="location" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="currentsalary">Current Salary</label>
-                <input pInputText id="currentsalary" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="expectedsalary">Expected Salary</label>
-                <input pInputText id="expectedsalary" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="currency">Currency</label>
-                <input pInputText id="currency" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="gender">Gender</label>
-                <input pInputText id="gender" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="dateofbirth">Date Of Birth</label>
-                <input pInputText id="dateofbirth" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="skills">Skills</label>
-                <input pInputText id="skills" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="experience">Experience</label>
-                <input pInputText id="experience" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="education">Education</label>
-                <input pInputText id="education" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="talentpoll">Talent Poll</label>
-                <input pInputText id="talentpoll" type="text" />
-            </div>
-            <div class="field col-12 md:col-6">
-                <label htmlFor="job">Job</label>
-                <input pInputText id="job" type="text" />
-            </div>
+<div class="grid p-fluid">
+    <div class="col-12 md:col-6"></div>
+    <div class="col-12 md:col-6"></div>
+    <div class="col-12">
+        <div class="card">
+            <h5>Add Candidate</h5>
+            <form [formGroup]="candidate" (ngSubmit)="onSubmit()">
+                <div class="grid">
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="firstName">First Name</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-user"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="firstName"
+                                placeholder="First Name"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('firstName')"
+                            class="text-danger"
+                        >
+                            First Name is required
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="lastName">Last Name</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-user"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="lastName"
+                                placeholder="Last Name"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('lastName')"
+                            class="text-danger"
+                        >
+                            Last Name is required
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="email">Email</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-envelope"></i
+                            ></span>
+                            <input
+                                type="email"
+                                pInputText
+                                formControlName="email"
+                                placeholder="Email"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('email')"
+                            class="text-danger"
+                        >
+                            Email is required
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('email')"
+                            class="text-danger"
+                        >
+                            Invalid email format
+                        </div>
+                    </div>
+                    <!-- Mobile -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="mobile">Mobile</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-mobile"></i
+                            ></span>
+                            <input
+                                type="tel"
+                                pInputText
+                                formControlName="mobile"
+                                placeholder="Mobile"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('mobile')"
+                            class="text-danger"
+                        >
+                            Mobile is required
+                        </div>
+                    </div>
+
+                    <!-- Source Dropdown -->
+                    <div class="col-13 md:col-6">
+                        <label htmlFor="state">Source</label>
+                        <div class="p-inputgroup">
+                            <select pInputText>
+                                <option disabled selected>Select Source</option>
+                                <option>Source 1</option>
+                                <option>Source 2</option>
+                                <!-- Add more source options as needed  -->
+                            </select>
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-caret-down"></i
+                            ></span>
+                        </div>
+                    </div>
+
+                    <!-- wrking source -->
+
+                    <!-- Available To (join in days) -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="availableTo"
+                            >Available To (join in days)</label
+                        >
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-calendar"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="availableTo"
+                                placeholder="Available To (join in days)"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('availableTo')"
+                            class="text-danger"
+                        >
+                            Available To is required
+                        </div>
+                    </div>
+
+                    <!-- Current Location -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="currentLocation"
+                            >Current Location</label
+                        >
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-map-marker"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="currentLocation"
+                                placeholder="Current Location"
+                            />
+                        </div>
+                        <div
+                            *ngIf="
+                                isSubmitted && candidate.get('currentLocation')
+                            "
+                            class="text-danger"
+                        >
+                            Current Location is required
+                        </div>
+                    </div>
+
+                    <!-- Preferred Location -->
+
+                    <div class="col-13 md:col-6">
+                        <label htmlFor="preferredLocation"
+                            >Preferred Location</label
+                        >
+                        <div class="p-inputgroup">
+                            <select pInputText>
+                                <option selected>
+                                    Select Preferred Location
+                                </option>
+                                <option>Hyderabad</option>
+                                <option>Warangal</option>
+                                <option>Govindarajula</option>
+                            </select>
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-caret-down"></i
+                            ></span>
+                        </div>
+                    </div>
+                    <!-- Expected Salary -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="expectedSalary">Expected Salary</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-money"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="expectedSalary"
+                                fisr
+                                placeholder="Expected Salary"
+                            />
+                        </div>
+                        <div
+                            *ngIf="
+                                isSubmitted && candidate.get('expectedSalary')
+                            "
+                            class="text-danger"
+                        >
+                            Expected Salary is required
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+
+                    <div class="col-13 md:col-6">
+                        <label htmlFor="gender">Gender</label>
+                        <div class="p-inputgroup">
+                            <select pInputText formControlName="gender">
+                                <option value="" disabled selected>
+                                    Select Gender
+                                </option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-user"></i
+                            ></span>
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('gender')"
+                            class="text-danger"
+                        >
+                            Gender is required
+                        </div>
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="dob">Date of Birth</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-calendar"></i
+                            ></span>
+                            <input
+                                type="date"
+                                pInputText
+                                formControlName="dob"
+                                placeholder="Date of Birth"
+                            />
+                        </div>
+                        <div
+                            *ngIf="isSubmitted && candidate.get('dob')"
+                            class="text-danger"
+                        >
+                            Date of Birth is required
+                        </div>
+                    </div>
+
+                    <!-- Candidate Owner -->
+
+                    <div class="col-13 md:col-6">
+                        <label htmlFor="candidateOwner">Candidate Owner</label>
+                        <div class="p-inputgroup">
+                            <select pInputText formControlName="candidateOwner">
+                                <option value="" disabled selected>
+                                    Choose Candidate Owner
+                                </option>
+                                <option>Kranthi</option>
+                                <option>Shiva</option>
+                            </select>
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-user"></i
+                            ></span>
+                        </div>
+                        <div
+                            *ngIf="
+                                isSubmitted && candidate.get('candidateOwner')
+                            "
+                            class="text-danger"
+                        >
+                            Candidate Owner is required
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="skills">Skills</label>
+                        <p-multiSelect
+                            [options]="skillOptions"
+                            [(ngModel)]="selectedSkills"
+                            optionLabel="name"
+                            defaultLabel="Select Skills"
+                            [panelStyle]="{ width: '100%' }"
+                            [style]="{ width: '100%' }"
+                            [maxSelectedLabels]="3"
+                            [showToggleAll]="false"
+                            placeholder="Select Skills"
+                        >
+                        </p-multiSelect>
+                    </div>
+
+                    <!-- Course -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="course">Course</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-book"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="course"
+                                placeholder="Course"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Branch/Specialization -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="branch">Branch/Specialization</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-sitemap"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="branch"
+                                placeholder="Branch/Specialization"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Start of Course Date -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="startDate">Start of Course Date</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-calendar"></i
+                            ></span>
+                            <input
+                                type="date"
+                                pInputText
+                                formControlName="startDate"
+                                placeholder="Start of Course Date"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- End of Course Date -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="endDate">End of Course Date</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-calendar"></i
+                            ></span>
+                            <input
+                                type="date"
+                                pInputText
+                                formControlName="endDate"
+                                placeholder="End of Course Date"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- University/College -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="university">University/College</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-graduation-cap"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="university"
+                                placeholder="University/College"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="col-12 md:col-6">
+                        <label htmlFor="location">Location</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon"
+                                ><i class="pi pi-map-marker"></i
+                            ></span>
+                            <input
+                                type="text"
+                                pInputText
+                                formControlName="location"
+                                placeholder="Location"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <br /><br /><br />
+                <div class="ui-g-12" style="text-align: center">
+                    <span
+                        class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"
+                    ></span>
+                    <button
+                        style="margin-left: 10px"
+                        pButton
+                        class="w-auto mt-3"
+                        icon="pi pi-check"
+                        label="Save"
+                        (click)="onSave()"
+                    ></button>
+                    <button
+                        style="margin-left: 10px"
+                        pButton
+                        class="w-auto mt-3 p-button-danger"
+                        icon="pi pi-times"
+                        label="Cancel"
+                        [routerLink]="'/cancel'"
+                    ></button>
+                </div>
+            </form>
         </div>
-        <!-- <div class="col-12">
-            <button style="margin-left: 10px;" pButton pRipple label="Save" class="w-auto mt-3"></button>
-        </div> -->
-        <div class="ui-g-12" style="text-align: right">
-            <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-            <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                 label="save"></button>
-            <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                 label="Cancel"></button>
-        </div>
-    
     </div>
-</div>
 </div>
