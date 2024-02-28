@@ -2,73 +2,126 @@
     <div class="col-12">
         <div class="card">
             <h5>Create Job</h5>
-            <div class="p-fluid p-formgrid grid">
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="firstname">Title</label>
-                    <input pInputText id="firstname" type="text" />
+            <form #jobForm="ngForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="title">Title</label>
+                        <input pInputText id="title" name="title" type="text" ngModel required minlength="2" maxlength="50" placeholder="Enter Title">
+                        <div *ngIf="jobForm.controls['title'].invalid && (jobForm.controls['title'].dirty || jobForm.controls['title'].touched)">
+                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['title'].errors">Title is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="description">Description</label>
+                        <textarea pInputText id="description" name="description" type="text" ngModel required minlength="2" maxlength="100" placeholder="Enter Description"></textarea>
+                        <div *ngIf="jobForm.controls['description'].invalid && (jobForm.controls['description'].dirty || jobForm.controls['description'].touched)">
+                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['description'].errors">Description is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="department">Department</label>
+                        <input pInputTextarea id="department" name="department" rows="4" ngModel required minlength="2" maxlength="100" placeholder="Enter Department">
+                        <div *ngIf="jobForm.controls['department'].invalid && (jobForm.controls['department'].dirty || jobForm.controls['department'].touched)">
+                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['department'].errors">Department is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="openings">Openings</label>
+                        <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings">
+                        <div *ngIf="jobForm.controls['openings'].invalid && (jobForm.controls['openings'].dirty || jobForm.controls['openings'].touched)">
+                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['openings'].errors">Openings is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="targetHireDate">Target Hire Date</label>
+                        <input pInputText id="targetHireDate" name="targetHireDate" type="date" ngModel required>
+                        <div style="color: red;" *ngIf="jobForm.controls['targetHireDate'].invalid && (jobForm.controls['targetHireDate'].dirty || jobForm.controls['targetHireDate'].touched)">
+                            <small class="text-danger">Target Hire Date is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="currency">Currency</label>
+                        <select pInputText id="currency"  name="currency"  [(ngModel)]="selectedCurrency"  required>
+                            <option value="" selected disabled>Select a currency</option>
+                            <option *ngFor="let currency of currencyOptions" [value]="currency.code">{{ currency.name }}</option>
+                            <option value="USD">United States Dollar (USD)</option>
+                            <option value="EUR">Euro (EUR)</option>
+                            <option value="GBP">British Pound Sterling (GBP)</option>
+                        </select>
+                        <div style="color: red;" *ngIf="jobForm.controls['currency'].invalid && (jobForm.controls['currency'].dirty || jobForm.controls['currency'].touched)">
+                            <small class="text-danger">Currency is required.</small>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="field col-12 md:col-6">
+                        <label for="salaryMin">Salary Minimum</label>
+                        <input pInputText id="salaryMin" name="salaryMin" type="number" ngModel required min="0" placeholder="Enter Min salary">
+                        <div *ngIf="jobForm.controls['salaryMin'].invalid && (jobForm.controls['salaryMin'].dirty || jobForm.controls['salaryMin'].touched)">
+                            <small style="color: red;" class="text-danger" *ngIf="jobForm.controls['salaryMin'].errors">Salary Minimum is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="salaryMax">Salary Maximum</label>
+                        <input pInputText id="salaryMax" name="salaryMax" type="number" ngModel required min="0" placeholder="Enter Max salary">
+                        <div style="color: red;" *ngIf="jobForm.controls['salaryMax'].invalid && (jobForm.controls['salaryMax'].dirty || jobForm.controls['salaryMax'].touched)">
+                            <small class="text-danger" *ngIf="jobForm.controls['salaryMax'].errors">Salary Maximum is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="jobType">Job Type</label>
+                        <p-dropdown [options]="jobTypeOptions" [(ngModel)]="selectedJobType" [placeholder]="'Select job type'" name="jobType" [required]="true"></p-dropdown>
+                        <div style="color: red;" *ngIf="jobForm.controls['jobType'].invalid && (jobForm.controls['jobType'].dirty || jobForm.controls['jobType'].touched)">
+                            <small class="text-danger">Job Type is required.</small>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="field col-12 md:col-6">
+                        <label for="location">Location</label>
+                        <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location" required>
+                        <div style="color: red;" *ngIf="jobForm.controls['location'].invalid &&  (jobForm.controls['location'].dirty || jobForm.controls['location'].touched)">
+                            <small class="text-danger">location is required.</small>
+                     </div>
+                    </div>    
+                    <div class="field col-12 md:col-6">
+                        <label for="currentSalary">Current Salary</label>
+                        <input pInputText id="currentSalary" name="currentSalary" type="number" ngModel  placeholder="Enter Currentsalary" required min="0">
+                        <div style="color: red;" *ngIf="jobForm.controls['currentSalary'].invalid && (jobForm.controls['currentSalary'].dirty || jobForm.controls['currentSalary'].touched)">
+                            <small class="text-danger" *ngIf="jobForm.controls['currentSalary'].errors">Current Salary is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="expectedSalary">Expected Salary</label>
+                        <input pInputText id="expectedSalary" name="expectedSalary" type="number" ngModel placeholder="Enter Expectedsalary" required min="0">
+                        <div style="color: red;" *ngIf="jobForm.controls['expectedSalary'].invalid && (jobForm.controls['expectedSalary'].dirty || jobForm.controls['expectedSalary'].touched)">
+                            <small class="text-danger" *ngIf="jobForm.controls['expectedSalary'].errors">Expected Salary is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="candidate">Candidate</label>
+                        <input pInputText id="candidate" name="candidate" type="text" ngModel placeholder="Enter Candidate" required>
+                        <div style="color: red;" *ngIf="jobForm.controls['candidate'].invalid && (jobForm.controls['candidate'].dirty || jobForm.controls['candidate'].touched)">
+                            <small class="text-danger">Candidate is required.</small>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="recruiter">Recruiter</label>
+                        <input pInputText id="recruiter" name="recruiter" type="text" placeholder="Enter Recruiter" ngModel required>
+                        <div style="color: red;" *ngIf="jobForm.controls['recruiter'].invalid && (jobForm.controls['recruiter'].dirty || jobForm.controls['recruiter'].touched)">
+                            <small class="text-danger">Recruiter is required.</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="lastname">Description</label>
-                    <input pInputText id="lastname" type="text" />
+            
+                <div class="ui-g-12" style="text-align: right">
+                    <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
+                         label="Save" [disabled]="jobForm.invalid"></button>
+                    <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
+                         label="Cancel"></button>
                 </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="middlename">Department</label>
-                    <input pInputTextarea id="middlename" rows="4" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="email">Openings</label>
-                    <input pInputText id="email" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="mobile">TargetHireDate</label>
-                    <input pInputText id="mobile" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="source">Currney</label>
-                    <input pInputText id="source" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="hiringFlowType">SalaryMinimum</label>
-                    <input pInputText id="hiringFlowType" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="location">SalaryMaximum</label>
-                    <input pInputText id="location" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="availtojoin">JobType</label>
-                    <input pInputText id="availtojoin" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="location">Location</label>
-                    <input pInputText id="location" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="currentsalary">HiringFlow</label>
-                    <input pInputText id="currentsalary" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="expectedsalary">Experience</label>
-                    <input pInputText id="expectedsalary" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="currency">Candidate</label>
-                    <input pInputText id="currency" type="text" />
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label htmlFor="gender">Recruiter</label>
-                    <input pInputText id="gender" type="text" />
-                </div>
-            </div>
-        
-            <div class="ui-g-12" style="text-align: right">
-                <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-                <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                     label="save"></button>
-                <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                     label="Cancel"></button>
-            </div>
-        
+            </form>
         </div>
     </div>
-    </div>
+</div>

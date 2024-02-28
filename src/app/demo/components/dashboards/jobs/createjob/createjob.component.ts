@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./createjob.component.scss']
 })
 export class CreatejobComponent {
+job: any = {};
+selectedCurrency: any;
+currencyOptions: any;
+selectedJobType: any;
+
+jobTypeOptions: any[] = [
+  { label: 'Select job type', value: null },
+  { label: 'Full-time', value: 'full-time' },
+  { label: 'Part-time', value: 'part-time' }
+];
+
+
+constructor() {}
+
 
 }
