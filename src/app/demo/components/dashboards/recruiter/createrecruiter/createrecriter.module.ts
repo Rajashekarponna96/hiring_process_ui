@@ -30,7 +30,8 @@ import { CreaterecruiterComponent } from './createrecruiter.component';
 		CascadeSelectModule,
 		MultiSelectModule,
 		InputTextareaModule,
-		InputTextModule
+		InputTextModule,
+		FormsModule
   ]
 })
 export class CreaterecriterModule { }
