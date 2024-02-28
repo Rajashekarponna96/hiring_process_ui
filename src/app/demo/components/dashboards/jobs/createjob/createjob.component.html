@@ -20,11 +20,13 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="department">Department</label>
-                        <input pInputTextarea id="department" name="department" rows="4" ngModel required minlength="2" maxlength="100" placeholder="Enter Department">
+                        <p-dropdown id="department" name="department" [options]="departmentOptions" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Departments" [required]="true">
+                        </p-dropdown>
                         <div *ngIf="jobForm.controls['department'].invalid && (jobForm.controls['department'].dirty || jobForm.controls['department'].touched)">
-                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['department'].errors">Department is required.</small>
+                            <small class="text-danger" style="color: red;">Department is required.</small>
                         </div>
                     </div>
+                    
                     <div class="field col-12 md:col-6">
                         <label for="openings">Openings</label>
                         <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings">
@@ -41,13 +43,8 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="currency">Currency</label>
-                        <select pInputText id="currency"  name="currency"  [(ngModel)]="selectedCurrency"  required>
-                            <option value="" selected disabled>Select a currency</option>
-                            <option *ngFor="let currency of currencyOptions" [value]="currency.code">{{ currency.name }}</option>
-                            <option value="USD">United States Dollar (USD)</option>
-                            <option value="EUR">Euro (EUR)</option>
-                            <option value="GBP">British Pound Sterling (GBP)</option>
-                        </select>
+                        <p-dropdown id="currency" name="currency" [options]="currencyOptions" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currencies" [required]="true">
+                        </p-dropdown>
                         <div style="color: red;" *ngIf="jobForm.controls['currency'].invalid && (jobForm.controls['currency'].dirty || jobForm.controls['currency'].touched)">
                             <small class="text-danger">Currency is required.</small>
                         </div>
