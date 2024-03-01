@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CandidateRoutingModule } from './candidate-routing.module';
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
 import { ChipsModule } from "primeng/chips";
-import { ChipModule } from "primeng/chip";
 import { DropdownModule } from "primeng/dropdown";
 import { InputMaskModule } from "primeng/inputmask";
 import { InputNumberModule } from "primeng/inputnumber";
@@ -13,54 +11,48 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { RatingModule } from 'primeng/rating';
-import { KnobModule } from 'primeng/knob';
-import { ListboxModule } from 'primeng/listbox';
-import { SelectButtonModule } from 'primeng/selectbutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { ColorPickerModule } from 'primeng/colorpicker';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { SliderModule } from 'primeng/slider';
-import { CandidateComponent } from './candidate.component';
+import { CreatecandiadteRoutingModule } from './createcandiadte-routing.module';
+import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
-
+import { RippleModule } from 'primeng/ripple';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CreatecandidateComponent } from './createcandidate.component';
 
 
 @NgModule({
-	declarations: [CandidateComponent],
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		CandidateRoutingModule,
-		FormsModule,
-		AutoCompleteModule,
+  declarations: [CreatecandidateComponent],
+  imports: [
+    CreatecandiadteRoutingModule,
+    CommonModule,
+    FormsModule,
+    AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
 		InputMaskModule,
 		InputNumberModule,
-		ColorPickerModule,
 		CascadeSelectModule,
 		MultiSelectModule,
-		ToggleButtonModule,
-		SliderModule,
 		InputTextareaModule,
-		RadioButtonModule,
 		InputTextModule,
-		RatingModule,
-		ChipModule,
-		KnobModule,
-		InputSwitchModule,
-		ListboxModule,
-		SelectButtonModule,
-		CheckboxModule,
+		TableModule,
+		ToastModule,
 		ButtonModule,
-		TableModule
-
-	]
+		RadioButtonModule,
+		ToggleButtonModule,
+		RippleModule,
+		ProgressBarModule,
+		DialogModule,
+		ConfirmDialogModule,
+		CheckboxModule,
+  ]
 })
-export class CandidateModule { }
+export class CreatecandiadteModule { }

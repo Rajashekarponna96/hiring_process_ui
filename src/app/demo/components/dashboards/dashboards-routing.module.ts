@@ -16,7 +16,10 @@ import { RouterModule } from '@angular/router';
         { path: 'pre-boarding', data: { breadcrumb: 'pre-boarding' }, loadChildren: () => import('./pre-boarding/pre-boarding.module').then(m => m.PreBoardingModule) },
         { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
         { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
-        { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) }
+        { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) },
+        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) }
+
+    
 
     ])],
     exports: [RouterModule]
