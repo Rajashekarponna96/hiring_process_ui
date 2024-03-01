@@ -33,10 +33,10 @@ export class AppMenuComponent implements OnInit {
                         label: 'Candidate',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/candidate']
-                    } 
+                    }
                 ]
             },
-            
+
             //recruiter
             {
                 label: 'recruiter',
@@ -47,7 +47,7 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/recruiter']
                     }
-                    
+
                 ]
             },
 
@@ -87,6 +87,19 @@ export class AppMenuComponent implements OnInit {
                         label: 'Reports',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/reports']
+                    }
+
+                ]
+            },
+
+            {
+                label: 'Talent Pool',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'TalentPool',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/talentpool']
                     }
 
                 ]
