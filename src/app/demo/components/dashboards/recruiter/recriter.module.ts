@@ -25,10 +25,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
-  declarations: [RecruiterComponent],
-  imports: [
-    CommonModule,
-    RecriterRoutingModule,FormsModule,
+	declarations: [RecruiterComponent],
+	imports: [
+		CommonModule,
+		RecriterRoutingModule,
+		FormsModule,
 		AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
@@ -49,6 +50,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 		DialogModule,
 		ConfirmDialogModule,
 		CheckboxModule
-  ]
+	]
 })
 export class RecriterModule { }
