@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 
         { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
         { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) },
-        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) }
+        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) },
         { path: 'talentpool', data: {breadcrumb: 'talentpool'}, loadChildren: () => import('./talentpool/talentpool.module').then(m => m.TalentpoolModule) },
         { path: 'listtalentpool', data: {breadcrumb: 'listtalentpool'}, loadChildren: () => import('./talentpool/listtalentpool/listtalentpool.module').then(m => m.ListtalentpoolModule) }
 
