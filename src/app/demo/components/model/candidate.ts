@@ -1,3 +1,4 @@
+
 import { Currency } from "./currency";
 import { Education } from "./education";
 import { Experience } from "./experience";
@@ -24,4 +25,5 @@ export class Candidate {
     experiences!: Experience;
     educations!: Education;
     talentPool!: TalentPool;
+
 }
