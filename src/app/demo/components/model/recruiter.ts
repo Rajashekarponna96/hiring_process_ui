@@ -5,6 +5,6 @@ export class Recruiter {
     firstName!: string;
     lastName!: string;
     email!: string;
-    mobile?: string;
+    mobile!: string;
     userAccount?: UserAccout;
 }
