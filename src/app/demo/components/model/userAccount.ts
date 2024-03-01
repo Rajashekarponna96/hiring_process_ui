@@ -1,7 +1,9 @@
-export interface UserAccout {
-    id:number;
-    userName: string;
-    password: string;
-    active: boolean;
-    role: any;
+import { Role } from "./role";
+
+export class UserAccout {
+    id!: number; 
+    userName!: string;
+    password!: string;
+    active!: boolean;
+    role?: Role;
 }
