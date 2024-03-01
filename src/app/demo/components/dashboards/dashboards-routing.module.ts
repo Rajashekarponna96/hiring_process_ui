@@ -15,11 +15,13 @@ import { RouterModule } from '@angular/router';
         { path: 'createrecruiter', data: {breadcrumb: 'Create'}, loadChildren: () => import('./recruiter/createrecruiter/createrecriter.module').then(m => m.CreaterecriterModule) },
         { path: 'pre-boarding', data: { breadcrumb: 'pre-boarding' }, loadChildren: () => import('./pre-boarding/pre-boarding.module').then(m => m.PreBoardingModule) },
         { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
-        { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./talentpool/talentpool.module').then(m => m.TalentpoolModule) },
-                { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
+
+        { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
         { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) },
-       { path: 'talentpool', data: {breadcrumb: 'talentpool'}, loadChildren: () => import('./talentpool/talentpool.module').then(m => m.TalentpoolModule) },
-      { path: 'listtalentpool', data: {breadcrumb: 'listtalentpool'}, loadChildren: () => import('./talentpool/listtalentpool/listtalentpool.module').then(m => m.ListtalentpoolModule) }
+        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) }
+        { path: 'talentpool', data: {breadcrumb: 'talentpool'}, loadChildren: () => import('./talentpool/talentpool.module').then(m => m.TalentpoolModule) },
+        { path: 'listtalentpool', data: {breadcrumb: 'listtalentpool'}, loadChildren: () => import('./talentpool/listtalentpool/listtalentpool.module').then(m => m.ListtalentpoolModule) }
+
 
     ])],
     exports: [RouterModule]

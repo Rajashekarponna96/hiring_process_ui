@@ -1,80 +1,29 @@
-export interface Candidate {
-availToJoin: any;
-    id: number;
-    firstName: string;
-    lastName: string;
-    middleName: string;
-    email: string;
-    mobile: string;
-    source: Source;
-    stage: Stage;
-    current: Location;
-    avialToJoin: number;
-    preferred: Location;
-    currentSalary: number;
-    expectedSalary: number;
-    currency: CurrencyType;
-    gender: string;
-    dateOfBirth: string;
-    talentPool: TalentPool;
-    job: Job;
-    skills: string[];
-}
 
-export interface Source {
-    id: number;
-    name: string;
-    description: string;
-}
+import { Currency } from "./currency";
+import { Education } from "./education";
+import { Experience } from "./experience";
+import { Source } from "./source";
+import { TalentPool } from "./talentpool";
 
-export interface Stage {
-    id: number;
-    type: string;
-    description: string;
-    source: Source;
-}
+export class Candidate {
+    firstName: string | undefined;
+    lastName: string | undefined;
+    middleName:string | undefined
+    email: string | undefined;
+    mobile: string | undefined;
+    source!: Source;
+    hiringFlowType:string | undefined
+    currentLocation!: Location; 
+    preferredLocation!: Location; 
+    availToJoin:string | undefined
+    currecntSalary:string | undefined
+    expectedSalary: string | undefined;
+    currency!: Currency; 
+    gender: string | undefined;
+    dateOfBirth: Date | undefined;
+    skills:string[] | undefined
+    experiences!: Experience;
+    educations!: Education;
+    talentPool!: TalentPool;
 
-export interface Location {
-    id: number;
-    name: string;
-    code: string;
-}
-
-export interface CurrencyType {
-    id: number;
-    name: string;
-    code: string;
-    symbol: string;
-}
-
-export interface TalentPool {
-    id: number;
-    name: string;
-    description: string;
-}
-
-export interface Department {
-    id: number;
-    name: string;
-    code: string;
-}
-
-export enum JobType {
-    FullTime = "FullTime",
-    PartTime = "PartTime",
-    Contract = "Contract",
-    Freelance = "Freelance",
-}
-
-export interface Job {
-    id: number;
-    title: string;
-    description: string;
-    department: Department;
-    openings: number;
-    targetHireDate: string;
-    currency: CurrencyType;
-    salaryMinimum: number;
-    salaryMaximum: number;
-    type: JobType;
 }
