@@ -5,7 +5,7 @@
             <form #recruiterForm="ngForm">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
-                        <label for="firstname">Firstname</label>
+                        <label for="firstname">FirstName</label>
                         <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter Firstname"
                             [(ngModel)]="recruiter.firstName" required #firstname="ngModel" />
                         <div *ngIf="
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="lastname">Lastname</label>
+                        <label for="lastname">LastName</label>
                         <input pInputText id="lastname" name="lastname" type="text" placeholder="Enter Lastname"
                             [(ngModel)]="recruiter.lastName" required #lastname="ngModel" />
                         <div *ngIf="
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="field col-12 md:col-6">
+                    <!-- <div class="field col-12 md:col-6">
                         <label for="useraccount">UserAccount</label>
                         <input pInputText id="useraccount" name="useraccount" type="text"
                             placeholder="Enter Useraccount" [(ngModel)]="recruiter.userAccount" required
@@ -68,7 +68,7 @@
                                 Useraccount is required
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="ui-g-12" style="text-align: right">
