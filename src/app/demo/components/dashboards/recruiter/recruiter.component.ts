@@ -11,9 +11,9 @@ import { Table } from 'primeng/table';
   styleUrls: ['./recruiter.component.scss']
 })
 export class RecruiterComponent {
-  
 
-  recruiter: Recruiter = new Recruiter(); 
+
+  recruiter: Recruiter = new Recruiter();
   recrutiers:Recruiter[] =[];
 
   constructor(private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef,private router: Router) { }
@@ -21,7 +21,7 @@ export class RecruiterComponent {
 
   getRecruiterList(){
     return this.http.get<Recruiter[]>('http://localhost:9000/recruiter/all');
-      
+
   }
   getAllRecruiterList(){
     return this.getRecruiterList().
@@ -30,8 +30,8 @@ export class RecruiterComponent {
        this.recrutiers=data;
        this.changeDetectorRefs.markForCheck();
     });
-  } 
-  
+  }
+
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal(
         (event.target as HTMLInputElement).value,
@@ -39,7 +39,8 @@ export class RecruiterComponent {
     );
 }
 
-  
+
+
   ngOnInit() {
     this.getAllRecruiterList();
   }
