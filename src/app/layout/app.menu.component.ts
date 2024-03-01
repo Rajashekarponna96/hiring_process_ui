@@ -100,9 +100,15 @@ export class AppMenuComponent implements OnInit {
                         label: 'TalentPool',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/talentpool']
-                    }
+                    },
+                    {
+                                       label: 'Compose',
+                                       icon: 'pi pi-fw pi-pencil',
+                                       routerLink: ['/listtalentpool']
+                                   }
 
-                ]
+                ],
+
             },
 
             //settings

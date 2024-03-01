@@ -27,6 +27,7 @@ import { SliderModule } from 'primeng/slider';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TalentpoolComponent } from './talentpool.component';
 import { ListtalentpoolComponent } from './listtalentpool/listtalentpool.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -58,7 +59,7 @@ import { ListtalentpoolComponent } from './listtalentpool/listtalentpool.compone
     ListboxModule,
     SelectButtonModule,
     CheckboxModule,
-    ButtonModule
+    ButtonModule,TableModule
   ]
 })
 export class TalentpoolModule { }
