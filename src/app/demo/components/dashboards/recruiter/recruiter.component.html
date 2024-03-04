@@ -30,8 +30,8 @@
                 <td>{{recruiter.mobile}}</td>
                 <td>
                     <div class="button-container">
-                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" icon="pi pi-pencil"></button>
-                        <button pButton class="p-button-sm p-button-rounded p-button-danger" icon="pi pi-trash"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditRecruiter(recruiter)" icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="recruiterdelete(recruiter)" icon="pi pi-trash"></button>
                     </div>  
                 </td>
         </ng-template>
