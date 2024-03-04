@@ -8,13 +8,8 @@
                         <label for="firstname">FirstName</label>
                         <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter Firstname"
                             [(ngModel)]="recruiter.firstName" required #firstname="ngModel" />
-                        <div *ngIf="
-                                firstname.invalid &&
-                                (firstname.dirty || firstname.touched)
-                            ">
-                            <div style="color: red" *ngIf="firstname.errors">
-                                Firstname is required
-                            </div>
+                        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                            <div style="color: red" *ngIf="firstname.errors">Firstname is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
@@ -55,20 +50,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="field col-12 md:col-6">
-                        <label for="useraccount">UserAccount</label>
-                        <input pInputText id="useraccount" name="useraccount" type="text"
-                            placeholder="Enter Useraccount" [(ngModel)]="recruiter.userAccount" required
-                            #useraccount="ngModel" />
-                        <div *ngIf="
-                                useraccount.invalid &&
-                                (useraccount.dirty || useraccount.touched)
-                            ">
-                            <div style="color: red" *ngIf="useraccount.errors">
-                                Useraccount is required
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <div class="ui-g-12" style="text-align: right">
