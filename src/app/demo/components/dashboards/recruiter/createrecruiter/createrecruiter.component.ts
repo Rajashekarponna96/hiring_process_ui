@@ -23,6 +23,7 @@ export class CreaterecruiterComponent {
 
   role = new Role();
 
+
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
 
   }
@@ -38,7 +39,7 @@ export class CreaterecruiterComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
-
+  
   addRecruiter() {
    let email =this.recruiter.email;
    let mobile = this.recruiter.mobile;
@@ -47,7 +48,7 @@ export class CreaterecruiterComponent {
    this.role.name='Admin';
    this.role.description='This is for Admin';
    this.userAccount.role=this.role;
-   this.recruiter.userAccount=this.userAccount;
+   this.recruiter.userAccout=this.userAccount;
     this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
       res => {
         console.log(res);
