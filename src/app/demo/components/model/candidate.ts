@@ -3,7 +3,7 @@ import { Currency } from "./currency";
 import { Education } from "./education";
 import { Experience } from "./experience";
 import { Source } from "./source";
-import { TalentPool } from "./talentpool";
+//import { TalentPool } from "./talentpool";
 
 export class Candidate {
     firstName: string | undefined;
@@ -13,17 +13,17 @@ export class Candidate {
     mobile: string | undefined;
     source!: Source;
     hiringFlowType:string | undefined
-    currentLocation!: Location; 
-    preferredLocation!: Location; 
+    currentLocation!: Location;
+    preferredLocation!: Location;
     availToJoin:string | undefined
     currecntSalary:string | undefined
     expectedSalary: string | undefined;
-    currency!: Currency; 
+    currency!: Currency;
     gender: string | undefined;
     dateOfBirth: Date | undefined;
     skills:string[] | undefined
     experiences!: Experience;
     educations!: Education;
-    talentPool!: TalentPool;
+   // talentPool!: TalentPool;
 
 }
