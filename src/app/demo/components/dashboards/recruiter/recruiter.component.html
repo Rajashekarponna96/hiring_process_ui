@@ -16,9 +16,8 @@
                 <th pSortableColumn="firstName" class="white-space-nowrap" style="width:25%">Firstname<p-sortIcon field="recruiter.firstName"></p-sortIcon></th>
                 <th pSortableColumn="lastName" class="white-space-nowrap" style="width:25%">Lastname<p-sortIcon field="recruiter.lastName"></p-sortIcon></th>
                 <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email<p-sortIcon field="recruiter.email"></p-sortIcon></th>
-                <th pSortableColumn="mobile" class="white-space-nowrap" style="width:25%">Mobile<p-sortIcon field="recruiter.mobile"></p-sortIcon></th>
-                <!-- <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">UserAccout<p-sortIcon field="activity"></p-sortIcon></th> -->
-
+                <th pSortableColumn="mobile" class="white-space-nowrap" style="width:20%">Mobile<p-sortIcon field="recruiter.mobile"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:20%">Modify</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-recruiter>
@@ -29,6 +28,12 @@
                 </td>
                 <td>{{recruiter.email}}</td>
                 <td>{{recruiter.mobile}}</td>
+                <td>
+                    <div class="button-container">
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger" icon="pi pi-trash"></button>
+                    </div>  
+                </td>
         </ng-template>
     </p-table>
 </div>
