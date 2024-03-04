@@ -13,22 +13,29 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:25%">Firstname<p-sortIcon field="recruiter.firstName"></p-sortIcon></th>
-                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:25%">Lastname<p-sortIcon field="recruiter.lastName"></p-sortIcon></th>
-                <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email<p-sortIcon field="recruiter.email"></p-sortIcon></th>
-                <th pSortableColumn="mobile" class="white-space-nowrap" style="width:25%">Mobile<p-sortIcon field="recruiter.mobile"></p-sortIcon></th>
-                <!-- <th pSortableColumn="activity" class="white-space-nowrap" style="width:25%">UserAccout<p-sortIcon field="activity"></p-sortIcon></th> -->
+                <th pSortableColumn="firstName" class="white-space-nowrap" style="width:25%">Firstname<p-sortIcon field="candidate.firstName"></p-sortIcon></th>
+                <th pSortableColumn="lastName" class="white-space-nowrap" style="width:25%">Lastname<p-sortIcon field="candidate.lastName"></p-sortIcon></th>
+                <th pSortableColumn="email" class="white-space-nowrap" style="width:25%">Email<p-sortIcon field="candidate.email"></p-sortIcon></th>
+                <th pSortableColumn="mobile" class="white-space-nowrap" style="width:25%">Mobile<p-sortIcon field="candidate.mobile"></p-sortIcon></th>
+                <th pSortableColumn="source" class="white-space-nowrap" style="width:25%">Source<p-sortIcon field="candidate.source"></p-sortIcon></th>
+                <th pSortableColumn="currentLocation" class="white-space-nowrap" style="width:25%">CurrentLocation<p-sortIcon field="candidate.currentLocation"></p-sortIcon></th>
+                <th pSortableColumn="preferredLocation" class="white-space-nowrap" style="width:25%">PreferredLocation<p-sortIcon field="candidate.preferredLocation"></p-sortIcon></th>
+                <th pSortableColumn="availToJoin" class="white-space-nowrap" style="width:25%">AvailableToJoin<p-sortIcon field="candidate.availToJoin"></p-sortIcon></th>
+
                 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let candidate>
+        <ng-template pTemplate="body" let-candidate>
             <tr>
                 <td>{{candidate.firstName}}</td>
-                <td>
-                    {{candidate.lastName}}
-                </td>
+                <td>{{candidate.lastName}}</td>
                 <td>{{candidate.email}}</td>
                 <td>{{candidate.mobile}}</td>
+                <td>{{candidate?.source.name}}</td>
+                <td>{{candidate?.current.name}}</td>
+                <td>{{candidate?.preferred.name}}</td>
+                <td>{{candidate.avialToJoin}}</td>
+
         </ng-template>
     </p-table>
 </div>
