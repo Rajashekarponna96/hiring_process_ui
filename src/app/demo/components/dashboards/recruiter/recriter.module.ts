@@ -23,6 +23,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
+import { EditrecruiterComponent } from './editrecruiter/editrecruiter.component';
 
 @NgModule({
 	declarations: [RecruiterComponent],

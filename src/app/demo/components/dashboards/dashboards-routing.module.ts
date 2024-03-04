@@ -13,9 +13,9 @@ import { RouterModule } from '@angular/router';
         { path: 'createjob', data: {breadcrumb: 'Create'}, loadChildren: () => import('./jobs/createjob/createjob.module').then(m => m.CreatejobModule) },
         { path: 'recruiter', data: { breadcrumb: 'recruiter' }, loadChildren: () => import('./recruiter/recriter.module').then(m => m.RecriterModule )},
         { path: 'createrecruiter', data: {breadcrumb: 'Create'}, loadChildren: () => import('./recruiter/createrecruiter/createrecriter.module').then(m => m.CreaterecriterModule) },
+        { path: 'editrecruiter', data: {breadcrumb: 'Edit'}, loadChildren: () => import('./recruiter/editrecruiter/editrecruiter.module').then(m => m.EditrecruiterModule) },
         { path: 'pre-boarding', data: { breadcrumb: 'pre-boarding' }, loadChildren: () => import('./pre-boarding/pre-boarding.module').then(m => m.PreBoardingModule) },
         { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
-
         { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
         { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) },
         { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) },

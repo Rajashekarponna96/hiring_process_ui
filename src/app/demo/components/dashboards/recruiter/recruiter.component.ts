@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Customer } from 'src/app/demo/api/customer';
 import { Recruiter } from '../../model/recruiter';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Table } from 'primeng/table';
+
 
 @Component({
   selector: 'app-recruiter',
@@ -11,6 +11,7 @@ import { Table } from 'primeng/table';
   styleUrls: ['./recruiter.component.scss']
 })
 export class RecruiterComponent {
+
 
 
   recruiter: Recruiter = new Recruiter();
@@ -37,6 +38,29 @@ export class RecruiterComponent {
         (event.target as HTMLInputElement).value,
         'contains'
     );
+}
+
+handleEditRecruiter(recruiter:Recruiter){
+  console.log(recruiter.id)
+  localStorage.setItem("id",String(recruiter.id))
+  console.log(recruiter);
+  localStorage.setItem('editRecruiter', JSON.stringify(recruiter));
+  this.router.navigate(['editrecruiter'])
+  
+}
+recruiterdelete(recruiter: Recruiter) {
+    return  this.http.delete<Recruiter>('http://localhost:9000/recruiter/'+ recruiter.id).subscribe(
+        res => {
+          console.log(res);
+          this.getAllRecruiterList();
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log("Client-side error occured.");
+          } else {
+            console.log("Server-side error occured.");
+          }
+        });
 }
 
 

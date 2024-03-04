@@ -7,4 +7,5 @@ export class Recruiter {
     email!: string;
     mobile!: string;
     userAccout?: UserAccout;
+  status: any;
 }

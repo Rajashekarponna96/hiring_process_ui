@@ -1,0 +1,64 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Create Recruiter</h5>
+            <form #recruiterForm="ngForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="firstname">FirstName</label>
+                        <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter Firstname"
+                            [(ngModel)]="recruiter.firstName" required #firstname="ngModel" />
+                        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                            <div style="color: red" *ngIf="firstname.errors">Firstname is required </div>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="lastname">LastName</label>
+                        <input pInputText id="lastname" name="lastname" type="text" placeholder="Enter Lastname"
+                            [(ngModel)]="recruiter.lastName" required #lastname="ngModel" />
+                        <div *ngIf="
+                                lastname.invalid &&
+                                (lastname.dirty || lastname.touched)
+                            ">
+                            <div style="color: red" *ngIf="lastname.errors">
+                                Lastname is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="email">Email</label>
+                        <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
+                            [(ngModel)]="recruiter.email" required email #email="ngModel" />
+                        <div *ngIf="
+                                email.invalid && (email.dirty || email.touched)
+                            ">
+                            <div style="color: red" *ngIf="email.errors">
+                                Invalid email format
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="mobile">Mobile</label>
+                        <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter MobileNumber"
+                            [(ngModel)]="recruiter.mobile" required pattern="[0-9]*" #mobile="ngModel" />
+                        <div *ngIf="
+                                mobile.invalid &&
+                                (mobile.dirty || mobile.touched)
+                            ">
+                            <div style="color: red" *ngIf="mobile.errors">
+                                Mobile number is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-12" style="text-align: right">
+                    <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check" label="Save"></button>
+                    <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button"
+                        icon="pi pi-times" label="Cancel"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
