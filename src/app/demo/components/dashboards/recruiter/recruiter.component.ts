@@ -48,6 +48,9 @@ handleEditRecruiter(recruiter:Recruiter){
   this.router.navigate(['editrecruiter'])
   
 }
+
+
+
 recruiterdelete(recruiter: Recruiter) {
     return  this.http.delete<Recruiter>('http://localhost:9000/recruiter/'+ recruiter.id).subscribe(
         res => {
