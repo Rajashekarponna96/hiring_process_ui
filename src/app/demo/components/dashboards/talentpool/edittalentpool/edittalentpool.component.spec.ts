@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TalentpoollistComponent } from './talentpoollist.component';
+import { EdittalentpoolComponent } from './edittalentpool.component';
 
-describe('TalentpoollistComponent', () => {
-  let component: TalentpoollistComponent;
-  let fixture: ComponentFixture<TalentpoollistComponent>;
+describe('EdittalentpoolComponent', () => {
+  let component: EdittalentpoolComponent;
+  let fixture: ComponentFixture<EdittalentpoolComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TalentpoollistComponent ]
+      declarations: [ EdittalentpoolComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TalentpoollistComponent);
+    fixture = TestBed.createComponent(EdittalentpoolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

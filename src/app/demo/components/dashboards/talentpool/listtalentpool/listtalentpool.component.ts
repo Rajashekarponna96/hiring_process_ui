@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
@@ -16,7 +16,7 @@ export class ListtalentpoolComponent {
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
 
   getTalentPoolList() {
-    return this.http.get<TalentPoolOne[]>('http://localhost:9000/talentPool/all'); // Adjust the URL
+    return this.http.get<TalentPoolOne[]>('http://localhost:9000/talentPool/all');
   }
 
   getAllTalentPools() {
@@ -42,5 +42,31 @@ export class ListtalentpoolComponent {
   navigateToCreateTalentPool() {
     this.router.navigate(['/talentpool']);
   }
+
+  handleEditTalentPool(talentPool:TalentPoolOne){
+    console.log(talentPool.id)
+    localStorage.setItem("id",String(talentPool.id))
+    console.log(talentPool);
+    localStorage.setItem('editTalentpool', JSON.stringify(talentPool));
+    this.router.navigate(['/edittalentpool'])
+
+  }
+
+
+talentpooldelete(recruiter: TalentPoolOne) {
+  return this.http.delete<TalentPoolOne>('http://localhost:9000/talentpool/' + recruiter.id).subscribe(
+    res => {
+      console.log(res);
+      this.getAllTalentPools();
+    },
+    (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.error("Client-side error occurred:", err.error.message);
+      } else {
+        console.error("Server-side error occurred:", err.status, err.message);
+      }
+    });
+}
+
 
 }

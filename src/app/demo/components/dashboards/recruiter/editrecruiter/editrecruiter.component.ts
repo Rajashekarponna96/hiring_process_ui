@@ -17,7 +17,7 @@ export class EditrecruiterComponent implements OnInit{
   recrutiers: Recruiter[] = [];
 
   constructor(private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef){
-    
+
   }
   getRecruiterList(){
     return this.http.get<Recruiter[]>('http://localhost:9000/recruiter/all');
@@ -35,7 +35,7 @@ export class EditrecruiterComponent implements OnInit{
     this.getAllRecruiterList();
     this.recruiter = JSON.parse(localStorage.getItem('editRecruiter') || '{}')
   }
-  
+
   updateRecruiter() {
     this.http.put<Recruiter>('http://localhost:9000/recruiter/'+this.recruiter.id, this.recruiter).subscribe(
       res => {
@@ -49,10 +49,10 @@ export class EditrecruiterComponent implements OnInit{
         } else {
           console.log("Server-side error occured.");
         }
-        
+
       });
 
-  
+
   console.log(JSON.stringify(this.recruiter));
 }
 }

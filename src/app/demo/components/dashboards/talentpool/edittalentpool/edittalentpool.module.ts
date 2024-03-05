@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EditrecruiterRoutingModule } from './editrecruiter-routing.module';
-import { EditrecruiterComponent } from './editrecruiter.component';
+//import { EditrecruiterRoutingModule } from './editrecruiter-routing.module';
+//import { EditrecruiterComponent } from './editrecruiter.component';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
@@ -14,14 +14,19 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 
+import { EdittalentpoolRoutingModule } from './edittalentpool-routing.module';
+import { EdittalentpoolComponent } from './edittalentpool.component';
+
 
 @NgModule({
-  declarations: [EditrecruiterComponent],
+  declarations: [EdittalentpoolComponent],
   imports: [
     CommonModule,
-    EditrecruiterRoutingModule,
-    FormsModule,
-    AutoCompleteModule,
+    EdittalentpoolRoutingModule,
+
+		EdittalentpoolRoutingModule,
+		FormsModule,
+		AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
@@ -31,7 +36,6 @@ import { InputTextModule } from "primeng/inputtext";
 		MultiSelectModule,
 		InputTextareaModule,
 		InputTextModule
-
   ]
 })
-export class EditrecruiterModule { }
+export class EdittalentpoolModule { }

@@ -1,0 +1,43 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h5>Edit Talent Pool</h5>
+      <form #talentPoolForm="ngForm">
+        <div class="p-fluid p-formgrid grid">
+          <div class="field col-12 md:6">
+            <label for="talentPoolName">Talent Pool Name</label>
+            <input pInputText id="talentPoolName" name="talentPoolName" type="text" placeholder="Enter Talent Pool Name"
+              [(ngModel)]="talentPool.name" required #talentPoolName="ngModel" />
+            <div *ngIf="talentPoolName.invalid && (talentPoolName.dirty || talentPoolName.touched)">
+              <div style="color: red" *ngIf="talentPoolName.errors">Talent Pool Name is required </div>
+            </div>
+          </div>
+          <div class="field col-12 md:6">
+            <label for="talentPoolDescription">Talent Pool Description</label>
+            <textarea pInputTextarea id="talentPoolDescription" name="talentPoolDescription" rows="5"
+              placeholder="Enter Talent Pool Description" [(ngModel)]="talentPool.description" required
+              #talentPoolDescription="ngModel"></textarea>
+            <div
+              *ngIf="talentPoolDescription.invalid && (talentPoolDescription.dirty || talentPoolDescription.touched)">
+              <div style="color: red" *ngIf="talentPoolDescription.errors">Talent Pool Description is required </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display talent pool ID -->
+        <!-- <div>ID: {{ talentPool.id }}</div> -->
+
+        <!-- Include other talent pool fields similarly -->
+
+        <!-- Buttons -->
+        <div class="ui-g-12" style="text-align: right">
+          <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+          <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check" (click)="updateTalentPool()"
+            label="Save"></button>
+          <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button" icon="pi pi-times"
+            label="Cancel"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
