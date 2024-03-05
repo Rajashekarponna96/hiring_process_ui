@@ -56,7 +56,7 @@
                 
                 <div class="field col-12 md:col-6">
                     <label for="availToJoin">AvailbleToJoin</label>
-                    <input pInputText id="availToJoin" name="availToJoin" type="text"
+                    <input pInputText id="availToJoin" name="availToJoin" type="number"
                         placeholder="Enter AvailToJoin" [(ngModel)]="candidate.availToJoin" required
                         #availToJoin="ngModel" />
                     <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
@@ -68,7 +68,7 @@
                 
                 <div class="field col-12 md:col-6">
                     <label for="currecntSalary">CurrecntSalary</label>
-                    <input pInputText id="currecntSalary" name="currecntSalary" type="text"
+                    <input pInputText id="currecntSalary" name="currecntSalary" type="number"
                         placeholder="Enter CurrecntSalary" [(ngModel)]="candidate.currecntSalary" required
                         #currecntSalary="ngModel" />
                     <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="expectedSalary">ExpectedSalary</label>
-                    <input pInputText id="expectedSalary" name="expectedSalary" type="text"
+                    <input pInputText id="expectedSalary" name="expectedSalary" type="number"
                         placeholder="Enter ExpectedSalary" [(ngModel)]="candidate.expectedSalary" required
                         #expectedSalary="ngModel" />
                     <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
@@ -90,18 +90,29 @@
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="male" name="gender"
                             [(ngModel)]="candidate.gender" value="male" ngModel #maleGender="ngModel" required>
-                        <label class="form-check-label" for="male">Male</label>
+                        <label class="form-check-label" for="Male">Male</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="female" name="gender"
-                            [(ngModel)]="candidate.gender" value="female" ngModel #femaleGender="ngModel" required>
+                            [(ngModel)]="candidate.gender" value="Female" ngModel #femaleGender="ngModel" required>
                         <label class="form-check-label" for="female">Female</label>
                     </div>
                     <div style="color: red;" *ngIf="(maleGender.invalid || femaleGender.invalid) && ((maleGender.dirty || maleGender.touched) || (femaleGender.dirty || femaleGender.touched))">
                         <div style="color: red;">Please select a gender</div>
                     </div>
                 </div>
+                
 
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="skills">Skills</label>
+                    <div *ngFor="let skill of candidate.skills; let i = index">
+                        <div class="p-inputgroup">
+                            <input pInputText id="skill{{i}}" type="text" [(ngModel)]="candidate.skills[i]" />
+                            <button pButton type="button" icon="pi pi-minus" (click)="removeSkill(i)" *ngIf="i > 0"></button>
+                        </div><br><br>
+                    </div>
+                    <button pButton type="button" icon="pi pi-plus" (click)="addSkill()">Add Skill</button>
+                </div>
                 
                 
                 <div class="field col-12 md:col-6">
@@ -181,6 +192,42 @@
                                 <input pInputText id="location" name="location" type="text" [(ngModel)]="education.location" />
                             </div>
                         </div>
+
+                        <!-- Submit button -->
+<div class="field col-12">
+    <button pButton type="button" (click)="submitEducation()">Submit</button>
+</div>
+
+<!-- Education table -->
+<div *ngIf="educationDetails.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Branch</th>
+                <th>Start of Course</th>
+                <th>End of Course</th>
+                <th>College</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let edu of educationDetails">
+                <td>{{ edu.course }}</td>
+                <td>{{ edu.branch }}</td>
+                <td>{{ edu.startOfCourse }}</td>
+                <td>{{ edu.endOfCourse }}</td>
+                <td>{{ edu.college }}</td>
+                <td>{{ edu.location }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
                     </div>
                  </div>
             </div>
@@ -225,6 +272,45 @@
                                 </div>
                                 
                             </div>
+
+                            <div class="field col-12">
+                                <button pButton type="button" (click)="submitExceperience()">SubmitExp</button>
+                            </div>
+                            
+                            <!-- Experience table -->
+                            <div *ngIf=" experienceDetails.length > 0">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>JobTitle</th>
+                                            <th>CurrentlyWokring</th>
+                                            <th>DateOfJoining</th>
+                                            <th>DateOfRelieving</th>
+                                            <th>Location</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let exp of  experienceDetails">
+                                            <td>{{ exp.company  }}</td>
+                                            <td>{{ exp.jobTitle}}</td>
+                                            <td>{{ exp.currentlyWokring}}</td>
+                                            <td>{{ exp.dateOfJoining }}</td>
+                                            <td>{{ exp.dateOfRelieving }}</td>
+                                            <td>{{ exp.location }}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            
+                            
+
+
+
+
                         </div>
                     </div>
                 </div>

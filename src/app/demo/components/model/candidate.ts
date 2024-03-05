@@ -13,17 +13,19 @@ export class Candidate {
     mobile: string | undefined;
     source!: Source;
     hiringFlowType:string | undefined
-    currentLocation!: Location;
-    preferredLocation!: Location;
-    availToJoin:string | undefined
-    currecntSalary:string | undefined
-    expectedSalary: string | undefined;
-    currency!: Currency;
+    currentLocation!: Location; 
+    preferredLocation!: Location; 
+    availToJoin:number | undefined
+    currecntSalary:number | undefined
+    expectedSalary: number | undefined;
+    currency!: Currency; 
     gender: string | undefined;
     dateOfBirth: Date | undefined;
-    skills:string[] | undefined
-    experiences!: Experience;
-    educations!: Education;
-   // talentPool!: TalentPool;
+    skills:string[] =['']
+    experiences!: Experience[];
+    educations!: Education[];
+    talentPool!: TalentPool;
+    
+
 
 }
