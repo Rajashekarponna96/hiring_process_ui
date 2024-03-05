@@ -32,14 +32,14 @@ export class EdittalentpoolComponent implements OnInit {
 
   ngOnInit() {
     this.getAllTalentPools();
-    this.talentPool = JSON.parse(localStorage.getItem('edittalentpool') || '{}');
+    this.talentPool = JSON.parse(localStorage.getItem('editTalentpool') || '{}');
   }
 
 
   updateTalentPool() {
     debugger;
     debugger;
-    this.http.put<TalentPoolOne>('http://localhost:9000/talentpool/' + this.talentPool.id, this.talentPool).subscribe(
+    this.http.put<TalentPoolOne>('http://localhost:9000/talentPool/' + this.talentPool.id, this.talentPool).subscribe(
       res => {
         console.log(res);
         this.getAllTalentPools();
