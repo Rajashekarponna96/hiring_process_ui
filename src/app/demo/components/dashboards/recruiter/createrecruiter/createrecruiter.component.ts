@@ -4,6 +4,8 @@ import { RecruiterService } from 'src/app/demo/service/recruiter.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Subscriber } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { UserAccout } from '../../../model/userAccount';
+import { Role } from '../../../model/role';
 
 @Component({
   selector: 'app-createrecruiter',
@@ -16,6 +18,10 @@ export class CreaterecruiterComponent {
   recrutiers: Recruiter[] | undefined
   @ViewChild("recruiterForm")
   recruiterForm!: NgForm;
+
+  userAccount = new UserAccout();
+
+  role = new Role();
 
 
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
@@ -33,9 +39,16 @@ export class CreaterecruiterComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
-
+  
   addRecruiter() {
-    debugger
+   let email =this.recruiter.email;
+   let mobile = this.recruiter.mobile;
+   this.userAccount.userName=email;
+   this.userAccount.password=mobile;
+   this.role.name='Admin';
+   this.role.description='This is for Admin';
+   this.userAccount.role=this.role;
+   this.recruiter.userAccout=this.userAccount;
     this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
       res => {
         console.log(res);

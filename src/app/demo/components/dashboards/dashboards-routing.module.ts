@@ -11,15 +11,20 @@ import { RouterModule } from '@angular/router';
         { path: 'home', data: { breadcrumb: 'home' }, loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
         { path: 'jobs', data: { breadcrumb: 'jobs' }, loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },
         { path: 'createjob', data: {breadcrumb: 'Create'}, loadChildren: () => import('./jobs/createjob/createjob.module').then(m => m.CreatejobModule) },
-        { path: 'recruiter', data: { breadcrumb: 'recruiter' }, loadChildren: () => import('./recruiter/recriter.module').then(m => m.RecriterModule )}, 
+        { path: 'recruiter', data: { breadcrumb: 'recruiter' }, loadChildren: () => import('./recruiter/recriter.module').then(m => m.RecriterModule )},
         { path: 'createrecruiter', data: {breadcrumb: 'Create'}, loadChildren: () => import('./recruiter/createrecruiter/createrecriter.module').then(m => m.CreaterecriterModule) },
+        { path: 'editrecruiter', data: {breadcrumb: 'Edit'}, loadChildren: () => import('./recruiter/editrecruiter/editrecruiter.module').then(m => m.EditrecruiterModule) },
         { path: 'pre-boarding', data: { breadcrumb: 'pre-boarding' }, loadChildren: () => import('./pre-boarding/pre-boarding.module').then(m => m.PreBoardingModule) },
         { path: 'reports', data: { breadcrumb: 'reports' }, loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
         { path: 'settings', data: { breadcrumb: 'settings' }, loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
         { path: 'candidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/candidate.module').then(m => m.CandidateModule) },
-        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) }
+        { path: 'createrecandidate', data: {breadcrumb: 'testingone'}, loadChildren: () => import('./candidate/createcandidate/createcandiadte.module').then(m => m.CreatecandiadteModule) },
+        { path: 'talentpool', data: {breadcrumb: 'talentpool'}, loadChildren: () => import('./talentpool/talentpool.module').then(m => m.TalentpoolModule) },
+        { path: 'listtalentpool', data: {breadcrumb: 'listtalentpool'}, loadChildren: () => import('./talentpool/listtalentpool/listtalentpool.module').then(m => m.ListtalentpoolModule) },
 
-    
+        { path: 'edittalentpool', data: {breadcrumb: 'edittalentpool'}, loadChildren: () => import('./talentpool/edittalentpool/edittalentpool.module').then(m => m.EdittalentpoolModule) }
+
+
 
     ])],
     exports: [RouterModule]

@@ -11,8 +11,6 @@ import { CascadeSelectModule } from "primeng/cascadeselect";
 import { MultiSelectModule } from "primeng/multiselect";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
-import { RecriterRoutingModule } from './recriter-routing.module';
-import { RecruiterComponent } from './recruiter.component';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -23,13 +21,12 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
-import { EditrecruiterComponent } from './editrecruiter/editrecruiter.component';
-
+import { ListtalentpoolRoutingModule } from './listtalentpool-routing.module';
 @NgModule({
-	declarations: [RecruiterComponent],
+	declarations: [],
 	imports: [
 		CommonModule,
-		RecriterRoutingModule,
+		ListtalentpoolRoutingModule,
 		FormsModule,
 		AutoCompleteModule,
 		CalendarModule,
@@ -53,4 +50,4 @@ import { EditrecruiterComponent } from './editrecruiter/editrecruiter.component'
 		CheckboxModule
 	]
 })
-export class RecriterModule { }
+export class ListtalentpoolModule { }
