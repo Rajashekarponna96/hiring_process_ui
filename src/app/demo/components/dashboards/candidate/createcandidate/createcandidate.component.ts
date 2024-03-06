@@ -27,7 +27,7 @@ experience =new Experience()
 source = new Source()
 sources:Source[] | undefined
 location =new Location()
-locations:Location[] | undefined
+// locations:Location[] | undefined
 currency = new Currency();
 currencies: Currency[] | undefined;
 selectedSource: any;
@@ -60,12 +60,12 @@ sourceOptions: any[] = [
   { label: 'REFFER', value: 'reffer' },
   { label: 'OTHERS', value: 'others' }
 ];
-currentLocationOptions: any[] = [
-  { label :'select Location', value: null},
-  { label :'Hyderabad', value: 'hyderabad'},
-  { label :'Chennai', value: 'chennai'},
-  { label :'Banglore', value: 'banglore'},
-  { label :'Bombay', value: 'bombay'}
+locations: any[] = [
+  // { label :'select Location', value: null},
+  // { label :'Hyderabad', value: 'hyderabad'},
+  // { label :'Chennai', value: 'chennai'},
+  // { label :'Banglore', value: 'banglore'},
+  // { label :'Bombay', value: 'bombay'}
 ];
 
 prefferedLocationOptions: any[] = [
@@ -165,6 +165,8 @@ onSubmit(){
       subscribe((data) => {
         console.log(data);
         this.locations=data;
+        //this.currentLocationOptions = this.locations.map(location => ({ label: location.name, value: location.id }));
+    
         this.changeDetectorRefs.markForCheck();
      });
     }
@@ -232,6 +234,9 @@ validateExperience(): boolean {
   // Return true if the validation passes, otherwise false
   return true;
 }
+
+
+
 
    
     
