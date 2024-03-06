@@ -21,7 +21,7 @@
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
                     </div>
-                    <div class="field col-12 md:col-6">
+                    <!-- <div class="field col-12 md:col-6">
                         <label for="department">Department</label>
                         <p-dropdown id="department" name="department" [options]="departmentOptions" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Departments" [required]="true"
                         [(ngModel)]="job.department"  #department="ngModel">
@@ -29,6 +29,14 @@
                         <div *ngIf="department.invalid && (department.dirty || department.touched)">
                             <div style="color: red" *ngIf="department.errors">Department is required </div>
                         </div>
+                    </div> -->
+                    <div class="field col-12 md:col-6">
+                        <label for="department">Department</label>
+                        <p-dropdown [options]="departments" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Department">
+                            <ng-template let-Department pTemplate="item">
+                                {{ Department.name }}
+                            </ng-template>
+                        </p-dropdown>
                     </div>
                     
                     <div class="field col-12 md:col-6">

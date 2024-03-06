@@ -3,6 +3,7 @@ import { Job } from '../../../model/job';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Department } from '../../../model/Department';
 
 @Component({
   selector: 'app-createjob',
@@ -13,6 +14,8 @@ export class CreatejobComponent {
 
   job: Job = new Job();
   jobs: Job[] = [];
+
+  department =new Department()
 
   @ViewChild("jobForm")
   jobForm!: NgForm; 
@@ -40,7 +43,7 @@ currencyOptions: any[]=[
   { label: 'United States Dollar (USD)' , value : 'USD'}
 
 ];
-
+departments: any[] = [];
 constructor(private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef,private router: Router) {}
 
 getJobList(){
@@ -54,6 +57,19 @@ getAllJobList(){
      this.jobs=data;
      this.changeDetectorRefs.markForCheck();
   });
+}
+
+getDepartmentList(){
+  return this.http.get<Department[]>("http://localhost:9000/department/all")
+}
+
+getAllDepartmentList(){
+  return this.getDepartmentList().
+  subscribe((data) => {
+    console.log(data);
+    this.departments=data;
+    this.changeDetectorRefs.markForCheck();
+ });
 }
 
 addJob() {
@@ -77,6 +93,11 @@ addJob() {
     console.log(JSON.stringify(this.job));
     this.getAllJobList();
 
+  }
+
+  ngOnInit() {
+    this.getAllJobList();
+    this.getAllDepartmentList();
   }
 }
 
