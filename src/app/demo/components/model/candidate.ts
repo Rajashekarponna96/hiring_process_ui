@@ -3,7 +3,7 @@ import { Currency } from "./currency";
 import { Education } from "./education";
 import { Experience } from "./experience";
 import { Source } from "./source";
-//import { TalentPool } from "./talentpool";
+import { TalentPool } from "./talentpool";
 
 export class Candidate {
     firstName: string | undefined;
