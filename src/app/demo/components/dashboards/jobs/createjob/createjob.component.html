@@ -6,39 +6,44 @@
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
                         <label for="title">Title</label>
-                        <input pInputText id="title" name="title" type="text" ngModel required minlength="2" maxlength="50" placeholder="Enter Title">
-                        <div *ngIf="jobForm.controls['title'].invalid && (jobForm.controls['title'].dirty || jobForm.controls['title'].touched)">
-                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['title'].errors">Title is required.</small>
+                        <input pInputText id="title" name="title" type="text" ngModel required minlength="2" maxlength="50" placeholder="Enter Title"
+                        [(ngModel)]="job.title" required #title="ngModel"/>
+                        <div *ngIf="title.invalid && (title.dirty || title.touched)">
+                            <div style="color: red" *ngIf="title.errors">Title is required </div>
                         </div>
+
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="description">Description</label>
-                        <textarea pInputText id="description" name="description" type="text" ngModel required minlength="2" maxlength="100" placeholder="Enter Description"></textarea>
-                        <div *ngIf="jobForm.controls['description'].invalid && (jobForm.controls['description'].dirty || jobForm.controls['description'].touched)">
-                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['description'].errors">Description is required.</small>
+                        <textarea pInputText id="description" name="description" type="text" ngModel required minlength="2" maxlength="100" placeholder="Enter Description"
+                        [(ngModel)]="job.description" required #description="ngModel"></textarea>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                            <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="department">Department</label>
-                        <p-dropdown id="department" name="department" [options]="departmentOptions" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Departments" [required]="true">
+                        <p-dropdown id="department" name="department" [options]="departmentOptions" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Departments" [required]="true"
+                        [(ngModel)]="job.department"  #department="ngModel">
                         </p-dropdown>
-                        <div *ngIf="jobForm.controls['department'].invalid && (jobForm.controls['department'].dirty || jobForm.controls['department'].touched)">
-                            <small class="text-danger" style="color: red;">Department is required.</small>
+                        <div *ngIf="department.invalid && (department.dirty || department.touched)">
+                            <div style="color: red" *ngIf="department.errors">Department is required </div>
                         </div>
                     </div>
                     
                     <div class="field col-12 md:col-6">
                         <label for="openings">Openings</label>
-                        <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings">
-                        <div *ngIf="jobForm.controls['openings'].invalid && (jobForm.controls['openings'].dirty || jobForm.controls['openings'].touched)">
-                            <small class="text-danger" style="color: red;" *ngIf="jobForm.controls['openings'].errors">Openings is required.</small>
+                        <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
+                        [(ngModel)]="job.openings"  #openings="ngModel">
+                        <div *ngIf="openings.invalid && (openings.dirty || openings.touched)">
+                            <div style="color: red" *ngIf="openings.errors">Openings is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="targetHireDate">Target Hire Date</label>
-                        <input pInputText id="targetHireDate" name="targetHireDate" type="date" ngModel required>
-                        <div style="color: red;" *ngIf="jobForm.controls['targetHireDate'].invalid && (jobForm.controls['targetHireDate'].dirty || jobForm.controls['targetHireDate'].touched)">
-                            <small class="text-danger">Target Hire Date is required.</small>
+                        <input pInputText id="targetHireDate" name="targetHireDate" type="date" [(ngModel)]="job.targetHireDate"  #targetHireDate="ngModel" required>
+                        <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)">
+                            <div style="color: red" *ngIf="targetHireDate.errors">TargetHireDate is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
@@ -52,17 +57,17 @@
                     
                     
                     <div class="field col-12 md:col-6">
-                        <label for="salaryMin">Salary Minimum</label>
-                        <input pInputText id="salaryMin" name="salaryMin" type="number" ngModel required min="0" placeholder="Enter Min salary">
-                        <div *ngIf="jobForm.controls['salaryMin'].invalid && (jobForm.controls['salaryMin'].dirty || jobForm.controls['salaryMin'].touched)">
-                            <small style="color: red;" class="text-danger" *ngIf="jobForm.controls['salaryMin'].errors">Salary Minimum is required.</small>
+                        <label for="salaryMinimum">Salary Minimum</label>
+                        <input pInputText id="salaryMinimum" name="salaryMinimum" type="number" required min="0" placeholder="Enter Min salary" [(ngModel)]="job.salaryMinimum"  #salaryMinimum="ngModel">
+                        <div *ngIf="salaryMinimum.invalid && (salaryMinimum.dirty || salaryMinimum.touched)">
+                            <div style="color: red" *ngIf="salaryMinimum.errors">Openings is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="salaryMax">Salary Maximum</label>
-                        <input pInputText id="salaryMax" name="salaryMax" type="number" ngModel required min="0" placeholder="Enter Max salary">
-                        <div style="color: red;" *ngIf="jobForm.controls['salaryMax'].invalid && (jobForm.controls['salaryMax'].dirty || jobForm.controls['salaryMax'].touched)">
-                            <small class="text-danger" *ngIf="jobForm.controls['salaryMax'].errors">Salary Maximum is required.</small>
+                        <label for="salaryMaximum">Salary Maximun</label>
+                        <input pInputText id="salaryMaximum" name="salaryMaximum" type="number" required min="0" placeholder="Enter Max salary" [(ngModel)]="job.salaryMaximum"  #salaryMaximum="ngModel">
+                        <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)">
+                            <div style="color: red" *ngIf="salaryMaximum.errors">Openings is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
@@ -82,18 +87,11 @@
                      </div>
                     </div>    
                     <div class="field col-12 md:col-6">
-                        <label for="currentSalary">Current Salary</label>
-                        <input pInputText id="currentSalary" name="currentSalary" type="number" ngModel  placeholder="Enter Currentsalary" required min="0">
-                        <div style="color: red;" *ngIf="jobForm.controls['currentSalary'].invalid && (jobForm.controls['currentSalary'].dirty || jobForm.controls['currentSalary'].touched)">
-                            <small class="text-danger" *ngIf="jobForm.controls['currentSalary'].errors">Current Salary is required.</small>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="expectedSalary">Expected Salary</label>
-                        <input pInputText id="expectedSalary" name="expectedSalary" type="number" ngModel placeholder="Enter Expectedsalary" required min="0">
-                        <div style="color: red;" *ngIf="jobForm.controls['expectedSalary'].invalid && (jobForm.controls['expectedSalary'].dirty || jobForm.controls['expectedSalary'].touched)">
-                            <small class="text-danger" *ngIf="jobForm.controls['expectedSalary'].errors">Expected Salary is required.</small>
-                        </div>
+                        <label for="flows">HiringFlow</label>
+                        <input pInputText id="flows" name="flows" type="text"  placeholder="Enter HiringFlow" [(ngModel)]="job.flows"  #flows="ngModel" required>
+                        <div  *ngIf="flows.invalid &&  (flows.dirty || flows.touched)">
+                            <div style="color: red" *ngIf="flows.errors">HiringFlow is required </div>
+                     </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="candidate">Candidate</label>
@@ -114,7 +112,7 @@
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                         label="Save" [disabled]="jobForm.invalid"></button>
+                    (click)="addJob()" label="Save" [disabled]="jobForm.invalid"></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                          label="Cancel"></button>
                 </div>
