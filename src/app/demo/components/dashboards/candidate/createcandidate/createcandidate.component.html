@@ -136,11 +136,15 @@
                 <!-- Current Location dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="currentLocation">Current Location</label>
-                    <p-dropdown [options]="currentLocationOptions" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location"></p-dropdown>
+                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location">
+                        <ng-template let-location pTemplate="item">
+                            {{ location.name }}
+                        </ng-template>
+                    </p-dropdown>
                 </div>
-                
-    
-                <!-- Currency dropdown -->
+                   
+
+            <!-- Currency dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="currency">Currency</label>
                     <p-dropdown [options]="currencyOptions" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currency"></p-dropdown>
