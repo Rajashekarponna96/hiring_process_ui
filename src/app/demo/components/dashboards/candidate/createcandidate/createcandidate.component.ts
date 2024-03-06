@@ -61,6 +61,7 @@ sourceOptions: any[] = [
   { label: 'OTHERS', value: 'others' }
 ];
 locations: any[] = [
+  
   // { label :'select Location', value: null},
   // { label :'Hyderabad', value: 'hyderabad'},
   // { label :'Chennai', value: 'chennai'},
