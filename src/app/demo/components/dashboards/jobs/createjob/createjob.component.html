@@ -21,14 +21,21 @@
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
                     </div>
+                    <!-- <div class="col-12 field">
+                        <label for="description">Description</label>
+                        <p-editor id="description" [(ngModel)]="job.description" [style]="{'height':'250px'}" name="description" placeholder="Enter Description" #description="ngModel" required></p-editor>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                            <div style="color: red" *ngIf="description.errors">Description is required </div>
+                        </div>
+                    </div> -->
+                    
                     <div class="field col-12 md:col-6">
                         <label for="department">Department</label>
-                        <p-dropdown id="department" name="department" [options]="departmentOptions" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Departments" [required]="true"
-                        [(ngModel)]="job.department"  #department="ngModel">
+                        <p-dropdown [options]="departments" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Department" (onChange)="onDepartmentChange(selectedDepartments)" name="department" optionLabel="name">
+                            <ng-template let-Department pTemplate="item">
+                                {{ Department.name }}
+                            </ng-template>
                         </p-dropdown>
-                        <div *ngIf="department.invalid && (department.dirty || department.touched)">
-                            <div style="color: red" *ngIf="department.errors">Department is required </div>
-                        </div>
                     </div>
                     
                     <div class="field col-12 md:col-6">
@@ -48,11 +55,8 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="currency">Currency</label>
-                        <p-dropdown id="currency" name="currency" [options]="currencyOptions" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currencies" [required]="true">
+                        <p-dropdown [options]="currencys" [(ngModel)]="selectedCurrencys" [showClear]="true" [filter]="true" placeholder="Select Currency" (onChange)="onCurrencyChange(selectedCurrencys)" name="currency" optionLabel="name">                            
                         </p-dropdown>
-                        <div style="color: red;" *ngIf="jobForm.controls['currency'].invalid && (jobForm.controls['currency'].dirty || jobForm.controls['currency'].touched)">
-                            <small class="text-danger">Currency is required.</small>
-                        </div>
                     </div>
                     
                     
@@ -72,10 +76,10 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="jobType">Job Type</label>
-                        <p-dropdown [options]="jobTypeOptions" [(ngModel)]="selectedJobType" [placeholder]="'Select job type'" name="jobType" [required]="true"></p-dropdown>
-                        <div style="color: red;" *ngIf="jobForm.controls['jobType'].invalid && (jobForm.controls['jobType'].dirty || jobForm.controls['jobType'].touched)">
+                        <p-dropdown [options]="jobTypeOptions" [(ngModel)]="selectedJobType" [placeholder]="'Select job type'" name="type" [required]="true" optionLabel="type"></p-dropdown>
+                        <!-- <div style="color: red;" *ngIf="jobForm.controls['jobType'].invalid && (jobForm.controls['jobType'].dirty || jobForm.controls['jobType'].touched)">
                             <small class="text-danger">Job Type is required.</small>
-                        </div>
+                        </div> -->
                     </div>
                     
                     
@@ -87,32 +91,26 @@
                      </div>
                     </div>    
                     <div class="field col-12 md:col-6">
-                        <label for="flows">HiringFlow</label>
-                        <input pInputText id="flows" name="flows" type="text"  placeholder="Enter HiringFlow" [(ngModel)]="job.flows"  #flows="ngModel" required>
-                        <div  *ngIf="flows.invalid &&  (flows.dirty || flows.touched)">
-                            <div style="color: red" *ngIf="flows.errors">HiringFlow is required </div>
+                        <label for="experience">Experience</label>
+                        <input pInputText id="flows" name="flows" type="text"  placeholder="Enter Experience" [(ngModel)]="job.experience"  #experience="ngModel" required>
+                        <div  *ngIf="experience.invalid &&  (experience.dirty || experience.touched)">
+                            <div style="color: red" *ngIf="experience.errors">Experience is required </div>
                      </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="candidate">Candidate</label>
-                        <input pInputText id="candidate" name="candidate" type="text" ngModel placeholder="Enter Candidate" required>
-                        <div style="color: red;" *ngIf="jobForm.controls['candidate'].invalid && (jobForm.controls['candidate'].dirty || jobForm.controls['candidate'].touched)">
-                            <small class="text-danger">Candidate is required.</small>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="recruiter">Recruiter</label>
-                        <input pInputText id="recruiter" name="recruiter" type="text" placeholder="Enter Recruiter" ngModel required>
-                        <div style="color: red;" *ngIf="jobForm.controls['recruiter'].invalid && (jobForm.controls['recruiter'].dirty || jobForm.controls['recruiter'].touched)">
-                            <small class="text-danger">Recruiter is required.</small>
-                        </div>
+                        <label for="recruiters">Recruiter</label>
+                        <p-dropdown [options]="recruiters" [(ngModel)]="selectedRecruiters" [showClear]="true" [filter]="true" placeholder="Select Recruiter" (onChange)="onRecruiterChange(selectedRecruiters)" name="recruiters" optionLabel="firstName">
+                            <ng-template let-Recruiter pTemplate="item">
+                                {{ Recruiter.firstName }}
+                            </ng-template>
+                        </p-dropdown>
                     </div>
                 </div>
             
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="addJob()" label="Save" [disabled]="jobForm.invalid"></button>
+                    (click)="addJob()" [disabled]="jobForm.invalid" label="Save" ></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                          label="Cancel"></button>
                 </div>

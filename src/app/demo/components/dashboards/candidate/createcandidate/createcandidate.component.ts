@@ -65,17 +65,6 @@ showExperience: boolean = false;
 //   this.candidate.skills.splice(0, 1);
 // }
 
-
-
-
-
-
-
-
-
-
-  
-
 addSkills(event?: any) {
   if (event) {
     const value = event.value;

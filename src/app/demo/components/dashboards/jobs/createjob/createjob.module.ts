@@ -9,6 +9,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CreatejobRoutingModule } from './createjob-routing.module';
 import { FormsModule } from '@angular/forms';
 import { CreatejobComponent } from './createjob.component';
+import { EditorModule } from 'primeng/editor';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CreatejobComponent } from './createjob.component';
 		InputTextModule,
 		DropdownModule,
 		FileUploadModule,
-		InputTextareaModule
+		InputTextareaModule,
+    EditorModule
   ]
 })
 export class CreatejobModule { }
