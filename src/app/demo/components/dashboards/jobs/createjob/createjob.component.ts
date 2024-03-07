@@ -4,6 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Department } from '../../../model/Department';
+import { Currency } from '../../../model/currency';
+import { Recruiter } from '../../../model/recruiter';
 
 @Component({
   selector: 'app-createjob',
@@ -12,22 +14,27 @@ import { Department } from '../../../model/Department';
 })
 export class CreatejobComponent {
 
+
   job: Job = new Job();
   jobs: Job[] = [];
 
-  department =new Department()
+  currency = new Currency();
+  //currencies: Currency[] | undefined;
 
+  department =new Department()
+  recruiter = new Recruiter()
   @ViewChild("jobForm")
   jobForm!: NgForm; 
 
-selectedCurrency: any;
+//selectedCurrency: any;
 selectedJobType: any;
 selectedDepartments: any; 
+selectedRecruiters:any;
+selectedCurrencys:any;
 
 jobTypeOptions: any[] = [
-  { label: 'Select job type', value: null },
-  { label: 'Full-time', value: 'full-time' },
-  { label: 'Part-time', value: 'part-time' }
+   'FullTime',
+   'PartTime'
 ];
 
 departmentOptions:any[] =[
@@ -36,14 +43,10 @@ departmentOptions:any[] =[
   { label: 'Manager', value: 'manager' }
 ];
 
-currencyOptions: any[]=[
-  { label: 'Select CurrencyType', value: null },
-  { label: 'Indian(INR)', value: 'INR' },
-  { label: 'Euro (EUR)', value: 'EUR' },
-  { label: 'United States Dollar (USD)' , value : 'USD'}
-
-];
+currencyOptions: any;
 departments: any[] = [];
+recruiters: any[] =[];
+currencys: any[]=[];
 constructor(private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef,private router: Router) {}
 
 getJobList(){
@@ -72,8 +75,38 @@ getAllDepartmentList(){
  });
 }
 
+getRecruiterList() {
+  return this.http.get<Recruiter[]>('http://localhost:9000/recruiter/all');
+
+}
+getAllRecruiterList() {
+  return this.getRecruiterList().
+    subscribe((data) => {
+      console.log(data);
+      this.recruiters = data;
+      this.changeDetectorRefs.markForCheck();
+    });
+}
+
+getCurrencyList(){
+  return this.http.get<Currency[]>("http://localhost:9000/currency/all")
+}
+getAllCurrencyList(){
+  return this.getCurrencyList().
+  subscribe((data) => {
+    console.log(data);
+    this.currencys=data;
+    this.changeDetectorRefs.markForCheck();
+ });
+}
+
+
 addJob() {
 
+  this.job.department=this.selectedDepartments;
+  this.job.recruiters=this.selectedRecruiters;
+  this.job.currney=this.selectedCurrencys;
+  this.job.type=this.selectedJobType;
   this.http.post<Job>('http://localhost:9000/job/', this.job).subscribe(
       res => {
         console.log(res);
@@ -95,9 +128,26 @@ addJob() {
 
   }
 
+  onDepartmentChange(data: any) {
+   console.log("selected department:",data);
+   console.log("departments.........."+JSON.stringify(this.selectedDepartments))
+  }
+
+  onRecruiterChange(data: any) {
+    console.log("selected recruiter:",data);
+    console.log("Recruiters.........."+JSON.stringify(this.selectedRecruiters))
+    }
+
+  onCurrencyChange(data: any) {
+    console.log("selected recruiter:",data);
+    console.log("Recruiters.........."+JSON.stringify(this.selectedCurrencys))
+      }
+    
   ngOnInit() {
     this.getAllJobList();
     this.getAllDepartmentList();
+    this.getAllCurrencyList();
+    this.getAllRecruiterList();
   }
 }
 
