@@ -44,14 +44,20 @@
                         <div style="color: red;" *ngIf="mobile.errors">Mobile number is required</div>
                     </div>
                 </div>
-                <div class="field col-12 md:col-6">
+                <!-- <div class="field col-12 md:col-6">
                     <label for="hiringFlowType">HiringFlowType</label>
-                    <input pInputText id="hiringFlowType" name="hiringFlowType" type="text"
-                        placeholder="Enter HiringFlowType" [(ngModel)]="candidate.hiringFlowType" required
-                        #hiringFlowType="ngModel" />
-                    <div *ngIf="hiringFlowType.invalid && (hiringFlowType.dirty || hiringFlowType.touched)">
-                        <div style="color: red;" *ngIf="hiringFlowType.errors">HiringFlowType is required</div>
+                    <input pInputText id="stage" name="stage" type="text"
+                        placeholder="Enter HiringFlowType" [(ngModel)]="candidate.stage" required
+                        #stage="ngModel" />
+                    <div *ngIf="stage.invalid && (stage.dirty || stage.touched)">
+                        <div style="color: red;" *ngIf="stage.errors">HiringFlowType is required</div>
                     </div>
+                </div> -->
+
+                <div class="field col-12 md:col-6">
+                    <label for="taletpoll">HiringFlowType</label>
+                    <p-dropdown [options]="stages" [(ngModel)]="selectedStages" [showClear]="true" [filter]="true" placeholder="Select Stages" name="stage" optionLabel="stage">
+                    </p-dropdown>
                 </div>
                 
                 <div class="field col-12 md:col-6">
@@ -101,9 +107,18 @@
                         <div style="color: red;">Please select a gender</div>
                     </div>
                 </div>
+
+                <!--Date of Birth field-->
+            <div class="field col-12 md:col-6">
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input pInputText id="dateOfBirth" name="dateOfBirth" type="date" [(ngModel)]="candidate.dateOfBirth"  placeholder="Select Date of Birth">
+                <div style="color: red;" *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
+                    <small class="text-danger">Date of Birth is required.</small>
+                </div>
+            </div>
                 
 
-                <div class="field col-12 md:col-6">
+                <!-- <div class="field col-12 md:col-6">
                     <label htmlFor="skills">Skills</label>
                     <div *ngFor="let skill of candidate.skills; let i = index">
                         <div class="p-inputgroup">
@@ -112,34 +127,56 @@
                         </div><br><br>
                     </div>
                     <button pButton type="button" icon="pi pi-plus" (click)="addSkill()">Add Skill</button>
-                </div>
+                </div> -->
                 
                 
-                <div class="field col-12 md:col-6">
+                
+
+                
+                <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
                     <label htmlFor="skills">Skills</label>
-                    <input pInputText id="skills" type="text" />
-                </div>
+                    <p-chips [ngModel]="skills" (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)" (onBlur)="addSkills()"></p-chips>
+                  </div>
                 
+
+                <!-- TalentPoll  dropdown -->
                 <div class="field col-12 md:col-6">
-                    <label htmlFor="talentpoll">Talent Poll</label>
-                    <input pInputText id="talentpoll" type="text" />
+                    <label for="taletpoll">TalentPoll</label>
+                    <p-dropdown [options]="talentpools" [(ngModel)]="selectedTalentPoll" [showClear]="true" [filter]="true" placeholder="Select TalentPoll" name="talentpool"  optionLabel="name">
+                        <ng-template let-talentPoll pTemplate="item">
+                            {{talentPoll.name}}
+                        </ng-template>
+                    </p-dropdown>
                 </div>
+
+                <!-- Job  dropdown -->
                 <div class="field col-12 md:col-6">
-                    <label htmlFor="job">Job</label>
-                    <input pInputText id="job" type="text" />
+                    <label for="job">Job</label>
+                    <p-dropdown [options]="jobs" [(ngModel)]="selectedJob" [showClear]="true" [filter]="true" placeholder="Select Job" name="job"  optionLabel="title">
+                        
+                    </p-dropdown>
                 </div>
+                <!-- Source dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="source">Source</label>
-                    <p-dropdown [options]="sourceOptions" [(ngModel)]="selectedSource" [showClear]="true" [filter]="true" placeholder="Select Source"></p-dropdown>
+                    <p-dropdown [options]="sources" [(ngModel)]="selectedSource" [showClear]="true" [filter]="true" placeholder="Select Source"   name="source" optionLabel="name">
+     
+                    </p-dropdown>
                 </div>
     
                 <!-- Current Location dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="currentLocation">Current Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location">
-                        <ng-template let-location pTemplate="item">
-                            {{ location.name }}
-                        </ng-template>
+                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="location" optionLabel="name">
+                        
+                    </p-dropdown>
+                </div>
+
+                <!-- Preffed Location dropdown -->
+                <div class="field col-12 md:col-6">
+                    <label for="Preffered">Prefferd Location</label>
+                    <p-dropdown [options]="locations" [(ngModel)]="selectedPrefferedLocation" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="location" optionLabel="name">
+                        
                     </p-dropdown>
                 </div>
                    
@@ -147,17 +184,10 @@
             <!-- Currency dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="currency">Currency</label>
-                    <p-dropdown [options]="currencyOptions" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currency"></p-dropdown>
+                    <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currency" name="currency" optionLabel="name"></p-dropdown>
                 </div>
             </div>
-            <!--Dtae of Birth field-->
-            <div class="field col-12 md:col-6">
-                <label for="dateOfBirth">Date Of Birth</label>
-                <input pInputText id="dateOfBirth" name="dateOfBirth" type="date" [(ngModel)]="candidate.dateOfBirth"  placeholder="Select Date of Birth">
-                <div style="color: red;" *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
-                    <small class="text-danger">Date of Birth is required.</small>
-                </div>
-            </div>
+            
 
             <!--Education details-->
             <div class="grid">
@@ -180,12 +210,18 @@
                                 <input pInputText id="branch" name="branch" type="text" [(ngModel)]="education.branch" />
                             </div>
                             <div class="field col-12 md:col-6">
-                                <label for="startOfCourse">Start of Course</label>
-                                <input pInputText id="startOfCourse" name="startOfCourse" type="text" [(ngModel)]="education.startOfCourse" />
+                                <label for="startOfCourse">StartOfCourse</label>
+                                <input pInputText id="startOfCourse" name="startOfCourse" type="date" [(ngModel)]="education.startOfCourse"  placeholder="Select startOfCourse">
+                                <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
+                                    <small class="text-danger">Date of Birth is required.</small>
+                                </div> -->
                             </div>
                             <div class="field col-12 md:col-6">
-                                <label for="endOfCourse">End of Course</label>
-                                <input pInputText id="endOfCourse" name="endOfCourse" type="text" [(ngModel)]="education.endOfCourse" />
+                                <label for="startOfCourse">EndOfCourse</label>
+                                <input pInputText id=" endOfCourse" name="endOfCourse" type="date" [(ngModel)]="education.endOfCourse"  placeholder="Select  endOfCourse">
+                                <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
+                                    <small class="text-danger">Date of Birth is required.</small>
+                                </div> -->
                             </div>
                             <div class="field col-12 md:col-6">
                                 <label for="college">College</label>
@@ -263,12 +299,18 @@
                                     <input pInputText id="currentlyWorking" name="currentlyWorking" type="text" [(ngModel)]="experience.currentlyWorking" />
                                 </div> -->
                                 <div class="field col-12 md:col-6">
-                                    <label for="dateOfJoining">Date of Joining</label>
-                                    <input pInputText id="dateOfJoining" name="dateOfJoining" type="text" [(ngModel)]="experience.dateOfJoining" />
+                                    <label for="dateOfJoining">DateOfJoining</label>
+                                    <input pInputText id="dateOfJoining" name="dateOfJoining" type="date" [(ngModel)]="experience.dateOfJoining"  placeholder="Select DateOfJoining">
+                                    <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
+                                        <small class="text-danger">Date of Birth is required.</small>
+                                    </div> -->
                                 </div>
                                 <div class="field col-12 md:col-6">
-                                    <label for="dateOfRelieving">Date of Relieving</label>
-                                    <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="text" [(ngModel)]="experience.dateOfRelieving" />
+                                    <label for="dateOfJoining">DateOfRelieving</label>
+                                    <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date" [(ngModel)]="experience.dateOfRelieving"  placeholder="Select DateOfRelieving">
+                                    <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
+                                        <small class="text-danger">Date of Birth is required.</small>
+                                    </div> -->
                                 </div>
                                 <div class="field col-12 md:col-6">
                                     <label for="location">Location</label>

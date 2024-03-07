@@ -7,6 +7,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Source } from '../../../model/source';
 import { Location } from '../../../model/location';
 import { Currency } from '../../../model/currency';
+import { TalentPool } from '../../../model/talentpool';
+import { Job } from '../../../model/job';
 
 @Component({
   selector: 'app-createcandidate',
@@ -25,15 +27,28 @@ candidates:Candidate[] | undefined
 education = new  Education()
 experience =new Experience()
 source = new Source()
-sources:Source[] | undefined
+ sources:Source[] =[]
 location =new Location()
-// locations:Location[] | undefined
+ locations:Location[] = []
+ talentpool = new TalentPool()
+ talentpools:TalentPool[] = []
 currency = new Currency();
-currencies: Currency[] | undefined;
+currencies: Currency[] = []
+job =new Job()
+jobs : Job[] =[]
 selectedSource: any;
 selectedcurrentLocation:any;
-selectedprefferedLocation:any;
+selectedPrefferedLocation:any;
+selectedTalentPoll:any;
 selectedJobType: any;
+selectedCurrency :any;
+selectedStages :any;
+selectedJob:any;
+skills: string[] = [];
+newSkill: string = '';
+stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+
+
 showEducationFields: boolean = false;
 showExperience: boolean = false;
 // showEducationFieldstable: boolean = false;
@@ -42,55 +57,49 @@ showExperience: boolean = false;
     experienceDetails:any[] = [];
 
 
-addSkill(){
-  this.candidate.skills.push('');
-}
+// addSkill(){
+//   this.candidate.skills.push('');
+// }
 
-removeSkill(i:number){
-  this.candidate.skills.splice(0, 1);
-}
+// removeSkill(i:number){
+//   this.candidate.skills.splice(0, 1);
+// }
 
 
-sourceOptions: any[] = [
-  { label: 'Select Source', value: null },
-  { label: 'Naukari', value: 'naukari' },
-  { label: 'Times.com', value: 'times' },
-  { label: 'Linkdin', value: 'Linkdin' },
-  { label: 'MONISTER', value: 'monister' },
-  { label: 'REFFER', value: 'reffer' },
-  { label: 'OTHERS', value: 'others' }
-];
-locations: any[] = [
-  // { label :'select Location', value: null},
-  // { label :'Hyderabad', value: 'hyderabad'},
-  // { label :'Chennai', value: 'chennai'},
-  // { label :'Banglore', value: 'banglore'},
-  // { label :'Bombay', value: 'bombay'}
-];
 
-prefferedLocationOptions: any[] = [
-  { label :'select Location', value: null},
-  { label :'Hyderabad', value: 'hyderabad'},
-  { label :'Chennai', value: 'chennai'},
-  { label :'Banglore', value: 'banglore'},
-  { label :'Bombay', value: 'bombay'}
-];
 
-selectedCurrency :any;
 
-currencyOptions :any[] = [
-  { label :'select Currency' ,value:null},
-  { label :'Rupess' ,value:'Rupess'}
-  ];
 
-  jobTypeOptions: any[] = [
-    { label: 'Select job type', value: null },
-    { label: 'Full-time', value: 'full-time' },
-    { label: 'Part-time', value: 'part-time' }
-  ];
+
+
+
+
   
 
-  toggleEducationFields() {
+addSkills(event?: any) {
+  if (event) {
+    const value = event.value;
+    if (value && !this.skills.includes(value)) {
+      this.skills.push(value);
+      console.log("Added skill: " + value);
+    }
+  } else if (this.newSkill && !this.skills.includes(this.newSkill)) {
+    this.skills.push(this.newSkill);
+    console.log("Added skill: " + this.newSkill);
+    this.newSkill = ''; // Clear the input field after adding a skill
+  }
+}
+
+removeSkills(skill: string) {
+  const index = this.skills.indexOf(skill);
+  if (index !== -1) {
+    this.skills.splice(index, 1);
+  }
+}
+
+  
+
+toggleEducationFields() {
     this.showEducationFields = !this.showEducationFields;
 }
 toggleExperienceFields() {
@@ -108,8 +117,14 @@ onSubmit(){
     console.log("the candidate detailes are "+this.candidate)
     this.candidate.experiences=this.experienceDetails
     this.candidate.educations=this.educationDetails
-    console.log("this the selectedSource vlue  is:"+this.selectedSource)
-    this.candidate.source=this.selectedSource
+    this.candidate.source =  this.selectedSource
+    this.candidate.currentLocation = this.selectedcurrentLocation;
+    this.candidate.preferredLocation = this.selectedPrefferedLocation;
+    this.candidate.talentPool = this.selectedTalentPoll;
+    this.candidate.job = this.selectedJob;
+    this.candidate.currency = this.selectedCurrency;
+    this.candidate.skills = this.skills
+    this.candidate.stage  = this.selectedStages
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
         res => {
           console.log(res);
@@ -171,8 +186,36 @@ onSubmit(){
      });
     }
 
+    getTalentPoolList(){
+      return this.http.get<TalentPool[]>("http://localhost:9000/talentPool/all")
+    }
+
+    getAllTalentPoolListt(){
+      return this.getTalentPoolList().
+      subscribe((data) => {
+        console.log(data);
+        this.talentpools=data;
+        this.changeDetectorRefs.markForCheck();
+     });
+    }
+
+    getJobList(){
+      return this.http.get<Job[]>("http://localhost:9000/job/all")
+    }
+    getAllJobsList(){
+      return this.getJobList().
+      subscribe((data) => {
+        console.log(data);
+        this.jobs=data;
+        this.changeDetectorRefs.markForCheck();
+     });
+    }
+
+
+    
+
     getCurrencyList(){
-      return this.http.get<Currency[]>("http:localhost//9000/currency/all")
+      return this.http.get<Currency[]>("http://localhost:9000/currency/all")
     }
     getAllCurrencyList(){
       return this.getCurrencyList().
@@ -183,23 +226,29 @@ onSubmit(){
      });
     }
 
+    // onSourceChange(data:any) {
+    //   console.log('Selected Source:', data);
+    //   console.log("hi---------"+JSON.stringify(this.selectedSource))
+    //   // You can now use this.selectedSource as needed in your component
+    // }
+
     
     submitEducation() {
       // Validate the education details before adding to the table
       if (this.validateEducation()) {
           this.educationDetails.push({ ...this.education });
           // Optionally, you can clear the form fields after submission
-          this.education = {
-            course:"",
-            branch:"",
-            startOfCourse :"",
-            endOfCourse:"",
-            college:"",
-            location:"",
-            candidate:new Candidate(),
+          // this.education = {
+          //   course:"",
+          //   branch:"",
+          //   startOfCourse :"",
+          //   endOfCourse:"",
+          //   college:"",
+          //   location:"",
+          //   candidate:new Candidate(),
     
             
-          };
+          // };
       }
   }
 
@@ -250,6 +299,9 @@ validateExperience(): boolean {
       this.getAllSourcesList();
       this.getAllLocationList();
       this.getAllCurrencyList();
+      this.getAllJobsList();
+      this.getAllTalentPoolListt();
+     
      
   }
 

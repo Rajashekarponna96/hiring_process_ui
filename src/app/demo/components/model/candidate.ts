@@ -2,6 +2,7 @@
 import { Currency } from "./currency";
 import { Education } from "./education";
 import { Experience } from "./experience";
+import { Job } from "./job";
 import { Source } from "./source";
 import { TalentPool } from "./talentpool";
 
@@ -12,7 +13,7 @@ export class Candidate {
     email: string | undefined;
     mobile: string | undefined;
     source!: Source;
-    hiringFlowType:string | undefined
+    stage!: string;
     currentLocation!: Location; 
     preferredLocation!: Location; 
     availToJoin:number | undefined
@@ -25,6 +26,7 @@ export class Candidate {
     experiences!: Experience[];
     educations!: Education[];
     talentPool!: TalentPool;
+    job!:Job
     
 
 
