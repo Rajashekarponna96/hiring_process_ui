@@ -24,6 +24,9 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { EditrecruiterComponent } from './editrecruiter/editrecruiter.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { SidebarModule } from 'primeng/sidebar';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
 	declarations: [RecruiterComponent],
@@ -50,7 +53,19 @@ import { EditrecruiterComponent } from './editrecruiter/editrecruiter.component'
 		ProgressBarModule,
 		DialogModule,
 		ConfirmDialogModule,
-		CheckboxModule
+		CheckboxModule, ToastModule,
+		DialogModule,
+		FormsModule,
+		TooltipModule,
+		InputTextModule,
+		ButtonModule,
+		TableModule,
+		ConfirmDialogModule,
+		SidebarModule,
+		RippleModule,
+		DialogModule,
+		ToastModule,
+		ConfirmPopupModule
 	]
 })
 export class RecriterModule { }
