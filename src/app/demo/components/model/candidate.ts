@@ -14,10 +14,10 @@ export class Candidate {
     mobile: string | undefined;
     source!: Source;
     stage!: string;
-    currentLocation!: Location; 
-    preferredLocation!: Location; 
-    availToJoin:number | undefined
-    currecntSalary:number | undefined
+    current!: Location; 
+    preferred!: Location; 
+    avialToJoin!:number 
+    currentSalary!:number
     expectedSalary: number | undefined;
     currency!: Currency; 
     gender: string | undefined;

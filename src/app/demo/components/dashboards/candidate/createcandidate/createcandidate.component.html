@@ -61,24 +61,24 @@
                 </div>
                 
                 <div class="field col-12 md:col-6">
-                    <label for="availToJoin">AvailbleToJoin</label>
-                    <input pInputText id="availToJoin" name="availToJoin" type="number"
-                        placeholder="Enter AvailToJoin" [(ngModel)]="candidate.availToJoin" required
-                        #availToJoin="ngModel" />
-                    <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
-                        <div style="color: red;" *ngIf="availToJoin.errors">AvailToJoin is required</div>
+                    <label for="avialToJoin">AvailbleToJoin</label>
+                    <input pInputText id="avialToJoin" name="avialToJoin" type="number"
+                        placeholder="Enter avialToJoin" [(ngModel)]="candidate.avialToJoin" required
+                        #avialToJoin="ngModel" />
+                    <div *ngIf="avialToJoin.invalid && (avialToJoin.dirty || avialToJoin.touched)">
+                        <div style="color: red;" *ngIf="avialToJoin.errors">AvailToJoin is required</div>
                     </div>
                 </div>
 
                 
                 
                 <div class="field col-12 md:col-6">
-                    <label for="currecntSalary">CurrecntSalary</label>
-                    <input pInputText id="currecntSalary" name="currecntSalary" type="number"
-                        placeholder="Enter CurrecntSalary" [(ngModel)]="candidate.currecntSalary" required
-                        #currecntSalary="ngModel" />
-                    <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
-                        <div style="color: red;" *ngIf="currecntSalary.errors">CurrecntSalary is required</div>
+                    <label for="currentSalary">CurrecntSalary</label>
+                    <input pInputText id="currentSalary" name="currentSalary" type="number"
+                        placeholder="Enter CurrentSalary" [(ngModel)]="candidate.currentSalary" required
+                        #currentSalary="ngModel" />
+                    <div *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)">
+                        <div style="color: red;" *ngIf="currentSalary.errors">CurrentSalary is required</div>
                     </div>
                 </div>
                 <div class="field col-12 md:col-6">
@@ -86,7 +86,7 @@
                     <input pInputText id="expectedSalary" name="expectedSalary" type="number"
                         placeholder="Enter ExpectedSalary" [(ngModel)]="candidate.expectedSalary" required
                         #expectedSalary="ngModel" />
-                    <div *ngIf="availToJoin.invalid && (availToJoin.dirty || availToJoin.touched)">
+                    <div *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)">
                         <div style="color: red;" *ngIf="expectedSalary.errors">ExpectedSalary is required</div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <label for="gender">Select Gender</label>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="male" name="gender"
-                            [(ngModel)]="candidate.gender" value="male" ngModel #maleGender="ngModel" required>
+                            [(ngModel)]="candidate.gender" value="Male" ngModel #maleGender="ngModel" required>
                         <label class="form-check-label" for="Male">Male</label>
                     </div>
                     <div class="form-check">
@@ -166,8 +166,8 @@
     
                 <!-- Current Location dropdown -->
                 <div class="field col-12 md:col-6">
-                    <label for="currentLocation">Current Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="location" optionLabel="name">
+                    <label for="current">Current Location</label>
+                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="current" optionLabel="name">
                         
                     </p-dropdown>
                 </div>
@@ -175,7 +175,7 @@
                 <!-- Preffed Location dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="Preffered">Prefferd Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="selectedPrefferedLocation" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="location" optionLabel="name">
+                    <p-dropdown [options]="locations" [(ngModel)]="selectedPrefferedLocation" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="Prefferd" optionLabel="name">
                         
                     </p-dropdown>
                 </div>
