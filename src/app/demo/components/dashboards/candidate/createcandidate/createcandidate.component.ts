@@ -118,8 +118,8 @@ onSubmit(){
     this.candidate.experiences=this.experienceDetails
     this.candidate.educations=this.educationDetails
     this.candidate.source =  this.selectedSource
-    this.candidate.currentLocation = this.selectedcurrentLocation;
-    this.candidate.preferredLocation = this.selectedPrefferedLocation;
+    this.candidate.current = this.selectedcurrentLocation;
+    this.candidate.preferred = this.selectedPrefferedLocation;
     this.candidate.talentPool = this.selectedTalentPoll;
     this.candidate.job = this.selectedJob;
     this.candidate.currency = this.selectedCurrency;
