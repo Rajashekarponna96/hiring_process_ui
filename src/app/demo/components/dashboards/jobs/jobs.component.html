@@ -30,8 +30,8 @@
                 <td>{{job.experience}}</td>
                 <td>
                     <div class="button-container">
-                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" icon="pi pi-pencil"></button>
-                        <button pButton class="p-button-sm p-button-rounded p-button-danger" icon="pi pi-trash"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditJob(job)" icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="Jobdelete(job)" icon="pi pi-trash"></button>
                     </div>                    
                 </td>
             </tr>
