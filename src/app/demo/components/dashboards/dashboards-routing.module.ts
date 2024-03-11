@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
         { path: 'home', data: { breadcrumb: 'home' }, loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
         { path: 'jobs', data: { breadcrumb: 'jobs' }, loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },
         { path: 'createjob', data: {breadcrumb: 'Create'}, loadChildren: () => import('./jobs/createjob/createjob.module').then(m => m.CreatejobModule) },
+        { path: 'editjob', data: {breadcrumb: 'Edit'}, loadChildren: () => import('./jobs/editjob/editjob.module').then(m => m.EditjobModule) },
         { path: 'recruiter', data: { breadcrumb: 'recruiter' }, loadChildren: () => import('./recruiter/recriter.module').then(m => m.RecriterModule )},
         { path: 'createrecruiter', data: {breadcrumb: 'Create'}, loadChildren: () => import('./recruiter/createrecruiter/createrecriter.module').then(m => m.CreaterecriterModule) },
         { path: 'editrecruiter', data: {breadcrumb: 'Edit'}, loadChildren: () => import('./recruiter/editrecruiter/editrecruiter.module').then(m => m.EditrecruiterModule) },

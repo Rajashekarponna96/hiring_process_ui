@@ -120,6 +120,11 @@ export class AppMenuComponent implements OnInit {
                         label: 'Settings',
                         icon: 'pi pi-fw pi-home',
                         routerLink: ['/settings']
+                    },
+                    {
+                        label: 'menu',
+                        icon: 'pi pi-fw pi-home',
+                        routerLink: ['/menus']
                     }
 
                 ]
