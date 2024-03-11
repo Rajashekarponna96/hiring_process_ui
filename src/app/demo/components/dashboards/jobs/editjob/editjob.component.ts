@@ -115,6 +115,10 @@ export class EditjobComponent {
       }     
 
    updateJob() {
+    this.job.department=this.selectedDepartments;
+    this.job.recruiters=this.selectedRecruiters;
+    this.job.currney=this.selectedCurrencys;
+    this.job.type=this.selectedJobType;
     this.http.put<Job>('http://localhost:9000/job/'+this.job.id, this.job).subscribe(
       res => {
         console.log(res);
