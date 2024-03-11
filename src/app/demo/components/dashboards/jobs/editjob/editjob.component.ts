@@ -23,6 +23,7 @@ export class EditjobComponent {
   department =new Department()
   selectedDepartments: any; 
   departments: any[] = [];
+  
 
   currency = new Currency();
   selectedCurrencys:any;
@@ -112,6 +113,10 @@ export class EditjobComponent {
         this.getAllCurrencyList();
         this.getAllRecruiterList();
         this.job = JSON.parse(localStorage.getItem('editJob') || '{}')
+        this.selectedDepartments=this.job.department;
+        this.selectedCurrencys=this.job.currney;
+        this.selectedRecruiters=this.job.recruiters;
+        this.selectedJobType=this.job.type;
       }     
 
    updateJob() {
