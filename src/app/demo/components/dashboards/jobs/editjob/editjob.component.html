@@ -110,7 +110,7 @@
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="addJob()" [disabled]="jobForm.invalid" label="Save" routerLink="/jobs" ></button>
+                    (click)="updateJob()" routerLink="/jobs" label="Save" ></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                     routerLink="/jobs" label="Cancel"></button>
                 </div>
@@ -118,3 +118,4 @@
         </div>
     </div>
 </div>
+

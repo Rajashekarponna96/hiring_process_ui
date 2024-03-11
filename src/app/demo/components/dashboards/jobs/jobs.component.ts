@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Job } from '../../model/job';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-jobs',
@@ -26,6 +26,35 @@ export class JobsComponent implements OnInit {
        this.changeDetectorRefs.markForCheck();
     });
   }
+
+  handleEditJob(job: Job) {
+    console.log(job.id);
+    localStorage.setItem('id', String(job.id));
+    console.log(job);
+    localStorage.setItem('editJob', JSON.stringify(job));
+    this.router.navigate(['editjob']);
+}
+
+  Jobdelete(job: Job) {
+    debugger;
+    this.http
+        .delete<Job>(
+            'http://localhost:9000/job/' + job.id
+        )
+        .subscribe(
+            (res) => {
+                console.log(res);
+                this.getAllJobList();
+            },
+            (err: HttpErrorResponse) => {
+                if (err.error instanceof Error) {
+                    console.log('Client-side error occurred.');
+                } else {
+                    console.log('Server-side error occurred.');
+                }
+            }
+        );
+}
 
   ngOnInit() {
     this.getAllJobList();
