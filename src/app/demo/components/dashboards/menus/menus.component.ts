@@ -11,6 +11,7 @@ import { Currency } from '../../model/currency';
 import { TalentPool } from '../../model/talentpool';
 import { Job } from '../../model/job';
 import { Candidate } from '../../model/candidate';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -56,6 +57,7 @@ import { Candidate } from '../../model/candidate';
         h5 {
           margin-top: 0;
         }
+
       `
   ],
 })
@@ -63,8 +65,7 @@ import { Candidate } from '../../model/candidate';
 
 export class MenusComponent implements OnInit {
 
-
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
 
   }
 
@@ -85,6 +86,11 @@ export class MenusComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
 
+  totalSteps = 4;
+
+
+
+
 
 
   @ViewChild("candidateForm")
@@ -93,24 +99,11 @@ export class MenusComponent implements OnInit {
   candidates: Candidate[] | undefined
   education = new Education()
   experience = new Experience()
-  source = new Source()
   sources: Source[] = []
-  location = new Location()
   locations: Location[] = []
-  talentpool = new TalentPool()
   talentpools: TalentPool[] = []
-  currency = new Currency();
   currencies: Currency[] = []
-  job = new Job()
   jobs: Job[] = []
-  selectedSource: any;
-  selectedcurrentLocation: any;
-  selectedPrefferedLocation: any;
-  selectedTalentPoll: any;
-  selectedJobType: any;
-  selectedCurrency: any;
-  selectedStages: any;
-  selectedJob: any;
   skills: string[] = [];
   newSkill: string = '';
   stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
@@ -118,27 +111,10 @@ export class MenusComponent implements OnInit {
 
   showEducationFields: boolean = false;
   showExperience: boolean = false;
-  // showEducationFieldstable: boolean = false;
-  // education: any = {}; // Your education model, adjust as needed
+
   educationDetails: any[] = [];
   experienceDetails: any[] = [];
 
-
-
-  // currentStep = 1; // Default to the first step
-  submitForm(form: NgForm) {
-    // Handle form submission logic here
-    if (form.valid) {
-      // Form is valid, perform action (e.g., save data)
-      console.log("Form submitted successfully!");
-    } else {
-      // Form is invalid, display error messages or handle accordingly
-      console.log("Form is invalid. Please fill in all required fields.");
-    }
-  }
-  setCurrentStep(step: number) {
-    this.currentStep = step;
-  }
 
 
 
@@ -172,30 +148,25 @@ export class MenusComponent implements OnInit {
     this.showExperience = !this.showExperience;
   }
 
-  onSubmit() {
 
-  }
-
-  onCancel() {
+  cancel() {
+    this.router.navigate(['/candidate'])
 
   }
   addCandidate() {
     console.log("the candidate detailes are " + this.candidate)
     this.candidate.experiences = this.experienceDetails
     this.candidate.educations = this.educationDetails
-    this.candidate.source = this.selectedSource
-    this.candidate.current = this.selectedcurrentLocation;
-    this.candidate.preferred = this.selectedPrefferedLocation;
-    this.candidate.talentPool = this.selectedTalentPoll;
-    this.candidate.job = this.selectedJob;
-    this.candidate.currency = this.selectedCurrency;
     this.candidate.skills = this.skills
-    this.candidate.stage = this.selectedStages
+
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
       res => {
         console.log(res);
         this.getAllCandidateList();
         this.candidateForm.reset();
+        this.educationDetails = ['']
+        this.experienceDetails = ['']
+
 
       },
       (err: HttpErrorResponse) => {
@@ -292,11 +263,6 @@ export class MenusComponent implements OnInit {
       });
   }
 
-  // onSourceChange(data:any) {
-  //   console.log('Selected Source:', data);
-  //   console.log("hi---------"+JSON.stringify(this.selectedSource))
-  //   // You can now use this.selectedSource as needed in your component
-  // }
 
 
   submitEducation() {
@@ -304,17 +270,17 @@ export class MenusComponent implements OnInit {
     if (this.validateEducation()) {
       this.educationDetails.push({ ...this.education });
       // Optionally, you can clear the form fields after submission
-      // this.education = {
-      //   course:"",
-      //   branch:"",
-      //   startOfCourse :"",
-      //   endOfCourse:"",
-      //   college:"",
-      //   location:"",
-      //   candidate:new Candidate(),
+      this.education = {
+        course: "",
+        branch: "",
+        startOfCourse: new Date(),
+        endOfCourse: new Date(),
+        college: "",
+        location: "",
+        candidate: new Candidate(),
 
 
-      // };
+      };
     }
   }
 
@@ -329,17 +295,17 @@ export class MenusComponent implements OnInit {
     if (this.validateExperience()) {
       this.experienceDetails.push({ ...this.experience });
       // Optionally, you can clear the form fields after submission
-      // this.experience = {
-      // company :"",
-      // jobTitle:"",
-      // currentlyWokring:false,
-      // dateOfJoining:"",
-      // dateOfRelieving:"",
-      // location:new Location(),
-      // candidate:new Candidate(),
+      this.experience = {
+        company: "",
+        jobTitle: "",
+        currentlyWokring: false,
+        dateOfJoining: "",
+        dateOfRelieving: "",
+        location: "",
+        candidate: new Candidate(),
 
 
-      // };
+      };
     }
 
   }
@@ -352,7 +318,21 @@ export class MenusComponent implements OnInit {
 
 
 
-  totalSteps = 3; // Update this if you add more steps
+
+
+
+
+
+
+
+  // end
+
+
+  setCurrentStep(step: number) {
+    this.currentStep = step;
+  }
+
+
 
   prevStep() {
     this.currentStep--;
@@ -388,20 +368,8 @@ export class MenusComponent implements OnInit {
 
 
   }
-  // ngOnInit() {
-
-  // }
-
-
 }
-
-
-
 
 function addSkill() {
   throw new Error('Function not implemented.');
 }
-
-
-
-
