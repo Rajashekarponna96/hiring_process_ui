@@ -28,12 +28,12 @@ import { CreatecandidateComponent } from './createcandidate.component';
 
 
 @NgModule({
-  declarations: [CreatecandidateComponent],
-  imports: [
-    CreatecandiadteRoutingModule,
-    CommonModule,
-    FormsModule,
-    AutoCompleteModule,
+	declarations: [CreatecandidateComponent],
+	imports: [
+		CreatecandiadteRoutingModule,
+		CommonModule,
+		FormsModule,
+		AutoCompleteModule,
 		CalendarModule,
 		ChipsModule,
 		DropdownModule,
@@ -53,6 +53,6 @@ import { CreatecandidateComponent } from './createcandidate.component';
 		DialogModule,
 		ConfirmDialogModule,
 		CheckboxModule,
-  ]
+	]
 })
 export class CreatecandiadteModule { }
