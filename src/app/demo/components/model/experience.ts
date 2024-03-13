@@ -6,7 +6,7 @@ export class Experience{
     currentlyWokring:boolean | undefined;
     dateOfJoining:string | undefined;
     dateOfRelieving:string | undefined;
-    location!: Location;
+    location!: string;
     candidate!: Candidate;
 
 
