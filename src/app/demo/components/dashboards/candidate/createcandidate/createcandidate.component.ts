@@ -9,6 +9,7 @@ import { Location } from '../../../model/location';
 import { Currency } from '../../../model/currency';
 import { TalentPool } from '../../../model/talentpool';
 import { Job } from '../../../model/job';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createcandidate',
@@ -17,7 +18,7 @@ import { Job } from '../../../model/job';
 })
 export class CreatecandidateComponent {
 
-constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router:Router) {
 
 }
 @ViewChild("candidateForm")
@@ -26,24 +27,11 @@ candidate  = new Candidate()
 candidates:Candidate[] | undefined
 education = new  Education()
 experience =new Experience()
-source = new Source()
- sources:Source[] =[]
-location =new Location()
- locations:Location[] = []
- talentpool = new TalentPool()
- talentpools:TalentPool[] = []
-currency = new Currency();
+sources:Source[] =[]
+locations:Location[] = []
+talentpools:TalentPool[] = []
 currencies: Currency[] = []
-job =new Job()
 jobs : Job[] =[]
-selectedSource: any;
-selectedcurrentLocation:any;
-selectedPrefferedLocation:any;
-selectedTalentPoll:any;
-selectedJobType: any;
-selectedCurrency :any;
-selectedStages :any;
-selectedJob:any;
 skills: string[] = [];
 newSkill: string = '';
 stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
@@ -51,19 +39,12 @@ stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired',
 
 showEducationFields: boolean = false;
 showExperience: boolean = false;
-// showEducationFieldstable: boolean = false;
-    // education: any = {}; // Your education model, adjust as needed
-    educationDetails: any[] = [];
-    experienceDetails:any[] = [];
+
+educationDetails: any[] = [];
+experienceDetails:any[] = [];
 
 
-// addSkill(){
-//   this.candidate.skills.push('');
-// }
 
-// removeSkill(i:number){
-//   this.candidate.skills.splice(0, 1);
-// }
 
 addSkills(event?: any) {
   if (event) {
@@ -95,30 +76,25 @@ toggleExperienceFields() {
   this.showExperience = !this.showExperience;
 }
 
-onSubmit(){
 
-  }
+cancel(){
+  this.router.navigate(['/candidate'])
 
-  onCancel(){
-
-  }
+}
   addCandidate(){
     console.log("the candidate detailes are "+this.candidate)
     this.candidate.experiences=this.experienceDetails
     this.candidate.educations=this.educationDetails
-    this.candidate.source =  this.selectedSource
-    this.candidate.current = this.selectedcurrentLocation;
-    this.candidate.preferred = this.selectedPrefferedLocation;
-    this.candidate.talentPool = this.selectedTalentPoll;
-    this.candidate.job = this.selectedJob;
-    this.candidate.currency = this.selectedCurrency;
     this.candidate.skills = this.skills
-    this.candidate.stage  = this.selectedStages
+   
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
         res => {
           console.log(res);
           this.getAllCandidateList();
           this.candidateForm.reset();
+          this.educationDetails = ['']
+          this.experienceDetails = ['']
+
   
         },
         (err: HttpErrorResponse) => {
@@ -215,29 +191,24 @@ onSubmit(){
      });
     }
 
-    // onSourceChange(data:any) {
-    //   console.log('Selected Source:', data);
-    //   console.log("hi---------"+JSON.stringify(this.selectedSource))
-    //   // You can now use this.selectedSource as needed in your component
-    // }
-
+    
     
     submitEducation() {
       // Validate the education details before adding to the table
       if (this.validateEducation()) {
           this.educationDetails.push({ ...this.education });
           // Optionally, you can clear the form fields after submission
-          // this.education = {
-          //   course:"",
-          //   branch:"",
-          //   startOfCourse :"",
-          //   endOfCourse:"",
-          //   college:"",
-          //   location:"",
-          //   candidate:new Candidate(),
+          this.education = {
+            course:"",
+            branch:"",
+            startOfCourse : new Date(),
+            endOfCourse: new Date(),
+            college:"",
+            location:"",
+            candidate:new Candidate(),
     
             
-          // };
+          };
       }
   }
 
@@ -252,17 +223,17 @@ submitExceperience(){
   if (this.validateExperience()) {
     this.experienceDetails.push({ ...this.experience });
     // Optionally, you can clear the form fields after submission
-    // this.experience = {
-    // company :"",
-    // jobTitle:"",
-    // currentlyWokring:false,
-    // dateOfJoining:"",
-    // dateOfRelieving:"",
-    // location:new Location(),
-    // candidate:new Candidate(),
+    this.experience = {
+    company :"",
+    jobTitle:"",
+    currentlyWokring:false,
+    dateOfJoining:"",
+    dateOfRelieving:"",
+    location:"",
+    candidate:new Candidate(),
 
       
-    // };
+    };
 }
 
 }

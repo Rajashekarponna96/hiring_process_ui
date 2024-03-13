@@ -56,10 +56,10 @@
 
                 <div class="field col-12 md:col-6">
                     <label for="taletpoll">HiringFlowType</label>
-                    <p-dropdown [options]="stages" [(ngModel)]="selectedStages" [showClear]="true" [filter]="true" placeholder="Select Stages" name="stage" optionLabel="stage">
+                    <p-dropdown [options]="stages" [(ngModel)]="candidate.stage" [showClear]="true" [filter]="true" placeholder="Select Stages" name="stage" optionLabel="stage">
                     </p-dropdown>
                 </div>
-
+                
                 <div class="field col-12 md:col-6">
                     <label for="avialToJoin">AvailbleToJoin</label>
                     <input pInputText id="avialToJoin" name="avialToJoin" type="number"
@@ -70,8 +70,8 @@
                     </div>
                 </div>
 
-
-
+                
+                
                 <div class="field col-12 md:col-6">
                     <label for="currentSalary">CurrecntSalary</label>
                     <input pInputText id="currentSalary" name="currentSalary" type="number"
@@ -90,7 +90,7 @@
                         <div style="color: red;" *ngIf="expectedSalary.errors">ExpectedSalary is required</div>
                     </div>
                 </div>
-
+                
                 <div class="field col-12 md:col-6">
                     <label for="gender">Select Gender</label>
                     <div class="form-check">
@@ -116,7 +116,7 @@
                     <small class="text-danger">Date of Birth is required.</small>
                 </div>
             </div>
-
+                
 
                 <!-- <div class="field col-12 md:col-6">
                     <label htmlFor="skills">Skills</label>
@@ -128,66 +128,64 @@
                     </div>
                     <button pButton type="button" icon="pi pi-plus" (click)="addSkill()">Add Skill</button>
                 </div> -->
+                
+                
+                
 
-
-
-
-
+                
                 <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
                     <label htmlFor="skills">Skills</label>
                     <p-chips [ngModel]="skills" (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)" (onBlur)="addSkills()"></p-chips>
                   </div>
-
+                
 
                 <!-- TalentPoll  dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="taletpoll">TalentPoll</label>
-                    <p-dropdown [options]="talentpools" [(ngModel)]="selectedTalentPoll" [showClear]="true" [filter]="true" placeholder="Select TalentPoll" name="talentpool"  optionLabel="name">
-                        <ng-template let-talentPoll pTemplate="item">
-                            {{talentPoll.name}}
-                        </ng-template>
+                    <p-dropdown [options]="talentpools" [(ngModel)]="candidate.talentPool" [showClear]="true" [filter]="true" placeholder="Select TalentPoll" name="talentPool"  optionLabel="name">
+                       
                     </p-dropdown>
                 </div>
 
                 <!-- Job  dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="job">Job</label>
-                    <p-dropdown [options]="jobs" [(ngModel)]="selectedJob" [showClear]="true" [filter]="true" placeholder="Select Job" name="job"  optionLabel="title">
-
+                    <p-dropdown [options]="jobs" [(ngModel)]="candidate.job" [showClear]="true" [filter]="true" placeholder="Select Job" name="job"  optionLabel="title">
+                        
                     </p-dropdown>
                 </div>
                 <!-- Source dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="source">Source</label>
-                    <p-dropdown [options]="sources" [(ngModel)]="selectedSource" [showClear]="true" [filter]="true" placeholder="Select Source"   name="source" optionLabel="name">
-
+                    <p-dropdown [options]="sources" [(ngModel)]="candidate.source" [showClear]="true" [filter]="true" placeholder="Select Source"   name="source" optionLabel="name">
+     
                     </p-dropdown>
                 </div>
-
+    
                 <!-- Current Location dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="current">Current Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="selectedcurrentLocation" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="current" optionLabel="name">
-
+                    <p-dropdown [options]="locations" [(ngModel)]="candidate.current" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="current" optionLabel="name">
+                        
                     </p-dropdown>
                 </div>
 
                 <!-- Preffed Location dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="Preffered">Prefferd Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="selectedPrefferedLocation" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="Prefferd" optionLabel="name">
-
+                    <p-dropdown [options]="locations" [(ngModel)]="candidate.preferred" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="prefferd" optionLabel="name">
+                        
                     </p-dropdown>
                 </div>
-
+                   
 
             <!-- Currency dropdown -->
                 <div class="field col-12 md:col-6">
                     <label for="currency">Currency</label>
-                    <p-dropdown [options]="currencies" [(ngModel)]="selectedCurrency" [showClear]="true" [filter]="true" placeholder="Select Currency" name="currency" optionLabel="name"></p-dropdown>
+                    <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency" [showClear]="true" [filter]="true" placeholder="Select Currency" name="currency" optionLabel="name"></p-dropdown>
                 </div>
             </div>
-
+            
 
             <!--Education details-->
             <div class="grid">
@@ -196,9 +194,9 @@
             <div class="field col-12 md:col-6">
                 <button pButton type="button" (click)="toggleEducationFields()">Add Education Details</button>
             </div>
-
+            
             <!-- Education fields (initially hidden) -->
-
+            
                 <div *ngIf="showEducationFields" >
                     <div class="p-fluid p-formgrid grid">
                         <div class="field col-12 md:col-6">
@@ -275,14 +273,14 @@
 
 
             <!--Experience details-->
-
+            
             <div class="grid">
                 <div class="col-12">
                     <div class="card">
                         <div class="field col-12 md:col-6">
                             <button pButton type="button" (click)="toggleExperienceFields()">Add Experience Details</button>
                         </div>
-
+            
                         <!-- Experience fields (initially hidden) -->
                         <div *ngIf="showExperience">
                             <div class="p-fluid p-formgrid grid">
@@ -316,13 +314,13 @@
                                     <label for="location">Location</label>
                                     <input pInputText id="location" name="location" type="text" [(ngModel)]="experience.location" />
                                 </div>
-
+                                
                             </div>
 
                             <div class="field col-12">
                                 <button pButton type="button" (click)="submitExceperience()">SubmitExp</button>
                             </div>
-
+                            
                             <!-- Experience table -->
                             <div *ngIf=" experienceDetails.length > 0">
                                 <table>
@@ -334,7 +332,7 @@
                                             <th>DateOfJoining</th>
                                             <th>DateOfRelieving</th>
                                             <th>Location</th>
-
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -345,14 +343,14 @@
                                             <td>{{ exp.dateOfJoining }}</td>
                                             <td>{{ exp.dateOfRelieving }}</td>
                                             <td>{{ exp.location }}</td>
-
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-
-
-
+                            
+                            
+                            
 
 
 
@@ -361,15 +359,15 @@
                     </div>
                 </div>
             </div>
-
-
-
+            
+            
+            
             <div class="ui-g-12" style="text-align: right">
                 <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                 <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
                 (click)="addCandidate()" label="save"></button>
                 <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                     label="Cancel"></button>
+                routerLink="/candidate"  label="Cancel"></button>
             </div>
         </form>
         </div>
