@@ -17,9 +17,28 @@ import { CreatecandidateComponent } from '../candidate/createcandidate/createcan
 import { CandidateprofileComponent } from './candidateprofile/candidateprofile.component';
 import { CandidatexperienceComponent } from './candidatexperience/candidatexperience.component';
 import { CandidateeducationComponent } from './candidateeducation/candidateeducation.component';
+import { FormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
+import { CascadeSelectModule } from 'primeng/cascadeselect';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ChipsModule } from 'primeng/chips';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 @NgModule({
 	imports: [
-		CommonModule,
+		CommonModule, FormsModule,
 		BreadcrumbModule,
 		MenubarModule,
 		TabMenuModule,
@@ -30,7 +49,28 @@ import { CandidateeducationComponent } from './candidateeducation/candidateeduca
 		ContextMenuModule,
 		MegaMenuModule,
 		PanelMenuModule,
+		InputTextModule,CommonModule,
+		FormsModule,
+		AutoCompleteModule,
+		CalendarModule,
+		ChipsModule,
+		DropdownModule,
+		InputMaskModule,
+		InputNumberModule,
+		CascadeSelectModule,
+		MultiSelectModule,
+		InputTextareaModule,
 		InputTextModule,
+		TableModule,
+		ToastModule,
+		ButtonModule,
+		RadioButtonModule,
+		ToggleButtonModule,
+		RippleModule,
+		ProgressBarModule,
+		DialogModule,
+		ConfirmDialogModule,
+		CheckboxModule,
 		RouterModule.forChild([
 			{
 				path: '',

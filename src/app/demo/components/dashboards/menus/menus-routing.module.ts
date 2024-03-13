@@ -6,8 +6,8 @@ const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forChild([
-		{ path: '', component: MenusComponent}
-	])],
+    { path: '', component: MenusComponent }
+  ])],
   exports: [RouterModule]
 })
 export class MenusRoutingModule { }
