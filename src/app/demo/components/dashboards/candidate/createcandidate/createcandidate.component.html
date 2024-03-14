@@ -199,7 +199,7 @@
             
             <!-- Education fields (initially hidden) -->
             
-                <div *ngIf="showEducationFields" >
+                <div>
                     <div class="p-fluid p-formgrid grid">
                         <div class="field col-12 md:col-6">
                                 <label for="course">Course</label>
@@ -256,7 +256,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let edu of educationDetails">
+            <tr *ngFor="let edu of educationDetails,let i=index ">
                 <td>{{ edu.course }}</td>
                 <td>{{ edu.branch }}</td>
                 <td>{{ edu.startOfCourse }}</td>
@@ -265,8 +265,8 @@
                 <td>{{ edu.location }}</td>
                 <td>
                     <div class="button-container">
-                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"  icon="pi pi-pencil"></button>
-                        <button pButton class="p-button-sm p-button-rounded p-button-danger"  icon="pi pi-trash"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="EditEducation(i)"  icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deleteEducation(i)" icon="pi pi-trash"></button>
                     </div>
                 </td>
             </tr>
@@ -294,7 +294,7 @@
                         </div>
             
                         <!-- Experience fields (initially hidden) -->
-                        <div *ngIf="showExperience">
+                        <div>
                             <div class="p-fluid p-formgrid grid">
                                 <div class="field col-12 md:col-6">
                                     <label for="company">Company</label>
@@ -350,7 +350,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let exp of  experienceDetails">
+                                        <tr *ngFor="let exp of  experienceDetails,let i=index">
                                             <td>{{ exp.company  }}</td>
                                             <td>{{ exp.jobTitle}}</td>
                                             <td>{{ exp.currentlyWokring}}</td>
@@ -359,8 +359,8 @@
                                             <td>{{ exp.location }}</td>
                                             <td>
                                                 <div class="button-container">
-                                                    <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"  icon="pi pi-pencil"></button>
-                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger"  icon="pi pi-trash"></button>
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="editExperience(i)" icon="pi pi-pencil"></button>
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deleteExperience(i)" icon="pi pi-trash"></button>
                                                 </div>
                                             </td>
                                             

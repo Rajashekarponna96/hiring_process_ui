@@ -191,25 +191,89 @@ cancel(){
      });
     }
 
+    deleteEducation(index: number) {
+      this.educationDetails.splice(index, 1);
+      }
+      EditEducation(index: number) {
+        const selectedEducation = this.educationDetails[index];
+  
+        // Set the fields to be edited
+        this.education.course = selectedEducation.course;
+        this.education.branch = selectedEducation.branch;
+        this.education.startOfCourse = selectedEducation.startOfCourse;
+        this.education.endOfCourse = selectedEducation.endOfCourse;
+        this.education.college = selectedEducation.college;
+        this.education.location = selectedEducation.location;
+    
+        // Set edit mode and selected index
+        this.editMode = true;
+        this.selectedIndex = index;
+      }
+      
+      
     
     
-    submitEducation() {
-      // Validate the education details before adding to the table
-      if (this.validateEducation()) {
-          this.educationDetails.push({ ...this.education });
-          // Optionally, you can clear the form fields after submission
-          this.education = {
-            course:"",
-            branch:"",
-            startOfCourse : new Date(),
-            endOfCourse: new Date(),
-            college:"",
-            location:"",
-            candidate:new Candidate(),
+  //   submitEducation() {
+  //     // Validate the education details before adding to the table
+  //     if (this.validateEducation()) {
+  //         this.educationDetails.push({ ...this.education });
+  //         // Optionally, you can clear the form fields after submission
+  //         this.education = {
+  //           course:"",
+  //           branch:"",
+  //           startOfCourse : new Date(),
+  //           endOfCourse: new Date(),
+  //           college:"",
+  //           location:"",
+  //           candidate:new Candidate(),
     
             
-          };
-      }
+  //         };
+  //     }
+  // }
+
+  submitEducation() {
+    // Validate the experience details before adding or updating in the table
+    if (this.validateEducation()) {
+        if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+            // Update the existing experience details
+            this.educationDetails[this.selectedIndex] = { ...this.education };
+  
+            // Reset edit mode and selected index
+            this.editMode = false;
+            this.selectedIndex = null;
+        } else {
+            // Check if the experience already exists
+            const existingIndex = this.educationDetails.findIndex(edu => edu.course === this.education.course && edu.branch === this.education.branch);
+  
+            if (existingIndex !== -1) {
+                // Update the existing experience details
+                this.educationDetails[existingIndex] = { ...this.education };
+            } else {
+                // Add new experience details to the table
+                this.educationDetails.push({ ...this.education });
+            }
+        }
+  
+        // Clear the form fields after submission
+        this.clearEducationFields();
+    }
+  }
+  clearEducationFields() {
+    // Clear the form fields
+    this.education = {
+              course:"",
+              branch:"",
+              startOfCourse : new Date(),
+              endOfCourse: new Date(),
+              college:"",
+              location:"",
+              candidate:new Candidate(),
+      
+              
+            };
+    // Hide the education fields
+    this.showEducationFields = false;
   }
 
   validateEducation(): boolean {
@@ -217,43 +281,54 @@ cancel(){
     // Return true if the validation passes, otherwise false
     return true;
 }
-
-submitExceperience(){
-  // Validate the education details before adding to the table
+selectedIndex: number | null = null; // Index of the currently selected row for editing
+submitExceperience() {
+  // Validate the experience details before adding or updating in the table
   if (this.validateExperience()) {
-    this.experienceDetails.push({ ...this.experience });
-    // Optionally, you can clear the form fields after submission
-    this.experience = {
-    company :"",
-    jobTitle:"",
-    currentlyWokring:false,
-    dateOfJoining:"",
-    dateOfRelieving:"",
-    location:"",
-    candidate:new Candidate(),
+      if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+          // Update the existing experience details
+          this.experienceDetails[this.selectedIndex] = { ...this.experience };
 
-      
-    };
+          // Reset edit mode and selected index
+          this.editMode = false;
+          this.selectedIndex = null;
+      } else {
+          // Check if the experience already exists
+          const existingIndex = this.experienceDetails.findIndex(exp => exp.company === this.experience.company && exp.jobTitle === this.experience.jobTitle);
+
+          if (existingIndex !== -1) {
+              // Update the existing experience details
+              this.experienceDetails[existingIndex] = { ...this.experience };
+          } else {
+              // Add new experience details to the table
+              this.experienceDetails.push({ ...this.experience });
+          }
+      }
+
+      // Clear the form fields after submission
+      this.clearExperienceFields();
+  }
 }
-
+clearExperienceFields() {
+  // Clear the form fields
+  this.experience = {
+      company: "",
+      jobTitle: "",
+      currentlyWokring: false,
+      dateOfJoining: "",
+      dateOfRelieving: "",
+      location: "",
+      candidate: new Candidate(),
+  };
+  // Hide the experience fields
+  this.showExperience = false;
 }
-
 validateExperience(): boolean {
   // Add your validation logic here
   // Return true if the validation passes, otherwise false
   return true;
 }
-
-
-
-
-   
-    
-
-  
-  
-
-  
+ 
   ngOnInit() {
       this.getAllCandidateList();
       this.getAllSourcesList();
@@ -262,10 +337,31 @@ validateExperience(): boolean {
       this.getAllJobsList();
       this.getAllTalentPoolListt();
      
-     
   }
 
-  
+  editMode: boolean = false; // Indicates whether the form is in edit mode
+
+  editedExperienceIndex: number | null = null; // Index of the experience being edited
+  editExperience(index: number) {
+    // Get the selected experience
+    const selectedExperience = this.experienceDetails[index];
+
+    // Set the fields to be edited
+    this.experience.company = selectedExperience.company;
+    this.experience.jobTitle = selectedExperience.jobTitle;
+    this.experience.currentlyWokring = selectedExperience.currentlyWokring;
+    this.experience.dateOfJoining = selectedExperience.dateOfJoining;
+    this.experience.dateOfRelieving = selectedExperience.dateOfRelieving;
+    this.experience.location = selectedExperience.location;
+
+    // Set edit mode and selected index
+    this.editMode = true;
+    this.selectedIndex = index;
+}
+deleteExperience(index: number) {
+  // Remove the experience at the specified index from the experienceDetails array
+  this.experienceDetails.splice(index, 1);
+} 
     
   }
 
