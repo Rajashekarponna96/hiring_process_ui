@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { ConfirmationService, MegaMenuItem, MenuItem, MessageService } from 'primeng/api';
 import { ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Education } from '../../model/education';
 import { Experience } from '../../model/experience';
@@ -11,11 +11,16 @@ import { Currency } from '../../model/currency';
 import { TalentPool } from '../../model/talentpool';
 import { Job } from '../../model/job';
 import { Candidate } from '../../model/candidate';
+import { Router } from '@angular/router';
+import { ProductService } from 'src/app/demo/service/product.service';
+import { Product } from 'src/app/demo/api/product';
 
 
 @Component({
   templateUrl: './menus.component.html',
   styleUrls: ['./menus.component.css'],
+
+  providers: [ConfirmationService, MessageService],
   styles: [
     `
         .tab-menu {
@@ -56,17 +61,40 @@ import { Candidate } from '../../model/candidate';
         h5 {
           margin-top: 0;
         }
+
       `
   ],
+
 })
 
 
 export class MenusComponent implements OnInit {
 
-
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
 
   }
+
+  //
+  images: any[] = [];
+
+  display: boolean = false;
+
+  products: Product[] = [];
+
+  selectedProduct: Product = {};
+
+  visibleSidebar1: boolean = false;
+
+  visibleSidebar2: boolean = false;
+
+  visibleSidebar3: boolean = false;
+
+  visibleSidebar4: boolean = false;
+
+  visibleSidebar5: boolean = false;
+
+
+//
 
   breadcrumbItems: MenuItem[] = [];
 
@@ -85,6 +113,11 @@ export class MenusComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
 
+  totalSteps = 4;
+
+
+
+
 
 
   @ViewChild("candidateForm")
@@ -93,24 +126,11 @@ export class MenusComponent implements OnInit {
   candidates: Candidate[] | undefined
   education = new Education()
   experience = new Experience()
-  source = new Source()
   sources: Source[] = []
-  location = new Location()
   locations: Location[] = []
-  talentpool = new TalentPool()
   talentpools: TalentPool[] = []
-  currency = new Currency();
   currencies: Currency[] = []
-  job = new Job()
   jobs: Job[] = []
-  selectedSource: any;
-  selectedcurrentLocation: any;
-  selectedPrefferedLocation: any;
-  selectedTalentPoll: any;
-  selectedJobType: any;
-  selectedCurrency: any;
-  selectedStages: any;
-  selectedJob: any;
   skills: string[] = [];
   newSkill: string = '';
   stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
@@ -118,27 +138,10 @@ export class MenusComponent implements OnInit {
 
   showEducationFields: boolean = false;
   showExperience: boolean = false;
-  // showEducationFieldstable: boolean = false;
-  // education: any = {}; // Your education model, adjust as needed
+
   educationDetails: any[] = [];
   experienceDetails: any[] = [];
 
-
-
-  // currentStep = 1; // Default to the first step
-  submitForm(form: NgForm) {
-    // Handle form submission logic here
-    if (form.valid) {
-      // Form is valid, perform action (e.g., save data)
-      console.log("Form submitted successfully!");
-    } else {
-      // Form is invalid, display error messages or handle accordingly
-      console.log("Form is invalid. Please fill in all required fields.");
-    }
-  }
-  setCurrentStep(step: number) {
-    this.currentStep = step;
-  }
 
 
 
@@ -172,30 +175,25 @@ export class MenusComponent implements OnInit {
     this.showExperience = !this.showExperience;
   }
 
-  onSubmit() {
 
-  }
-
-  onCancel() {
+  cancel() {
+    this.router.navigate(['/candidate'])
 
   }
   addCandidate() {
     console.log("the candidate detailes are " + this.candidate)
     this.candidate.experiences = this.experienceDetails
     this.candidate.educations = this.educationDetails
-    this.candidate.source = this.selectedSource
-    this.candidate.current = this.selectedcurrentLocation;
-    this.candidate.preferred = this.selectedPrefferedLocation;
-    this.candidate.talentPool = this.selectedTalentPoll;
-    this.candidate.job = this.selectedJob;
-    this.candidate.currency = this.selectedCurrency;
     this.candidate.skills = this.skills
-    this.candidate.stage = this.selectedStages
+
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
       res => {
         console.log(res);
         this.getAllCandidateList();
         this.candidateForm.reset();
+        this.educationDetails = ['']
+        this.experienceDetails = ['']
+
 
       },
       (err: HttpErrorResponse) => {
@@ -292,11 +290,6 @@ export class MenusComponent implements OnInit {
       });
   }
 
-  // onSourceChange(data:any) {
-  //   console.log('Selected Source:', data);
-  //   console.log("hi---------"+JSON.stringify(this.selectedSource))
-  //   // You can now use this.selectedSource as needed in your component
-  // }
 
 
   submitEducation() {
@@ -304,17 +297,17 @@ export class MenusComponent implements OnInit {
     if (this.validateEducation()) {
       this.educationDetails.push({ ...this.education });
       // Optionally, you can clear the form fields after submission
-      // this.education = {
-      //   course:"",
-      //   branch:"",
-      //   startOfCourse :"",
-      //   endOfCourse:"",
-      //   college:"",
-      //   location:"",
-      //   candidate:new Candidate(),
+      this.education = {
+        course: "",
+        branch: "",
+        startOfCourse: new Date(),
+        endOfCourse: new Date(),
+        college: "",
+        location: "",
+        candidate: new Candidate(),
 
 
-      // };
+      };
     }
   }
 
@@ -329,17 +322,17 @@ export class MenusComponent implements OnInit {
     if (this.validateExperience()) {
       this.experienceDetails.push({ ...this.experience });
       // Optionally, you can clear the form fields after submission
-      // this.experience = {
-      // company :"",
-      // jobTitle:"",
-      // currentlyWokring:false,
-      // dateOfJoining:"",
-      // dateOfRelieving:"",
-      // location:new Location(),
-      // candidate:new Candidate(),
+      this.experience = {
+        company: "",
+        jobTitle: "",
+        currentlyWokring: false,
+        dateOfJoining: "",
+        dateOfRelieving: "",
+        location: "",
+        candidate: new Candidate(),
 
 
-      // };
+      };
     }
 
   }
@@ -352,7 +345,21 @@ export class MenusComponent implements OnInit {
 
 
 
-  totalSteps = 3; // Update this if you add more steps
+
+
+
+
+
+
+
+  // end
+
+
+  setCurrentStep(step: number) {
+    this.currentStep = step;
+  }
+
+
 
   prevStep() {
     this.currentStep--;
@@ -364,12 +371,60 @@ export class MenusComponent implements OnInit {
 
 
 
+//
+confirm1() {
+  this.confirmationService.confirm({
+      key: 'confirm1',
+      message: 'Are you sure to perform this action?'
+  });
+}
 
+confirm2(event: Event) {
+  this.confirmationService.confirm({
+      key: 'confirm2',
+      target: event.target || new EventTarget,
+      message: 'Are you sure that you want to proceed?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+      },
+      reject: () => {
+          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      }
+  });
+}
 
+formatCurrency(value: number) {
+  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+//
 
 
   ngOnInit() {
 
+    //
+    this.productService.getProductsSmall().then(products => this.products = products);
+
+    this.images = [];
+    this.images.push({
+        source: 'assets/demo/images/sopranos/sopranos1.jpg',
+        thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Sopranos 1'
+    });
+    this.images.push({
+        source: 'assets/demo/images/sopranos/sopranos2.jpg',
+        thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg', title: 'Sopranos 2'
+    });
+    this.images.push({
+        source: 'assets/demo/images/sopranos/sopranos3.jpg',
+        thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg', title: 'Sopranos 3'
+    });
+    this.images.push({
+        source: 'assets/demo/images/sopranos/sopranos4.jpg',
+        thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg', title: 'Sopranos 4'
+    });
+
+//
     this.routeItems = [
       { label: 'Candidate', routerLink: 'createrecandidate' },
       { label: 'Profile', routerLink: 'candidateprofile' },
@@ -388,20 +443,8 @@ export class MenusComponent implements OnInit {
 
 
   }
-  // ngOnInit() {
-
-  // }
-
-
 }
-
-
-
 
 function addSkill() {
   throw new Error('Function not implemented.');
 }
-
-
-
-
