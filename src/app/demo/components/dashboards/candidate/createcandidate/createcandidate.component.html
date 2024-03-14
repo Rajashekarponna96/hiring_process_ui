@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <div class="grid">
     <div class="col-12">
         <div class="card">
@@ -247,6 +249,10 @@
                 <th>End of Course</th>
                 <th>College</th>
                 <th>Location</th>
+                <!-- <th>Edit</th>
+                <th>Delete</th> -->
+                <th>Modify</th>
+
             </tr>
         </thead>
         <tbody>
@@ -257,6 +263,12 @@
                 <td>{{ edu.endOfCourse }}</td>
                 <td>{{ edu.college }}</td>
                 <td>{{ edu.location }}</td>
+                <td>
+                    <div class="button-container">
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"  icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger"  icon="pi pi-trash"></button>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -332,6 +344,8 @@
                                             <th>DateOfJoining</th>
                                             <th>DateOfRelieving</th>
                                             <th>Location</th>
+                                            <th>Modify</th>
+                                            
                                             
                                         </tr>
                                     </thead>
@@ -343,6 +357,12 @@
                                             <td>{{ exp.dateOfJoining }}</td>
                                             <td>{{ exp.dateOfRelieving }}</td>
                                             <td>{{ exp.location }}</td>
+                                            <td>
+                                                <div class="button-container">
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"  icon="pi pi-pencil"></button>
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger"  icon="pi pi-trash"></button>
+                                                </div>
+                                            </td>
                                             
                                         </tr>
                                     </tbody>
