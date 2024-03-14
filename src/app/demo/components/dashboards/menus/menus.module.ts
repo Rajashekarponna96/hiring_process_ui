@@ -36,6 +36,21 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+
+
+//import { FormsModule } from '@angular/forms';
+//import { ToastModule } from 'primeng/toast';
+//import { DialogModule } from 'primeng/dialog';
+//import { ButtonModule } from 'primeng/button';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+//import { TableModule } from 'primeng/table';
+//import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SidebarModule } from 'primeng/sidebar';
+//import { RippleModule } from 'primeng/ripple';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TooltipModule } from 'primeng/tooltip';
+//import { InputTextModule } from 'primeng/inputtext';
+//import { PreBoardingComponent } from './pre-boarding.component';
 @NgModule({
 	imports: [
 		CommonModule, FormsModule,
@@ -71,6 +86,19 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 		DialogModule,
 		ConfirmDialogModule,
 		CheckboxModule,
+		ToastModule,
+		DialogModule,
+		FormsModule,
+		TooltipModule,
+		InputTextModule,
+		ButtonModule,
+		OverlayPanelModule,
+		TableModule,
+		ConfirmDialogModule,
+		SidebarModule,
+		RippleModule,
+		ConfirmPopupModule,
+
 		RouterModule.forChild([
 			{
 				path: '',
