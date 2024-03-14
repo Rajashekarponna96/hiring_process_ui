@@ -61,7 +61,49 @@ import { Product } from 'src/app/demo/api/product';
         h5 {
           margin-top: 0;
         }
+        table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
 
+/* Style table header */
+th {
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Style table data */
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style the edit and delete buttons */
+.edit-btn, .delete-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  background-color: #ddd;
+}
       `
   ],
 
