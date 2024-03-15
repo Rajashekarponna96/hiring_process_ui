@@ -492,10 +492,8 @@
                                         </div>
                                     </div>
                                     <!-- Submit button -->
-                                    <div class="field col-2">
-                                        <button pButton type="button" icon="pi pi-plus"
-                                            (click)="submitEducation()">Add</button>
-                                    </div>
+                                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
+                                    (click)="submitEducation()" label="Add"></button>
                                     <!-- Education table -->
                                     <div *ngIf="educationDetails.length > 0">
                                         <table>
@@ -601,11 +599,8 @@
                                         </div>
 
                                     </div>
-
-                                    <div class="field col-2">
-                                        <button pButton type="button" (click)="submitExceperience()">Add</button>
-                                    </div>
-
+                                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
+                                    (click)="submitExceperience()" label="Add"></button>
                                     <!-- Experience table -->
                                     <div *ngIf=" experienceDetails.length > 0">
                                         <table>
