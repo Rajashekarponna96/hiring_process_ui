@@ -16,7 +16,7 @@ export class CandidateComponent  {
     candidates: Candidate[]=[];
 
     navigateToCreateCandidate(){
-        this.router.navigate(['createrecandidate']) 
+        this.router.navigate(['menus']) 
 
     }
 
