@@ -35,11 +35,11 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/candidate']
                     },
 
-                    {
-                        label: 'Add Candidate',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/menus']
-                    }
+                    // {
+                    //     label: 'Add Candidate',
+                    //     icon: 'pi pi-fw pi-home',
+                    //     routerLink: ['/menus']
+                    // }
                 ]
             },
 
