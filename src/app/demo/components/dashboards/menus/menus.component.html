@@ -457,7 +457,7 @@
                                         (click)="toggleEducationFields()"></button>
                                 </div> -->
                                 <!-- Education fields (initially hidden) -->
-                                <div >
+                                <div>
                                     <div class="p-fluid p-formgrid grid">
                                         <div class="field col-12 md:col-6">
                                             <label for="course">Course</label>
@@ -493,7 +493,7 @@
                                     </div>
                                     <!-- Submit button -->
                                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
-                                    (click)="submitEducation()" label="Add"></button>
+                                        (click)="submitEducation()" label="Add"></button>
                                     <!-- Education table -->
                                     <div *ngIf="educationDetails.length > 0">
                                         <table>
@@ -519,10 +519,11 @@
                                                     <td>
                                                         <div class="button-container">
                                                             <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2" (click)="EditEducation(i)" 
-                                                                icon="pi pi-pencil" ></button>
+                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                                (click)="EditEducation(i)" icon="pi pi-pencil"></button>
                                                             <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger" (click)="deleteEducation(i)"
+                                                                class="p-button-sm p-button-rounded p-button-danger"
+                                                                (click)="deleteEducation(i)"
                                                                 icon="pi pi-trash"></button>
                                                         </div>
                                                     </td>
@@ -537,11 +538,9 @@
                         </div>
                         <span class="p-buttonset">
                             <button *ngIf="currentStep > 1" (click)="prevStep()"
-                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"
-                                ></button>
+                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
                             <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
-                                class="p-button-primary p-button-text" pButton pRipple label="Next"
-                                ></button>
+                                class="p-button-primary p-button-text" pButton pRipple label="Next"></button>
                         </span>
                         <!-- education ends -->
                     </div>
@@ -568,7 +567,7 @@
                                         (click)="toggleExperienceFields()"></button>
                                 </div> -->
                                 <!-- Experience fields (initially hidden) -->
-                                <div >
+                                <div>
                                     <div class="p-fluid p-formgrid grid">
                                         <div class="field col-12 md:col-6">
                                             <label for="company">Company</label>
@@ -600,7 +599,7 @@
 
                                     </div>
                                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
-                                    (click)="submitExceperience()" label="Add"></button>
+                                        (click)="submitExceperience()" label="Add"></button>
                                     <!-- Experience table -->
                                     <div *ngIf=" experienceDetails.length > 0">
                                         <table>
@@ -627,10 +626,12 @@
                                                     <td>
                                                         <div class="button-container">
                                                             <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2" (click)="editExperience(i)"
+                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                                (click)="editExperience(i)"
                                                                 icon="pi pi-pencil"></button>
                                                             <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger" (click)="deleteExperience(i)"
+                                                                class="p-button-sm p-button-rounded p-button-danger"
+                                                                (click)="deleteExperience(i)"
                                                                 icon="pi pi-trash"></button>
                                                         </div>
                                                     </td>
@@ -645,11 +646,9 @@
                         </div>
                         <span class="p-buttonset">
                             <button *ngIf="currentStep > 1" (click)="prevStep()"
-                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"
-                               ></button>
+                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
                             <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
-                                class="p-button-primary p-button-text" pButton pRipple label="Next"
-                                ></button>
+                                class="p-button-primary p-button-text" pButton pRipple label="Next"></button>
                         </span>
                         <!-- <div class="ui-g-12" style="text-align: right">
                             <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
@@ -662,7 +661,130 @@
                     </div>
                     <div *ngIf="currentStep === 4">
                         <h5>Confirm Details</h5>
+                        <!--  -->
+                        <div class="preview-section">
+                            <!-- candidate previe starts -->
+                            <h5>Previewtwo:</h5>
+                            <div *ngIf="candidate.firstName">First Name: {{ candidate.firstName }}</div>
+                            <div *ngIf="candidate.lastName">Last Name: {{ candidate.lastName }}</div>
+                            <div *ngIf="candidate.middleName">Middle Name: {{ candidate.middleName }}</div>
+                            <div *ngIf="candidate.email">Email: {{ candidate.email }}</div>
+                            <div *ngIf="candidate.mobile">Mobile: {{ candidate.mobile }}</div>
+                            <div *ngIf="candidate.stage">Hiring Flow Type: {{ candidate.stage }}</div>
+                            <div *ngIf="candidate.avialToJoin">Available To Join: {{ candidate.avialToJoin }}</div>
+                            <div *ngIf="candidate.currentSalary">Current Salary: {{ candidate.currentSalary }}</div>
+                            <div *ngIf="candidate.expectedSalary">Expected Salary: {{ candidate.expectedSalary }}</div>
+                            <div *ngIf="candidate.gender">Gender: {{ candidate.gender }}</div>
+                            <div *ngIf="candidate.dateOfBirth">Date of Birth: {{ candidate.dateOfBirth }}</div>
+                            <div *ngIf="skills.length > 0">Skills: {{ skills.join(', ') }}</div>
+                            <div *ngIf="candidate.talentPool">Talent Pool: {{ candidate.talentPool.name }}</div>
+                            <div *ngIf="candidate.job">Job: {{ candidate.job.title }}</div>
+                            <div *ngIf="candidate.source">Source: {{ candidate.source.name }}</div>
 
+                            <!-- <div *ngIf="candidate.current">Current Location: {{ candidate.current.name }}</div>
+                            <div *ngIf="candidate.preferred">Preferred Location: {{ candidate.preferred.name }}</div> -->
+
+                            <!-- <div *ngIf="candidate.current">Current Location: {{ candidate.current.locationName }}</div> -->
+                            <!-- <div *ngIf="candidate.preferred">Preferred Location: {{ candidate.preferred.locationName }}</div> -->
+                            <!-- <div *ngIf="candidate.preferred">
+                                Preferred Location: {{ candidate.preferred }}
+                            </div> -->
+                            <div *ngIf="candidate.currency">Currency: {{ candidate.currency.code }}</div>
+                            <!-- candidate previe ends heree -->
+
+                            <!-- eductaion previe starts -->
+                            <!-- Education table -->
+                            <h5>Education:</h5>
+                            <div *ngIf="educationDetails.length > 0">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Branch</th>
+                                            <th>Start of Course</th>
+                                            <th>End of Course</th>
+                                            <th>College</th>
+                                            <th>Location</th>
+                                            <!-- <th>Edit</th>
+                <th>Delete</th> -->
+                                            <!-- <th>Modify</th> -->
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let edu of educationDetails">
+                                            <td>{{ edu.course }}</td>
+                                            <td>{{ edu.branch }}</td>
+                                            <td>{{ edu.startOfCourse }}</td>
+                                            <td>{{ edu.endOfCourse }}</td>
+                                            <td>{{ edu.college }}</td>
+                                            <td>{{ edu.location }}</td>
+                                            <!-- <td>
+                                                <div class="button-container">
+                                                    <button pButton
+                                                        class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                        icon="pi pi-pencil"></button>
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                        icon="pi pi-trash"></button>
+                                                </div>
+                                            </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <!-- education previe ends -->
+
+                            <!-- experience previe starts -->
+                            <h5>Experience:</h5>
+                            <div *ngIf=" experienceDetails.length > 0">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>JobTitle</th>
+                                            <th>CurrentlyWokring</th>
+                                            <th>DateOfJoining</th>
+                                            <th>DateOfRelieving</th>
+                                            <th>Location</th>
+                                            <!-- <th>Modify</th> -->
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let exp of  experienceDetails">
+                                            <td>{{ exp.company }}</td>
+                                            <td>{{ exp.jobTitle}}</td>
+                                            <td>{{ exp.currentlyWokring}}</td>
+                                            <td>{{ exp.dateOfJoining }}</td>
+                                            <td>{{ exp.dateOfRelieving }}</td>
+                                            <td>{{ exp.location }}</td>
+                                            <!-- <td>
+                                                <div class="button-container">
+                                                    <button pButton
+                                                        class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                        icon="pi pi-pencil"></button>
+                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                        icon="pi pi-trash"></button>
+                                                </div>
+                                            </td> -->
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                            <!-- exprience previe end heree -->
+
+
+
+                            <!-- Add more fields as needed -->
+                        </div><br>
+                        <!--  -->
                         <div class="ui-g-12" style="text-align: right">
                             <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                             <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
@@ -672,8 +794,7 @@
                         </div>
                         <span class="p-buttonset">
                             <button *ngIf="currentStep > 1" (click)="prevStep()"
-                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"
-                                ></button>
+                                class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
                             <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
                                 class="p-button-primary p-button-text" pButton pRipple label="Next"
                                 icon="pi pi-angle-right"></button>
