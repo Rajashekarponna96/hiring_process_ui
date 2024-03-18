@@ -51,7 +51,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createjob',
-                data: { breadcrumb: 'Create' },
+                data: { breadcrumb: 'CreateJob' },
                 loadChildren: () =>
                     import('./jobs/createjob/createjob.module').then(
                         (m) => m.CreatejobModule
@@ -59,7 +59,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'editjob',
-                data: { breadcrumb: 'Edit' },
+                data: { breadcrumb: 'EditJob' },
                 loadChildren: () =>
                     import('./jobs/editjob/editjob.module').then(
                         (m) => m.EditjobModule
@@ -75,7 +75,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createrecruiter',
-                data: { breadcrumb: 'Create' },
+                data: { breadcrumb: 'CreateRecruiter' },
                 loadChildren: () =>
                     import(
                         './recruiter/createrecruiter/createrecriter.module'
@@ -83,7 +83,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'editrecruiter',
-                data: { breadcrumb: 'Edit' },
+                data: { breadcrumb: 'EditRecruiter' },
                 loadChildren: () =>
                     import(
                         './recruiter/editrecruiter/editrecruiter.module'
@@ -115,7 +115,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'candidate',
-                data: { breadcrumb: 'testingone' },
+                data: { breadcrumb: 'candidate' },
                 loadChildren: () =>
                     import('./candidate/candidate.module').then(
                         (m) => m.CandidateModule
@@ -123,7 +123,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createrecandidate',
-                data: { breadcrumb: 'testingone' },
+                data: { breadcrumb: 'CreateCandidate' },
                 loadChildren: () =>
                     import(
                         './candidate/createcandidate/createcandiadte.module'
@@ -131,7 +131,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'talentpool',
-                data: { breadcrumb: 'talentpool' },
+                data: { breadcrumb: 'CreateTalentPool' },
                 loadChildren: () =>
                     import('./talentpool/talentpool.module').then(
                         (m) => m.TalentpoolModule
@@ -139,7 +139,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'listtalentpool',
-                data: { breadcrumb: 'listtalentpool' },
+                data: { breadcrumb: 'TalentPool' },
                 loadChildren: () =>
                     import(
                         './talentpool/listtalentpool/listtalentpool.module'
@@ -147,7 +147,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'edittalentpool',
-                data: { breadcrumb: 'edittalentpool' },
+                data: { breadcrumb: 'EditTalentPool' },
                 loadChildren: () =>
                     import(
                         './talentpool/edittalentpool/edittalentpool.module'
@@ -165,7 +165,7 @@ import { RouterModule } from '@angular/router';
 
             {
                 path: 'menus',
-                data: { breadcrumb: 'menus' },
+                data: { breadcrumb: 'CreateCandidate' },
                 loadChildren: () =>
                     import('./menus/menus.module').then((m) => m.MenusModule),
             },

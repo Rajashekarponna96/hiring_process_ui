@@ -1,7 +1,6 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <h5>Edit Talent Pool</h5>
       <form #talentPoolForm="ngForm">
         <div class="p-fluid p-formgrid grid">
           <div class="field col-12 md:6">
@@ -33,9 +32,9 @@
         <div class="ui-g-12" style="text-align: right">
           <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
           <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check" (click)="updateTalentPool()"
-            label="Save"></button>
+            label="Save" [routerLink]="['/listtalentpool']"></button>
           <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button" icon="pi pi-times"
-            label="Cancel"></button>
+            label="Cancel" [routerLink]="['/listtalentpool']"></button>
         </div>
       </form>
     </div>
