@@ -14,7 +14,6 @@ export class AppMenuComponent implements OnInit {
             //home
 
             {
-                label: 'Home',
                 icon: 'pi pi-home',
                 items: [
                     {
@@ -26,106 +25,79 @@ export class AppMenuComponent implements OnInit {
             },
             //candidate
             {
-                label: 'Candidate',
                 icon: 'pi pi-home',
                 items: [
                     {
                         label: 'Candidate',
-                        icon: 'pi pi-fw pi-home',
+                        icon: 'pi pi-fw pi-user',
                         routerLink: ['/candidate']
                     },
 
-                    // {
-                    //     label: 'Add Candidate',
-                    //     icon: 'pi pi-fw pi-home',
-                    //     routerLink: ['/menus']
-                    // }
                 ]
             },
 
-            //recruiter
             {
-                label: 'recruiter',
-                icon: 'pi pi-home',
+                icon: 'pi pi-th-large',
                 items: [
                     {
-                        label: 'recruiter',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/recruiter']
-                    }
-
+                        label: 'JOb',
+                        icon: 'pi pi-briefcase',
+                        items: [
+                            {
+                                label: 'Jobs',
+                                icon: 'pi pi-briefcase',
+                                routerLink: ['/jobs']
+                            },
+                            {
+                                label: 'Recruiter',
+                                icon: 'pi pi-user',
+                                routerLink: ['/recruiter']
+                            },
+                            {
+                                label: 'TalentPool',
+                                icon: 'pi pi-check',
+                                routerLink: ['/listtalentpool']
+                            }
+                        ]
+                    },
                 ]
-            },
-
-            //jobs
-            {
-                label: 'Jobs',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'Jobs',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/jobs']
-                    }
-
-                ]
-            },
+                },
             //pre-boarding
-            {
-                label: 'Pre-Boarding',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'pre-boarding',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/pre-boarding']
-                    }
+            // {
+            //     label: 'Pre-Boarding',
+            //     icon: 'pi pi-home',
+            //     items: [
+            //         {
+            //             label: 'pre-boarding',
+            //             icon: 'pi pi-fw pi-home',
+            //             routerLink: ['/pre-boarding']
+            //         }
 
-                ]
-            },
+            //     ]
+            // },
 
             //reports
-            {
-                label: 'Reports',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'Reports',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/reports']
-                    }
+            // {
+            //     label: 'Reports',
+            //     icon: 'pi pi-home',
+            //     items: [
+            //         {
+            //             label: 'Reports',
+            //             icon: 'pi pi-fw pi-home',
+            //             routerLink: ['/reports']
+            //         }
 
-                ]
-            },
+            //     ]
+            // },
 
-            {
-                label: 'Talent Pool',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'TalentPool',
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['/listtalentpool']
-                    }
-                    // ,
-                    // {
-                    //     label: 'Compose',
-                    //     icon: 'pi pi-fw pi-pencil',
-                    //     routerLink: ['/talentpool']
-                    // }
-
-                ],
-
-            },
 
             //settings
             {
-                label: 'Settings',
                 icon: 'pi pi-home',
                 items: [
                     {
                         label: 'Settings',
-                        icon: 'pi pi-fw pi-home',
+                        icon: 'pi pi-cog',
                         routerLink: ['/settings']
                     }
 

@@ -13,6 +13,8 @@ export class LoginuserComponent implements OnInit {
 
   userAccount = new UserAccout();
   userAccounts:UserAccout[] | undefined
+  userName: any;
+  password: any;
 
 
   constructor(private layoutService: LayoutService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router: Router) { }

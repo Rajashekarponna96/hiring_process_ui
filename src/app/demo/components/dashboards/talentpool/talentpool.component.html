@@ -1,9 +1,6 @@
-<p>talentpool works!</p>
-
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <h5>Create Talent Pool</h5>
             <form #talentpoolForm="ngForm">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12">
@@ -61,6 +58,7 @@
                         class="w-auto mt-3"
                         icon="pi pi-check"
                         (click)="addTalentPool()"
+                        [routerLink]="['/listtalentpool']"
                         label="Save"
                     ></button>
                     <button
