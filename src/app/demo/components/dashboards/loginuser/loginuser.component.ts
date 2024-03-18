@@ -35,7 +35,7 @@ export class LoginuserComponent implements OnInit {
 
   
 
-  addLogin() {debugger;
+  addLogin() {;
     this.http.post<UserAccout>('http://localhost:9000/userAccount/login', this.userAccount).subscribe(
       res => {
         console.log(res);
