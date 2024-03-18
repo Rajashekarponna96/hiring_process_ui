@@ -38,14 +38,14 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="mobile">Mobile</label>
-                        <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter MobileNumber"
-                            [(ngModel)]="recruiter.mobile" required pattern="[0-9]*" #mobile="ngModel" />
+                        <input pInputText id="mobile" name="mobile" type="number" placeholder="Enter MobileNumber"
+                            [(ngModel)]="recruiter.mobile" required pattern="[0-9]{10}" #mobile="ngModel" />
                         <div *ngIf="
                                 mobile.invalid &&
                                 (mobile.dirty || mobile.touched)
                             ">
                             <div style="color: red" *ngIf="mobile.errors">
-                                Mobile number is required
+                                Mobile number must be 10 digits.
                             </div>
                         </div>
                     </div>

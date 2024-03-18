@@ -85,7 +85,7 @@
                                             <label for="taletpoll">HiringFlowType</label>
                                             <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
                                                 [showClear]="true" [filter]="true" placeholder="Select Stages"
-                                                name="stage" optionLabel="stage">
+                                                name="stage" optionLabel="name" optionValue="name">
                                             </p-dropdown>
                                         </div>
 
@@ -427,14 +427,18 @@
 
 
 
-                                    <span class="p-buttonset">
-                                        <button *ngIf="currentStep > 1" (click)="prevStep()"
-                                            class="p-button-secondary p-button-text" pButton pRipple label="Previous"
-                                            icon="pi pi-angle-left"></button>
+                                    <!-- <span class="p-buttonset" >
+                                         <button *ngIf="currentStep > 1" (click)="prevStep()"
+                                            class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
                                         <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
                                             class="p-button-primary p-button-text" pButton pRipple label="Next"
-                                            icon="pi pi-angle-right"></button>
-                                    </span>
+                                            ></button>
+                                    </span> -->
+
+                                    <div class="button-container">
+                                        <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                                            class="p-button-primary p-button-text next-button" pButton pRipple label="Next"></button>
+                                    </div>
 
                                 </form>
 
@@ -536,10 +540,10 @@
                                 <!-- </div> -->
                             </div>
                         </div>
-                        <span class="p-buttonset">
-                            <button *ngIf="currentStep > 1" (click)="prevStep()"
+                        <span class="button-container">
+                            <button  *ngIf="currentStep > 1" (click)="prevStep()"
                                 class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
-                            <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                            <button  *ngIf="currentStep < totalSteps" (click)="nextStep()"
                                 class="p-button-primary p-button-text" pButton pRipple label="Next"></button>
                         </span>
                         <!-- education ends -->

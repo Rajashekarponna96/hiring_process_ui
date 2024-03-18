@@ -32,10 +32,18 @@ selectedDepartments: any;
 selectedRecruiters:any;
 selectedCurrencys:any;
 
-jobTypeOptions: any[] = [
-   'FullTime',
-   'PartTime'
-];
+types: any[] = [
+{
+  "id":1,
+  "name":'FullTime'
+},
+{
+  "id":2,
+  "name":'PartTime'
+}
+
+]
+
 
 departmentOptions:any[] =[
   { label: 'Select Department', value: null },
@@ -106,7 +114,6 @@ addJob() {
   this.job.department=this.selectedDepartments;
   this.job.recruiters=this.selectedRecruiters;
   this.job.currney=this.selectedCurrencys;
-  this.job.type=this.selectedJobType;
   this.http.post<Job>('http://localhost:9000/job/', this.job).subscribe(
       res => {
         console.log(res);

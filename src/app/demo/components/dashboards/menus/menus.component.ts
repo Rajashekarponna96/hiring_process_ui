@@ -175,8 +175,34 @@ export class MenusComponent implements OnInit {
   jobs: Job[] = []
   skills: string[] = [];
   newSkill: string = '';
-  stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+  stages: any[] = [
+    {
+    "id":1,
+    "name":'Sourced'
+  },
+  {
+    "id":2,
+    "name":'Screening'
+  },
+  {
+    "id":3,
+    "name":'Interview'
+  },
+  {
+    "id":4,
+    "name":'Preboarding'
+  },
+  {
+    "id":1,
+    "name":'Hired'
+  },
+  {
+    "id":1,
+    "name":'Archived'
+  },
+]
 
+    
 
   showEducationFields: boolean = false;
   showExperience: boolean = false;

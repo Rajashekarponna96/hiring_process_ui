@@ -23,24 +23,12 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
-            //candidate
-            {
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'Candidate',
-                        icon: 'pi pi-fw pi-user',
-                        routerLink: ['/candidate']
-                    },
-
-                ]
-            },
 
             {
                 icon: 'pi pi-th-large',
                 items: [
                     {
-                        label: 'JOb',
+                        label: 'Job',
                         icon: 'pi pi-briefcase',
                         items: [
                             {
@@ -62,6 +50,18 @@ export class AppMenuComponent implements OnInit {
                     },
                 ]
                 },
+                //candidate
+            {
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Candidate',
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: ['/candidate']
+                    },
+
+                ]
+            },
             //pre-boarding
             // {
             //     label: 'Pre-Boarding',

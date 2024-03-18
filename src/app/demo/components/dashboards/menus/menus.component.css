@@ -41,3 +41,15 @@ td {
 .edit-btn:hover, .delete-btn:hover {
   background-color: #ddd;
 }
+
+.button-container {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+.next-button {
+  width: 100%;
+ 
+}
