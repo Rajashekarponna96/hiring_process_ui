@@ -202,7 +202,7 @@ export class MenusComponent implements OnInit {
   },
 ]
 
-    
+
 
   showEducationFields: boolean = false;
   showExperience: boolean = false;
@@ -211,7 +211,7 @@ export class MenusComponent implements OnInit {
   experienceDetails: any[] = [];
 
   showSuccessMessage: boolean = false;
-  
+
 
 
 
@@ -237,7 +237,7 @@ export class MenusComponent implements OnInit {
     }
   }
 
- 
+
 
   // toggleEducationFields() {
   //   this.showEducationFields = !this.showEducationFields;
@@ -400,12 +400,12 @@ export class MenusComponent implements OnInit {
       this.education.endOfCourse = selectedEducation.endOfCourse;
       this.education.college = selectedEducation.college;
       this.education.location = selectedEducation.location;
-  
+
       // Set edit mode and selected index
       this.editMode = true;
       this.selectedIndex = index;
     }
-    
+
 
   editMode: boolean = false; // Indicates whether the form is in edit mode
 
@@ -418,14 +418,14 @@ export class MenusComponent implements OnInit {
         if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
             // Update the existing experience details
             this.educationDetails[this.selectedIndex] = { ...this.education };
-  
+
             // Reset edit mode and selected index
             this.editMode = false;
             this.selectedIndex = null;
         } else {
             // Check if the experience already exists
             const existingIndex = this.educationDetails.findIndex(edu => edu.course === this.education.course && edu.branch === this.education.branch);
-  
+
             if (existingIndex !== -1) {
                 // Update the existing experience details
                 this.educationDetails[existingIndex] = { ...this.education };
@@ -434,7 +434,7 @@ export class MenusComponent implements OnInit {
                 this.educationDetails.push({ ...this.education });
             }
         }
-  
+
         // Clear the form fields after submission
         this.clearEducationFields();
     }
@@ -449,8 +449,8 @@ export class MenusComponent implements OnInit {
               college:"",
               location:"",
               candidate:new Candidate(),
-      
-              
+
+
             };
     // Hide the education fields
     this.showEducationFields = false;
@@ -491,14 +491,14 @@ export class MenusComponent implements OnInit {
         if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
             // Update the existing experience details
             this.experienceDetails[this.selectedIndex] = { ...this.experience };
-  
+
             // Reset edit mode and selected index
             this.editMode = false;
             this.selectedIndex = null;
         } else {
             // Check if the experience already exists
             const existingIndex = this.experienceDetails.findIndex(exp => exp.company === this.experience.company && exp.jobTitle === this.experience.jobTitle);
-  
+
             if (existingIndex !== -1) {
                 // Update the existing experience details
                 this.experienceDetails[existingIndex] = { ...this.experience };
@@ -507,7 +507,7 @@ export class MenusComponent implements OnInit {
                 this.experienceDetails.push({ ...this.experience });
             }
         }
-  
+
         // Clear the form fields after submission
         this.clearExperienceFields();
     }
@@ -531,11 +531,11 @@ export class MenusComponent implements OnInit {
     // Return true if the validation passes, otherwise false
     return true;
   }
-  
 
-  
 
-  
+
+
+
   editExperience(index: number) {
     // Get the selected experience
     const selectedExperience = this.experienceDetails[index];
@@ -555,9 +555,9 @@ export class MenusComponent implements OnInit {
 deleteExperience(index: number) {
   // Remove the experience at the specified index from the experienceDetails array
   this.experienceDetails.splice(index, 1);
-} 
-    
-  
+}
+
+
 
 
 

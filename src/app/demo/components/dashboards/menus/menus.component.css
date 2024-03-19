@@ -46,10 +46,114 @@ td {
   width: 20%;
   display: flex;
   justify-content: flex-end;
-  
+
 }
 
 .next-button {
   width: 100%;
- 
+
+}
+.readonly-dropdown {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-dropdown-value {
+  /* Style to mimic appearance of a dropdown value */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.readonly-gender {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-gender-value {
+  /* Style to mimic appearance of the selected gender */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.readonly-date-of-birth {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-date-of-birth-value {
+  /* Style to mimic appearance of the date of birth */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.readonly-skills {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-skills-value {
+  /* Style to mimic appearance of the skills */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+
+.readonly-talent-poll {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-talent-poll-value {
+  /* Style to mimic appearance of the selected talent poll */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.readonly-job {
+  /* Optional: Adjust styling to match your design */
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-job-value {
+  /* Style to mimic appearance of the selected job */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.readonly-source {
+  /* Optional: Adjust styling to match your design */
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-source-value {
+  /* Style to mimic appearance of the selected source */
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+.readonly-currency {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+}
+
+.readonly-currency-value {
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
 }
