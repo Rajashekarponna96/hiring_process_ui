@@ -122,6 +122,14 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'editcandidate',
+                data: { breadcrumb: 'candidate' },
+                loadChildren: () =>
+                    import('./candidate/editcandidate/editcandidate.module').then(
+                        (m) => m.EditcandidateModule 
+                    ),
+            },
+            {
                 path: 'createrecandidate',
                 data: { breadcrumb: 'CreateCandidate' },
                 loadChildren: () =>

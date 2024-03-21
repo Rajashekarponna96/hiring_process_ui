@@ -7,6 +7,7 @@ import { Source } from "./source";
 import { TalentPool } from "./talentpool";
 
 export class Candidate {
+    id: number | undefined;
     firstName: string | undefined;
     lastName: string | undefined;
     middleName:string | undefined

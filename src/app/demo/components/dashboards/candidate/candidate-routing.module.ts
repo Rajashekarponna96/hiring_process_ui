@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CandidateComponent } from './candidate.component';
+import { MenusComponent } from '../menus/menus.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  // { path: 'menus/:id', component: MenusComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild([
