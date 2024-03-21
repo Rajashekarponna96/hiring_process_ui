@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-candidate',
@@ -36,9 +36,47 @@ export class CandidateComponent  {
         subscribe((data) => {
            console.log(data);
            this.candidates=data;
+           console.log("candidate list are"+this.candidates)
            this.changeDetectorRefs.markForCheck();
         });
       } 
+
+      handleEditcandidate(candidate:Candidate){
+        console.log(candidate.id);
+         localStorage.setItem('id', String(candidate.id));
+         console.log("the candidate details are"+candidate.educations);
+         localStorage.setItem('editCandidate', JSON.stringify(candidate));
+         this.router.navigate(['editcandidate']);
+
+      }
+
+    // handleEditcandidate(candidate: Candidate) {
+    //     console.log("edit candidate name is: "+candidate.firstName)
+    //     this.router.navigate(['menus', candidate.id], { state: { candidate: candidate } });
+    //   }
+
+      candidateDelete(candidate :Candidate){
+
+        console.log("candidate is is:"+candidate.id)
+        this.http
+        .delete<Candidate[]>(
+            'http://localhost:9000/candidate/' + candidate.id
+        )
+        .subscribe(
+            (res) => {
+                console.log(res);
+                this.getAllCandidateList();
+            },
+            (err: HttpErrorResponse) => {
+                if (err.error instanceof Error) {
+                    console.log('Client-side error occurred.');
+                } else {
+                    console.log('Server-side error occurred.');
+                }
+            }
+        );
+
+      }
       
 
     

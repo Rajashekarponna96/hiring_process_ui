@@ -21,6 +21,7 @@
                 <th pSortableColumn="currentLocation" class="white-space-nowrap" style="width:25%">CurrentLocation<p-sortIcon field="candidate.currentLocation"></p-sortIcon></th>
                 <th pSortableColumn="preferredLocation" class="white-space-nowrap" style="width:25%">PreferredLocation<p-sortIcon field="candidate.preferredLocation"></p-sortIcon></th>
                 <th pSortableColumn="availToJoin" class="white-space-nowrap" style="width:25%">AvailableToJoin<p-sortIcon field="candidate.availToJoin"></p-sortIcon></th>
+                <th class="white-space-nowrap" style="width:20%">Modify</th>
 
                 
             </tr>
@@ -35,6 +36,12 @@
                 <td>{{candidate?.current.name}}</td>
                 <td>{{candidate?.preferred.name}}</td>
                 <td>{{candidate.avialToJoin}}</td>
+                <td>
+                    <div class="button-container">
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
+                    </div>                    
+                </td>
 
         </ng-template>
     </p-table>
