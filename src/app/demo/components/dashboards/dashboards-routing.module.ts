@@ -126,7 +126,7 @@ import { RouterModule } from '@angular/router';
                 data: { breadcrumb: 'candidate' },
                 loadChildren: () =>
                     import('./candidate/editcandidate/editcandidate.module').then(
-                        (m) => m.EditcandidateModule 
+                        (m) => m.EditcandidateModule
                     ),
             },
             {
@@ -172,10 +172,27 @@ import { RouterModule } from '@angular/router';
             },
 
             {
+                path: 'talentpooledit',
+                data: { breadcrumb: 'talentpooledit' },
+                loadChildren: () =>
+                    import(
+                        './talentpool/talentpooledit/talentpooledit.module'
+                    ).then((m) => m.TalentpooleditModule),
+            },
+
+
+            {
                 path: 'menus',
                 data: { breadcrumb: 'CreateCandidate' },
                 loadChildren: () =>
                     import('./menus/menus.module').then((m) => m.MenusModule),
+            },
+
+            {
+                path: 'client',
+                data: { breadcrumb: 'Client' },
+                loadChildren: () =>
+                    import('./client/client.module').then((m) => m.ClientModule),
             },
 
             {
