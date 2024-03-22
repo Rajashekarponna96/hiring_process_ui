@@ -111,6 +111,7 @@ td {
 
 
 export class MenusComponent implements OnInit {
+  
 
   constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
 
@@ -175,6 +176,8 @@ export class MenusComponent implements OnInit {
   jobs: Job[] = []
   skills: string[] = [];
   newSkill: string = '';
+  storedSkills: string = ''; 
+
   stages: any[] = [
     {
     "id":1,
@@ -230,10 +233,11 @@ export class MenusComponent implements OnInit {
     }
   }
 
-  removeSkills(skill: string) {
+  removeSkills(skill: string) {debugger
     const index = this.skills.indexOf(skill);
-    if (index !== -1) {
+    if (index === -1) {
       this.skills.splice(index, 1);
+      this.candidate.skills = this.skills
     }
   }
 
@@ -660,8 +664,16 @@ formatCurrency(value: number) {
 
 
   }
+
+  // updateSkills(input: string) {
+  //   // Split the input string by comma and trim each skill to remove any leading/trailing spaces
+  //   const newSkills = input.split(',').map(skill => skill.trim());
+
+  //   // Filter out empty skills
+  //   this.skills = newSkills.filter(skill => skill !== '');
+
+  //   this.candidate.skills = this.skills;
+  // }
+
 }
 
-function addSkill() {
-  throw new Error('Function not implemented.');
-}

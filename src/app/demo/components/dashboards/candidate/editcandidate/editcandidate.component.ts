@@ -174,6 +174,7 @@ export class EditcandidateComponent implements OnInit {
   jobs: Job[] = []
   skills: string[] = [];
   newSkill: string = '';
+  skillInput: string = '';
   stages: any[] = [
     {
     "id":1,
@@ -229,10 +230,11 @@ export class EditcandidateComponent implements OnInit {
     }
   }
 
-  removeSkills(skill: string) {
+  removeSkills(skill: string) {debugger
     const index = this.skills.indexOf(skill);
-    if (index !== -1) {
+    if (index === -1) {
       this.skills.splice(index, 1);
+      this.candidate.skills = this.skills
     }
   }
 
@@ -666,13 +668,25 @@ formatCurrency(value: number) {
     
 
   }
+
+  addSkills1() {debugger
+    if (this.skillInput.trim()) {
+      // Split the input string by commas and trim any extra whitespace
+      const newSkills = this.skillInput.split(',').map(skill => skill.trim());
+      // Add new skills to the existing array
+      this.skills = [...this.skills, ...newSkills];
+      // Clear the input field
+      this.skillInput = '';
+    }
+  }
+
+  // Function to remove a skill
+  removeSkill(skill: string) {
+    this.skills = this.skills.filter(s => s !== skill);
+  }
+
+  
+
 }
 
 
-// function addSkill() {
-//   throw new Error('Function not implemented.');
-// }
-
-// function test1() {
-//   throw new Error('Function not implemented.');
-// }

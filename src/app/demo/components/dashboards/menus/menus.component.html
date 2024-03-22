@@ -163,7 +163,7 @@
                                                 placeholder="Enter MobileNumber"
                                                 [(ngModel)]="candidate.mobile"
                                                 required
-                                                pattern="[0-9]*"
+                                                pattern="[0-9]{10}*" min
                                                 #mobile="ngModel"
                                             />
                                             <div
@@ -498,17 +498,31 @@
                                             class="flex flex-wrap align-items-center ,field col-12 md:col-6"
                                         >
                                             <label htmlFor="skills"
-                                                >Skills</label
+                                                >Skills:</label
                                             >
                                             <p-chips
-                                                [ngModel]="skills"
-                                                (onRemove)="
-                                                    removeSkills($event)
-                                                "
+                                                [ngModel]="skills" name=candidate.skills
+                                                (onRemove)="removeSkills($event)"
                                                 (onAdd)="addSkills($event)"
                                                 (onBlur)="addSkills()"
                                             ></p-chips>
                                         </div>
+
+                                       
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="skills">Skills</label>
+                                            <input
+                                                pInputText
+                                                id="skills"
+                                                name="candidate.skills"
+                                                type="text"
+                                                placeholder="Enter skills"
+                                                [ngModel]="candidate.skills" 
+                                                (ngModelChange)="updateSkills($event)" 
+                                                #skills="ngModel"/>   
+                                        </div> -->
+
+                                        
 
 
                                     </div>
@@ -1301,6 +1315,7 @@ name="stage" optionLabel="name" optionValue="name">
                                     </div>
 
                                     <!-- edu -->
+                                    <h6>Education details:</h6>
                                     <div *ngIf="educationDetails.length > 0">
                                         <table>
                                             <thead>
@@ -1339,7 +1354,7 @@ name="stage" optionLabel="name" optionValue="name">
                                     <!-- edu -->
 
                                     <!-- exp -->
-
+                                    <h6>Experience details:</h6>
                                     <div *ngIf="experienceDetails.length > 0">
                                         <table>
                                             <thead>

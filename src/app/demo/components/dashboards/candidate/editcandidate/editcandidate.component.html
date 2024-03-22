@@ -333,7 +333,7 @@
                                                     [(ngModel)]="
                                                         candidate.gender
                                                     "
-                                                    value="Female"
+                                                    value="Female" 
                                                     ngModel
                                                     #femaleGender="ngModel"
                                                     required
@@ -505,16 +505,19 @@
                                                 >Skills:</label
                                             >
                                             <p-chips
-                                                [ngModel]="candidate.skills"
+                                                [ngModel]="skills" name=candidate.skills
                                                 (onRemove)="removeSkills($event)"
                                                 (onAdd)="addSkills($event)"
                                                 (onBlur)="addSkills()"
                                             ></p-chips>
                                         </div>
 
+                                       
+                                        
+
 
                                     </div>
-
+                       
                                     <div class="button-container">
                                         <button
                                             *ngIf="currentStep < totalSteps"
@@ -1342,7 +1345,7 @@ name="stage" optionLabel="name" optionValue="name">
                                     <!-- edu -->
 
                                     <!-- exp -->
-
+                                    <h6>Experience details:</h6>
                                     <div *ngIf="experienceDetails.length > 0">
                                         <table>
                                             <thead>
