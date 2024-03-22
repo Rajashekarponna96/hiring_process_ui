@@ -11,7 +11,9 @@ import { KnobModule } from 'primeng/knob';
 import { RatingModule } from 'primeng/rating';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
-
+import { InputNumberModule } from 'primeng/inputnumber';
+import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [],
@@ -27,7 +29,10 @@ import { TableModule } from 'primeng/table';
     InputTextareaModule,
     ChartModule,
     RatingModule,
-    KnobModule
+    KnobModule,
+    InputNumberModule,
+    TagModule,
+    TooltipModule
   ]
 })
 export class HomeModule { }
