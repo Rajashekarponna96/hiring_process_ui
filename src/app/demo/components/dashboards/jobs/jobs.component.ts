@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Job } from '../../model/job';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-jobs',
@@ -59,6 +60,13 @@ export class JobsComponent implements OnInit {
   ngOnInit() {
     this.getAllJobList();
   }
+
+  onGlobalFilter(table: Table, event: Event) {
+    table.filterGlobal(
+        (event.target as HTMLInputElement).value,
+        'contains'
+    );
+}
 
   navigateToCreateJob(){
     this.router.navigate(['createjob'])
