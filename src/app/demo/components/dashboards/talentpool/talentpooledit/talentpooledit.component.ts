@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TalentPoolOne } from '../../../model/talentpoolone';
 
 @Component({
@@ -16,16 +16,15 @@ export class TalentpooleditComponent implements OnInit {
 
   talentPool = new TalentPoolOne();
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private router: Router, private changeDetectorRefs: ChangeDetectorRef, private route: ActivatedRoute) { }
 
-  ngOnInit() { debugger;
-       const talentPoolFromRoute = this.route.snapshot.data['talentPool'];
-    if (talentPoolFromRoute) {
-      // Set the talent pool fields with the data from the route
-      this.talentPool.id = talentPoolFromRoute.id;
-      this.talentPool.name = talentPoolFromRoute.name;
-      this.talentPool.description = talentPoolFromRoute.description;
-      // Add other fields as needed
+  ngOnInit() {
+    debugger;
+    const state = history.state;
+    if (state && state.talentPool) {
+      this.talentPool = state.talentPool;
+    } else {
+      // Handle if talent pool object is not passed
     }
   }
 
@@ -36,6 +35,8 @@ export class TalentpooleditComponent implements OnInit {
         console.log("Updated talent pool:", res);
         // Handle success
         this.talentPoolForm.reset();
+        // Redirect to another route
+        this.router.navigateByUrl('/listtalentpool');
       },
       (err: HttpErrorResponse) => {
         // Handle errors
@@ -47,4 +48,5 @@ export class TalentpooleditComponent implements OnInit {
       }
     );
   }
+
 }
