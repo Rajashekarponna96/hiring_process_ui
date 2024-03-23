@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TalentPoolOne } from '../../model/talentpoolone';
-//import { talenpoolon } from '../../model/talentpool';
 import { Table } from 'primeng/table';
 @Component({
   selector: 'app-talentpool',
@@ -17,13 +17,13 @@ export class TalentpoolComponent {
   @ViewChild("talentpoolForm")
   talentpoolForm!: NgForm;
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {}
+  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal(
-        (event.target as HTMLInputElement).value,
-        'contains'
+      (event.target as HTMLInputElement).value,
+      'contains'
     );
-}
+  }
   getTalentPoolList() {
     return this.http.get<TalentPoolOne[]>('http://localhost:9000/talentpool/all');
   }
@@ -42,6 +42,8 @@ export class TalentpoolComponent {
         console.log(res);
         this.getAllTalentPoolList();
         this.talentpoolForm.reset();
+        // Navigate to a specific route after saving
+        this.router.navigate(['/listtalentpool']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

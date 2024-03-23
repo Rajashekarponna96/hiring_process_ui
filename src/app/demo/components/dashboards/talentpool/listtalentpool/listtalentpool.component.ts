@@ -43,30 +43,33 @@ export class ListtalentpoolComponent {
     this.router.navigate(['/talentpool']);
   }
 
-  handleEditTalentPool(talentPool:TalentPoolOne){
-    console.log(talentPool.id)
-    localStorage.setItem("id",String(talentPool.id))
-    console.log(talentPool);
-    localStorage.setItem('editTalentpool', JSON.stringify(talentPool));
-    this.router.navigate(['/edittalentpool'])
+  // handleEditTalentPool(talentPool:TalentPoolOne){
+  //   console.log(talentPool.id)
+  //   localStorage.setItem("id",String(talentPool.id))
+  //   console.log(talentPool);
+  //   localStorage.setItem('talentpooledit', JSON.stringify(talentPool));
+  //   this.router.navigate(['/talentpooledit'])
 
+  // }
+
+  handleEditTalentPool(talentPool: TalentPoolOne) {
+    this.router.navigate(['/talentpooledit'], { state: { talentPool: talentPool } });
   }
 
-
-talentpooldelete(recruiter: TalentPoolOne) {
-  return this.http.delete<TalentPoolOne>('http://localhost:9000/talentpool/' + recruiter.id).subscribe(
-    res => {
-      console.log(res);
-      this.getAllTalentPools();
-    },
-    (err: HttpErrorResponse) => {
-      if (err.error instanceof Error) {
-        console.error("Client-side error occurred:", err.error.message);
-      } else {
-        console.error("Server-side error occurred:", err.status, err.message);
-      }
-    });
-}
+  talentpooldelete(recruiter: TalentPoolOne) {
+    return this.http.delete<TalentPoolOne>('http://localhost:9000/talentpool/' + recruiter.id).subscribe(
+      res => {
+        console.log(res);
+        this.getAllTalentPools();
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.error("Client-side error occurred:", err.error.message);
+        } else {
+          console.error("Server-side error occurred:", err.status, err.message);
+        }
+      });
+  }
 
 
 }
