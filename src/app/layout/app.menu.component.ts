@@ -62,6 +62,17 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
+            {
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Client',
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: ['/client']
+                    },
+
+                ]
+            },
             //pre-boarding
             // {
             //     label: 'Pre-Boarding',
