@@ -194,6 +194,13 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./client/client.module').then((m) => m.ClientModule),
             },
+            {
+                path: 'createclient',
+                data: { breadcrumb: 'CreateClient' },
+                loadChildren: () =>
+                    import('./client/createclient/createclient.module').then((m) => m.CreateclientModule),
+            },
+            
 
             {
                 path: 'menus',
