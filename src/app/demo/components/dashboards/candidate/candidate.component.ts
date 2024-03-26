@@ -9,14 +9,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
     templateUrl: './candidate.component.html',
     styleUrls: ['./candidate.component.scss'],
 })
-export class CandidateComponent  {
-    
-    constructor(private router: Router,private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef) { }
-    candidate:Candidate =new Candidate();
-    candidates: Candidate[]=[];
+export class CandidateComponent {
 
-    navigateToCreateCandidate(){
-        this.router.navigate(['menus']) 
+    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+    candidate: Candidate = new Candidate();
+    candidates: Candidate[] = [];
+
+    navigateToCreateCandidate() {
+        this.router.navigate(['menus'])
 
     }
 
@@ -27,68 +27,63 @@ export class CandidateComponent  {
         );
     }
 
-    getCandidateList(){
+    getCandidateList() {
         return this.http.get<Candidate[]>('http://localhost:9000/candidate/all');
     }
-    
-    getAllCandidateList(){
+
+    getAllCandidateList() {
         return this.getCandidateList().
-        subscribe((data) => {
-           console.log(data);
-           this.candidates=data;
-           console.log("candidate list are"+this.candidates)
-           this.changeDetectorRefs.markForCheck();
-        });
-      } 
-
-      handleEditcandidate(candidate:Candidate){
-        console.log(candidate.id);
-         localStorage.setItem('id', String(candidate.id));
-         console.log("the candidate details are"+candidate.educations);
-         localStorage.setItem('editCandidate', JSON.stringify(candidate));
-         this.router.navigate(['editcandidate']);
-
-      }
-
-    // handleEditcandidate(candidate: Candidate) {
-    //     console.log("edit candidate name is: "+candidate.firstName)
-    //     this.router.navigate(['menus', candidate.id], { state: { candidate: candidate } });
-    //   }
-
-      candidateDelete(candidate :Candidate){
-
-        console.log("candidate is is:"+candidate.id)
-        this.http
-        .delete<Candidate[]>(
-            'http://localhost:9000/candidate/' + candidate.id
-        )
-        .subscribe(
-            (res) => {
-                console.log(res);
-                this.getAllCandidateList();
-            },
-            (err: HttpErrorResponse) => {
-                if (err.error instanceof Error) {
-                    console.log('Client-side error occurred.');
-                } else {
-                    console.log('Server-side error occurred.');
-                }
-            }
-        );
-
-      }
-      
-
-    
-    
-
-    
-    ngOnInit() {
-        this.getAllCandidateList();
-       
+            subscribe((data) => {
+                console.log(data);
+                this.candidates = data;
+                console.log("candidate list are" + this.candidates)
+                this.changeDetectorRefs.markForCheck();
+            });
     }
 
-    
-  }
-    
+
+    handleEditcandidate(candidateId: number, candidate: Candidate) { debugger
+
+        console.log("Candidate ID:", candidateId);
+        console.log("Candidate object:", candidate);
+        // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
+        this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
+    }
+
+    candidateDelete(candidate: Candidate) {
+
+        console.log("candidate is is:" + candidate.id)
+        this.http
+            .delete<Candidate[]>(
+                'http://localhost:9000/candidate/' + candidate.id
+            )
+            .subscribe(
+                (res) => {
+                    console.log(res);
+                    this.getAllCandidateList();
+                },
+                (err: HttpErrorResponse) => {
+                    if (err.error instanceof Error) {
+                        console.log('Client-side error occurred.');
+                    } else {
+                        console.log('Server-side error occurred.');
+                    }
+                }
+            );
+
+    }
+
+
+
+
+
+
+    ngOnInit() {
+        this.getAllCandidateList();
+
+    }
+
+
+}
+
 

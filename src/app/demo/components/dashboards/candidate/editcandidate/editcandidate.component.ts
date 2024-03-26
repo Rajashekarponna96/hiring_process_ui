@@ -16,8 +16,8 @@ import { TalentPool } from '../../../model/talentpool';
 @Component({
   selector: 'app-editcandidate',
   templateUrl: './editcandidate.component.html',
-  styleUrls: ['./editcandidate.component.scss'] ,
-   providers: [ConfirmationService, MessageService],
+  styleUrls: ['./editcandidate.component.scss'],
+  providers: [ConfirmationService, MessageService],
   styles: [
     `
         .tab-menu {
@@ -102,7 +102,7 @@ td {
   background-color: #ddd;
 }
       `
-      
+
   ],
 
 })
@@ -110,7 +110,7 @@ td {
 export class EditcandidateComponent implements OnInit {
   candidadate: any;
 
-  constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
+  constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
 
   }
 
@@ -134,7 +134,7 @@ export class EditcandidateComponent implements OnInit {
   visibleSidebar5: boolean = false;
 
 
-//
+  //
 
   breadcrumbItems: MenuItem[] = [];
 
@@ -162,7 +162,7 @@ export class EditcandidateComponent implements OnInit {
 
   @ViewChild("candidateForm")
   candidateForm!: NgForm
-  candidate!: Candidate; 
+  candidate!: Candidate;
   // candidate = new Candidate()
   candidates: Candidate[] | undefined
   education = new Education()
@@ -177,30 +177,30 @@ export class EditcandidateComponent implements OnInit {
   skillInput: string = '';
   stages: any[] = [
     {
-    "id":1,
-    "name":'Sourced'
-  },
-  {
-    "id":2,
-    "name":'Screening'
-  },
-  {
-    "id":3,
-    "name":'Interview'
-  },
-  {
-    "id":4,
-    "name":'Preboarding'
-  },
-  {
-    "id":1,
-    "name":'Hired'
-  },
-  {
-    "id":1,
-    "name":'Archived'
-  },
-]
+      "id": 1,
+      "name": 'Sourced'
+    },
+    {
+      "id": 2,
+      "name": 'Screening'
+    },
+    {
+      "id": 3,
+      "name": 'Interview'
+    },
+    {
+      "id": 4,
+      "name": 'Preboarding'
+    },
+    {
+      "id": 1,
+      "name": 'Hired'
+    },
+    {
+      "id": 1,
+      "name": 'Archived'
+    },
+  ]
 
 
 
@@ -230,7 +230,8 @@ export class EditcandidateComponent implements OnInit {
     }
   }
 
-  removeSkills(skill: string) {debugger
+  removeSkills(skill: string) {
+    debugger
     const index = this.skills.indexOf(skill);
     if (index === -1) {
       this.skills.splice(index, 1);
@@ -253,39 +254,33 @@ export class EditcandidateComponent implements OnInit {
 
   }
   updateCandidate() {
-    console.log("the candidate detailes are " + this.candidate)
-    this.candidate.experiences = this.experienceDetails
-    this.candidate.educations = this.educationDetails
-    this.candidate.skills = this.skills
+    this.candidate.experiences = this.experienceDetails;
+    this.candidate.educations = this.educationDetails;
+    this.candidate.skills = this.skills;
 
-    this.http.put<Candidate>('http://localhost:9000/candidate/'+this.candidate.id, this.candidate).subscribe(
+    this.http.put<Candidate>('http://localhost:9000/candidate/' + this.candidate.id, this.candidate).subscribe(
       res => {
         console.log(res);
-        this.getAllCandidateList();
         this.candidateForm.reset();
-        this.educationDetails = ['']
-        this.experienceDetails = ['']
-        this.showSuccessMessage = true
+        this.educationDetails = [''];
+        this.experienceDetails = [''];
+        this.showSuccessMessage = true;
 
         setTimeout(() => {
           this.showSuccessMessage = false;
         }, 5000); // Hide the message after 5 seconds (5000 milliseconds)
 
-
-
+        // Navigate to the '/candidate' route after updating the candidate
+        this.router.navigate(['/candidate']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
+          console.log("Client-side error occurred:", err.error.message);
         } else {
-          console.log("Server-side error occured.");
+          console.log("Server-side error occurred:", err.status, err.message);
         }
-        //this.service.typeWarning();
-
-      });
-    console.log(JSON.stringify(this.candidate));
-    this.getAllCandidateList();
-
+      }
+    );
   }
 
   getCandidateList() {
@@ -390,22 +385,22 @@ export class EditcandidateComponent implements OnInit {
   // }
   deleteEducation(index: number) {
     this.educationDetails.splice(index, 1);
-    }
-    EditEducation(index: number) {
-      const selectedEducation = this.educationDetails[index];
+  }
+  EditEducation(index: number) {
+    const selectedEducation = this.educationDetails[index];
 
-      // Set the fields to be edited
-      this.education.course = selectedEducation.course;
-      this.education.branch = selectedEducation.branch;
-      this.education.startOfCourse = selectedEducation.startOfCourse;
-      this.education.endOfCourse = selectedEducation.endOfCourse;
-      this.education.college = selectedEducation.college;
-      this.education.location = selectedEducation.location;
+    // Set the fields to be edited
+    this.education.course = selectedEducation.course;
+    this.education.branch = selectedEducation.branch;
+    this.education.startOfCourse = selectedEducation.startOfCourse;
+    this.education.endOfCourse = selectedEducation.endOfCourse;
+    this.education.college = selectedEducation.college;
+    this.education.location = selectedEducation.location;
 
-      // Set edit mode and selected index
-      this.editMode = true;
-      this.selectedIndex = index;
-    }
+    // Set edit mode and selected index
+    this.editMode = true;
+    this.selectedIndex = index;
+  }
 
 
   editMode: boolean = false; // Indicates whether the form is in edit mode
@@ -416,43 +411,43 @@ export class EditcandidateComponent implements OnInit {
   submitEducation() {
     // Validate the experience details before adding or updating in the table
     if (this.validateEducation()) {
-        if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
-            // Update the existing experience details
-            this.educationDetails[this.selectedIndex] = { ...this.education };
+      if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+        // Update the existing experience details
+        this.educationDetails[this.selectedIndex] = { ...this.education };
 
-            // Reset edit mode and selected index
-            this.editMode = false;
-            this.selectedIndex = null;
+        // Reset edit mode and selected index
+        this.editMode = false;
+        this.selectedIndex = null;
+      } else {
+        // Check if the experience already exists
+        const existingIndex = this.educationDetails.findIndex(edu => edu.course === this.education.course && edu.branch === this.education.branch);
+
+        if (existingIndex !== -1) {
+          // Update the existing experience details
+          this.educationDetails[existingIndex] = { ...this.education };
         } else {
-            // Check if the experience already exists
-            const existingIndex = this.educationDetails.findIndex(edu => edu.course === this.education.course && edu.branch === this.education.branch);
-
-            if (existingIndex !== -1) {
-                // Update the existing experience details
-                this.educationDetails[existingIndex] = { ...this.education };
-            } else {
-                // Add new experience details to the table
-                this.educationDetails.push({ ...this.education });
-            }
+          // Add new experience details to the table
+          this.educationDetails.push({ ...this.education });
         }
+      }
 
-        // Clear the form fields after submission
-        this.clearEducationFields();
+      // Clear the form fields after submission
+      this.clearEducationFields();
     }
   }
   clearEducationFields() {
     // Clear the form fields
     this.education = {
-              course:"",
-              branch:"",
-              startOfCourse : new Date(),
-              endOfCourse: new Date(),
-              college:"",
-              location:"",
-              candidate:new Candidate(),
+      course: "",
+      branch: "",
+      startOfCourse: new Date(),
+      endOfCourse: new Date(),
+      college: "",
+      location: "",
+      candidate: new Candidate(),
 
 
-            };
+    };
     // Hide the education fields
     this.showEducationFields = false;
   }
@@ -489,40 +484,40 @@ export class EditcandidateComponent implements OnInit {
   submitExceperience() {
     // Validate the experience details before adding or updating in the table
     if (this.validateExperience()) {
-        if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
-            // Update the existing experience details
-            this.experienceDetails[this.selectedIndex] = { ...this.experience };
+      if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
+        // Update the existing experience details
+        this.experienceDetails[this.selectedIndex] = { ...this.experience };
 
-            // Reset edit mode and selected index
-            this.editMode = false;
-            this.selectedIndex = null;
+        // Reset edit mode and selected index
+        this.editMode = false;
+        this.selectedIndex = null;
+      } else {
+        // Check if the experience already exists
+        const existingIndex = this.experienceDetails.findIndex(exp => exp.company === this.experience.company && exp.jobTitle === this.experience.jobTitle);
+
+        if (existingIndex !== -1) {
+          // Update the existing experience details
+          this.experienceDetails[existingIndex] = { ...this.experience };
         } else {
-            // Check if the experience already exists
-            const existingIndex = this.experienceDetails.findIndex(exp => exp.company === this.experience.company && exp.jobTitle === this.experience.jobTitle);
-
-            if (existingIndex !== -1) {
-                // Update the existing experience details
-                this.experienceDetails[existingIndex] = { ...this.experience };
-            } else {
-                // Add new experience details to the table
-                this.experienceDetails.push({ ...this.experience });
-            }
+          // Add new experience details to the table
+          this.experienceDetails.push({ ...this.experience });
         }
+      }
 
-        // Clear the form fields after submission
-        this.clearExperienceFields();
+      // Clear the form fields after submission
+      this.clearExperienceFields();
     }
   }
   clearExperienceFields() {
     // Clear the form fields
     this.experience = {
-        company: "",
-        jobTitle: "",
-        currentlyWokring: false,
-        dateOfJoining: "",
-        dateOfRelieving: "",
-        location: "",
-        candidate: new Candidate(),
+      company: "",
+      jobTitle: "",
+      currentlyWokring: false,
+      dateOfJoining: "",
+      dateOfRelieving: "",
+      location: "",
+      candidate: new Candidate(),
     };
     // Hide the experience fields
     this.showExperience = false;
@@ -532,10 +527,6 @@ export class EditcandidateComponent implements OnInit {
     // Return true if the validation passes, otherwise false
     return true;
   }
-
-
-
-
 
   editExperience(index: number) {
     // Get the selected experience
@@ -552,23 +543,11 @@ export class EditcandidateComponent implements OnInit {
     // Set edit mode and selected index
     this.editMode = true;
     this.selectedIndex = index;
-}
-deleteExperience(index: number) {
-  // Remove the experience at the specified index from the experienceDetails array
-  this.experienceDetails.splice(index, 1);
-}
-
-
-
-
-
-
-
-
-
-
-
-
+  }
+  deleteExperience(index: number) {
+    // Remove the experience at the specified index from the experienceDetails array
+    this.experienceDetails.splice(index, 1);
+  }
 
   // end
 
@@ -589,87 +568,58 @@ deleteExperience(index: number) {
 
 
 
-//
-confirm1() {
-  this.confirmationService.confirm({
+  //
+  confirm1() {
+    this.confirmationService.confirm({
       key: 'confirm1',
       message: 'Are you sure to perform this action?'
-  });
-}
+    });
+  }
 
-confirm2(event: Event) {
-  this.confirmationService.confirm({
+  confirm2(event: Event) {
+    this.confirmationService.confirm({
       key: 'confirm2',
       target: event.target || new EventTarget,
       message: 'Are you sure that you want to proceed?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
       },
       reject: () => {
-          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
       }
-  });
-}
+    });
+  }
 
-formatCurrency(value: number) {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
+  formatCurrency(value: number) {
+    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  }
 
-
-
-//
 
 
   ngOnInit() {
+    const stateData = history.state || {}; // Retrieve state data
+    const candidate = stateData.candidate; // Get candidate object from state
 
-    //
-    this.productService.getProductsSmall().then(products => this.products = products);
+    if (candidate) {
+      this.candidate = candidate; // Assign candidate object to component property
+      this.educationDetails = this.candidate.educations;
+      this.experienceDetails = this.candidate.experiences;
+      this.skills = this.candidate.skills;
+    } else {
+      console.error('Candidate data is missing in state.');
+    }
 
-    this.images = [];
-    this.images.push({
-        source: 'assets/demo/images/sopranos/sopranos1.jpg',
-        thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Sopranos 1'
-    });
-    this.images.push({
-        source: 'assets/demo/images/sopranos/sopranos2.jpg',
-        thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg', title: 'Sopranos 2'
-    });
-    this.images.push({
-        source: 'assets/demo/images/sopranos/sopranos3.jpg',
-        thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg', title: 'Sopranos 3'
-    });
-    this.images.push({
-        source: 'assets/demo/images/sopranos/sopranos4.jpg',
-        thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg', title: 'Sopranos 4'
-    });
 
-//
-    this.routeItems = [
-      { label: 'Candidate', routerLink: 'createrecandidate' },
-      { label: 'Profile', routerLink: 'candidateprofile' },
-      {
-        label: 'Experiencne',
-        routerLink: 'candidateexperiencne',
-      },
-      { label: 'Eeducation', routerLink: 'candidateeducation' }
-    ];
     this.getAllCandidateList();
     this.getAllSourcesList();
     this.getAllLocationList();
     this.getAllCurrencyList();
     this.getAllJobsList();
     this.getAllTalentPoolListt();
-
-    this.candidate = JSON.parse(localStorage.getItem('editCandidate') || '{}')
-    this.educationDetails = this.candidate.educations
-    this.experienceDetails =this.candidate.experiences
-    this.skills = this.candidate.skills
-    
-
   }
-
-  addSkills1() {debugger
+  addSkills1() {
+    debugger
     if (this.skillInput.trim()) {
       // Split the input string by commas and trim any extra whitespace
       const newSkills = this.skillInput.split(',').map(skill => skill.trim());
@@ -685,7 +635,7 @@ formatCurrency(value: number) {
     this.skills = this.skills.filter(s => s !== skill);
   }
 
-  
+
 
 }
 
