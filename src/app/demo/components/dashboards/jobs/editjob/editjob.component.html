@@ -27,7 +27,7 @@
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
                     </div> -->
-                    
+
                     <div class="field col-12 md:col-6">
                         <label for="department">Department</label>
                         <p-dropdown [options]="departments" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Department" (onChange)="onDepartmentChange(selectedDepartments)" name="department" optionLabel="name">
@@ -36,7 +36,7 @@
                             </ng-template>
                         </p-dropdown>
                     </div>
-                    
+
                     <div class="field col-12 md:col-6">
                         <label for="openings">Openings</label>
                         <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
@@ -54,11 +54,11 @@
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="currency">Currency</label>
-                        <p-dropdown [options]="currencys" [(ngModel)]="selectedCurrencys" [showClear]="true" [filter]="true" placeholder="Select Currency" (onChange)="onCurrencyChange(selectedCurrencys)" name="currency" optionLabel="name">                            
+                        <p-dropdown [options]="currencys" [(ngModel)]="selectedCurrencys" [showClear]="true" [filter]="true" placeholder="Select Currency" (onChange)="onCurrencyChange(selectedCurrencys)" name="currency" optionLabel="name">
                         </p-dropdown>
                     </div>
-                    
-                    
+
+
                     <div class="field col-12 md:col-6">
                         <label for="salaryMinimum">Salary Minimum</label>
                         <input pInputText id="salaryMinimum" name="salaryMinimum" type="number" required min="0" placeholder="Enter Min salary" [(ngModel)]="job.salaryMinimum"  #salaryMinimum="ngModel">
@@ -80,15 +80,15 @@
                             <small class="text-danger">Job Type is required.</small>
                         </div> -->
                     </div>
-                    
-                    
+
+
                     <div class="field col-12 md:col-6">
                         <label for="location">Location</label>
                         <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location" required>
                         <div style="color: red;" *ngIf="jobForm.controls['location'].invalid &&  (jobForm.controls['location'].dirty || jobForm.controls['location'].touched)">
                             <small class="text-danger">location is required.</small>
                      </div>
-                    </div>    
+                    </div>
                     <div class="field col-12 md:col-6">
                         <label for="experience">Experience</label>
                         <input pInputText id="flows" name="flows" type="text"  placeholder="Enter Experience" [(ngModel)]="job.experience"  #experience="ngModel" required>
@@ -105,11 +105,11 @@
                         </p-dropdown>
                     </div>
                 </div>
-            
+
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="updateJob()" routerLink="/jobs" label="Save" ></button>
+                    (click)="updateJob()" label="Save" ></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                     routerLink="/jobs" label="Cancel"></button>
                 </div>

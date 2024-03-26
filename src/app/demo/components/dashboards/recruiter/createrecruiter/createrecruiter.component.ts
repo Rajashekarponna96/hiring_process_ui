@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
 import { UserAccout } from '../../../model/userAccount';
 import { Role } from '../../../model/role';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-createrecruiter',
   templateUrl: './createrecruiter.component.html',
@@ -24,7 +26,7 @@ export class CreaterecruiterComponent {
   role = new Role();
 
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router: Router) {
 
   }
   getRecruiterList() {
@@ -39,35 +41,63 @@ export class CreaterecruiterComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
-  
+
+  // addRecruiter() {
+  //  let email =this.recruiter.email;
+  //  let mobile = this.recruiter.mobile;
+  //  this.userAccount.userName=email;
+  //  this.userAccount.password=mobile;
+  //  this.role.name='Admin';
+  //  this.role.description='This is for Admin';
+  //  this.userAccount.role=this.role;
+  //  this.recruiter.userAccout=this.userAccount;
+  //   this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.getAllRecruiterList();
+  //       this.recruiterForm.reset();
+
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       if (err.error instanceof Error) {
+  //         console.log("Client-side error occured.");
+  //       } else {
+  //         console.log("Server-side error occured.");
+  //       }
+  //       //this.service.typeWarning();
+
+  //     });
+  //   console.log(JSON.stringify(this.recruiter));
+  //   this.getAllRecruiterList();
+
+  // }
   addRecruiter() {
-   let email =this.recruiter.email;
-   let mobile = this.recruiter.mobile;
-   this.userAccount.userName=email;
-   this.userAccount.password=mobile;
-   this.role.name='Admin';
-   this.role.description='This is for Admin';
-   this.userAccount.role=this.role;
-   this.recruiter.userAccout=this.userAccount;
+    let email = this.recruiter.email;
+    let mobile = this.recruiter.mobile;
+    this.userAccount.userName = email;
+    this.userAccount.password = mobile;
+    this.role.name = 'Admin';
+    this.role.description = 'This is for Admin';
+    this.userAccount.role = this.role;
+    this.recruiter.userAccout = this.userAccount;
+
     this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
       res => {
         console.log(res);
         this.getAllRecruiterList();
         this.recruiterForm.reset();
 
+        // Redirect to the "/recruiter" route after successfully adding a new recruiter
+        this.router.navigateByUrl('/recruiter');
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
+          console.log("Client-side error occurred.");
         } else {
-          console.log("Server-side error occured.");
+          console.log("Server-side error occurred.");
         }
-        //this.service.typeWarning();
-
-      });
-    console.log(JSON.stringify(this.recruiter));
-    this.getAllRecruiterList();
-
+      }
+    );
   }
 
   ngOnInit() {
