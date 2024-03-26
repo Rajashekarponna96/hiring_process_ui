@@ -4,6 +4,7 @@ import { Currency } from "./currency";
 import { Recruiter } from "./recruiter";
 import { Location } from "./location"
 import { HiringFlow } from "./HiringFlow";
+import { Client } from "./client";
 
 export class Job {
     id!: number;
@@ -21,5 +22,6 @@ export class Job {
     experience!: number;
     candidates!: Candidate;
     recruiters!: Recruiter;
+    clients!: Client;
 
 }

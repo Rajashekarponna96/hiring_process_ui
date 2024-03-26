@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { Department } from '../../../model/Department';
 import { Currency } from '../../../model/currency';
 import { Recruiter } from '../../../model/recruiter';
+import { Client } from '../../../model/client';
 
 @Component({
   selector: 'app-createjob',
@@ -22,6 +23,7 @@ export class CreatejobComponent {
   //currencies: Currency[] | undefined;
 
   department = new Department()
+  client = new Client();
   recruiter = new Recruiter()
   @ViewChild("jobForm")
   jobForm!: NgForm;
@@ -29,6 +31,7 @@ export class CreatejobComponent {
   //selectedCurrency: any;
   selectedJobType: any;
   selectedDepartments: any;
+  selectedClients:any;
   selectedRecruiters: any;
   selectedCurrencys: any;
 
@@ -40,6 +43,14 @@ export class CreatejobComponent {
     {
       "id": 2,
       "name": 'PartTime'
+    },
+    {
+      "id": 3,
+      "name": 'Contract'
+    },
+    {
+      "id": 4,
+      "name": 'Freelance'
     }
 
   ]
@@ -53,6 +64,7 @@ export class CreatejobComponent {
 
   currencyOptions: any;
   departments: any[] = [];
+  clients:any[] =[];
   recruiters: any[] = [];
   currencys: any[] = [];
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
@@ -92,6 +104,19 @@ export class CreatejobComponent {
       subscribe((data) => {
         console.log(data);
         this.recruiters = data;
+        this.changeDetectorRefs.markForCheck();
+      });
+  }
+
+  getClientList() {
+    return this.http.get<Client[]>('http://localhost:9000/client/all');
+
+  }
+  getAllClientList() {
+    return this.getClientList().
+      subscribe((data) => {
+        console.log(data);
+        this.clients = data;
         this.changeDetectorRefs.markForCheck();
       });
   }
@@ -139,6 +164,7 @@ export class CreatejobComponent {
     this.job.department = this.selectedDepartments;
     this.job.recruiters = this.selectedRecruiters;
     this.job.currney = this.selectedCurrencys;
+    this.job.clients =this.selectedClients;
 
     this.http.post<Job>('http://localhost:9000/job/', this.job).subscribe(
       res => {
@@ -173,11 +199,18 @@ export class CreatejobComponent {
     console.log("Recruiters.........." + JSON.stringify(this.selectedCurrencys))
   }
 
+  onClientChange(data: any) {
+    console.log("selected client:", data);
+    console.log("clients.........." + JSON.stringify(this.selectedClients))
+  }
+
+
   ngOnInit() {
     this.getAllJobList();
     this.getAllDepartmentList();
     this.getAllCurrencyList();
     this.getAllRecruiterList();
+    this.getAllClientList(); 
   }
 }
 
