@@ -25,22 +25,22 @@
       </ng-template>
       <ng-template pTemplate="body" let-client>
           <tr>
-              <td>{{client.name}}</td>
+              <td>{{client.companyName}}</td>
               <td>
                 <ul>
-                    <li *ngFor="let contact of client.contactPocs">{{ contact.name }}</li>
+                    <li *ngFor="let contact of client.pocs">{{ contact.name }}</li>
                 </ul>
             </td>
             <td>
                 <ul>
-                    <li *ngFor="let contact of client.contactPocs">{{ contact.mobileNo }}</li>
+                    <li *ngFor="let contact of client.pocs">{{ contact.mobile }}</li>
                 </ul>
             </td>
               <td>{{client.location}}</td>
               <td>
                   <div class="button-container">
-                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(client)" icon="pi pi-pencil"></button>
-                      <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(client)" icon="pi pi-trash"></button>
+                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client)" icon="pi pi-pencil"></button>
+                      <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
                   </div>                    
               </td>
 

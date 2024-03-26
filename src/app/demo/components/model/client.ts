@@ -1,8 +1,9 @@
-import { PointToContact } from "./PointToContact";
+import { Poc } from "./poc";
 
 export class Client{
-    name!: string;
-    contactPocs!: PointToContact[];
+    id!: number;
+    companyName!: string;
+    pocs!: Poc[];
     location!: string;
 
 
