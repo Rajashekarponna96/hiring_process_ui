@@ -28,13 +28,19 @@ export class JobsComponent implements OnInit {
     });
   }
 
-  handleEditJob(job: Job) {
-    console.log(job.id);
-    localStorage.setItem('id', String(job.id));
-    console.log(job);
-    localStorage.setItem('editJob', JSON.stringify(job));
-    this.router.navigate(['editjob']);
+//   handleEditJob(job: Job) {
+//     console.log(job.id);
+//     localStorage.setItem('id', String(job.id));
+//     console.log(job);
+//     localStorage.setItem('editJob', JSON.stringify(job));
+//     this.router.navigate(['editjob']);
+// }
+handleEditJob(job: Job) {
+  console.log('Job object to edit:', job); // Log the job object
+  // Navigate to the 'editjob' route with the job object as a parameter in the state
+  this.router.navigate(['editjob'], { state: { job: job } });
 }
+
 
   Jobdelete(job: Job) {
     debugger;

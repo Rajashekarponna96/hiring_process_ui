@@ -4,6 +4,7 @@ import { Recruiter } from '../../model/recruiter';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { dE } from '@fullcalendar/core/internal-common';
 
 @Component({
     selector: 'app-recruiter',
@@ -43,17 +44,51 @@ export class RecruiterComponent {
         );
     }
 
+
+    // handleEditRecruiter(recruiter: Recruiter) {debugger;
+    //     // Navigate to the 'editrecruiter' route with the recruiter object as a parameter in the state
+    //     this.router.navigate(['editrecruiter'], { state: { recruiter: recruiter } });
+    //   }
+
     handleEditRecruiter(recruiter: Recruiter) {
-        console.log(recruiter.id);
-        localStorage.setItem('id', String(recruiter.id));
-        console.log(recruiter);
-        localStorage.setItem('editRecruiter', JSON.stringify(recruiter));
-        this.router.navigate(['editrecruiter']);
+        console.log('Recruiter object to edit:', recruiter); // Log the recruiter object
+        // Navigate to the 'editrecruiter' route with the recruiter object as a parameter in the state
+        this.router.navigate(['editrecruiter'], { state: { recruiter: recruiter } });
     }
 
     ngOnInit() {
+        // Retrieve the recruiter object from history.state
+
         this.getAllRecruiterList();
+        const recruiter = history.state.recruiter;
+
+        // Check if the recruiter object exists
+        if (recruiter) {
+            // Now you can use the recruiter object directly in your component
+            console.log('Recruiter object received:', recruiter); // Log the recruiter object
+            // Populate the form fields with the received recruiter data
+            this.recruiter = recruiter;
+        } else {
+            console.error('Recruiter data is missing in state.');
+        }
     }
+
+
+
+    // ngOnInit() {
+    //     this.getAllRecruiterList();
+
+    //     // Access the recruiter object from history.state
+    //     const recruiter = history.state.recruiter;
+
+    //     // Check if the recruiter object exists
+    //     if (recruiter) {
+    //         // Now you can use the recruiter object directly in your component
+    //         console.log(recruiter); // Log the recruiter object
+    //     } else {
+    //         console.error('Recruiter data is missing in state.');
+    //     }
+    // }
 
     navigateToCreateRecruiter() {
         this.router.navigate(['createrecruiter']);
