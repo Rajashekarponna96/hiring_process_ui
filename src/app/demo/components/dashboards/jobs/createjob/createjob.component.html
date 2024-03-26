@@ -38,6 +38,16 @@
                     </div>
 
                     <div class="field col-12 md:col-6">
+                        <label for="clients">ClientName</label>
+                        <p-dropdown [options]="clients" [(ngModel)]="selectedClients" [showClear]="true" [filter]="true" placeholder="Select ClientName" (onChange)="onClientChange(selectedClients)" name="clients" optionLabel="name">
+                            <ng-template let-Client pTemplate="item">
+                                {{ Client.companyName }}
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+
+
+                    <div class="field col-12 md:col-6">
                         <label for="openings">Openings</label>
                         <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
                         [(ngModel)]="job.openings"  #openings="ngModel">
