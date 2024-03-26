@@ -42,7 +42,7 @@ export class CandidateComponent {
     }
 
 
-    handleEditcandidate(candidateId: number, candidate: Candidate) { debugger
+    handleEditcandidate(candidateId: number, candidate: Candidate) { 
 
         console.log("Candidate ID:", candidateId);
         console.log("Candidate object:", candidate);

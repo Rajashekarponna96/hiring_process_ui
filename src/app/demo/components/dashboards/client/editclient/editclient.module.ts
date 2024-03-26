@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientRoutingModule } from './client-routing.module';
+
+import { EditclientRoutingModule } from './editclient-routing.module';
+import { EditclientComponent } from './editclient.component';
+
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CalendarModule } from "primeng/calendar";
@@ -25,19 +30,15 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
-import { ClientComponent } from './client.component';
-
-
-
 
 
 @NgModule({
-  declarations: [ClientComponent],
+  declarations: [EditclientComponent],
   imports: [
     CommonModule,
-    ClientRoutingModule,
-    CommonModule,
-		FormsModule,
+    EditclientRoutingModule,
+
+    FormsModule,
 		ReactiveFormsModule,
 		FormsModule,
 		AutoCompleteModule,
@@ -63,6 +64,7 @@ import { ClientComponent } from './client.component';
 		CheckboxModule,
 		ButtonModule,
 		TableModule
+
   ]
 })
-export class ClientModule { }
+export class EditclientModule { }

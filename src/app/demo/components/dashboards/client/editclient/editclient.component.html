@@ -1,7 +1,7 @@
 <div class="grid">
   <div class="col-12">
     <div class="card">
-      <form #createClientForm="ngForm">
+      <form #editClientForm="ngForm">
         <div class="p-fluid p-formgrid grid">
           <!-- Client details -->
           <div class="field col-12 md:col-6">
@@ -22,7 +22,7 @@
             </div>
           </div>
 
-
+          
           <div class="field col-12 md:col-6">
             <h6>Add Pocs Details:</h6><br><br>
           </div>
@@ -51,8 +51,9 @@
         </div>
         <!-- Education table -->
 
-
+        
         <div *ngIf="pointToContacts.length > 0">
+          
           <table>
             <thead>
               <tr>
@@ -88,7 +89,7 @@
         <div class="ui-g-12" style="text-align: right">
           <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
           <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-          (click)="addclient()" label="Save"  ></button>
+          (click)="updateclient()" label="Update"  ></button>
           <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
           routerLink="/client" label="Cancel"></button>
         </div>

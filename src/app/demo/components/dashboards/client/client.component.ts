@@ -13,7 +13,7 @@ export class ClientComponent implements OnInit {
 
   constructor(private router: Router,private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef) { }
 
-
+   
    clients: Client[] = [];
 
 
@@ -22,7 +22,9 @@ navigateToCreateClient(){
 
 }
 
-handleEditclient(client:any){
+handleEditclient(client:Client,clientId:number){
+  this.router.navigate(['editclient'], { state: { clientId: clientId, client: client } });
+
 
 }
 

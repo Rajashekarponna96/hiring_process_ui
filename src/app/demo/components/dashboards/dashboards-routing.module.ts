@@ -200,8 +200,12 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./client/createclient/createclient.module').then((m) => m.CreateclientModule),
             },
-            
-
+            {
+                path: 'editclient',
+                data: { breadcrumb: 'EditClient' },
+                loadChildren: () =>
+                    import('./client/editclient/editclient.module').then((m) => m.EditclientModule),
+            },
             {
                 path: 'menus',
                 data: { breadcrumb: 'menus' },

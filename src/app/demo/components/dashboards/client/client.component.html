@@ -39,7 +39,7 @@
               <td>{{client.location}}</td>
               <td>
                   <div class="button-container">
-                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client)" icon="pi pi-pencil"></button>
+                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client,client.id)" icon="pi pi-pencil"></button>
                       <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
                   </div>                    
               </td>
