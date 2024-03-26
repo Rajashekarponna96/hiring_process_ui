@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Client } from '../../../model/client';
 import { PointToContact } from '../../../model/PointToContact';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Poc } from '../../../model/poc';
 
 @Component({
   selector: 'app-createclient',
@@ -8,10 +11,13 @@ import { PointToContact } from '../../../model/PointToContact';
   styleUrls: ['./createclient.component.css']
 })
 export class CreateclientComponent implements OnInit {
+  constructor(private router: Router,private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef) { }
+
+
   showPocsFields: boolean = false;
   client: Client = new Client(); // Initialize client object
-  pointToContact: PointToContact = new PointToContact(); // Initialize pointToContact object
-  pointToContacts: PointToContact[] = []; // Initialize pointToContacts array
+  pointToContact: Poc= new Poc(); // Initialize pointToContact object
+  pointToContacts: Poc[] = []; // Initialize pointToContacts array
 
   togglePocsFields() {
     this.showPocsFields = !this.showPocsFields;
@@ -21,7 +27,7 @@ export class CreateclientComponent implements OnInit {
   }
 
   addPocField() {
-    this.pointToContact = new PointToContact(); // Reset pointToContact object
+    this.pointToContact = new Poc(); // Reset pointToContact object
   }
 
   // submitPocs() {
@@ -35,8 +41,8 @@ export class CreateclientComponent implements OnInit {
 
       // Set the fields to be edited
       this.pointToContact.name = selectedEducation.name;
-      this.pointToContact.mobileNo = selectedEducation.mobileNo;
-      this.pointToContact.emailId = selectedEducation.emailId;
+      this.pointToContact.mobile = selectedEducation.mobile;
+      this.pointToContact.email = selectedEducation.email;
       
 
       // Set edit mode and selected index
@@ -61,7 +67,7 @@ export class CreateclientComponent implements OnInit {
             this.selectedIndex = null;
         } else {
             // Check if the experience already exists
-            const existingIndex = this.pointToContacts.findIndex(edu => edu.name === this.pointToContact.name && edu.mobileNo === this.pointToContact.mobileNo);
+            const existingIndex = this.pointToContacts.findIndex(edu => edu.name === this.pointToContact.name && edu.mobile === this.pointToContact.mobile);
 
             if (existingIndex !== -1) {
                 // Update the existing experience details
@@ -80,8 +86,8 @@ export class CreateclientComponent implements OnInit {
     // Clear the form fields
     this.pointToContact = {
               name:"",
-              mobileNo:"",
-              emailId:"",
+              mobile:"",
+              email:"",
               
 
 
@@ -96,16 +102,21 @@ export class CreateclientComponent implements OnInit {
     // Return true if the validation passes, otherwise false
     return true;
   }
-
-
-
-  
-    
-
   editMode: boolean = false; // Indicates whether the form is in edit mode
 
   editedExperienceIndex: number | null = null
   selectedIndex: number | null = null; // Index of the currently selected row for editing
+
+  addclient(){
+    this.client.pocs = this.pointToContacts
+    console.log("client details are:"+this.client.pocs.length)
+
+    this.http.post<Client>('http://localhost:9000/client/', this.client).subscribe(
+      res => {
+        console.log(res);
+      })
+
+  }
 
 
 
