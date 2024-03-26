@@ -1,18 +1,21 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Client } from '../../../model/client';
-import { PointToContact } from '../../../model/PointToContact';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Poc } from '../../../model/poc';
+import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-createclient',
-  templateUrl: './createclient.component.html',
-  styleUrls: ['./createclient.component.css']
+  selector: 'app-editclient',
+  templateUrl: './editclient.component.html',
+  styleUrls: ['./editclient.component.scss']
 })
-export class CreateclientComponent implements OnInit {
-  constructor(private router: Router,private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef) { }
+export class EditclientComponent {
 
+  @ViewChild("editClientForm")
+  editClientForm!: NgForm
+  
+  constructor(private router: Router,private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef) { }
 
   showPocsFields: boolean = false;
   client: Client = new Client(); // Initialize client object
@@ -85,7 +88,6 @@ export class CreateclientComponent implements OnInit {
   clearEducationFields() {
     // Clear the form fields
     this.pointToContact = {
-              
               name:"",
               mobile:"",
               email:"",
@@ -108,11 +110,11 @@ export class CreateclientComponent implements OnInit {
   editedExperienceIndex: number | null = null
   selectedIndex: number | null = null; // Index of the currently selected row for editing
 
-  addclient(){
+  updateclient(){
     this.client.pocs = this.pointToContacts
     console.log("client details are:"+this.client.pocs.length)
 
-    this.http.post<Client>('http://localhost:9000/client/', this.client).subscribe(
+    this.http.put<Client>('http://localhost:9000/client/'+this.client.id, this.client).subscribe(
       res => {
         console.log(res);
       })
@@ -122,5 +124,29 @@ export class CreateclientComponent implements OnInit {
 
 
   ngOnInit() {
+
+    const stateData = history.state || {}; // Retrieve state data
+    const client = stateData.client; // Get candidate object from state
+
+    if (client) {
+      this.client = client; // Assign candidate object to component property
+      this.pointToContacts = this.client.pocs;
+      
+    } else {
+      console.error('Candidate data is missing in state.');
+    }
+
+
+    
   }
-}
+
+
+
+  }
+
+
+  
+  
+
+
+
