@@ -1,0 +1,99 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <form #createClientForm="ngForm">
+        <div class="p-fluid p-formgrid grid">
+          <!-- Client details -->
+          <div class="field col-12 md:col-6">
+            <label for="name">Client Name</label>
+            <input pInputText id="name" name="name" type="text" ngModel required placeholder="Enter Client Name"
+              [(ngModel)]="client.name" required #name="ngModel" />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+              <div style="color: red" *ngIf="name.errors">Client Name is required </div>
+            </div>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="location">Location</label>
+            <input pInputText id="location" name="location" type="text" ngModel required placeholder="Enter Location"
+              [(ngModel)]="client.location" required #location="ngModel" />
+            <div *ngIf="location.invalid && (location.dirty || location.touched)">
+              <div style="color: red" *ngIf="location.errors">Client Location is required </div>
+            </div>
+          </div>
+
+          
+          <div class="field col-12 md:col-6">
+            <h6>Add Pocs Details:</h6><br><br>
+          </div>
+          <div class="field col-12 md:col-6"></div>
+          <div class="field col-12 md:col-6">
+            <label for="name">Name</label>
+            <input pInputText id="name" name="name" type="text" [(ngModel)]="pointToContact.name" #name="ngModel" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="mobileNo">Mobile</label>
+            <input pInputText id="mobileNo" name="mobileNo" type="text" placeholder="Enter Mobile Number"
+              [(ngModel)]="pointToContact.mobileNo" required pattern="[0-9]*" #mobileNo="ngModel" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="emailId">Email</label>
+            <input pInputText id="emailId" name="emailId" type="email" placeholder="Enter Email"
+              [(ngModel)]="pointToContact.emailId" required email #emailId="ngModel" />
+          </div>
+          <div class="field col-12 md:col-6"></div>
+          <!-- Submit button -->
+          <div class="field col-12 md:col-6">
+            <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus" (click)="submitPocs()"
+              label="Add Poc"></button>
+          </div> 
+          </div> 
+                  <!-- Education table -->
+        
+              
+          <div *ngIf="pointToContacts.length > 0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>MobileNo</th>
+                  <th>EmailId</th>
+                  <th>Modify</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="
+                                        let edu of  pointToContacts;
+                                        let i = index
+                                    ">
+                  <td>{{ edu.name}}</td>
+                  <td>{{ edu.mobileNo}}</td>
+                  <td>{{ edu.emailId}}</td>
+
+                  <td>
+                    <div class="button-container">
+                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="EditPoc(i)"
+                        icon="pi pi-pencil"></button>
+                      <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deletePoc(i)"
+                        icon="pi pi-trash"></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        
+
+
+
+
+
+
+
+
+        
+      </form>
+    </div>
+  </div>
+</div>

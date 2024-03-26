@@ -54,6 +54,7 @@ export class ClientComponent implements OnInit {
 
 
 navigateToCreateClient(){
+  this.router.navigate(['createclient']) 
 
 }
 
