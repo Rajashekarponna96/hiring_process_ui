@@ -863,7 +863,7 @@
                                 <!-- </div> -->
                             </div>
                         </div>
-                        <span class="p-buttonset">
+                        <span class="button-container">
                             <button
                                 *ngIf="currentStep > 1"
                                 (click)="prevStep()"
@@ -1386,13 +1386,44 @@ name="stage" optionLabel="name" optionValue="name">
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div><br><br>
                                     <!-- exp -->
+                                    <div class="ui-g-12" style="text-align: right">
+                                        <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+                                        
+                                        <!-- Previous Button -->
+                                        <span class="button-container">
+                                            <button
+                                                *ngIf="currentStep > 1"
+                                                (click)="prevStep()"
+                                                class="p-button-secondary p-button-text"
+                                                pButton
+                                                pRipple
+                                                label="Previous"
+                                            ></button>
+                                            <button
+                                                *ngIf="currentStep < totalSteps"
+                                                (click)="nextStep()"
+                                                class="p-button-primary p-button-text"
+                                                pButton
+                                                pRipple
+                                                label="Next"
+                                            ></button>
+                                        </span> 
+                                        
+                                        <!-- Save Button -->
+                                        <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
+                                                (click)="updateCandidate()" label="Update"></button>
+                                        
+                                        <!-- Cancel Button -->
+                                        <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
+                                                routerLink="/candidate" label="Cancel"></button>
+                                    </div>
                                 </form>
                             </div>
 
                             <!-- confirm ends here  -->
-                            <div class="ui-g-12" style="text-align: right">
+                            <!-- <div class="ui-g-12" style="text-align: right">
                                 <span
                                     class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"
                                 ></span>
@@ -1431,7 +1462,7 @@ name="stage" optionLabel="name" optionValue="name">
                                     label="Next"
                                     icon="pi pi-angle-right"
                                 ></button>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </div>
