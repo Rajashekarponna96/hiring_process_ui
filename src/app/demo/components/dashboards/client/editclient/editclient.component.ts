@@ -33,19 +33,14 @@ export class EditclientComponent {
     this.pointToContact = new Poc(); // Reset pointToContact object
   }
 
-  // submitPocs() {
-  //   // Add the current pointToContact to pointToContacts array
-  //   this.pointToContacts.push(this.pointToContact);
-  //   // Reset pointToContact object for the next entry
-  //   this.pointToContact = new PointToContact();
-  // }
+  
   EditPoc(index: number) {
-    const selectedEducation = this.pointToContacts[index];
+    const selectedPoc = this.pointToContacts[index];
 
     // Set the fields to be edited
-    this.pointToContact.name = selectedEducation.name;
-    this.pointToContact.mobile = selectedEducation.mobile;
-    this.pointToContact.email = selectedEducation.email;
+    this.pointToContact.name = selectedPoc.name;
+    this.pointToContact.mobile = selectedPoc.mobile;
+    this.pointToContact.email = selectedPoc.email;
 
 
     // Set edit mode and selected index
@@ -60,7 +55,7 @@ export class EditclientComponent {
 
   submitPocs() {
     // Validate the experience details before adding or updating in the table
-    if (this.validateEducation()) {
+    if (this.validatePoc()) {
       if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
         // Update the existing experience details
         this.pointToContacts[this.selectedIndex] = { ...this.pointToContact };
@@ -82,10 +77,10 @@ export class EditclientComponent {
       }
 
       // Clear the form fields after submission
-      this.clearEducationFields();
+      this.clearPocFields();
     }
   }
-  clearEducationFields() {
+  clearPocFields() {
     // Clear the form fields
     this.pointToContact = {
       name: "",
@@ -100,14 +95,15 @@ export class EditclientComponent {
   }
 
 
-  validateEducation(): boolean {
-    // Add your validation logic here
-    // Return true if the validation passes, otherwise false
+  validatePoc(): boolean {
+    if(!this.pointToContact.name||!this.pointToContact.email|| !this.pointToContact.mobile){
+      throw new Error(' All fields are  required')
+    }
     return true;
   }
   editMode: boolean = false; // Indicates whether the form is in edit mode
 
-  editedExperienceIndex: number | null = null
+  editedPocIndex: number | null = null
   selectedIndex: number | null = null; // Index of the currently selected row for editing
 
 
