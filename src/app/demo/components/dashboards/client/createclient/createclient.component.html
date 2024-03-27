@@ -6,8 +6,8 @@
           <!-- Client details -->
           <div class="field col-12 md:col-6">
             <label for="companyName">Client Name</label>
-            <input pInputText id="companyName" name="companyName" type="text" ngModel required placeholder="Enter Client Name"
-              [(ngModel)]="client.companyName" required #companyName="ngModel" />
+            <input pInputText id="companyName" name="companyName" type="text" ngModel required
+              placeholder="Enter Client Name" [(ngModel)]="client.companyName" required #companyName="ngModel" />
             <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
               <div style="color: red" *ngIf="companyName.errors">Client Name is required </div>
             </div>
@@ -22,15 +22,15 @@
             </div>
           </div>
 
-
+          <h6>Add Pocs Details:</h6>
           <div class="field col-12 md:col-6">
-            <h6>Add Pocs Details:</h6><br><br>
+
           </div>
-          <div class="field col-12 md:col-6"></div>
+          <!-- <div class="field col-12 md:col-6"></div> -->
           <div class="field col-12 md:col-6">
             <label for="name">Name</label>
-            <input pInputText id="name" name="name" type="text"  placeholder="Enter POC Name" 
-            [(ngModel)]="pointToContact.name" required #name="ngModel" />
+            <input pInputText id="name" name="name" type="text" placeholder="Enter POC Name"
+              [(ngModel)]="pointToContact.name" required #name="ngModel" />
           </div>
           <div class="field col-12 md:col-6">
             <label for="mobile">Mobile</label>
@@ -50,6 +50,7 @@
           </div>
         </div>
         <!-- Education table -->
+
 
 
         <div *ngIf="pointToContacts.length > 0">
@@ -82,15 +83,15 @@
               </tr>
             </tbody>
           </table>
-          
-          
+
+
         </div>
         <div class="ui-g-12" style="text-align: right">
           <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-          <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-          (click)="addclient()" label="Save"  ></button>
+          <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check" (click)="addClient()"
+            label="Save"></button>
           <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-          routerLink="/client" label="Cancel"></button>
+            routerLink="/client" label="Cancel"></button>
         </div>
       </form>
     </div>

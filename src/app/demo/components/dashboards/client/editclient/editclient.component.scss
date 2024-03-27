@@ -1,0 +1,170 @@
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-container button {
+    margin-right: 8px;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Style table header */
+  th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Style table rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  /* Style table data */
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Style the edit and delete buttons */
+  .edit-btn, .delete-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .edit-btn:hover, .delete-btn:hover {
+    background-color: #ddd;
+  }
+
+  .button-container {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+
+  }
+
+  .next-button {
+    width: 100%;
+
+  }
+  .readonly-dropdown {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-dropdown-value {
+    /* Style to mimic appearance of a dropdown value */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .readonly-gender {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-gender-value {
+    /* Style to mimic appearance of the selected gender */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .readonly-date-of-birth {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-date-of-birth-value {
+    /* Style to mimic appearance of the date of birth */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .readonly-skills {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-skills-value {
+    /* Style to mimic appearance of the skills */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+
+  .readonly-talent-poll {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-talent-poll-value {
+    /* Style to mimic appearance of the selected talent poll */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .readonly-job {
+    /* Optional: Adjust styling to match your design */
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-job-value {
+    /* Style to mimic appearance of the selected job */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .readonly-source {
+    /* Optional: Adjust styling to match your design */
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-source-value {
+    /* Style to mimic appearance of the selected source */
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  .readonly-currency {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.7; /* Optionally reduce opacity to indicate it's disabled */
+  }
+
+  .readonly-currency-value {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
