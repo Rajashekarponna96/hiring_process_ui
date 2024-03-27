@@ -454,10 +454,21 @@ export class EditcandidateComponent implements OnInit {
 
 
   validateEducation(): boolean {
-    // Add your validation logic here
-    // Return true if the validation passes, otherwise false
+    // Check if any of the fields are empty
+    if (!this.education.course ||
+        !this.education.branch ||
+        !this.education.startOfCourse ||
+        !this.education.endOfCourse ||
+        !this.education.college ||
+        !this.education.location) {
+        // Throw an exception or handle validation failure
+        throw new Error('All fields are required.');
+        // Alternatively, you can return false to indicate validation failure
+        // return false;
+    }
+    // Return true if all fields are filled
     return true;
-  }
+}
 
   // submitExceperience() {
   //   // Validate the education details before adding to the table
@@ -523,10 +534,18 @@ export class EditcandidateComponent implements OnInit {
     this.showExperience = false;
   }
   validateExperience(): boolean {
-    // Add your validation logic here
-    // Return true if the validation passes, otherwise false
+    // Check if any of the required fields are empty or if any other validation criteria are not met
+    if (!this.experience.company || !this.experience.jobTitle || !this.experience.dateOfJoining || !this.experience.dateOfRelieving || !this.experience.location) {
+        // Validation failed
+        return false;
+    }
+
+    // Add additional validation logic as needed
+
+    // If all validation passes, return true
     return true;
-  }
+}
+
 
   editExperience(index: number) {
     // Get the selected experience
