@@ -37,21 +37,21 @@ export class CreatejobComponent {
 
   types: any[] = [
     {
-      "id": 1,
+      
       "name": 'FullTime'
     },
     {
-      "id": 2,
+      
       "name": 'PartTime'
     },
     {
-      "id": 3,
-      "name": 'Contract'
+      
+      "name": 'CONTRACT'
     },
     {
-      "id": 4,
-      "name": 'Freelance'
-    }
+      
+      "name": 'FreeLance'
+    },
 
   ]
 
