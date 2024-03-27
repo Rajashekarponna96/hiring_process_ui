@@ -30,19 +30,14 @@ export class CreateclientComponent implements OnInit {
     this.pointToContact = new Poc(); // Reset pointToContact object
   }
 
-  // submitPocs() {
-  //   // Add the current pointToContact to pointToContacts array
-  //   this.pointToContacts.push(this.pointToContact);
-  //   // Reset pointToContact object for the next entry
-  //   this.pointToContact = new PointToContact();
-  // }
+  
   EditPoc(index: number) {
-    const selectedEducation = this.pointToContacts[index];
+    const selectedPoc = this.pointToContacts[index];
 
     // Set the fields to be edited
-    this.pointToContact.name = selectedEducation.name;
-    this.pointToContact.mobile = selectedEducation.mobile;
-    this.pointToContact.email = selectedEducation.email;
+    this.pointToContact.name =  selectedPoc.name;
+    this.pointToContact.mobile =  selectedPoc.mobile;
+    this.pointToContact.email =  selectedPoc.email;
 
 
     // Set edit mode and selected index
@@ -57,9 +52,9 @@ export class CreateclientComponent implements OnInit {
 
   submitPocs() {
     // Validate the experience details before adding or updating in the table
-    if (this.validateEducation()) {
+    if (this.validatePoc()) {
       if (this.editMode && this.selectedIndex !== undefined && this.selectedIndex !== null) {
-        // Update the existing experience details
+        // Update the existing poc details
         this.pointToContacts[this.selectedIndex] = { ...this.pointToContact };
 
         // Reset edit mode and selected index
@@ -70,19 +65,19 @@ export class CreateclientComponent implements OnInit {
         const existingIndex = this.pointToContacts.findIndex(edu => edu.name === this.pointToContact.name && edu.mobile === this.pointToContact.mobile);
 
         if (existingIndex !== -1) {
-          // Update the existing experience details
+          // Update the existing poc details
           this.pointToContacts[existingIndex] = { ...this.pointToContact };
         } else {
-          // Add new experience details to the table
+          // Add new poc details to the table
           this.pointToContacts.push({ ...this.pointToContact });
         }
       }
 
       // Clear the form fields after submission
-      this.clearEducationFields();
+      this.clearPocFields();
     }
   }
-  clearEducationFields() {
+  clearPocFields() {
     // Clear the form fields
     this.pointToContact = {
 
@@ -98,14 +93,18 @@ export class CreateclientComponent implements OnInit {
   }
 
 
-  validateEducation(): boolean {
+  validatePoc(): boolean {
+    if(!this.pointToContact.name||!this.pointToContact.email|| !this.pointToContact.mobile){
+      throw new Error(' All fields are  required')
+    }
+
     // Add your validation logic here
     // Return true if the validation passes, otherwise false
     return true;
   }
   editMode: boolean = false; // Indicates whether the form is in edit mode
 
-  editedExperienceIndex: number | null = null
+  editedPocIndex: number | null = null
   selectedIndex: number | null = null; // Index of the currently selected row for editing
 
 
