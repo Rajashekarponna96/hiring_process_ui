@@ -8,14 +8,15 @@ import { Job } from '../../model/job';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent   implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
 
   jobs: any[] = []; // Assuming the API response will be an array of objects
-
+  clientNames: string[] = [];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getAllJobs();
+    this.getAllClientNames();
   }
 
   ngOnDestroy(): void {
@@ -38,6 +39,16 @@ export class HomeComponent   implements OnInit, OnDestroy {
         }
       );
   }
-
+  getAllClientNames(): void {
+    this.http.get<string[]>('http://localhost:9000/client/allclientnames')
+      .subscribe(
+        (response) => {
+          this.clientNames = response;
+        },
+        (error) => {
+          console.error('Error fetching client names:', error);
+        }
+      );
+  }
 }
 
