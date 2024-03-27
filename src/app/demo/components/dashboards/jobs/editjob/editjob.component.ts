@@ -29,10 +29,26 @@ export class EditjobComponent {
   selectedCurrencys: any;
   currencys: any[] = [];
 
-  jobTypeOptions: any[] = [
-    'FullTime',
-    'PartTime'
-  ];
+  types: any[] = [
+    {
+      
+      "name": 'FullTime'
+    },
+    {
+      
+      "name": 'PartTime'
+    },
+    {
+      
+      "name": 'CONTRACT'
+    },
+    {
+      
+      "name": 'FreeLance'
+    },
+
+  ]
+
   selectedJobType: any;
 
   recruiter = new Recruiter()

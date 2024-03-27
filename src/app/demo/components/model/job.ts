@@ -14,7 +14,7 @@ export class Job {
     openings!: number;
     targetHireDate:any;
     currney!: Currency;
-    salaryMinimum!: number;
+    // salaryMinimum!: number;
     salaryMaximum!: number;
     type!: string;
     locations!: Location;
@@ -23,5 +23,6 @@ export class Job {
     candidates!: Candidate;
     recruiters!: Recruiter;
     clients!: Client;
+    expectedNoticePeriod!: string;
 
 }

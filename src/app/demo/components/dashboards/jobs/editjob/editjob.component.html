@@ -59,13 +59,13 @@
                     </div>
 
 
-                    <div class="field col-12 md:col-6">
+                    <!-- <div class="field col-12 md:col-6">
                         <label for="salaryMinimum">Salary Minimum</label>
                         <input pInputText id="salaryMinimum" name="salaryMinimum" type="number" required min="0" placeholder="Enter Min salary" [(ngModel)]="job.salaryMinimum"  #salaryMinimum="ngModel">
                         <div *ngIf="salaryMinimum.invalid && (salaryMinimum.dirty || salaryMinimum.touched)">
                             <div style="color: red" *ngIf="salaryMinimum.errors">Openings is required </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="field col-12 md:col-6">
                         <label for="salaryMaximum">Salary Maximun</label>
                         <input pInputText id="salaryMaximum" name="salaryMaximum" type="number" required min="0" placeholder="Enter Max salary" [(ngModel)]="job.salaryMaximum"  #salaryMaximum="ngModel">
@@ -74,11 +74,10 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="jobType">Job Type</label>
-                        <p-dropdown [options]="jobTypeOptions" [(ngModel)]="selectedJobType" [placeholder]="'Select job type'" name="type" [required]="true" optionLabel="type"></p-dropdown>
-                        <!-- <div style="color: red;" *ngIf="jobForm.controls['jobType'].invalid && (jobForm.controls['jobType'].dirty || jobForm.controls['jobType'].touched)">
-                            <small class="text-danger">Job Type is required.</small>
-                        </div> -->
+                        <label for="type">Job Type</label>
+                        <p-dropdown [options]="types" [(ngModel)]="job.type" #type="ngModel" [showClear]="true" [filter]="true" placeholder="Select Job Type"
+                        name="type" optionLabel="name" optionValue="name">
+                    </p-dropdown>
                     </div>
 
 
@@ -104,12 +103,19 @@
                             </ng-template>
                         </p-dropdown>
                     </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="experience">Expected Notice Period</label>
+                        <input pInputText id="expectedNoticePeriod" name="expectedNoticePeriod" type="text"  placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod"  #expectedNoticePeriod="ngModel" required>
+                        <div  *ngIf="expectedNoticePeriod.invalid &&  (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)">
+                            <div style="color: red" *ngIf="expectedNoticePeriod.errors">Expected Notice Period is required </div>
+                     </div>
+                </div>
                 </div>
 
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="updateJob()" label="Save" ></button>
+                    (click)="updateJob()" label="Update" ></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                     routerLink="/jobs" label="Cancel"></button>
                 </div>
