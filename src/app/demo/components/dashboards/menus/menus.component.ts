@@ -452,6 +452,7 @@ export class MenusComponent implements OnInit {
       endOfCourse: new Date(),
       college: "",
       location: "",
+      university:"",
       candidate: new Candidate(),
 
 

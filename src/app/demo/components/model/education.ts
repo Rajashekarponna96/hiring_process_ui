@@ -8,6 +8,7 @@ export class Education{
     college:string | undefined
     location:string | undefined
     candidate!: Candidate
+    university!: string
     
    
     

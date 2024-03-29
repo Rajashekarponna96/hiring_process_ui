@@ -267,6 +267,7 @@ cancel(){
               startOfCourse : new Date(),
               endOfCourse: new Date(),
               college:"",
+              university:"",
               location:"",
               candidate:new Candidate(),
       

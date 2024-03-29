@@ -13,11 +13,12 @@ export class Candidate {
     middleName:string | undefined
     email: string | undefined;
     mobile: string | undefined;
+    alterMobile:string | undefined
     source!: Source;
     stage!: string;
     current!: Location; 
     preferred!: Location; 
-    avialToJoin!:number 
+    avialToJoin!:string 
     currentSalary!:number
     expectedSalary: number | undefined;
     currency!: Currency; 
