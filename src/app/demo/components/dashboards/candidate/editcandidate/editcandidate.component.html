@@ -187,8 +187,38 @@
                                         </div>
 
                                         <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alter Nate MobileNo</label>
+                                            <input
+                                                pInputText
+                                                id="alterMobile"
+                                                name="alterMobile"
+                                                type="text"
+                                                placeholder="Enter Alt MobileNumber"
+                                                [(ngModel)]="candidate.alterMobile"
+                                                required
+                                                pattern="[0-9]{10}*" min
+                                                #alterMobile="ngModel"
+                                            />
+                                            <div
+                                                *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="alterMobile.errors"
+                                                >
+                                                   Alter Mobile number is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >HiringFlowType</label
+                                                >HiringStage</label
                                             >
                                             <p-dropdown
                                                 [options]="stages"
@@ -205,14 +235,14 @@
 
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin"
-                                                >AvailbleToJoin</label
+                                                >Notice Period</label
                                             >
                                             <input
                                                 pInputText
                                                 id="avialToJoin"
                                                 name="avialToJoin"
-                                                type="number"
-                                                placeholder="Enter avialToJoin"
+                                                type="text"
+                                                placeholder="Enter Notice Period"
                                                 [(ngModel)]="
                                                     candidate.avialToJoin
                                                 "
@@ -230,7 +260,7 @@
                                                     style="color: red"
                                                     *ngIf="avialToJoin.errors"
                                                 >
-                                                    AvailToJoin is required
+                                                    Notice Period is required
                                                 </div>
                                             </div>
                                         </div>
@@ -552,7 +582,7 @@
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="branch">Branch</label>
+                                            <label for="branch">Specialization</label>
                                             <input
                                                 pInputText
                                                 id="branch"
@@ -602,6 +632,16 @@
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
+                                            <label for="college">University</label>
+                                            <input
+                                                pInputText
+                                                id="college"
+                                                name="college"
+                                                type="text"
+                                                [(ngModel)]="education.university"
+                                            />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
                                             <label for="location"
                                                 >Location</label
                                             >
@@ -629,10 +669,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>Course</th>
-                                                    <th>Branch</th>
+                                                    <th>Specialization</th>
                                                     <th>Start of Course</th>
                                                     <th>End of Course</th>
                                                     <th>College</th>
+                                                    <th>University</th>
                                                     <th>Location</th>
                                                     <th>Modify</th>
                                                 </tr>
@@ -653,6 +694,7 @@
                                                         {{ edu.endOfCourse }}
                                                     </td>
                                                     <td>{{ edu.college }}</td>
+                                                    <td>{{ edu.university}}</td>
                                                     <td>{{ edu.location }}</td>
                                                     <td>
                                                         <div
@@ -1043,6 +1085,36 @@
                                             </div>
                                         </div>
 
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alter Nate MobileNo</label>
+                                            <input
+                                                pInputText
+                                                id="alterMobile"
+                                                name="alterMobile"
+                                                type="text"
+                                                placeholder="Enter Alt MobileNumber"
+                                                [(ngModel)]="candidate.alterMobile"
+                                                required
+                                                pattern="[0-9]{10}*" min
+                                                #alterMobile="ngModel"
+                                            />
+                                            <div
+                                                *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="alterMobile.errors"
+                                                >
+                                                   Alter Mobile number is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <!-- <div class="field col-12 md:col-6">
 <label for="taletpoll">HiringFlowType</label>
 <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
@@ -1051,29 +1123,32 @@ name="stage" optionLabel="name" optionValue="name">
 </p-dropdown>
 </div> -->
 
-                                        <div
-                                            class="field col-12 md:col-6 readonly-dropdown"
-                                        >
-                                            <label for="taletpoll"
-                                                >HiringFlowType</label
-                                            >
-                                            <div
-                                                class="readonly-dropdown-value"
-                                            >
-                                                {{ candidate.stage }}
-                                            </div>
-                                        </div>
-
+<div class="field col-12 md:col-6">
+    <label for="taletpoll"
+        >HiringStage</label
+    >
+    <p-dropdown
+        [options]="stages"
+        [(ngModel)]="candidate.stage"
+        [showClear]="true"
+        [filter]="true"
+        placeholder="Select Stages"
+        name="stage"
+        optionLabel="name"
+        optionValue="name"
+    >
+    </p-dropdown>
+</div>
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin"
-                                                >AvailbleToJoin</label
+                                                >Notice Period</label
                                             >
                                             <input
                                                 pInputText
                                                 id="avialToJoin"
                                                 name="avialToJoin"
-                                                type="number"
-                                                placeholder="Enter avialToJoin"
+                                                type="text"
+                                                placeholder="Enter Notice Period"
                                                 [(ngModel)]="
                                                     candidate.avialToJoin
                                                 "
@@ -1092,7 +1167,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                     style="color: red"
                                                     *ngIf="avialToJoin.errors"
                                                 >
-                                                    AvailToJoin is required
+                                                    Notice Period is required
                                                 </div>
                                             </div>
                                         </div>
@@ -1312,10 +1387,11 @@ name="stage" optionLabel="name" optionValue="name">
                                             <thead>
                                                 <tr>
                                                     <th>Course</th>
-                                                    <th>Branch</th>
+                                                    <th>Specialization</th>
                                                     <th>Start of Course</th>
                                                     <th>End of Course</th>
                                                     <th>College</th>
+                                                    <th>University</th>
                                                     <th>Location</th>
                                                     <!-- <th>Modify</th> -->
                                                 </tr>
@@ -1336,6 +1412,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                         {{ edu.endOfCourse }}
                                                     </td>
                                                     <td>{{ edu.college }}</td>
+                                                    <td>{{edu.university}}</td>
                                                     <td>{{ edu.location }}</td>
                                                 </tr>
                                             </tbody>

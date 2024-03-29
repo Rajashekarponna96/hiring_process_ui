@@ -183,8 +183,38 @@
                                         </div>
 
                                         <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alter Nate MobileNo</label>
+                                            <input
+                                                pInputText
+                                                id="alterMobile"
+                                                name="alterMobile"
+                                                type="text"
+                                                placeholder="Enter Alt MobileNumber"
+                                                [(ngModel)]="candidate.alterMobile"
+                                                required
+                                                pattern="[0-9]{10}*" min
+                                                #alterMobile="ngModel"
+                                            />
+                                            <div
+                                                *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="alterMobile.errors"
+                                                >
+                                                   Alter Mobile number is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >HiringFlowType</label
+                                                >HiringStage</label
                                             >
                                             <p-dropdown
                                                 [options]="stages"
@@ -201,13 +231,13 @@
 
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin"
-                                                >AvailbleToJoin</label
+                                                >NoticePeriod</label
                                             >
                                             <input
                                                 pInputText
                                                 id="avialToJoin"
                                                 name="avialToJoin"
-                                                type="number"
+                                                type="text"
                                                 placeholder="Enter avialToJoin"
                                                 [(ngModel)]="
                                                     candidate.avialToJoin
@@ -226,7 +256,7 @@
                                                     style="color: red"
                                                     *ngIf="avialToJoin.errors"
                                                 >
-                                                    AvailToJoin is required
+                                                    Notice Period is required
                                                 </div>
                                             </div>
                                         </div>
@@ -504,9 +534,10 @@
                                                 [ngModel]="skills" name=candidate.skills
                                                 (onRemove)="removeSkills($event)"
                                                 (onAdd)="addSkills($event)"
-                                                (onBlur)="addSkills()"
+                                                (onBlur)="addSkills()" aria-placeholder="Enter skills here"
                                             ></p-chips>
                                         </div>
+
 
 
                                         <!-- <div class="field col-12 md:col-6">
@@ -561,7 +592,7 @@
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="branch">Branch</label>
+                                            <label for="branch">Specialization</label>
                                             <input
                                                 pInputText
                                                 id="branch"
@@ -611,6 +642,16 @@
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
+                                            <label for="college">University</label>
+                                            <input
+                                                pInputText
+                                                id="college"
+                                                name="college"
+                                                type="text"
+                                                [(ngModel)]="education.university"
+                                            />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
                                             <label for="location"
                                                 >Location</label
                                             >
@@ -630,7 +671,7 @@
                                         class="w-auto mt-3"
                                         icon="pi pi-plus"
                                         (click)="submitEducation()"
-                                        label="Add"
+                                        label="save"
                                     ></button>
                                     <!-- Education table -->
                                     <div *ngIf="educationDetails.length > 0">
@@ -638,12 +679,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>Course</th>
-                                                    <th>Branch</th>
+                                                    <th>Specialization</th>
                                                     <th>Start of Course</th>
                                                     <th>End of Course</th>
                                                     <th>College</th>
+                                                    <th>University</th>
                                                     <th>Location</th>
-                                                    <th>Modify</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -662,6 +704,7 @@
                                                         {{ edu.endOfCourse }}
                                                     </td>
                                                     <td>{{ edu.college }}</td>
+                                                    <td>{{edu.university}}</td>
                                                     <td>{{ edu.location }}</td>
                                                     <td>
                                                         <div
@@ -799,7 +842,7 @@
                                         class="w-auto mt-3"
                                         icon="pi pi-plus"
                                         (click)="submitExceperience()"
-                                        label="Add"
+                                        label="Save"
                                     ></button>
                                     <!-- Experience table -->
                                     <div *ngIf="experienceDetails.length > 0">
@@ -1052,6 +1095,35 @@
                                             </div>
                                         </div>
 
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alter Nate MobileNo</label>
+                                            <input
+                                                pInputText
+                                                id="alterMobile"
+                                                name="alterMobile"
+                                                type="text"
+                                                placeholder="Enter Alt MobileNumber"
+                                                [(ngModel)]="candidate.alterMobile"
+                                                required
+                                                pattern="[0-9]{10}*" min
+                                                #alterMobile="ngModel"
+                                            />
+                                            <div
+                                                *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="alterMobile.errors"
+                                                >
+                                                   Alter Mobile number is required
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- <div class="field col-12 md:col-6">
 <label for="taletpoll">HiringFlowType</label>
 <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
@@ -1060,29 +1132,33 @@ name="stage" optionLabel="name" optionValue="name">
 </p-dropdown>
 </div> -->
 
-                                        <div
-                                            class="field col-12 md:col-6 readonly-dropdown"
-                                        >
-                                            <label for="taletpoll"
-                                                >HiringFlowType</label
-                                            >
-                                            <div
-                                                class="readonly-dropdown-value"
-                                            >
-                                                {{ candidate.stage }}
-                                            </div>
-                                        </div>
+<div class="field col-12 md:col-6">
+    <label for="taletpoll"
+        >HiringStage</label
+    >
+    <p-dropdown
+        [options]="stages"
+        [(ngModel)]="candidate.stage"
+        [showClear]="true"
+        [filter]="true"
+        placeholder="Select Stages"
+        name="stage"
+        optionLabel="name"
+        optionValue="name"
+    >
+    </p-dropdown>
+</div>
 
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin"
-                                                >AvailbleToJoin</label
+                                                >Notice period</label
                                             >
                                             <input
                                                 pInputText
                                                 id="avialToJoin"
                                                 name="avialToJoin"
-                                                type="number"
-                                                placeholder="Enter avialToJoin"
+                                                type="text"
+                                                placeholder="Enter Notice Period"
                                                 [(ngModel)]="
                                                     candidate.avialToJoin
                                                 "
@@ -1101,7 +1177,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                     style="color: red"
                                                     *ngIf="avialToJoin.errors"
                                                 >
-                                                    AvailToJoin is required
+                                                    Notice Period
                                                 </div>
                                             </div>
                                         </div>
@@ -1173,42 +1249,118 @@ name="stage" optionLabel="name" optionValue="name">
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="field col-12 md:col-6 readonly-gender"
-                                        >
-                                            <label for="gender">Gender</label>
-                                            <div class="readonly-gender-value">
-                                                {{ candidate.gender }}
+                                        <div class="field col-12 md:col-6">
+                                            <label for="gender"
+                                                >Select Gender</label
+                                            >
+                                            <div class="form-check">
+                                                <input
+                                                    type="radio"
+                                                    class="form-check-input"
+                                                    id="male"
+                                                    name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    "
+                                                    value="Male"
+                                                    ngModel
+                                                    #maleGender="ngModel"
+                                                    required
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="Male"
+                                                    >Male</label
+                                                >
+                                            </div>
+                                            <div class="form-check">
+                                                <input
+                                                    type="radio"
+                                                    class="form-check-input"
+                                                    id="female"
+                                                    name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    "
+                                                    value="Female"
+                                                    ngModel
+                                                    #femaleGender="ngModel"
+                                                    required
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="female"
+                                                    >Female</label
+                                                >
+                                            </div>
+                                            <div
+                                                style="color: red"
+                                                *ngIf="
+                                                    (maleGender.invalid ||
+                                                        femaleGender.invalid) &&
+                                                    (maleGender.dirty ||
+                                                        maleGender.touched ||
+                                                        femaleGender.dirty ||
+                                                        femaleGender.touched)
+                                                "
+                                            >
+                                                <div style="color: red">
+                                                    Please select a gender
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="field col-12 md:col-6 readonly-date-of-birth"
-                                        >
+
+
+                                        <div class="field col-12 md:col-6">
                                             <label for="dateOfBirth"
                                                 >Date Of Birth</label
                                             >
-                                            <div
-                                                class="readonly-date-of-birth-value"
-                                            >
-                                                {{
+                                            <input
+                                                pInputText
+                                                id="dateOfBirth"
+                                                name="dateOfBirth"
+                                                type="date"
+                                                [(ngModel)]="
                                                     candidate.dateOfBirth
-                                                        | date : "dd/MM/yyyy"
-                                                }}
+                                                "
+                                                placeholder="Select Date of Birth"
+                                            />
+                                            <div
+                                                style="color: red"
+                                                *ngIf="
+                                                    candidateForm.controls[
+                                                        'dateOfBirth'
+                                                    ].invalid &&
+                                                    (candidateForm.controls[
+                                                        'dateOfBirth'
+                                                    ].dirty ||
+                                                        candidateForm.controls[
+                                                            'dateOfBirth'
+                                                        ].touched)
+                                                "
+                                            >
+                                                <small class="text-danger"
+                                                    >Date of Birth is
+                                                    required.</small
+                                                >
                                             </div>
                                         </div>
 
                                         <div
-                                            class="field col-12 md:col-6 readonly-skills"
+                                            class="flex flex-wrap align-items-center ,field col-12 md:col-6"
                                         >
-                                            <label for="skills">Skills</label>
-                                            <div class="readonly-skills-value">
-                                                <span
-                                                    *ngFor="let skill of skills"
-                                                    >{{ skill }}</span
-                                                >
-                                            </div>
+                                            <label htmlFor="skills"
+                                                >Skills:</label
+                                            >
+                                            <p-chips
+                                                [ngModel]="skills" name=candidate.skills
+                                                (onRemove)="removeSkills($event)"
+                                                (onAdd)="addSkills($event)"
+                                                (onBlur)="addSkills()" aria-placeholder="Enter skills here"
+                                            ></p-chips>
                                         </div>
+
 
                                         <!-- TalentPoll  dropdown -->
                                         <div class="field col-12 md:col-6">
@@ -1295,22 +1447,19 @@ name="stage" optionLabel="name" optionValue="name">
 
                                         <!-- Currency dropdown -->
 
-                                        <div
-                                            class="field col-12 md:col-6 readonly-currency"
-                                        >
+                                        <div class="field col-12 md:col-6">
                                             <label for="currency"
                                                 >Currency</label
                                             >
-                                            <div
-                                                class="readonly-currency-value"
-                                            >
-                                                {{
-                                                    candidate.currency
-                                                        ? candidate.currency
-                                                              .name
-                                                        : "Select Currency"
-                                                }}
-                                            </div>
+                                            <p-dropdown
+                                                [options]="currencies"
+                                                [(ngModel)]="candidate.currency"
+                                                [showClear]="true"
+                                                [filter]="true"
+                                                placeholder="Select Currency"
+                                                name="currency"
+                                                optionLabel="name"
+                                            ></p-dropdown>
                                         </div>
                                     </div>
 
@@ -1321,10 +1470,11 @@ name="stage" optionLabel="name" optionValue="name">
                                             <thead>
                                                 <tr>
                                                     <th>Course</th>
-                                                    <th>Branch</th>
+                                                    <th>Specialization</th>
                                                     <th>Start of Course</th>
                                                     <th>End of Course</th>
                                                     <th>College</th>
+                                                    <th>University</th>
                                                     <th>Location</th>
                                                     <!-- <th>Modify</th> -->
                                                 </tr>
@@ -1345,6 +1495,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                         {{ edu.endOfCourse }}
                                                     </td>
                                                     <td>{{ edu.college }}</td>
+                                                    <td>{{edu.university}}</td>
                                                     <td>{{ edu.location }}</td>
                                                 </tr>
                                             </tbody>
