@@ -38,6 +38,16 @@
                     </div>
 
                     <div class="field col-12 md:col-6">
+                        <label for="clients">ClientName</label>
+                        <p-dropdown [options]="clients" [(ngModel)]="selectedClients" [showClear]="true" [filter]="true" placeholder="Select ClientName" (onChange)="onClientChange(selectedClients)" name="client" optionLabel="companyName">
+                            <ng-template let-Client pTemplate="item">
+                                {{ Client.companyName }}
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+
+
+                    <div class="field col-12 md:col-6">
                         <label for="openings">Openings</label>
                         <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
                         [(ngModel)]="job.openings"  #openings="ngModel">
@@ -83,7 +93,7 @@
 
                     <div class="field col-12 md:col-6">
                         <label for="location">Location</label>
-                        <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location" required>
+                        <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location"   required>
                         <div style="color: red;" *ngIf="jobForm.controls['location'].invalid &&  (jobForm.controls['location'].dirty || jobForm.controls['location'].touched)">
                             <small class="text-danger">location is required.</small>
                      </div>
@@ -115,7 +125,7 @@
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="updateJob()" label="Update" ></button>
+                    (click)="updateJob() " label="Update"></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                     routerLink="/jobs" label="Cancel"></button>
                 </div>
@@ -123,4 +133,3 @@
         </div>
     </div>
 </div>
-

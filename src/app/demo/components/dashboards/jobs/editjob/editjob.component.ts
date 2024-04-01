@@ -6,6 +6,7 @@ import { Recruiter } from '../../../model/recruiter';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Client } from '../../../model/client';
 
 @Component({
   selector: 'app-editjob',
@@ -19,6 +20,10 @@ export class EditjobComponent {
 
   job: Job = new Job();
   jobs: Job[] = [];
+
+  client = new Client();
+  selectedClients:any;
+  clients:any[] =[];
 
   department = new Department()
   selectedDepartments: any;
@@ -72,6 +77,10 @@ export class EditjobComponent {
     console.log("selected recruiter:", data);
     console.log("Recruiters.........." + JSON.stringify(this.selectedCurrencys))
   }
+  onClientChange(data: any) {
+    console.log("selected client:", data);
+    console.log("clients.........." + JSON.stringify(this.selectedClients))
+  }
 
   getJobList() {
     return this.http.get<Job[]>('http://localhost:9000/job/all');
@@ -123,6 +132,18 @@ export class EditjobComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
+  getClientList() {
+    return this.http.get<Client[]>('http://localhost:9000/client/all');
+
+  }
+  getAllClientList() {
+    return this.getClientList().
+      subscribe((data) => {
+        console.log(data);
+        this.clients = data;
+        this.changeDetectorRefs.markForCheck();
+      });
+  }
   // ngOnInit() {
   //   this.getAllJobList();
   //   this.getAllDepartmentList();
@@ -145,6 +166,7 @@ export class EditjobComponent {
       this.selectedCurrencys = this.job.currney;
       this.selectedRecruiters = this.job.recruiters;
       this.selectedJobType = this.job.type;
+      this.selectedClients=this.job.clients;
     } else {
       console.error('Job data is missing in state.');
     }
@@ -155,6 +177,7 @@ export class EditjobComponent {
     this.getAllDepartmentList();
     this.getAllCurrencyList();
     this.getAllRecruiterList();
+    this.getAllClientList();
   }
 
 
