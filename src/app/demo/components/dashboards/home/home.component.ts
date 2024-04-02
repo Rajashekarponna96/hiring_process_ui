@@ -11,20 +11,18 @@ import { Job } from '../../model/job';
 export class HomeComponent implements OnInit, OnDestroy {
 
   jobs: any[] = []; // Assuming the API response will be an array of objects
-  clientNames: string[] = [];
+  clientNames: { [clientId: string]: string } = {}; // Object to store client names by ID
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.getAllJobs();
-    this.getAllClientNames();
+    this.getAllJobsWithClients();
   }
 
   ngOnDestroy(): void {
 
   }
-
-  getAllJobs(): void {
-    this.http.get<any[]>('http://localhost:9000/job/summaries')
+  getAllJobsWithClients(): void {
+    this.http.get<any[]>('http://localhost:9000/job/with-clients')
       .subscribe(
         (response) => {
           // Check if response is an array
@@ -36,17 +34,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.error('Error fetching jobs:', error);
-        }
-      );
-  }
-  getAllClientNames(): void {
-    this.http.get<string[]>('http://localhost:9000/client/allclientnames')
-      .subscribe(
-        (response) => {
-          this.clientNames = response;
-        },
-        (error) => {
-          console.error('Error fetching client names:', error);
         }
       );
   }
