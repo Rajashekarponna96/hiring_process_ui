@@ -15,10 +15,10 @@
           fill="var(--primary-500)" stroke-linecap="round" stroke-linejoin="miter"></path>
       </svg>
       <div class="z-2 relative text-white">
-        <div class="text-xl font-semibold mb-3">Title:{{ job.title }}</div><br><br>
-        <div class="text-2xl mb-3 font-bold">Openings:{{ job.openings }}</div>
+        <div class="text-xl font-semibold mb-3">{{ job.title }}</div>
+        <div class="text-xl mb-3 font-semibold">Openings : {{ job.openings }}</div><br><br>
         <!-- Display client name -->
-        <div class="mb-1 font-semibold">Client: {{ job.clients?.companyName || 'Unknown' }}</div>
+        <div class="text-xl mb-3 font-semibold"> {{ job.clients?.companyName || 'Unknown' }}</div>
         <div class="flex align-items-center justify-content-between">
           <!-- Add more job details if needed -->
         </div>
