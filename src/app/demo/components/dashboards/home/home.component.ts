@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
   getAllJobsWithClients(): void {
-    this.http.get<any[]>('http://localhost:9000/job/with-clients')
+    this.http.get<any[]>('http://localhost:9000/job/all')
       .subscribe(
         (response) => {
           // Check if response is an array
