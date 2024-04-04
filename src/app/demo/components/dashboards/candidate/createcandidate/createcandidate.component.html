@@ -147,6 +147,8 @@
                     <p-dropdown [options]="talentpools" [(ngModel)]="candidate.talentPool" [showClear]="true" [filter]="true" placeholder="Select TalentPoll" name="talentPool"  optionLabel="name">
                        
                     </p-dropdown>
+                    <div *ngIf="!candidate.talentPool && (candidateForm.controls['talentPool'].dirty || candidateForm.controls['talentPool'].touched)" style="color: red;">TalentPool is required</div>
+
                 </div>
 
                 <!-- Job  dropdown -->

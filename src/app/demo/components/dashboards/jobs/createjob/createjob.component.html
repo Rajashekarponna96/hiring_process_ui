@@ -35,6 +35,7 @@
                                 {{ Department.name }}
                             </ng-template>
                         </p-dropdown>
+                        <div *ngIf="selectedDepartments === null && ( jobForm.controls['department'].touched || jobForm.controls['department'].dirty )" style="color: red;">Department is required</div>
                     </div>
 
                     <div class="field col-12 md:col-6">
@@ -125,7 +126,7 @@
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="addJob()" label="Save"></button>
+                    (click)="addJob()" label="Save" [disabled]="!jobForm.valid"></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                     routerLink="/jobs" label="Cancel"></button>
                 </div>
