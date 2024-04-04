@@ -4,7 +4,7 @@
             <form #jobForm="ngForm">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
-                        <label for="title">Title</label>
+                        <label for="title">Title<span style="color: red">*</span></label>
                         <input pInputText id="title" name="title" type="text" ngModel required minlength="2" maxlength="50" placeholder="Enter Title"
                         [(ngModel)]="job.title" required #title="ngModel"/>
                         <div *ngIf="title.invalid && (title.dirty || title.touched)">
@@ -13,7 +13,7 @@
 
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="description">Description</label>
+                        <label for="description">Description<span style="color: red">*</span></label>
                         <textarea pInputText id="description" name="description" type="text" ngModel required minlength="2" maxlength="100" placeholder="Enter Description"
                         [(ngModel)]="job.description" required #description="ngModel"></textarea>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)">
@@ -29,7 +29,7 @@
                     </div> -->
 
                     <div class="field col-12 md:col-6">
-                        <label for="department">Department</label>
+                        <label for="department">Department<span style="color: red">*</span></label>
                         <p-dropdown [options]="departments" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Department" (onChange)="onDepartmentChange(selectedDepartments)" name="department" optionLabel="name">
                             <ng-template let-Department pTemplate="item">
                                 {{ Department.name }}
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="field col-12 md:col-6">
-                        <label for="clients">ClientName</label>
+                        <label for="clients">ClientName<span style="color: red">*</span></label>
                         <p-dropdown [options]="clients" [(ngModel)]="selectedClients" [showClear]="true" [filter]="true" placeholder="Select ClientName" (onChange)="onClientChange(selectedClients)" name="client" optionLabel="companyName">
                             <ng-template let-Client pTemplate="item">
                                 {{ Client.companyName }}
@@ -49,7 +49,7 @@
 
 
                     <div class="field col-12 md:col-6">
-                        <label for="openings">Openings</label>
+                        <label for="openings">Openings<span style="color: red">*</span></label>
                         <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
                         [(ngModel)]="job.openings"  #openings="ngModel">
                         <div *ngIf="openings.invalid && (openings.dirty || openings.touched)">
@@ -57,14 +57,14 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="targetHireDate">Target Hire Date</label>
+                        <label for="targetHireDate">Target Hire Date<span style="color: red">*</span></label>
                         <input pInputText id="targetHireDate" name="targetHireDate" type="date" [(ngModel)]="job.targetHireDate"  #targetHireDate="ngModel" required>
                         <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)">
                             <div style="color: red" *ngIf="targetHireDate.errors">TargetHireDate is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="currency">Currency</label>
+                        <label for="currency">Currency<span style="color: red">*</span></label>
                         <p-dropdown [options]="currencys" [(ngModel)]="selectedCurrencys" [showClear]="true" [filter]="true" placeholder="Select Currency" (onChange)="onCurrencyChange(selectedCurrencys)" name="currency" optionLabel="name">
                         </p-dropdown>
                     </div>
@@ -78,14 +78,14 @@
                         </div>
                     </div> -->
                     <div class="field col-12 md:col-6">
-                        <label for="salaryMaximum">Salary Maximun</label>
+                        <label for="salaryMaximum">Salary Maximun<span style="color: red">*</span></label>
                         <input pInputText id="salaryMaximum" name="salaryMaximum" type="number" required min="0" placeholder="Enter Max salary" [(ngModel)]="job.salaryMaximum"  #salaryMaximum="ngModel">
                         <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)">
                             <div style="color: red" *ngIf="salaryMaximum.errors">Openings is required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="type">Job Type</label>
+                        <label for="type">Job Type<span style="color: red">*</span></label>
                         <p-dropdown [options]="types" [(ngModel)]="job.type" #type="ngModel" [showClear]="true" [filter]="true" placeholder="Select Job Type"
                         name="type" optionLabel="name" optionValue="name">
                     </p-dropdown>
@@ -93,21 +93,21 @@
 
 
                     <div class="field col-12 md:col-6">
-                        <label for="location">Location</label>
+                        <label for="location">Location<span style="color: red">*</span></label>
                         <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location"   required>
                         <div style="color: red;" *ngIf="jobForm.controls['location'].invalid &&  (jobForm.controls['location'].dirty || jobForm.controls['location'].touched)">
                             <small class="text-danger">location is required.</small>
                      </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="experience">Experience</label>
+                        <label for="experience">Experience<span style="color: red">*</span></label>
                         <input pInputText id="flows" name="flows" type="text"  placeholder="Enter Experience" [(ngModel)]="job.experience"  #experience="ngModel" required>
                         <div  *ngIf="experience.invalid &&  (experience.dirty || experience.touched)">
                             <div style="color: red" *ngIf="experience.errors">Experience is required </div>
                      </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="recruiters">Recruiter</label>
+                        <label for="recruiters">Recruiter<span style="color: red">*</span></label>
                         <p-dropdown [options]="recruiters" [(ngModel)]="selectedRecruiters" [showClear]="true" [filter]="true" placeholder="Select Recruiter" (onChange)="onRecruiterChange(selectedRecruiters)" name="recruiters" optionLabel="firstName">
                             <ng-template let-Recruiter pTemplate="item">
                                 {{ Recruiter.firstName }}
@@ -115,7 +115,7 @@
                         </p-dropdown>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="experience">Expected Notice Period</label>
+                        <label for="experience">Expected Notice Period<span style="color: red">*</span></label>
                         <input pInputText id="expectedNoticePeriod" name="expectedNoticePeriod" type="text"  placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod"  #expectedNoticePeriod="ngModel" required>
                         <div  *ngIf="expectedNoticePeriod.invalid &&  (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)">
                             <div style="color: red" *ngIf="expectedNoticePeriod.errors">Expected Notice Period is required </div>
