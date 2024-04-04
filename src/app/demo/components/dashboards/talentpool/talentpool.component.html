@@ -32,7 +32,7 @@
                 <div class="ui-g-12" style="text-align: right">
                     <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                        (click)="addTalentPool()" label="Save"></button>
+                        (click)="addTalentPool()" label="Save"[disabled]="!talentpoolForm.valid"></button>
                     <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" type="button"
                         icon="pi pi-times" label="Cancel" [routerLink]="['/listtalentpool']"></button>
                 </div>
