@@ -403,7 +403,9 @@ export class MenusComponent implements OnInit {
     this.education.startOfCourse = selectedEducation.startOfCourse;
     this.education.endOfCourse = selectedEducation.endOfCourse;
     this.education.college = selectedEducation.college;
+    this.education.university = selectedEducation.university
     this.education.location = selectedEducation.location;
+
 
     // Set edit mode and selected index
     this.editMode = true;
