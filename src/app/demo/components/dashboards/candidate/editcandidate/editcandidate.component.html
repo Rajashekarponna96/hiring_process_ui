@@ -65,13 +65,13 @@
                                                     style="color: red"
                                                     *ngIf="firstname.errors"
                                                 >
-                                                    Firstname is required
+                                                    FirstName is Required
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="lastName"
-                                                >Lastname</label
+                                                >LastName</label
                                             >
                                             <input
                                                 pInputText
@@ -94,11 +94,11 @@
                                                     style="color: red"
                                                     *ngIf="lastName.errors"
                                                 >
-                                                    Lastname is required
+                                                    LastName is Required
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="middleName"
                                                 >MiddleName</label
                                             >
@@ -128,7 +128,7 @@
                                                     MiddleNameis required
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="field col-12 md:col-6">
                                             <label for="email">Email</label>
                                             <input
@@ -153,7 +153,7 @@
                                                     style="color: red"
                                                     *ngIf="email.errors"
                                                 >
-                                                    Invalid email format
+                                                    Invalid Email Format
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@
                                                     style="color: red"
                                                     *ngIf="mobile.errors"
                                                 >
-                                                    Mobile number is required
+                                                    Mobile Number is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +210,7 @@
                                                     style="color: red"
                                                     *ngIf="alterMobile.errors"
                                                 >
-                                                   Alter Mobile number is required
+                                                   Alter Mobile Number is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -218,7 +218,7 @@
 
                                         <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >HiringStage</label
+                                                >Hiring Stage</label
                                             >
                                             <p-dropdown
                                                 [options]="stages"
@@ -267,14 +267,14 @@
 
                                         <div class="field col-12 md:col-6">
                                             <label for="currentSalary"
-                                                >CurrecntSalary</label
+                                                >Current Salary</label
                                             >
                                             <input
                                                 pInputText
                                                 id="currentSalary"
                                                 name="currentSalary"
                                                 type="number"
-                                                placeholder="Enter CurrentSalary"
+                                                placeholder="Enter Current Salary"
                                                 [(ngModel)]="
                                                     candidate.currentSalary
                                                 "
@@ -292,20 +292,20 @@
                                                     style="color: red"
                                                     *ngIf="currentSalary.errors"
                                                 >
-                                                    CurrentSalary is required
+                                                    Current Salary is Required
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="expectedSalary"
-                                                >ExpectedSalary</label
+                                                >Expected Salary</label
                                             >
                                             <input
                                                 pInputText
                                                 id="expectedSalary"
                                                 name="expectedSalary"
                                                 type="number"
-                                                placeholder="Enter ExpectedSalary"
+                                                placeholder="Enter Expected Salary"
                                                 [(ngModel)]="
                                                     candidate.expectedSalary
                                                 "
@@ -325,14 +325,14 @@
                                                         expectedSalary.errors
                                                     "
                                                 >
-                                                    ExpectedSalary is required
+                                                    Expected Salary is Required
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="field col-12 md:col-6">
                                             <label for="gender"
-                                                >Select Gender</label
+                                                > Gender</label
                                             >
                                             <div class="form-check">
                                                 <input
@@ -371,7 +371,7 @@
                                                 <label
                                                     class="form-check-label"
                                                     for="female"
-                                                    >Female</label
+                                                    >FeMale</label
                                                 >
                                             </div>
                                             <div
@@ -386,7 +386,7 @@
                                                 "
                                             >
                                                 <div style="color: red">
-                                                    Please select a gender
+                                                    Please Select a Gender
                                                 </div>
                                             </div>
                                         </div>
@@ -422,7 +422,7 @@
                                             >
                                                 <small class="text-danger"
                                                     >Date of Birth is
-                                                    required.</small
+                                                    Gequired.</small
                                                 >
                                             </div>
                                         </div>
@@ -431,7 +431,7 @@
                                         <!-- TalentPoll  dropdown -->
                                         <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >TalentPoll</label
+                                                >Talent Pool</label
                                             >
                                             <p-dropdown
                                                 [options]="talentpools"
@@ -496,7 +496,7 @@
                                         <!-- Preffed Location dropdown -->
                                         <div class="field col-12 md:col-6">
                                             <label for="Preffered"
-                                                >Prefferd Location</label
+                                                >Preffered Location</label
                                             >
                                             <p-dropdown
                                                 [options]="locations"
@@ -593,7 +593,7 @@
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="startOfCourse"
-                                                >StartOfCourse</label
+                                                >Start Of Course</label
                                             >
                                             <input
                                                 pInputText
@@ -603,12 +603,12 @@
                                                 [(ngModel)]="
                                                     education.startOfCourse
                                                 "
-                                                placeholder="Select startOfCourse"
+                                                placeholder="Select Start Of Course"
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="startOfCourse"
-                                                >EndOfCourse</label
+                                                >End Of Course</label
                                             >
                                             <input
                                                 pInputText
@@ -618,7 +618,7 @@
                                                 [(ngModel)]="
                                                     education.endOfCourse
                                                 "
-                                                placeholder="Select  endOfCourse"
+                                                placeholder="Select  End Of Course"
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
@@ -662,7 +662,7 @@
                                         icon="pi pi-plus"
                                         (click)="submitEducation()"
                                         label="Add"
-                                    ></button>
+                                    ></button><br><br><br>
                                     <!-- Education table -->
                                     <div *ngIf="educationDetails.length > 0">
                                         <table>
@@ -675,7 +675,7 @@
                                                     <th>College</th>
                                                     <th>University</th>
                                                     <th>Location</th>
-                                                    <th>Modify</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -695,14 +695,14 @@
                                                     </td>
                                                     <td>{{ edu.college }}</td>
                                                     <td>{{ edu.university}}</td>
-                                                    <td>{{ edu.location }}</td>
+                                                    <td>{{ edu.location }}</td>&nbsp;
                                                     <td>
                                                         <div
                                                             class="button-container"
                                                         >
                                                             <button
                                                                 pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                                class="p-button-sm p-button-rounded p-button-success mr-2 "
                                                                 (click)="
                                                                     EditEducation(
                                                                         i
@@ -730,24 +730,29 @@
                                 <!-- </div> -->
                             </div>
                         </div>
-                        <span class="button-container">
-                            <button
-                                *ngIf="currentStep > 1"
-                                (click)="prevStep()"
-                                class="p-button-secondary p-button-text"
-                                pButton
-                                pRipple
-                                label="Previous"
-                            ></button>
-                            <button
-                                *ngIf="currentStep < totalSteps"
-                                (click)="nextStep()"
-                                class="p-button-primary p-button-text"
-                                pButton
-                                pRipple
-                                label="Next"
-                            ></button>
-                        </span>
+                        <div style="display: flex;">
+                            <div class="button-container">
+                                <button
+                                    *ngIf="currentStep > 1"
+                                    (click)="prevStep()"
+                                    class="p-button-secondary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Previous"
+                                ></button>
+                            </div>
+                            <div class="button-container">
+                                <button
+                                    *ngIf="currentStep < totalSteps"
+                                    (click)="nextStep()"
+                                    class="p-button-primary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Next"
+                                ></button>
+                            </div>
+                        </div>
+
                         <!-- education ends -->
                     </div>
 
@@ -783,7 +788,7 @@
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="dateOfJoining"
-                                                >DateOfJoining</label
+                                                >Date Of Joining</label
                                             >
                                             <input
                                                 pInputText
@@ -793,12 +798,12 @@
                                                 [(ngModel)]="
                                                     experience.dateOfJoining
                                                 "
-                                                placeholder="Select DateOfJoining"
+                                                placeholder="Select Date Of Joining"
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="dateOfJoining"
-                                                >DateOfRelieving</label
+                                                >Date Of Relieving</label
                                             >
                                             <input
                                                 pInputText
@@ -808,7 +813,7 @@
                                                 [(ngModel)]="
                                                     experience.dateOfRelieving
                                                 "
-                                                placeholder="Select DateOfRelieving"
+                                                placeholder="Select Date Of Relieving"
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
@@ -832,8 +837,8 @@
                                         class="w-auto mt-3"
                                         icon="pi pi-plus"
                                         (click)="submitExceperience()"
-                                        label="Add"
-                                    ></button>
+                                        label="Save"
+                                    ></button><br><br><br>
                                     <!-- Experience table -->
                                     <div *ngIf="experienceDetails.length > 0">
                                         <table>
@@ -842,10 +847,10 @@
                                                     <th>Company</th>
                                                     <th>JobTitle</th>
                                                     <th>CurrentlyWokring</th>
-                                                    <th>DateOfJoining</th>
-                                                    <th>DateOfRelieving</th>
+                                                    <th>Date Of Joining</th>
+                                                    <th>Date Of Relieving</th>
                                                     <th>Location</th>
-                                                    <th>Modify</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -870,7 +875,7 @@
                                                             exp.dateOfRelieving
                                                         }}
                                                     </td>
-                                                    <td>{{ exp.location }}</td>
+                                                    <td>{{ exp.location }}</td>&nbsp;
                                                     <td>
                                                         <div
                                                             class="button-container"
@@ -905,24 +910,29 @@
                                 <!-- </div> -->
                             </div>
                         </div>
-                        <span class="button-container">
-                            <button
-                                *ngIf="currentStep > 1"
-                                (click)="prevStep()"
-                                class="p-button-secondary p-button-text"
-                                pButton
-                                pRipple
-                                label="Previous"
-                            ></button>
-                            <button
-                                *ngIf="currentStep < totalSteps"
-                                (click)="nextStep()"
-                                class="p-button-primary p-button-text"
-                                pButton
-                                pRipple
-                                label="Next"
-                            ></button>
-                        </span>
+                        <div style="display: flex;">
+                            <div class="button-container">
+                                <button
+                                    *ngIf="currentStep > 1"
+                                    (click)="prevStep()"
+                                    class="p-button-secondary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Previous"
+                                ></button>
+                            </div>
+                            <div class="button-container">
+                                <button
+                                    *ngIf="currentStep < totalSteps"
+                                    (click)="nextStep()"
+                                    class="p-button-primary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Next"
+                                ></button>
+                            </div>
+                        </div>
+
                     </div>
                     <div *ngIf="currentStep === 4">
                         <h5>Confirm Details</h5>
@@ -941,7 +951,7 @@
                                                 id="firstname"
                                                 name="firstname"
                                                 type="text"
-                                                placeholder="Enter Firstname"
+                                                placeholder="Enter FirstName"
                                                 [(ngModel)]="
                                                     candidate.firstName
                                                 "
@@ -960,20 +970,20 @@
                                                     style="color: red"
                                                     *ngIf="firstname.errors"
                                                 >
-                                                    Firstname is required
+                                                    FirstName is required
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="lastName"
-                                                >Lastname</label
+                                                >LastName</label
                                             >
                                             <input
                                                 pInputText
                                                 id="lastName"
                                                 name="lastName"
                                                 type="text"
-                                                placeholder="Enter lastName"
+                                                placeholder="Enter LastName"
                                                 [(ngModel)]="candidate.lastName"
                                                 required
                                                 #lastName="ngModel"
@@ -990,11 +1000,11 @@
                                                     style="color: red"
                                                     *ngIf="lastName.errors"
                                                 >
-                                                    Lastname is required
+                                                    LastName is Required
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="middleName"
                                                 >MiddleName</label
                                             >
@@ -1022,10 +1032,10 @@
                                                     style="color: red"
                                                     *ngIf="middleName.errors"
                                                 >
-                                                    MiddleNameis required
+                                                    MiddleNameis Required
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="field col-12 md:col-6">
                                             <label for="email">Email</label>
                                             <input
@@ -1051,7 +1061,7 @@
                                                     style="color: red"
                                                     *ngIf="email.errors"
                                                 >
-                                                    Invalid email format
+                                                    Invalid Email Format
                                                 </div>
                                             </div>
                                         </div>
@@ -1062,7 +1072,7 @@
                                                 id="mobile"
                                                 name="mobile"
                                                 type="text"
-                                                placeholder="Enter MobileNumber"
+                                                placeholder="Enter Mobile Number"
                                                 [(ngModel)]="candidate.mobile"
                                                 required
                                                 pattern="[0-9]*"
@@ -1080,7 +1090,7 @@
                                                     style="color: red"
                                                     *ngIf="mobile.errors"
                                                 >
-                                                    Mobile number is required
+                                                    Mobile Number is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -1109,7 +1119,7 @@
                                                     style="color: red"
                                                     *ngIf="alterMobile.errors"
                                                 >
-                                                   Alter Mobile number is required
+                                                   Alter Mobile Number is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -1125,7 +1135,7 @@ name="stage" optionLabel="name" optionValue="name">
 
 <div class="field col-12 md:col-6">
     <label for="taletpoll"
-        >HiringStage</label
+        >Hiring Stage</label
     >
     <p-dropdown
         [options]="stages"
@@ -1174,14 +1184,14 @@ name="stage" optionLabel="name" optionValue="name">
 
                                         <div class="field col-12 md:col-6">
                                             <label for="currentSalary"
-                                                >CurrecntSalary</label
+                                                >Current Salary</label
                                             >
                                             <input
                                                 pInputText
                                                 id="currentSalary"
                                                 name="currentSalary"
                                                 type="number"
-                                                placeholder="Enter CurrentSalary"
+                                                placeholder="Enter Current Salary"
                                                 [(ngModel)]="
                                                     candidate.currentSalary
                                                 "
@@ -1200,13 +1210,13 @@ name="stage" optionLabel="name" optionValue="name">
                                                     style="color: red"
                                                     *ngIf="currentSalary.errors"
                                                 >
-                                                    CurrentSalary is required
+                                                    Current Salary is required
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="expectedSalary"
-                                                >ExpectedSalary</label
+                                                >Expected Salary</label
                                             >
                                             <input
                                                 pInputText
@@ -1234,7 +1244,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                         expectedSalary.errors
                                                     "
                                                 >
-                                                    ExpectedSalary is required
+                                                    Expected Salary is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -1279,7 +1289,7 @@ name="stage" optionLabel="name" optionValue="name">
                                         <!-- TalentPoll  dropdown -->
                                         <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >TalentPoll</label
+                                                >Talent Pool</label
                                             >
                                             <p-dropdown
                                                 [options]="talentpools"
@@ -1288,7 +1298,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                 "
                                                 [showClear]="true"
                                                 [filter]="true"
-                                                placeholder="Select TalentPoll"
+                                                placeholder="Select TalentPool"
                                                 name="talentPool"
                                                 optionLabel="name"
                                             >
@@ -1343,7 +1353,7 @@ name="stage" optionLabel="name" optionValue="name">
                                         <!-- Preffed Location dropdown -->
                                         <div class="field col-12 md:col-6">
                                             <label for="Preffered"
-                                                >Prefferd Location</label
+                                                >Preffered Location</label
                                             >
                                             <p-dropdown
                                                 [options]="locations"
@@ -1429,9 +1439,9 @@ name="stage" optionLabel="name" optionValue="name">
                                                 <tr>
                                                     <th>Company</th>
                                                     <th>JobTitle</th>
-                                                    <th>CurrentlyWokring</th>
-                                                    <th>DateOfJoining</th>
-                                                    <th>DateOfRelieving</th>
+                                                    <th>Currently Wokring</th>
+                                                    <th>Date Of Joining</th>
+                                                    <th>Date Of Relieving</th>
                                                     <th>Location</th>
                                                     <!-- <th>Modify</th> -->
                                                     <!--  -->
