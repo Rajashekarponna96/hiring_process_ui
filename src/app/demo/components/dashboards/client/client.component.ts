@@ -188,13 +188,21 @@ export class ClientComponent  implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
 
+  // expandAll() {
+  //   if (!this.isExpanded) {
+  //     this.clients.forEach(client => client && client.companyName ? this.expandedRows[client.companyName] = true : '');
+  //   } else {
+  //     this.expandedRows = {};
+  //   }
+  //   this.isExpanded = !this.isExpanded;
+  // }
   expandAll() {
     if (!this.isExpanded) {
-      this.clients.forEach(client => client && client.companyName ? this.expandedRows[client.companyName] = true : '');
+        this.clients.forEach(client => client && client.id ? this.expandedRows[client.id] = true : '');
     } else {
-      this.expandedRows = {};
+        this.expandedRows = {};
     }
     this.isExpanded = !this.isExpanded;
-  }
+}
 
 }
