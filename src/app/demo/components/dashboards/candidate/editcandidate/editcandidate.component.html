@@ -393,37 +393,13 @@
 
                                         <!--Date of Birth field-->
                                         <div class="field col-12 md:col-6">
-                                            <label for="dateOfBirth"
-                                                >Date Of Birth</label
-                                            >
-                                            <input
-                                                pInputText
-                                                id="dateOfBirth"
-                                                name="dateOfBirth"
-                                                type="date"
-                                                [(ngModel)]="
-                                                    candidate.dateOfBirth
-                                                "
-                                                placeholder="Select Date of Birth"
-                                            />
-                                            <div
-                                                style="color: red"
-                                                *ngIf="
-                                                    candidateForm.controls[
-                                                        'dateOfBirth'
-                                                    ].invalid &&
-                                                    (candidateForm.controls[
-                                                        'dateOfBirth'
-                                                    ].dirty ||
-                                                        candidateForm.controls[
-                                                            'dateOfBirth'
-                                                        ].touched)
-                                                "
-                                            >
-                                                <small class="text-danger"
-                                                    >Date of Birth is
-                                                    Gequired.</small
-                                                >
+                                            <label for="dateOfBirth">Date Of Birth</label>
+                                            <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
+                                                [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
+                                                [max]="maxDate()" />
+                                            <div style="color: red" *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
+                                                (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
+                                                <small class="text-danger">Date of Birth is Required.</small>
                                             </div>
                                         </div>
 
@@ -1477,7 +1453,7 @@ name="stage" optionLabel="name" optionValue="name">
                                     <!-- exp -->
                                     <div class="ui-g-12" style="text-align: right">
                                         <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-                                        
+
                                         <!-- Previous Button -->
                                         <span class="button-container">
                                             <button
@@ -1496,12 +1472,12 @@ name="stage" optionLabel="name" optionValue="name">
                                                 pRipple
                                                 label="Next"
                                             ></button>
-                                        </span> 
-                                        
+                                        </span>
+
                                         <!-- Save Button -->
                                         <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
                                                 (click)="updateCandidate()" label="Update"></button>
-                                        
+
                                         <!-- Cancel Button -->
                                         <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                                                 routerLink="/candidate" label="Cancel"></button>
