@@ -6,7 +6,8 @@
       <div class="card">
         <h5>Client List</h5>
         <p-toast></p-toast>
-        <p-table [value]="clients" dataKey="name" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
+        <!-- <p-table [value]="clients" dataKey="name" [expandedRowKeys]="expandedRows" responsiveLayout="scroll"> -->
+          <p-table [value]="clients" dataKey="id" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
 
           <ng-template pTemplate="caption">
               <button pButton icon="pi pi-fw {{isExpanded ? 'pi-minus' : 'pi-plus'}}"
@@ -73,7 +74,7 @@
   <!--  -->
   <!-- -->
 
-<!-- <div class="card">
+  <div class="card">
   <p-table #dt [value]="clients" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
       [globalFilterFields]="['name','contactPocs','location']">
@@ -122,5 +123,4 @@
 
       </ng-template>
   </p-table>
-</div> -->
-
+</div>
