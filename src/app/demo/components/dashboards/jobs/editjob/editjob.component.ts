@@ -59,7 +59,7 @@ export class EditjobComponent {
   recruiter = new Recruiter()
   selectedRecruiters: any;
   recruiters: any[] = [];
-
+  locations: Location[] = []
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
 
 
@@ -144,6 +144,21 @@ export class EditjobComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
+
+  getLocationList() {
+    return this.http.get<Location[]>("http://localhost:9000/location/all")
+  }
+
+  getAllLocationList() {
+    return this.getLocationList().
+      subscribe((data) => {
+        console.log(data);
+        this.locations = data;
+        //this.currentLocationOptions = this.locations.map(location => ({ label: location.name, value: location.id }));
+
+        this.changeDetectorRefs.markForCheck();
+      });
+  }
   // ngOnInit() {
   //   this.getAllJobList();
   //   this.getAllDepartmentList();
@@ -178,6 +193,7 @@ export class EditjobComponent {
     this.getAllCurrencyList();
     this.getAllRecruiterList();
     this.getAllClientList();
+    this.getAllLocationList();
   }
 
 

@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'loginuser',
-                data: { breadcrumb: 'loginuser' },
+                data: { breadcrumb: 'Login User' },
                 loadChildren: () =>
                     import('./loginuser/loginuser.module').then(
                         (m) => m.LoginuserModule
@@ -31,7 +31,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'registeruser',
-                data: { breadcrumb: 'registeruser' },
+                data: { breadcrumb: 'Register User' },
                 loadChildren: () =>
                     import('./registeruser/registeruser.module').then(
                         (m) => m.RegisteruserModule
@@ -39,19 +39,19 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'home',
-                data: { breadcrumb: 'home' },
+                data: { breadcrumb: 'Home' },
                 loadChildren: () =>
                     import('./home/home.module').then((m) => m.HomeModule),
             },
             {
                 path: 'jobs',
-                data: { breadcrumb: 'jobs' },
+                data: { breadcrumb: 'Jobs' },
                 loadChildren: () =>
                     import('./jobs/jobs.module').then((m) => m.JobsModule),
             },
             {
                 path: 'createjob',
-                data: { breadcrumb: 'CreateJob' },
+                data: { breadcrumb: 'Create Job' },
                 loadChildren: () =>
                     import('./jobs/createjob/createjob.module').then(
                         (m) => m.CreatejobModule
@@ -59,7 +59,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'editjob',
-                data: { breadcrumb: 'EditJob' },
+                data: { breadcrumb: 'Edit Job' },
                 loadChildren: () =>
                     import('./jobs/editjob/editjob.module').then(
                         (m) => m.EditjobModule
@@ -67,7 +67,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'recruiter',
-                data: { breadcrumb: 'recruiter' },
+                data: { breadcrumb: 'Recruiter' },
                 loadChildren: () =>
                     import('./recruiter/recriter.module').then(
                         (m) => m.RecriterModule
@@ -75,7 +75,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createrecruiter',
-                data: { breadcrumb: 'CreateRecruiter' },
+                data: { breadcrumb: 'Create Recruiter' },
                 loadChildren: () =>
                     import(
                         './recruiter/createrecruiter/createrecriter.module'
@@ -83,7 +83,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'editrecruiter',
-                data: { breadcrumb: 'EditRecruiter' },
+                data: { breadcrumb: 'Edit Recruiter' },
                 loadChildren: () =>
                     import(
                         './recruiter/editrecruiter/editrecruiter.module'
@@ -91,7 +91,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'pre-boarding',
-                data: { breadcrumb: 'pre-boarding' },
+                data: { breadcrumb: 'Pre-Boarding' },
                 loadChildren: () =>
                     import('./pre-boarding/pre-boarding.module').then(
                         (m) => m.PreBoardingModule
@@ -99,7 +99,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'reports',
-                data: { breadcrumb: 'reports' },
+                data: { breadcrumb: 'Reports' },
                 loadChildren: () =>
                     import('./reports/reports.module').then(
                         (m) => m.ReportsModule
@@ -107,7 +107,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'settings',
-                data: { breadcrumb: 'settings' },
+                data: { breadcrumb: 'Settings' },
                 loadChildren: () =>
                     import('./settings/settings.module').then(
                         (m) => m.SettingsModule
@@ -115,7 +115,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'candidate',
-                data: { breadcrumb: 'candidate' },
+                data: { breadcrumb: 'Candidate' },
                 loadChildren: () =>
                     import('./candidate/candidate.module').then(
                         (m) => m.CandidateModule
@@ -123,7 +123,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'editcandidate',
-                data: { breadcrumb: 'candidate' },
+                data: { breadcrumb: 'Edit Candidate' },
                 loadChildren: () =>
                     import('./candidate/editcandidate/editcandidate.module').then(
                         (m) => m.EditcandidateModule
@@ -131,7 +131,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createrecandidate',
-                data: { breadcrumb: 'CreateCandidate' },
+                data: { breadcrumb: 'Create Candidate' },
                 loadChildren: () =>
                     import(
                         './candidate/createcandidate/createcandiadte.module'
@@ -139,7 +139,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'talentpool',
-                data: { breadcrumb: 'CreateTalentPool' },
+                data: { breadcrumb: 'Create TalentPool' },
                 loadChildren: () =>
                     import('./talentpool/talentpool.module').then(
                         (m) => m.TalentpoolModule
@@ -155,7 +155,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'edittalentpool',
-                data: { breadcrumb: 'EditTalentPool' },
+                data: { breadcrumb: 'Edit TalentPool' },
                 loadChildren: () =>
                     import(
                         './talentpool/edittalentpool/edittalentpool.module'
@@ -164,7 +164,7 @@ import { RouterModule } from '@angular/router';
 
             {
                 path: 'edittalentpool',
-                data: { breadcrumb: 'edittalentpool' },
+                data: { breadcrumb: 'Edit Talentpool' },
                 loadChildren: () =>
                     import(
                         './talentpool/edittalentpool/edittalentpool.module'
@@ -173,7 +173,7 @@ import { RouterModule } from '@angular/router';
 
             {
                 path: 'talentpooledit',
-                data: { breadcrumb: 'talentpooledit' },
+                data: { breadcrumb: 'Edit Talentpool' },
                 loadChildren: () =>
                     import(
                         './talentpool/talentpooledit/talentpooledit.module'
@@ -183,7 +183,7 @@ import { RouterModule } from '@angular/router';
 
             {
                 path: 'menus',
-                data: { breadcrumb: 'CreateCandidate' },
+                data: { breadcrumb: 'Create Candidate' },
                 loadChildren: () =>
                     import('./menus/menus.module').then((m) => m.MenusModule),
             },
@@ -196,13 +196,13 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'createclient',
-                data: { breadcrumb: 'CreateClient' },
+                data: { breadcrumb: 'Create Client' },
                 loadChildren: () =>
                     import('./client/createclient/createclient.module').then((m) => m.CreateclientModule),
             },
             {
                 path: 'editclient',
-                data: { breadcrumb: 'EditClient' },
+                data: { breadcrumb: 'Edit Client' },
                 loadChildren: () =>
                     import('./client/editclient/editclient.module').then((m) => m.EditclientModule),
             },
