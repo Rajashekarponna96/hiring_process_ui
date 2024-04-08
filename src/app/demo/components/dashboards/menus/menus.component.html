@@ -263,7 +263,7 @@
 
                                         <div class="field col-12 md:col-6">
                                             <label for="currentSalary"
-                                                >CurrentSalary<span style="color: red">*</span></label
+                                                >Current Salary<span style="color: red">*</span></label
                                             >
                                             <input
                                                 pInputText
@@ -436,7 +436,7 @@
                                                 "
                                                 [showClear]="true"
                                                 [filter]="true"
-                                                placeholder="Select TalentPoll"
+                                                placeholder="Select TalentPool"
                                                 name="talentPool"
                                                 optionLabel="name"
                                             >
@@ -609,34 +609,19 @@
                                             />
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="startOfCourse"
-                                                >Start Of Course<span style="color: red">*</span></label
-                                            >
-                                            <input
-                                                pInputText
-                                                id="startOfCourse"
-                                                name="startOfCourse"
-                                                type="date"
-                                                [(ngModel)]="
-                                                    education.startOfCourse
-                                                "
-                                                placeholder="Select startOfCourse"
-                                            />
+                                            <label for="startOfCourse">Start Of Course</label>
+                                            <input pInputText id="startOfCourse" name="startOfCourse" type="date"
+                                                [(ngModel)]="education.startOfCourse" placeholder="Select startOfCourse"
+                                                (ngModelChange)="updateEndDateMinDate()" />
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="startOfCourse"
-                                                >End Of Course<span style="color: red">*</span></label
-                                            >
-                                            <input
-                                                pInputText
-                                                id=" endOfCourse"
-                                                name="endOfCourse"
-                                                type="date"
-                                                [(ngModel)]="
-                                                    education.endOfCourse
-                                                "
-                                                placeholder="Select  endOfCourse"
-                                            />
+                                            <label for="endOfCourse">End Of Course</label>
+                                            <input pInputText id="endOfCourse" name="endOfCourse" type="date"
+                                                [(ngModel)]="education.endOfCourse" placeholder="Select endOfCourse"
+                                                [min]="education.startOfCourse" />
+                                            <div *ngIf="education.endOfCourse < education.startOfCourse" style="color: red;">
+                                                End date cannot be before start date.
+                                            </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
                                             <label for="college">College<span style="color: red">*</span></label>
@@ -712,7 +697,7 @@
                                                     </td>
                                                     <td>{{ edu.college }}</td>
                                                     <td>{{edu.university}}</td>
-                                                    <td>{{ edu.location }}</td> 
+                                                    <td>{{ edu.location }}</td> &nbsp;
                                                     <td>
                                                         <div
                                                             class="button-container"
@@ -830,6 +815,24 @@
                                                 placeholder="Select DateOfRelieving"
                                             />
                                         </div>
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="startOfCourse">Date Of Joining</label>
+                                            <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
+                                                [(ngModel)]="experience.dateOfJoining" placeholder="Select Date OfJoining"
+                                                (ngModelChange)="updateEndDateMinDate()" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="endOfCourse"> Date Of Relieving</label>
+                                            <input pInputText id="endOfCourse" name="endOfCourse" type="date"
+                                                [(ngModel)]="education.endOfCourse" placeholder="Select endOfCourse"
+                                                [min]="education.startOfCourse" />
+                                            <div *ngIf="education.endOfCourse < education.startOfCourse" style="color: red;">
+                                                End date cannot be before start date.
+                                            </div>
+                                        </div> -->
+
+
+
                                         <div class="field col-12 md:col-6">
                                             <label for="location"
                                                 >Location<span style="color: red">*</span></label
@@ -874,7 +877,7 @@
                                                     <td>{{ exp.currentlyWorking }}</td>
                                                     <td>{{ exp.dateOfJoining }}</td>
                                                     <td>{{ exp.dateOfRelieving }}</td>
-                                                    <td>{{ exp.location }}</td>
+                                                    <td>{{ exp.location }}</td> &nbsp;
                                                     <td>
                                                         <div class="button-container">
                                                             <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="editExperience(i)" icon="pi pi-pencil"></button>
@@ -1162,14 +1165,14 @@ name="stage" optionLabel="name" optionValue="name">
 
                                         <div class="field col-12 md:col-6">
                                             <label for="currentSalary"
-                                                >Currecnt Salary</label
+                                                >Current Salary</label
                                             >
                                             <input
                                                 pInputText
                                                 id="currentSalary"
                                                 name="currentSalary"
                                                 type="number"
-                                                placeholder="Enter CurrentSalary"
+                                                placeholder="Enter Current Salary"
                                                 [(ngModel)]="
                                                     candidate.currentSalary
                                                 "
@@ -1188,7 +1191,7 @@ name="stage" optionLabel="name" optionValue="name">
                                                     style="color: red"
                                                     *ngIf="currentSalary.errors"
                                                 >
-                                                    Current Salary is required
+                                                    Current Salary is Required
                                                 </div>
                                             </div>
                                         </div>
@@ -1343,7 +1346,7 @@ name="stage" optionLabel="name" optionValue="name">
                                         <!-- TalentPoll  dropdown -->
                                         <div class="field col-12 md:col-6">
                                             <label for="taletpoll"
-                                                >TalentPool</label
+                                                >Talent Pool</label
                                             >
                                             <p-dropdown
                                                 [options]="talentpools"

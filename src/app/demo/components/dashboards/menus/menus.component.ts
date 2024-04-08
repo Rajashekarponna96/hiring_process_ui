@@ -644,6 +644,31 @@ export class MenusComponent implements OnInit {
   }
 
   //
+  durationInMonths: number | null = null;
+  isInvalidDateRange(): boolean {
+    if (!this.education.startOfCourse || !this.education.endOfCourse) {
+      return false; // Wait until both dates are selected
+    }
+    const startDate = new Date(this.education.startOfCourse);
+    const endDate = new Date(this.education.endOfCourse);
+    this.durationInMonths = this.getMonthsDifference(startDate, endDate);
+    return endDate <= startDate || this.durationInMonths <= 0;
+  }
+
+  getMonthsDifference(startDate: Date, endDate: Date): number {
+    const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+    return Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // average month duration
+  }
+  updateEndDateMinDate() {
+    // Update the minimum allowed date for EndOfCourse based on the selected StartOfCourse
+    if (this.education.startOfCourse) {
+      const startDate = new Date(this.education.startOfCourse);
+      const endDate = new Date(this.education.endOfCourse);
+      if (endDate < startDate) {
+        this.education.endOfCourse = this.education.startOfCourse;
+      }
+    }
+  }
 
 
   ngOnInit() {
