@@ -30,17 +30,17 @@
           <div class="field col-12 md:col-6">
             <label for="name">Name<span [style.display]="pointToContact.name ? 'none' : 'inline'" style="color: red">*</span></label>
             <input pInputText id="name" name="name" type="text" placeholder="Enter POC Name"
-              [(ngModel)]="pointToContact.name" required #name="ngModel" />
+              [(ngModel)]="pointToContact.name" #name="ngModel" />
           </div>
           <div class="field col-12 md:col-6">
             <label for="mobile">Mobile<span [style.display]="pointToContact.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
             <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter Mobile Number"
-              [(ngModel)]="pointToContact.mobile" required pattern="[0-9]*" #mobile="ngModel" />
+              [(ngModel)]="pointToContact.mobile"  pattern="[0-9]*" #mobile="ngModel" />
           </div>
           <div class="field col-12 md:col-6">
             <label for="email">Email<span [style.display]="pointToContact.email ? 'none' : 'inline'" style="color: red">*</span></label>
             <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
-              [(ngModel)]="pointToContact.email" required email #email="ngModel" />
+              [(ngModel)]="pointToContact.email"  email #email="ngModel" />
           </div>
           <div class="field col-12 md:col-6"></div>
           <!-- Submit button -->
