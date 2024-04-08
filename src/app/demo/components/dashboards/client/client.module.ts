@@ -26,6 +26,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
 import { ClientComponent } from './client.component';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { RippleModule } from 'primeng/ripple';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -62,7 +65,18 @@ import { ClientComponent } from './client.component';
 		SelectButtonModule,
 		CheckboxModule,
 		ButtonModule,
-		TableModule
+		TableModule,
+		TableModule,
+		RatingModule,
+		ButtonModule,
+		SliderModule,
+		InputTextModule,
+		ToggleButtonModule,
+		RippleModule,
+		MultiSelectModule,
+		DropdownModule,
+		ProgressBarModule,
+		ToastModule
   ]
 })
 export class ClientModule { }
