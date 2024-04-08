@@ -724,5 +724,8 @@ export class MenusComponent implements OnInit {
   //   this.candidate.skills = this.skills;
   // }
 
+  todayDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
 }
 
