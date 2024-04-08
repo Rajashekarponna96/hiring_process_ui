@@ -5,22 +5,22 @@
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
                         <label for="firstname">FirstName</label>
-                        <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter Firstname"
+                        <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter FirstName"
                             [(ngModel)]="recruiter.firstName" required #firstname="ngModel" />
                         <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
-                            <div style="color: red" *ngIf="firstname.errors">Firstname is required </div>
+                            <div style="color: red" *ngIf="firstname.errors">FirstName is Required </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="lastname">LastName</label>
-                        <input pInputText id="lastname" name="lastname" type="text" placeholder="Enter Lastname"
+                        <input pInputText id="lastname" name="lastname" type="text" placeholder="Enter LastName"
                             [(ngModel)]="recruiter.lastName" required #lastname="ngModel" />
                         <div *ngIf="
                                 lastname.invalid &&
                                 (lastname.dirty || lastname.touched)
                             ">
                             <div style="color: red" *ngIf="lastname.errors">
-                                Lastname is required
+                                LastName is Required
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                                 email.invalid && (email.dirty || email.touched)
                             ">
                             <div style="color: red" *ngIf="email.errors">
-                                Invalid email format
+                                Invalid Email Format
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                 (mobile.dirty || mobile.touched)
                             ">
                             <div style="color: red" *ngIf="mobile.errors">
-                                Mobile number must be 10 digits.
+                                Mobile Number must be 10 digits.
                             </div>
                         </div>
                     </div>
