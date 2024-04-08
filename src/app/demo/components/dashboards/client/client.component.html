@@ -1,4 +1,79 @@
-<div class="card">
+
+
+
+<div class="grid">
+    <div class="col-12">
+      <div class="card">
+        <h5>Client List</h5>
+        <p-toast></p-toast>
+        <p-table [value]="clients" dataKey="name" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
+
+          <ng-template pTemplate="caption">
+              <button pButton icon="pi pi-fw {{isExpanded ? 'pi-minus' : 'pi-plus'}}"
+              label="{{isExpanded ? 'Collapse All' : 'Expand All'}}" (click)="expandAll()"></button>
+
+              <div class="flex table-header">
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem"></th>
+              <th pSortableColumn="companyName">Name <p-sortIcon field="companyName"></p-sortIcon></th>
+              <th pSortableColumn="location">Location <p-sortIcon field="location"></p-sortIcon></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-client let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="client"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              </td>
+              <td style="min-width: 12rem;">{{client.companyName}}</td>
+              <td style="min-width: 8rem;">{{client.location}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="rowexpansion" let-client>
+            <tr>
+              <td colspan="7">
+                <div class="p-3">
+                  <p-table [value]="client.pocs" dataKey="name" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+              <th pSortableColumn="mobile">Mobile <p-sortIcon field="mobile"></p-sortIcon></th>
+              <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+              <th style="width: 4rem"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact>
+            <tr>
+              <td>{{contact.name}}</td>
+              <td>{{contact.mobile}}</td>
+              <td>{{contact.email}}</td>
+              <td><p-button type="button" icon="pi pi-search"></p-button></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4">No POCs available for this client.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      </td>
+      </tr>
+      </ng-template>
+      </p-table>
+    </div>
+  </div>
+  </div>
+
+
+  <!--  -->
+  <!-- -->
+
+<!-- <div class="card">
   <p-table #dt [value]="clients" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
       [globalFilterFields]="['name','contactPocs','location']">
@@ -16,14 +91,14 @@
               <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Name<p-sortIcon field="client.name"></p-sortIcon></th>
               <th pSortableColumn="contactPocs" class="white-space-nowrap" style="width:25%">POC Name<p-sortIcon field="client.contactPocs.name"></p-sortIcon></th>
               <th pSortableColumn="contactPocs" class="white-space-nowrap" style="width:25%">POC MobileNo<p-sortIcon field="client.contactPocs.mobileNo"></p-sortIcon></th>
-              
+
               <th pSortableColumn="location" class="white-space-nowrap" style="width:25%">Location<p-sortIcon field="client.location"></p-sortIcon></th>
               <th class="white-space-nowrap" style="width:20%">Actions</th>
 
-              
+
           </tr>
       </ng-template>
-      
+
       <ng-template pTemplate="body" let-client>
           <tr>
               <td>{{client.companyName}}</td>
@@ -42,9 +117,10 @@
                   <div class="button-container">
                       <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client,client.id)" icon="pi pi-pencil"></button>
                       <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
-                  </div>                    
+                  </div>
               </td>
 
       </ng-template>
   </p-table>
-</div>
+</div> -->
+
