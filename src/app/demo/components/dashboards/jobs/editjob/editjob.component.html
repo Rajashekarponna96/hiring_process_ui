@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="field col-12 md:col-6">
-                        <label for="clients">ClientName</label>
+                        <label for="clients">Client Name</label>
                         <p-dropdown [options]="clients" [(ngModel)]="selectedClients" [showClear]="true" [filter]="true" placeholder="Select ClientName" (onChange)="onClientChange(selectedClients)" name="client" optionLabel="companyName">
                             <ng-template let-Client pTemplate="item">
                                 {{ Client.companyName }}
@@ -98,6 +98,14 @@
                             <small class="text-danger">location is required.</small>
                      </div>
                     </div>
+                    <!-- <div class="field col-12 md:col-6">
+                        <label for="current">Location</label>
+                        <p-dropdown [options]="locations" [(ngModel)]="job.locations" [showClear]="true" [filter]="true"
+                            placeholder="Select Location" name="locations" optionLabel="name">
+                        </p-dropdown>
+                        <div *ngIf="!job.locations && (jobForm.controls['locations'].dirty || jobForm.controls['locations'].touched)"
+                            style="color: red;">Location is Required</div>
+                    </div> -->
                     <div class="field col-12 md:col-6">
                         <label for="experience">Experience</label>
                         <input pInputText id="flows" name="flows" type="text"  placeholder="Enter Experience" [(ngModel)]="job.experience"  #experience="ngModel" required>
