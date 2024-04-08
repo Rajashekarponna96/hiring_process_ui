@@ -24,5 +24,8 @@ export class Job {
     recruiters!: Recruiter;
     clients!: Client;
     expectedNoticePeriod!: string;
+    primarySkills!: string;
+    secondarySkills!: string;
+    goodToHave!: string;
 
 }

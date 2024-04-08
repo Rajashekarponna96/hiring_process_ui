@@ -147,7 +147,9 @@ export class CreatejobComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
-
+  todayDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
   // addJob() {
 
   //   this.job.department = this.selectedDepartments;
