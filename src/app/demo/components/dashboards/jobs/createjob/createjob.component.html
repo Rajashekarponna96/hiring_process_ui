@@ -146,7 +146,7 @@
                     </div>
 
                     <!-- <div class="field col-12 md:col-6">
-                        <label for="current">Location<span style="color: red">*</span></label>
+                        <label for="current">Location<span [style.display]="job.locations ? 'none' : 'inline'" style="color: red">*</span></label>
                         <p-dropdown [options]="locations" [(ngModel)]="job.locations" [showClear]="true" [filter]="true"
                             placeholder="Select Location" name="locations" optionLabel="name">
                         </p-dropdown>
