@@ -815,21 +815,23 @@
                                                 placeholder="Select DateOfRelieving"
                                             />
                                         </div>
-                                        <!-- <div class="field col-12 md:col-6">
-                                            <label for="startOfCourse">Date Of Joining</label>
-                                            <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
-                                                [(ngModel)]="experience.dateOfJoining" placeholder="Select Date OfJoining"
-                                                (ngModelChange)="updateEndDateMinDate()" />
-                                        </div>
-                                        <div class="field col-12 md:col-6">
-                                            <label for="endOfCourse"> Date Of Relieving</label>
-                                            <input pInputText id="endOfCourse" name="endOfCourse" type="date"
-                                                [(ngModel)]="education.endOfCourse" placeholder="Select endOfCourse"
-                                                [min]="education.startOfCourse" />
-                                            <div *ngIf="education.endOfCourse < education.startOfCourse" style="color: red;">
-                                                End date cannot be before start date.
-                                            </div>
-                                        </div> -->
+
+                                         <div class="field col-12 md:col-6">
+    <label for="dateOfJoining">Date of Joining</label>
+    <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
+        [(ngModel)]="experience.dateOfJoining" placeholder="Select Date of Joining"
+        (ngModelChange)="updateEndDateMinDate1()" />
+</div>
+
+<div class="field col-12 md:col-6">
+    <label for="dateOfRelieving">Date of Relieving</label>
+    <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date"
+        [(ngModel)]="experience.dateOfRelieving" placeholder="Select Date of Relieving"
+        [min]="experience.dateOfJoining" />
+    <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining" style="color: red;">
+        End date cannot be before start date.
+    </div>
+</div> 
 
 
 

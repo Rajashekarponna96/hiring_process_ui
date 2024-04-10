@@ -396,6 +396,7 @@ export class EditcandidateComponent implements OnInit {
     this.education.endOfCourse = selectedEducation.endOfCourse;
     this.education.college = selectedEducation.college;
     this.education.location = selectedEducation.location;
+    this.education.university = selectedEducation.university;
 
     // Set edit mode and selected index
     this.editMode = true;
@@ -461,6 +462,7 @@ export class EditcandidateComponent implements OnInit {
         !this.education.startOfCourse ||
         !this.education.endOfCourse ||
         !this.education.college ||
+        !this.education.university||
         !this.education.location) {
         // Throw an exception or handle validation failure
         throw new Error('All fields are required.');
@@ -614,6 +616,67 @@ export class EditcandidateComponent implements OnInit {
   formatCurrency(value: number) {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   }
+
+
+
+   //start and end of the course code
+  durationInMonths: number | null = null;
+  isInvalidDateRange(): boolean {
+    if (!this.education.startOfCourse || !this.education.endOfCourse) {
+      return false; // Wait until both dates are selected
+    }
+    const startDate = new Date(this.education.startOfCourse);
+    const endDate = new Date(this.education.endOfCourse);
+    this.durationInMonths = this.getMonthsDifference(startDate, endDate);
+    return endDate <= startDate || this.durationInMonths <= 0;
+  }
+
+  getMonthsDifference(startDate: Date, endDate: Date): number {
+    const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+    return Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // average month duration
+  }
+  updateEndDateMinDate() {
+    // Update the minimum allowed date for EndOfCourse based on the selected StartOfCourse
+    if (this.education.startOfCourse) {
+      const startDate = new Date(this.education.startOfCourse);
+      const endDate = new Date(this.education.endOfCourse);
+      if (endDate < startDate) {
+        this.education.endOfCourse = this.education.startOfCourse;
+      }
+    }
+  }
+
+
+  durationInMonths1: number | null = null;
+  isInvalidDateRange1(): boolean {
+    if (!this.experience.dateOfJoining || !this.experience.dateOfRelieving) {
+      return false; // Wait until both dates are selected
+    }
+    const startDate = new Date(this.experience.dateOfJoining);
+    const endDate = new Date(this.experience.dateOfRelieving);
+    this.durationInMonths = this.getMonthsDifference(startDate, endDate);
+    return endDate <= startDate || this.durationInMonths <= 0;
+  }
+
+  getMonthsDifference1(startDate: Date, endDate: Date): number {
+    const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+    return Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // average month duration
+  }
+  updateEndDateMinDate1() {
+    // Update the minimum allowed date for DateOfJoing based on the selected DateofRelieving
+    if (this.experience.dateOfJoining) {
+      const startDate = new Date(this.experience.dateOfJoining);
+      if (this.experience.dateOfRelieving) {
+        const endDate = new Date(this.experience.dateOfRelieving);
+      
+      if (endDate < startDate) {
+        this.experience.dateOfRelieving = this.experience.dateOfJoining;
+      }
+    }
+  }
+}
+
+
 
 
 
