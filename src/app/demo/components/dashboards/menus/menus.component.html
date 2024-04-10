@@ -3,7 +3,7 @@
         <div class="grid">
             <div class="col-12">
                 <div class="card">
-                    <div class="tab-menu">
+                    <!-- <div class="tab-menu">
                         <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
                             Profile
                         </button>
@@ -16,7 +16,25 @@
                         <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
                             Confirm Details
                         </button>
+                    </div> -->
+                    <div class="tab-menu">
+                        <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
+                             Profile
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 2" [ngClass]="{ active: currentStep === 2 }">
+                             Education
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 3" [ngClass]="{ active: currentStep === 3 }">
+                             Experience
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
+                             Confirm Details
+                        </button>
                     </div>
+                                       
                     <div *ngIf="currentStep === 1">
                         <div class="grid">
                             <div class="col-12">

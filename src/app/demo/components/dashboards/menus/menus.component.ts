@@ -46,7 +46,7 @@ import { Product } from 'src/app/demo/api/product';
         }
 
         .tab-menu button.active {
-          background-color: #007bff;
+          background-color: #4346f1;
           color: #fff;
         }
 

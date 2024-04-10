@@ -24,7 +24,7 @@ tr:hover {
 /* Style table data */
 td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #5e50da;
 }
 
 /* Style the edit and delete buttons */
@@ -156,4 +156,55 @@ td {
   padding: 8px;
   background-color: #f9f9f9;
   border-radius: 4px;
+}
+.tab-menu {
+  display: flex;
+  align-items: center;
+}
+
+.tab-menu button {
+  position: relative;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  border: none; /* Remove button border */
+}
+
+.tab-menu button .step {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border: 2px solid #4346f1; /* Border for the step circle */
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.tab-menu button.active .step {
+  background-color: #4346f1;
+  color: #fff;
+}
+
+.tab-menu button.active {
+  color: #4346f1;
+}
+
+.tab-menu button:hover {
+  color: #4346f1;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background-color: #4346f1;
 }
