@@ -4,7 +4,7 @@
             <form #recruiterForm="ngForm">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-6">
-                        <label for="firstname">FirstName</label>
+                        <label for="firstname">FirstName<span [style.display]="recruiter.firstName ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter FirstName"
                             [(ngModel)]="recruiter.firstName" required #firstname="ngModel" />
                         <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="lastname">LastName</label>
+                        <label for="lastname">LastName<span [style.display]="recruiter.lastName ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="lastname" name="lastname" type="text" placeholder="Enter LastName"
                             [(ngModel)]="recruiter.lastName" required #lastname="ngModel" />
                         <div *ngIf="
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="email">Email</label>
+                        <label for="email">Email<span [style.display]="recruiter.email ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
                             [(ngModel)]="recruiter.email" required email #email="ngModel" />
                         <div *ngIf="
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="mobile">Mobile</label>
+                        <label for="mobile">Mobile<span [style.display]="recruiter.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="mobile" name="mobile" type="number" placeholder="Enter MobileNumber"
                             [(ngModel)]="recruiter.mobile" required pattern="[0-9]{10}" #mobile="ngModel" />
                         <div *ngIf="

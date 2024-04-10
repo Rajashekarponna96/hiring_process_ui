@@ -717,7 +717,9 @@ export class EditcandidateComponent implements OnInit {
   removeSkill(skill: string) {
     this.skills = this.skills.filter(s => s !== skill);
   }
-
+  maxDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
 
 
 }

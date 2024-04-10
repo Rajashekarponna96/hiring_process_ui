@@ -159,6 +159,10 @@ export class EditjobComponent {
         this.changeDetectorRefs.markForCheck();
       });
   }
+
+  todayDate(): string {
+    return new Date().toISOString().split('T')[0];
+  }
   // ngOnInit() {
   //   this.getAllJobList();
   //   this.getAllDepartmentList();
