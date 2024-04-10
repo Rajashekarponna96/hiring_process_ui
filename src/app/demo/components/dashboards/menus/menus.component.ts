@@ -670,6 +670,36 @@ export class MenusComponent implements OnInit {
     }
   }
 
+  durationInMonths1: number | null = null;
+  isInvalidDateRange1(): boolean {
+    if (!this.experience.dateOfJoining || !this.experience.dateOfRelieving) {
+      return false; // Wait until both dates are selected
+    }
+    const startDate = new Date(this.experience.dateOfJoining);
+    const endDate = new Date(this.experience.dateOfRelieving);
+    this.durationInMonths = this.getMonthsDifference(startDate, endDate);
+    return endDate <= startDate || this.durationInMonths <= 0;
+  }
+
+  getMonthsDifference1(startDate: Date, endDate: Date): number {
+    const diffInMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+    return Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30.44)); // average month duration
+  }
+  updateEndDateMinDate1() {
+    // Update the minimum allowed date for DateOfJoing based on the selected DateofRelieving
+    if (this.experience.dateOfJoining) {
+      const startDate = new Date(this.experience.dateOfJoining);
+      if (this.experience.dateOfRelieving) {
+        const endDate = new Date(this.experience.dateOfRelieving);
+      
+      if (endDate < startDate) {
+        this.experience.dateOfRelieving = this.experience.dateOfJoining;
+      }
+    }
+  }
+}
+
+
 
   ngOnInit() {
 
