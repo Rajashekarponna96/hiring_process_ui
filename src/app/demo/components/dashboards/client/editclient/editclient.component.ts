@@ -33,21 +33,32 @@ export class EditclientComponent {
     this.pointToContact = new Poc(); // Reset pointToContact object
   }
 
-  
+
+  // EditPoc(index: number) {
+  //   const selectedPoc = this.pointToContacts[index];
+
+  //   // Set the fields to be edited
+  //   this.pointToContact.name = selectedPoc.name;
+  //   this.pointToContact.mobile = selectedPoc.mobile;
+  //   this.pointToContact.email = selectedPoc.email;
+
+
+  //   // Set edit mode and selected index
+  //   this.editMode = true;
+  //   this.selectedIndex = index;
+
+  // }
   EditPoc(index: number) {
     const selectedPoc = this.pointToContacts[index];
 
     // Set the fields to be edited
-    this.pointToContact.name = selectedPoc.name;
-    this.pointToContact.mobile = selectedPoc.mobile;
-    this.pointToContact.email = selectedPoc.email;
-
+    this.pointToContact = { ...selectedPoc };
 
     // Set edit mode and selected index
     this.editMode = true;
     this.selectedIndex = index;
-
   }
+
   deletePoc(i: any) {
     this.pointToContacts.splice(i, 1);
 
