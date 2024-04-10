@@ -123,11 +123,13 @@
 
 
                     <div class="field col-12 md:col-6">
-                        <label for="location">Location</label>
-                        <input pInputText id="location" name="location" type="text" ngModel placeholder="Enter Location"   required>
-                        <div style="color: red;" *ngIf="jobForm.controls['location'].invalid &&  (jobForm.controls['location'].dirty || jobForm.controls['location'].touched)">
-                            <small class="text-danger">location is required.</small>
-                     </div>
+                        <label for="locations">Location<span [style.display]="job.locations ? 'none' : 'inline'" style="color: red">*</span></label>
+                        <input pInputText id="locations" name="locations" type="text" ngModel required 
+                             placeholder="Enter Location" [(ngModel)]="job.locations" required
+                            #locations="ngModel" />
+                        <div *ngIf="locations.invalid && (locations.dirty || locations.touched)">
+                            <div style="color: red" *ngIf="locations.errors">Location is required </div>
+                        </div>
                     </div>
                     <!-- <div class="field col-12 md:col-6">
                         <label for="current">Location</label>
