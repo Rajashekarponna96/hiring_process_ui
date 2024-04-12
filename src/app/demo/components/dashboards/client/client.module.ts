@@ -29,6 +29,8 @@ import { ClientComponent } from './client.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
+import { TreeModule } from 'primeng/tree';
+import { TreeTableModule } from 'primeng/treetable';
 
 
 
@@ -76,7 +78,9 @@ import { ToastModule } from 'primeng/toast';
 		MultiSelectModule,
 		DropdownModule,
 		ProgressBarModule,
-		ToastModule
+		ToastModule,
+		TreeModule,
+		TreeTableModule
   ]
 })
 export class ClientModule { }
