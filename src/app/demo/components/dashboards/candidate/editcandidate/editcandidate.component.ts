@@ -146,7 +146,7 @@ export class EditcandidateComponent implements OnInit {
 
   megaMenuItems: MegaMenuItem[] = [];
 
-  currentStep: number = 1;
+  currentStep: number = 0;
 
   stepsItems: MenuItem[] = [];
 
@@ -156,7 +156,12 @@ export class EditcandidateComponent implements OnInit {
   totalSteps = 4;
 
 
-
+  itemss: any[] = [
+    { label: 'Profile' },
+    { label: 'Education' },
+    { label: 'Experience' },
+    { label: 'Confirm Details' }
+  ];
 
 
 

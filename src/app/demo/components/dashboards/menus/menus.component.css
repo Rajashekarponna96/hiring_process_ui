@@ -208,3 +208,20 @@ td {
   height: 2px;
   background-color: #4346f1;
 }
+.tab-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-menu button {
+  margin-bottom: 10px;
+}
+
+.tab-menu .line {
+  height: 2px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
+
+
