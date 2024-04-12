@@ -149,7 +149,7 @@ export class MenusComponent implements OnInit {
 
   megaMenuItems: MegaMenuItem[] = [];
 
-  currentStep: number = 1;
+  currentStep: number = 0;
 
   stepsItems: MenuItem[] = [];
 
@@ -159,7 +159,12 @@ export class MenusComponent implements OnInit {
   totalSteps = 4;
 
 
-
+  itemss: any[] = [
+    { label: 'Profile' },
+    { label: 'Education' },
+    { label: 'Experience' },
+    { label: 'Confirm Details' }
+  ];
 
 
 
@@ -613,6 +618,12 @@ export class MenusComponent implements OnInit {
   nextStep() {
     this.currentStep++;
   }
+
+  // nextStep() {
+  //   if (this.currentStep < this.totalSteps - 1) {
+  //     this.currentStep++;
+  //   }
+  // }
 
 
 

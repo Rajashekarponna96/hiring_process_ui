@@ -17,7 +17,7 @@
                             Confirm Details
                         </button>
                     </div> -->
-                    <div class="tab-menu">
+                    <!-- <div class="tab-menu">
                         <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
                              Profile
                         </button>
@@ -33,9 +33,12 @@
                         <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
                              Confirm Details
                         </button>
-                    </div>
-                                       
-                    <div *ngIf="currentStep === 1">
+                    </div> -->
+                    <p-steps [model]="itemss" [(activeIndex)]="currentStep" [readonly]="true"
+                        orientation="vertical"></p-steps>
+
+
+                    <div *ngIf="currentStep === 0">
                         <div class="grid">
                             <div class="col-12">
                                 <form #candidateForm="ngForm">
@@ -268,11 +271,13 @@
                                             </div>
                                         </div> -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="dateOfBirth">Date Of Birth<span style="color: red">*</span></label>
+                                            <label for="dateOfBirth">Date Of Birth<span
+                                                    style="color: red">*</span></label>
                                             <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
                                                 [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
                                                 [max]="todayDate()" />
-                                            <div style="color: red" *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
+                                            <div style="color: red"
+                                                *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
                                                 (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
                                                 <small class="text-danger">Date of Birth is Required.</small>
                                             </div>
@@ -388,7 +393,7 @@
                         </div>
                         <!--end profile  -->
                     </div>
-                    <div *ngIf="currentStep === 2">
+                    <div *ngIf="currentStep === 1">
                         <!--Education details-->
 
                         <div class="grid">
@@ -500,7 +505,7 @@
                         </div>
                         <div style="display: flex;">
                             <div class="button-container">
-                                <button *ngIf="currentStep > 1" (click)="prevStep()"
+                                <button *ngIf="currentStep > 0" (click)="prevStep()"
                                     class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
                             </div>
                             <div class="button-container">
@@ -511,7 +516,7 @@
                         <!-- education ends -->
                     </div>
 
-                    <div *ngIf="currentStep === 3">
+                    <div *ngIf="currentStep === 2">
                         <div class="grid">
                             <div class="col-12">
                                 <!-- Experience fields (initially hidden) -->
@@ -528,22 +533,25 @@
                                                 [(ngModel)]="experience.jobTitle" />
                                         </div>
 
-                                         <div class="field col-12 md:col-6">
-    <label for="dateOfJoining">Date of Joining</label>
-    <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
-        [(ngModel)]="experience.dateOfJoining" placeholder="Select Date of Joining"
-        (ngModelChange)="updateEndDateMinDate1()" />
-</div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfJoining">Date of Joining</label>
+                                            <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
+                                                [(ngModel)]="experience.dateOfJoining"
+                                                placeholder="Select Date of Joining"
+                                                (ngModelChange)="updateEndDateMinDate1()" />
+                                        </div>
 
-<div class="field col-12 md:col-6">
-    <label for="dateOfRelieving">Date of Relieving</label>
-    <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date"
-        [(ngModel)]="experience.dateOfRelieving" placeholder="Select Date of Relieving"
-        [min]="experience.dateOfJoining" />
-    <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining" style="color: red;">
-        End date cannot be before start date.
-    </div>
-</div> 
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfRelieving">Date of Relieving</label>
+                                            <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date"
+                                                [(ngModel)]="experience.dateOfRelieving"
+                                                placeholder="Select Date of Relieving"
+                                                [min]="experience.dateOfJoining" />
+                                            <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining"
+                                                style="color: red;">
+                                                End date cannot be before start date.
+                                            </div>
+                                        </div>
 
 
 
@@ -609,8 +617,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="currentStep === 4">
-                        <h5>Confirm Details</h5>
+                    <div *ngIf="currentStep === 3">
                         <!--cofirm starts  -->
                         <div class="grid">
                             <div class="col-12">
@@ -830,11 +837,13 @@ name="stage" optionLabel="name" optionValue="name">
 
 
                                         <div class="field col-12 md:col-6">
-                                            <label for="dateOfBirth">Date Of Birth<span style="color: red">*</span></label>
+                                            <label for="dateOfBirth">Date Of Birth<span
+                                                    style="color: red">*</span></label>
                                             <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
                                                 [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
                                                 [max]="todayDate()" />
-                                            <div style="color: red" *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
+                                            <div style="color: red"
+                                                *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
                                                 (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
                                                 <small class="text-danger">Date of Birth is Required.</small>
                                             </div>

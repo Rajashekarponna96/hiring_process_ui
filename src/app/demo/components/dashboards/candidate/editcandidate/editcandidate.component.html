@@ -29,7 +29,7 @@
                             Confirm details
                         </button>
                     </div> -->
-                    <div class="tab-menu">
+                    <!-- <div class="tab-menu">
                         <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
                              Profile
                         </button>
@@ -45,8 +45,10 @@
                         <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
                              Confirm Details
                         </button>
-                    </div>
-                    <div *ngIf="currentStep === 1">
+                    </div> -->
+                    <p-steps [model]="itemss" [(activeIndex)]="currentStep" [readonly]="true"
+                        orientation="vertical"></p-steps>
+                    <div *ngIf="currentStep === 0">
                         <div class="grid">
                             <div class="col-12">
                                 <form #candidateForm="ngForm">
@@ -552,7 +554,7 @@
                         </div>
                         <!--end profile  -->
                     </div>
-                    <div *ngIf="currentStep === 2">
+                    <div *ngIf="currentStep === 1">
                         <!--Education details-->
 
                         <div class="grid">
@@ -742,7 +744,7 @@
                         <div style="display: flex;">
                             <div class="button-container">
                                 <button
-                                    *ngIf="currentStep > 1"
+                                    *ngIf="currentStep > 0"
                                     (click)="prevStep()"
                                     class="p-button-secondary p-button-text"
                                     pButton
@@ -765,7 +767,7 @@
                         <!-- education ends -->
                     </div>
 
-                    <div *ngIf="currentStep === 3">
+                    <div *ngIf="currentStep === 2">
                         <div class="grid">
                             <div class="col-12">
                                 <!-- Experience fields (initially hidden) -->
@@ -966,7 +968,7 @@
                         </div>
 
                     </div>
-                    <div *ngIf="currentStep === 4">
+                    <div *ngIf="currentStep === 3">
                         <h5>Confirm Details</h5>
                         <!--cofirm starts  -->
                         <div class="grid">
