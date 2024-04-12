@@ -43,7 +43,7 @@ import { TalentPool } from '../../../model/talentpool';
         }
 
         .tab-menu button.active {
-          background-color: #007bff;
+          background-color: #4346f1;
           color: #fff;
         }
 
