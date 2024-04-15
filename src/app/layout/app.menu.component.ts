@@ -56,7 +56,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: 'Candidate',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-user-plus',
                         routerLink: ['/candidate']
                     },
 
@@ -67,7 +67,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: 'Client',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-users',
                         routerLink: ['/client']
                     },
 
