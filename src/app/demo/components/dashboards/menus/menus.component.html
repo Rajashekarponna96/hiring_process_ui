@@ -35,7 +35,7 @@
                         </button>
                     </div> -->
                     <p-steps [model]="itemss" [(activeIndex)]="currentStep" [readonly]="true"
-                        orientation="vertical"></p-steps>
+                        orientation="vertical"></p-steps><br><br>
 
 
                     <div *ngIf="currentStep === 0">
@@ -44,7 +44,7 @@
                                 <form #candidateForm="ngForm">
                                     <div class="p-fluid p-formgrid grid">
                                         <div class="field col-12 md:col-6">
-                                            <label for="firstname">FirstName<span style="color: red">*</span></label>
+                                            <label for="firstname">FirstName<span [style.display]=" candidate.firstName ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="firstname" name="firstname" type="text"
                                                 placeholder="Enter FirstName" [(ngModel)]="
                                                     candidate.firstName
@@ -60,7 +60,7 @@
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="lastName">LastName<span style="color: red">*</span></label>
+                                            <label for="lastName">LastName<span [style.display]=" candidate.lastName ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="lastName" name="lastName" type="text"
                                                 placeholder="Enter LastName" [(ngModel)]="candidate.lastName" required
                                                 #lastName="ngModel" />
@@ -106,7 +106,7 @@
                                             </div>
                                         </div> -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="email">Email<span style="color: red">*</span></label>
+                                            <label for="email">Email<span [style.display]=" candidate.email ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="email" name="email" type="email"
                                                 placeholder="Enter Email" [(ngModel)]="candidate.email" required email
                                                 #email="ngModel" />
@@ -121,7 +121,7 @@
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="mobile">Mobile<span style="color: red">*</span></label>
+                                            <label for="mobile">Mobile<span [style.display]=" candidate.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="mobile" name="mobile" type="text"
                                                 placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile"
                                                 required pattern="[0-9]{10}*" min #mobile="ngModel" />
@@ -155,7 +155,7 @@
 
 
                                         <div class="field col-12 md:col-6">
-                                            <label for="taletpoll">Hiring Stage<span style="color: red">*</span></label>
+                                            <label for="taletpoll">Hiring Stage<span [style.display]=" candidate.stage ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
                                                 [showClear]="true" [filter]="true" placeholder="Select Stages"
                                                 name="stage" optionLabel="name" optionValue="name">
@@ -163,8 +163,7 @@
                                         </div>
 
                                         <div class="field col-12 md:col-6">
-                                            <label for="avialToJoin">Notice Period<span
-                                                    style="color: red">*</span></label>
+                                            <label for="avialToJoin">Notice Period<span [style.display]=" candidate.avialToJoin ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="avialToJoin" name="avialToJoin" type="text"
                                                 placeholder="Enter Notice Period" [(ngModel)]="
                                                     candidate.avialToJoin
@@ -181,8 +180,7 @@
                                         </div>
 
                                         <div class="field col-12 md:col-6">
-                                            <label for="currentSalary">Current Salary<span
-                                                    style="color: red">*</span></label>
+                                            <label for="currentSalary">Current Salary<span [style.display]=" candidate.currentSalary ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="currentSalary" name="currentSalary" type="number"
                                                 placeholder="Enter Current Salary" [(ngModel)]="
                                                     candidate.currentSalary
@@ -198,8 +196,7 @@
                                             </div>
                                         </div>
                                         <div class="field col-12 md:col-6">
-                                            <label for="expectedSalary">Expected Salary<span
-                                                    style="color: red">*</span></label>
+                                            <label for="expectedSalary">Expected Salary<span [style.display]=" candidate.expectedSalary ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="expectedSalary" name="expectedSalary" type="number"
                                                 placeholder="Enter Expected Salary" [(ngModel)]="
                                                     candidate.expectedSalary
@@ -218,7 +215,7 @@
                                         </div>
 
                                         <div class="field col-12 md:col-6">
-                                            <label for="gender">Gender<span style="color: red">*</span></label>
+                                            <label for="gender">Gender<span [style.display]=" candidate.gender ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <div class="form-check">
                                                 <input type="radio" class="form-check-input" id="male" name="gender"
                                                     [(ngModel)]="
@@ -271,8 +268,7 @@
                                             </div>
                                         </div> -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="dateOfBirth">Date Of Birth<span
-                                                    style="color: red">*</span></label>
+                                            <label for="dateOfBirth">Date Of Birth<span [style.display]=" candidate.dateOfBirth ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
                                                 [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
                                                 [max]="todayDate()" />
@@ -287,7 +283,7 @@
 
                                         <!-- TalentPoll  dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="taletpoll">Talent Pool<span style="color: red">*</span></label>
+                                            <label for="taletpoll">Talent Pool<span [style.display]=" candidate.talentPool ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="talentpools" [(ngModel)]="
                                                     candidate.talentPool
                                                 " [showClear]="true" [filter]="true" placeholder="Select TalentPool"
@@ -300,7 +296,7 @@
 
                                         <!-- Job  dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="job">Job<span style="color: red">*</span></label>
+                                            <label for="job">Job<span [style.display]=" candidate.job ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="jobs" [(ngModel)]="candidate.job" [showClear]="true"
                                                 [filter]="true" placeholder="Select Job" name="job" optionLabel="title">
                                             </p-dropdown>
@@ -309,7 +305,7 @@
                                         </div>
                                         <!-- Source dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="source">Source<span style="color: red">*</span></label>
+                                            <label for="source">Source<span [style.display]=" candidate.source ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="sources" [(ngModel)]="candidate.source"
                                                 [showClear]="true" [filter]="true" placeholder="Select Source"
                                                 name="source" optionLabel="name">
@@ -320,8 +316,7 @@
 
                                         <!-- Current Location dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="current">Current Location<span
-                                                    style="color: red">*</span></label>
+                                            <label for="current">Current Location<span [style.display]=" candidate.current ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="locations" [(ngModel)]="candidate.current"
                                                 [showClear]="true" [filter]="true" placeholder="Select Current Location"
                                                 name="current" optionLabel="name">
@@ -332,8 +327,7 @@
 
                                         <!-- Preffed Location dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="Preffered">Preffered Location<span
-                                                    style="color: red">*</span></label>
+                                            <label for="Preffered">Preffered Location<span [style.display]=" candidate.preferred ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="locations" [(ngModel)]="candidate.preferred"
                                                 [showClear]="true" [filter]="true"
                                                 placeholder="Select Preffered Location" name="preferred"
@@ -345,7 +339,7 @@
 
                                         <!-- Currency dropdown -->
                                         <div class="field col-12 md:col-6">
-                                            <label for="currency">Currency<span style="color: red">*</span></label>
+                                            <label for="currency">Currency<span [style.display]=" candidate.currency ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency"
                                                 [showClear]="true" [filter]="true" placeholder="Select Currency"
                                                 name="currency" optionLabel="name"></p-dropdown>
@@ -354,7 +348,7 @@
                                         </div>
 
                                         <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
-                                            <label htmlFor="skills">Skills:<span style="color: red">*</span></label>
+                                            <label htmlFor="skills">Skills:<span [style.display]=" candidate.skills ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <div *ngIf="!candidate.skills && (candidateForm.controls['skills'].dirty || candidateForm.controls['skills'].touched)"
                                                 style="color: red;">Skills is required</div>
                                             <p-chips [ngModel]="skills" name=candidate.skills
@@ -462,43 +456,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="
-                                                        let edu of educationDetails;
-                                                        let i = index
-                                                    ">
+                                                <tr *ngFor="let edu of educationDetails; let i = index">
                                                     <td>{{ edu.course }}</td>
                                                     <td>{{ edu.branch }}</td>
-                                                    <td>
-                                                        {{ edu.startOfCourse }}
-                                                    </td>
-                                                    <td>
-                                                        {{ edu.endOfCourse }}
-                                                    </td>
+                                                    <td>{{ edu.startOfCourse }}</td>
+                                                    <td>{{ edu.endOfCourse }}</td>
                                                     <td>{{ edu.college }}</td>
-                                                    <td>{{edu.university}}</td>
-                                                    <td>{{ edu.location }}</td> &nbsp;
+                                                    <td>{{ edu.university }}</td>
+                                                    <td>{{ edu.location }}</td>
                                                     <td>
-                                                        <div class="button-container">
-                                                            <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
-                                                                (click)="
-                                                                    EditEducation(
-                                                                        i
-                                                                    )
-                                                                " icon="pi pi-pencil"></button>
-                                                            <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger"
-                                                                (click)="
-                                                                    deleteEducation(
-                                                                        i
-                                                                    )
-                                                                " icon="pi pi-trash"></button>
-                                                        </div>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="EditEducation(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteEducation(i)" icon="pi pi-trash"></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                    
+                                    
                                 </div>
                                 <!-- </div> -->
                             </div>
@@ -575,7 +552,7 @@
                                                     <th>Date Of Joining</th>
                                                     <th>Date Of Relieving</th>
                                                     <th>Location</th>
-                                                    <th>Modify</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -585,23 +562,18 @@
                                                     <td>{{ exp.currentlyWorking }}</td>
                                                     <td>{{ exp.dateOfJoining }}</td>
                                                     <td>{{ exp.dateOfRelieving }}</td>
-                                                    <td>{{ exp.location }}</td> &nbsp;
+                                                    <td>{{ exp.location }}</td>
                                                     <td>
-                                                        <div class="button-container">
-                                                            <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
-                                                                (click)="editExperience(i)"
-                                                                icon="pi pi-pencil"></button>
-                                                            <button pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger"
-                                                                (click)="deleteExperience(i)"
-                                                                icon="pi pi-trash"></button>
-                                                        </div>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="editExperience(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteExperience(i)" icon="pi pi-trash"></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                    
                                 </div>
                                 <!-- </div> -->
                             </div>

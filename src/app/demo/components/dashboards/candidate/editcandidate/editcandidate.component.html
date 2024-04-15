@@ -690,48 +690,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr
-                                                    *ngFor="
-                                                        let edu of educationDetails;
-                                                        let i = index
-                                                    "
-                                                >
+                                                <tr *ngFor="let edu of educationDetails; let i = index">
                                                     <td>{{ edu.course }}</td>
                                                     <td>{{ edu.branch }}</td>
-                                                    <td>
-                                                        {{ edu.startOfCourse }}
-                                                    </td>
-                                                    <td>
-                                                        {{ edu.endOfCourse }}
-                                                    </td>
+                                                    <td>{{ edu.startOfCourse }}</td>
+                                                    <td>{{ edu.endOfCourse }}</td>
                                                     <td>{{ edu.college }}</td>
-                                                    <td>{{ edu.university}}</td>
-                                                    <td>{{ edu.location }}</td>&nbsp;
+                                                    <td>{{ edu.university }}</td>
+                                                    <td>{{ edu.location }}</td>
                                                     <td>
-                                                        <div
-                                                            class="button-container"
-                                                        >
-                                                            <button
-                                                                pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2 "
-                                                                (click)="
-                                                                    EditEducation(
-                                                                        i
-                                                                    )
-                                                                "
-                                                                icon="pi pi-pencil"
-                                                            ></button>
-                                                            <button
-                                                                pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger"
-                                                                (click)="
-                                                                    deleteEducation(
-                                                                        i
-                                                                    )
-                                                                "
-                                                                icon="pi pi-trash"
-                                                            ></button>
-                                                        </div>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="EditEducation(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteEducation(i)" icon="pi pi-trash"></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -879,8 +850,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Company</th>
-                                                    <th>JobTitle</th>
-                                                    <th>CurrentlyWokring</th>
+                                                    <th>Job Title</th>
+                                                    <th>Currently Working</th>
                                                     <th>Date Of Joining</th>
                                                     <th>Date Of Relieving</th>
                                                     <th>Location</th>
@@ -888,53 +859,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr
-                                                    *ngFor="
-                                                        let exp of experienceDetails;
-                                                        let i = index
-                                                    "
-                                                >
+                                                <tr *ngFor="let exp of experienceDetails; let i = index">
                                                     <td>{{ exp.company }}</td>
                                                     <td>{{ exp.jobTitle }}</td>
+                                                    <td>{{ exp.currentlyWorking }}</td>
+                                                    <td>{{ exp.dateOfJoining }}</td>
+                                                    <td>{{ exp.dateOfRelieving }}</td>
+                                                    <td>{{ exp.location }}</td>
                                                     <td>
-                                                        {{
-                                                            exp.currentlyWokring
-                                                        }}
-                                                    </td>
-                                                    <td>
-                                                        {{ exp.dateOfJoining }}
-                                                    </td>
-                                                    <td>
-                                                        {{
-                                                            exp.dateOfRelieving
-                                                        }}
-                                                    </td>
-                                                    <td>{{ exp.location }}</td>&nbsp;
-                                                    <td>
-                                                        <div
-                                                            class="button-container"
-                                                        >
-                                                            <button
-                                                                pButton
-                                                                class="p-button-sm p-button-rounded p-button-success mr-2"
-                                                                (click)="
-                                                                    editExperience(
-                                                                        i
-                                                                    )
-                                                                "
-                                                                icon="pi pi-pencil"
-                                                            ></button>
-                                                            <button
-                                                                pButton
-                                                                class="p-button-sm p-button-rounded p-button-danger"
-                                                                (click)="
-                                                                    deleteExperience(
-                                                                        i
-                                                                    )
-                                                                "
-                                                                icon="pi pi-trash"
-                                                            ></button>
-                                                        </div>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="editExperience(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteExperience(i)" icon="pi pi-trash"></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
