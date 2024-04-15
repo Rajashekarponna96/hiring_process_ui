@@ -3,11 +3,13 @@ import { Client } from '../../model/client';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { MessageService, ConfirmationService, TreeNode } from 'primeng/api';
 import { Customer, Representative } from 'src/app/demo/api/customer';
 import { Product } from 'src/app/demo/api/product';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { ProductService } from 'src/app/demo/service/product.service';
+import { NodeService } from 'src/app/demo/service/node.service';
+
 
 
 interface expandedRows {
@@ -23,7 +25,7 @@ export class ClientComponent  implements OnInit {
 
   //
 
-  constructor(private customerService: CustomerService, private productService: ProductService, private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(private customerService: CustomerService, private productService: ProductService, private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private nodeService: NodeService) { }
 
 
   clients: Client[] = [];
@@ -149,7 +151,25 @@ export class ClientComponent  implements OnInit {
       { label: 'Renewal', value: 'renewal' },
       { label: 'Proposal', value: 'proposal' }
     ];
-  }
+
+
+
+    // this.nodeService.getFiles().then(files => this.files1 = files);
+    //     this.nodeService.getFilesystem().then(files => this.files2 = files);
+        this.nodeService.getFiles().then(files => {
+            this.files3 = [{
+                label: 'Client',
+                children: files
+            }];
+        });
+
+        // this.cols = [
+        //     { field: 'name', header: 'Name' },
+        //     { field: 'size', header: 'Size' },
+        //     { field: 'type', header: 'Type' }
+        // ];
+    }
+  
 
 
 
@@ -204,5 +224,18 @@ export class ClientComponent  implements OnInit {
     }
     this.isExpanded = !this.isExpanded;
 }
+
+
+
+
+    files3: TreeNode[] = [];
+
+    // selectedFiles1: TreeNode[] = [];
+
+    // selectedFiles2: TreeNode[] = [];
+
+    selectedFiles3: TreeNode = {};
+
+    cols: any[] = [];
 
 }

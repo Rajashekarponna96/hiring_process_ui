@@ -391,17 +391,28 @@ export class EditcandidateComponent implements OnInit {
   deleteEducation(index: number) {
     this.educationDetails.splice(index, 1);
   }
+  // EditEducation(index: number) {
+  //   const selectedEducation = this.educationDetails[index];
+
+  //   // Set the fields to be edited
+  //   this.education.course = selectedEducation.course;
+  //   this.education.branch = selectedEducation.branch;
+  //   this.education.startOfCourse = selectedEducation.startOfCourse;
+  //   this.education.endOfCourse = selectedEducation.endOfCourse;
+  //   this.education.college = selectedEducation.college;
+  //   this.education.location = selectedEducation.location;
+  //   this.education.university = selectedEducation.university;
+
+  //   // Set edit mode and selected index
+  //   this.editMode = true;
+  //   this.selectedIndex = index;
+  // }
+
   EditEducation(index: number) {
     const selectedEducation = this.educationDetails[index];
 
     // Set the fields to be edited
-    this.education.course = selectedEducation.course;
-    this.education.branch = selectedEducation.branch;
-    this.education.startOfCourse = selectedEducation.startOfCourse;
-    this.education.endOfCourse = selectedEducation.endOfCourse;
-    this.education.college = selectedEducation.college;
-    this.education.location = selectedEducation.location;
-    this.education.university = selectedEducation.university;
+    this.education = { ...selectedEducation };
 
     // Set edit mode and selected index
     this.editMode = true;
@@ -555,17 +566,28 @@ export class EditcandidateComponent implements OnInit {
 }
 
 
+  // editExperience(index: number) {
+  //   // Get the selected experience
+  //   const selectedExperience = this.experienceDetails[index];
+
+  //   // Set the fields to be edited
+  //   this.experience.company = selectedExperience.company;
+  //   this.experience.jobTitle = selectedExperience.jobTitle;
+  //   this.experience.currentlyWokring = selectedExperience.currentlyWokring;
+  //   this.experience.dateOfJoining = selectedExperience.dateOfJoining;
+  //   this.experience.dateOfRelieving = selectedExperience.dateOfRelieving;
+  //   this.experience.location = selectedExperience.location;
+
+  //   // Set edit mode and selected index
+  //   this.editMode = true;
+  //   this.selectedIndex = index;
+  // }
   editExperience(index: number) {
     // Get the selected experience
     const selectedExperience = this.experienceDetails[index];
 
     // Set the fields to be edited
-    this.experience.company = selectedExperience.company;
-    this.experience.jobTitle = selectedExperience.jobTitle;
-    this.experience.currentlyWokring = selectedExperience.currentlyWokring;
-    this.experience.dateOfJoining = selectedExperience.dateOfJoining;
-    this.experience.dateOfRelieving = selectedExperience.dateOfRelieving;
-    this.experience.location = selectedExperience.location;
+    this.experience = { ...selectedExperience };
 
     // Set edit mode and selected index
     this.editMode = true;
@@ -673,7 +695,7 @@ export class EditcandidateComponent implements OnInit {
       const startDate = new Date(this.experience.dateOfJoining);
       if (this.experience.dateOfRelieving) {
         const endDate = new Date(this.experience.dateOfRelieving);
-      
+
       if (endDate < startDate) {
         this.experience.dateOfRelieving = this.experience.dateOfJoining;
       }

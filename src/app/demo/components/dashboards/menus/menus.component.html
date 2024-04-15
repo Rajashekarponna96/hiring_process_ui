@@ -123,15 +123,16 @@
                                         <div class="field col-12 md:col-6">
                                             <label for="mobile">Mobile<span [style.display]=" candidate.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="mobile" name="mobile" type="text"
+     
                                                 placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile"
-                                                required pattern="[0-9]{10}*" min #mobile="ngModel" />
+                                                required pattern="[0-9]{10}" min #mobile="ngModel" />
                                             <div *ngIf="
                                                     mobile.invalid &&
                                                     (mobile.dirty ||
                                                         mobile.touched)
                                                 ">
                                                 <div style="color: red" *ngIf="mobile.errors">
-                                                    Mobile Number is Required
+                                                    Mobile Number is Required & Its accept only 10 digits
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +141,7 @@
                                             <label for="mobile">Alternate MobileNo</label>
                                             <input pInputText id="alterMobile" name="alterMobile" type="text"
                                                 placeholder="Enter Alt Mobile Number"
-                                                [(ngModel)]="candidate.alterMobile" required pattern="[0-9]{10}*" min
+                                                [(ngModel)]="candidate.alterMobile" required pattern="[0-9]{10}" min
                                                 #alterMobile="ngModel" />
                                             <div *ngIf="
                                                 alterMobile.invalid &&
@@ -148,7 +149,7 @@
                                                     alterMobile.touched)
                                                 ">
                                                 <div style="color: red" *ngIf="alterMobile.errors">
-                                                    Alter Mobile Number is Required
+                                                   Alternate Mobile Number is Required & Its accept only 10 digits
                                                 </div>
                                             </div>
                                         </div>
