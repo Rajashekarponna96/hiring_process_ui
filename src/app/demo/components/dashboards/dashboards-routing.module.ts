@@ -66,6 +66,14 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'jobview',
+                data: { breadcrumb: 'Job View' },
+                loadChildren: () =>
+                    import('./jobs/jobview/jobview.module').then(
+                        (m) => m.JobviewModule
+                    ),
+            },
+            {
                 path: 'recruiter',
                 data: { breadcrumb: 'Recruiter' },
                 loadChildren: () =>

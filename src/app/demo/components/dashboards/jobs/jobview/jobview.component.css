@@ -1,0 +1,68 @@
+.container {
+    padding: 20px;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Light gray background */
+  }
+
+  .mb-3 {
+    margin-bottom: 15px;
+  }
+
+  .formgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
+
+  .value {
+    font-weight: bold;
+  }
+
+  h5, h6 {
+    margin-bottom: 10px;
+    color: #333; /* Dark gray text */
+  }
+
+  label {
+    color: #666; /* Medium gray text */
+  }
+
+  .primary-color {
+    color: #007bff; /* Primary color - Blue */
+  }
+
+  .success-color {
+    color: #28a745; /* Success color - Green */
+  }
+
+  .button-primary {
+    background-color: #007bff; /* Primary color - Blue */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .button-primary:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+  }
+
+  .button-success {
+    background-color: #28a745; /* Success color - Green */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .button-success:hover {
+    background-color: #218838; /* Darker shade of green on hover */
+  }

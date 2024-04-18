@@ -1,3 +1,52 @@
+<div class="card">
+  <p-dataView [value]="jobs" [paginator]="true" [rows]="3" filterBy="title" [sortField]="sortField" [sortOrder]="-1"
+      layout="grid">
+      <ng-template pTemplate="header">
+          <div class="flex flex-column sm:flex-row sm:align-items-center sm:justify-content-between gap-3">
+              <span class="text-xl text-900 font-semibold">Jobs</span>
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortField" placeholder="Sort by"
+                  styleClass="w-full md:w-15rem"></p-dropdown>
+          </div>
+      </ng-template>
+
+      <ng-template let-job pTemplate="gridItem">
+          <div class="col-12 md:col-4">
+              <div class="p-3">
+                  <div class="surface-100 cursor-pointer z-index border-round">
+                      <div class="p-3">
+                          <div class="text-900 font-semibold text-xl mb-3">{{ job.title }}</div>
+
+                          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+                              <span class="flex align-items-center text-900">
+                                  <i class="pi pi-briefcase mr-2"></i>
+                                  <span class="font-semibold">{{ job.openings }}</span>
+                              </span>
+                              <span class="flex align-items-center text-900">
+                                  <i class="pi pi-calendar mr-2"></i>
+                                  <span class="font-semibold">{{ job.targetHireDate }}</span>
+                              </span>
+
+                              <span class="flex align-items-center text-900 salary">
+                                  <span class="font-semibold">₹ {{ job?.salaryMaximum }}</span>
+                              </span>
+
+                              <div class="mt-3 apply-button">
+                                  <a [routerLink]="['jobview', job.id]" (click)="handleViewJob(job)"
+                                      class="p-button p-button-info p-button-sm p-button-rounded">
+                                      <i class="pi pi-check mr-1"></i> Apply
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView>
+</div>
+
+
+
 <div class="grid">
   <div class="col-12">
     <div class="flex flex-column sm:flex-row align-items-center gap-4">
