@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Job } from '../../model/job';
+import { Router } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   jobs: any[] = []; // Assuming the API response will be an array of objects
   clientNames: { [clientId: string]: string } = {}; // Object to store client names by ID
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit(): void {
     this.getAllJobsWithClients();
@@ -37,5 +39,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  //
+
+
+handleViewJob(job: Job) {
+  console.log('Job object to view:', job); // Log the job object
+  // Navigate to the 'viewjob' route with the job object as a parameter in the state
+  this.router.navigate(['jobview'], { state: { job: job } });
+}
+
+
+sortField: string = '';
+sortOptions: SelectItem[] = [
+  { label: 'Recent Posts', value: 'share' },
+  { label: 'Old Posts', value: 'comment' }
+];
+
 }
 

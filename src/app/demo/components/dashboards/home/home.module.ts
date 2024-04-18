@@ -16,6 +16,7 @@ import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomeComponent } from './home.component';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -34,7 +35,10 @@ import { HomeComponent } from './home.component';
     KnobModule,
     InputNumberModule,
     TagModule,
-    TooltipModule
+    TooltipModule,
+    TooltipModule,
+		DataViewModule,
+		DropdownModule,
   ]
 })
 export class HomeModule { }
