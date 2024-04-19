@@ -1,3 +1,94 @@
-<p>
-  vendor-create works!
-</p>
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <form #createVendorForm="ngForm">
+        <div class="p-fluid p-formgrid grid">
+          <!-- Vendor details -->
+          <div class="field col-12 md:col-6">
+            <label for="vendorName">Vendor Name<span [style.display]="vendor.vendorName ? 'none' : 'inline'" style="color: red">*</span></label>
+            <input pInputText id="vendorName" name="vendorName" type="text" ngModel required
+              placeholder="Enter Vendor Name" [(ngModel)]="vendor.vendorName" required #vendorName="ngModel" />
+            <div *ngIf="vendorName.invalid && (vendorName.dirty || vendorName.touched)">
+              <div style="color: red" *ngIf="vendorName.errors">Vendor Name is required </div>
+            </div>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="location">Location<span [style.display]="vendor.location ? 'none' : 'inline'" style="color: red">*</span></label>
+            <input pInputText id="location" name="location" type="text" ngModel required placeholder="Enter Location"
+              [(ngModel)]="vendor.location" required #location="ngModel" />
+            <div *ngIf="location.invalid && (location.dirty || location.touched)">
+              <div style="color: red" *ngIf="location.errors">Vendor Location is required </div>
+            </div>
+          </div>
+
+          <h6>POC Details:</h6>
+          <div class="field col-12 md:col-6">
+            <label for="name">Name<span [style.display]="vendorPoc.name ? 'none' : 'inline'" style="color: red">*</span></label>
+            <input pInputText id="name" name="name" type="text" placeholder="Enter POC Name"
+              [(ngModel)]="vendorPoc.name" #name="ngModel" />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="mobile">Mobile<span [style.display]="vendorPoc.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
+            <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter Mobile Number"
+                [(ngModel)]="vendorPoc.mobile" pattern="[0-9]{10}" #mobile="ngModel" />
+            <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-danger">
+                <div style="color: red" *ngIf="mobile.errors">Invalid Mobile Number format.</div>
+            </div>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="email">Email<span [style.display]="vendorPoc.email ? 'none' : 'inline'" style="color: red">*</span></label>
+            <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
+                [(ngModel)]="vendorPoc.email" email #email="ngModel" />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                <div style="color: red" *ngIf="email.errors">Invalid Email Format.</div>
+            </div>
+          </div>
+
+          <!-- Submit button -->
+          <div class="field col-12 md:col-6">
+            <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus" (click)="submitPocs()"
+              label="Add Poc"></button>
+          </div>
+        </div>
+
+        <!-- POC table -->
+        <div *ngIf="vendorPocs.length > 0">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>MobileNo</th>
+                <th>EmailId</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let poc of vendorPocs; let i = index">
+                <td>{{ poc.name}}</td>
+                <td>{{ poc.mobile}}</td>
+                <td>{{ poc.email}}</td>
+                <td>
+                  <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="EditPoc(i)"
+                    icon="pi pi-pencil"></button>
+                  <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deletePoc(i)"
+                    icon="pi pi-trash"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Form actions -->
+        <div class="ui-g-12" style="text-align: right">
+          <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+          <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check" (click)="addVendor()"
+            [disabled]="!createVendorForm.valid" label="Save"></button>
+          <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
+            routerLink="/vendor" label="Cancel"></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
