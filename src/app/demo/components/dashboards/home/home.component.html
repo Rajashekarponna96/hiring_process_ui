@@ -1,4 +1,144 @@
-<div class="card">
+
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <p-dataView [value]="jobs" #dv [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]"
+        filterBy="title" [sortField]="sortField" [sortOrder]="-1" layout="grid">
+        <ng-template pTemplate="header">
+          <div class="flex flex-column sm:flex-row sm:justify-content-between gap-2">
+            <p-dropdown [options]="sortOptions" [(ngModel)]="sortField" placeholder="Sort By"
+              styleClass="w-full md:w-15rem" (onChange)="onSortChange($event)"></p-dropdown>
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="search" pInputText placeholder="Search by Title" (input)="onFilter(dv, $event)">
+            </span>
+          </div>
+        </ng-template>
+        <ng-template let-job pTemplate="gridItem">
+          <div class="col-12 md:col-4">
+            <div class="card m-3 border-1 surface-border">
+              <div class="flex flex-column justify-content-between h-full">
+                <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                  <div class="flex items-center text-sm text-gray-600">
+                    <i class="pi pi-briefcase mr-1 text-xl"></i>
+                    <span>{{ job.openings }} Openings</span>
+                  </div>
+                  <div class="flex items-center text-sm text-gray-600">
+                    <i class="pi pi-calendar mr-1 text-xl"></i>
+                    <span>{{ job.targetHireDate }}</span>
+                  </div>
+                </div>
+                <div class="flex flex-column align-items-center text-center mb-3">
+                  <div class="text-2xl font-bold">{{ job.title }}</div>
+                  <span class="text-lg font-semibold text-gray-800">₹ {{ job.salaryMaximum }}</span>
+                </div>
+                <div class="flex justify-center">
+                  <button class="p-button p-button-info p-button-rounded" (click)="handleViewJob(job)">
+                    <i class="pi pi-check"></i> Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="grid">
+  <div class="col-12">
+    <div class="flex flex-column sm:flex-row align-items-center gap-4">
+    </div>
+  </div>
+  <div class="col-12 md:col-6 xl:col-3" *ngFor="let job of jobs">
+    <!-- Adjusted column width -->
+    <div class="card h-full relative overflow-hidden">
+      <svg id="visual" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="absolute left-0 top-0 h-full w-full z-1"
+        preserveAspectRatio="none">
+        <rect x="0" y="0" width="500" height="400" fill="var(--primary-600)"></rect>
+        <path
+          d="M0 400L30 386.5C60 373 120 346 180 334.8C240 323.7 300 328.3 360 345.2C420 362 480 391 540 392C600 393 660 366 720 355.2C780 344.3 840 349.7 870 352.3L900 355L900 601L870 601C840 601 780 601 720 601C660 601 600 601 540 601C480 601 420 601 360 601C300 601 240 601 180 601C120 601 60 601 30 601L0 601Z"
+          fill="var(--primary-500)" stroke-linecap="round" stroke-linejoin="miter"></path>
+      </svg>
+      <div class="z-2 relative text-white">
+        <div class="text-xl font-semibold mb-3">{{ job.title }}</div>
+        <div class="text-xl mb-3 font-semibold">Openings : {{ job.openings }}</div><br><br>
+        <!-- Display client name -->
+        <div class="text-xl mb-3 font-semibold"> {{ job.clients?.companyName || 'Unknown' }}</div>
+        <div class="flex align-items-center justify-content-between">
+          <!-- Add more job details if needed -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <p-dataView [value]="jobs" #dv [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 25, 50]"
+        filterBy="title" [sortField]="sortField" [sortOrder]="-1" layout="grid">
+        <ng-template pTemplate="header">
+          <div class="flex flex-column sm:flex-row sm:justify-content-between gap-2">
+            <p-dropdown [options]="sortOptions" [(ngModel)]="sortField" placeholder="Sort By"
+              styleClass="w-full md:w-15rem" (onChange)="onSortChange($event)"></p-dropdown>
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="search" pInputText placeholder="Search by Title" (input)="onFilter(dv, $event)">
+            </span>
+          </div>
+        </ng-template>
+        <ng-template let-job pTemplate="gridItem">
+          <div class="col-12 md:col-4">
+            <div class="card m-3 border-1 surface-border">
+              <div class="flex flex-column justify-content-between h-full">
+                <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                  <div class="flex items-center text-sm text-gray-600">
+                    <i class="pi pi-briefcase mr-1 text-xl"></i>
+                    <span>{{ job.openings }} Openings</span>
+                  </div>
+                  <div class="flex items-center text-sm text-gray-600">
+                    <i class="pi pi-calendar mr-1 text-xl"></i>
+                    <span>{{ job.targetHireDate }}</span>
+                  </div>
+                </div>
+                <div class="flex flex-column align-items-center text-center mb-3">
+                  <div class="text-2xl font-bold">{{ job.title }}</div>
+                  <span class="text-lg font-semibold text-gray-800">₹ {{ job.salaryMaximum }}</span>
+                </div>
+                <div class="flex justify-center gap-3">
+                  <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                      <i class="pi pi-check"></i>
+                    </span>
+                    <select class="p-inputtext">
+                      <option value="selected">Selected</option>
+                      <option value="notSelected">Not Selected</option>
+                    </select>
+                  </div>
+                  <button class="p-button p-button-info p-button-rounded" (click)="handleViewJob(job)">
+                    <i class="pi pi-check"></i> Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="card">
   <p-dataView [value]="jobs" [paginator]="true" [rows]="3" filterBy="title" [sortField]="sortField" [sortOrder]="-1"
       layout="grid">
       <ng-template pTemplate="header">
@@ -43,36 +183,4 @@
           </div>
       </ng-template>
   </p-dataView>
-</div>
-
-
-
-<div class="grid">
-  <div class="col-12">
-    <div class="flex flex-column sm:flex-row align-items-center gap-4">
-    </div>
-  </div>
-  <div class="col-12 md:col-6 xl:col-3" *ngFor="let job of jobs">
-    <!-- Adjusted column width -->
-    <div class="card h-full relative overflow-hidden">
-      <svg id="visual" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="absolute left-0 top-0 h-full w-full z-1"
-        preserveAspectRatio="none">
-        <rect x="0" y="0" width="500" height="400" fill="var(--primary-600)"></rect>
-        <path
-          d="M0 400L30 386.5C60 373 120 346 180 334.8C240 323.7 300 328.3 360 345.2C420 362 480 391 540 392C600 393 660 366 720 355.2C780 344.3 840 349.7 870 352.3L900 355L900 601L870 601C840 601 780 601 720 601C660 601 600 601 540 601C480 601 420 601 360 601C300 601 240 601 180 601C120 601 60 601 30 601L0 601Z"
-          fill="var(--primary-500)" stroke-linecap="round" stroke-linejoin="miter"></path>
-      </svg>
-      <div class="z-2 relative text-white">
-        <div class="text-xl font-semibold mb-3">{{ job.title }}</div>
-        <div class="text-xl mb-3 font-semibold">Openings : {{ job.openings }}</div><br><br>
-        <!-- Display client name -->
-        <div class="text-xl mb-3 font-semibold"> {{ job.clients?.companyName || 'Unknown' }}</div>
-        <div class="flex align-items-center justify-content-between">
-          <!-- Add more job details if needed -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+</div> -->
