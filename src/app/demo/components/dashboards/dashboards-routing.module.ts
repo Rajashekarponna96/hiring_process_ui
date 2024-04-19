@@ -220,6 +220,25 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./menus/menus.module').then((m) => m.MenusModule),
             },
+            {
+                path: 'vendor-cretae',
+                data: { breadcrumb: 'vendor-create' },
+                loadChildren: () =>
+                    import('./vendor/vendor-create/vendor-create.module').then((m) => m.VendorCreateModule),
+            },
+            {
+                path: 'vendor-list',
+                data: { breadcrumb: 'vendor-list' },
+                loadChildren: () =>
+                    import('./vendor/vendor-list/vendor-list.module').then((m) => m.VendorListModule),
+            },
+            {
+                path: 'vendor-edit',
+                data: { breadcrumb: 'vendor-edit' },
+                loadChildren: () =>
+                    import('./vendor/vendor-edit/vendor-edit.module').then((m) => m.VendorEditModule),
+            },
+
         ]),
     ],
     exports: [RouterModule],

@@ -73,6 +73,17 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
+            {
+                icon: 'pi pi-vendor',
+                items: [
+                    {
+                        label: 'Vendor',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/vendor-list']
+                    },
+
+                ]
+            },
             //pre-boarding
             // {
             //     label: 'Pre-Boarding',
