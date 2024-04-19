@@ -1,3 +1,79 @@
+
+
+<!--  -->
 <p>
   vendor-list works!
 </p>
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <p-toast></p-toast>
+      <p-table [value]="vendors" dataKey="id" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
+        <!-- Caption template -->
+        <ng-template pTemplate="caption">
+          <button pButton icon="pi pi-fw {{isExpanded ? 'pi-minus' : 'pi-plus'}}"
+            label="{{isExpanded ? 'Collapse All' : 'Expand All'}}" (click)="expandAll()"></button>
+          <button (click)="navigateToCreateVendor()" pButton class="p-button-outlined align-right"
+            icon="pi pi-user-plus" label="Add New"></button>
+          <div class="flex table-header"></div>
+        </ng-template>
+        <!-- Header template -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem"></th>
+            <th pSortableColumn="vendorName">Vendor Name <p-sortIcon field="vendorName"></p-sortIcon></th>
+            <th pSortableColumn="location">Location <p-sortIcon field="location"></p-sortIcon></th>
+            <th pSortableColumn="action">Actions <p-sortIcon field="action"></p-sortIcon></th>
+          </tr>
+        </ng-template>
+        <!-- Body template -->
+        <ng-template pTemplate="body" let-vendor let-expanded="expanded">
+          <tr>
+            <td>
+              <button type="button" pButton pRipple [pRowToggler]="vendor"
+                class="p-button-text p-button-rounded p-button-plain"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td style="min-width: 12rem;">{{vendor.vendorName}}</td>
+            <td style="min-width: 8rem;">{{vendor.location}}</td>
+            <td>
+              <div class="button-container">
+                <!-- Add action buttons here if needed -->
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <!-- Row Expansion template -->
+        <ng-template pTemplate="rowexpansion" let-vendor>
+          <tr>
+            <td colspan="4">
+              <div class="p-3">
+                <p-table [value]="vendor.pocs" dataKey="name" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                      <th pSortableColumn="mobile">Mobile <p-sortIcon field="mobile"></p-sortIcon></th>
+                      <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-contact>
+                    <tr>
+                      <td>{{contact.name}}</td>
+                      <td>{{contact.mobile}}</td>
+                      <td>{{contact.email}}</td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="3">No POCs available for this vendor.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

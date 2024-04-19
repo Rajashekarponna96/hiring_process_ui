@@ -77,9 +77,31 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-vendor',
                 items: [
                     {
-                        label: 'Vendor',
+                        label: 'Vendor-list',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/vendor-list']
+                    },
+
+                ]
+            },
+            {
+                icon: 'pi pi-vendor',
+                items: [
+                    {
+                        label: 'vendorcreate',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/vendor-cretae']
+                    },
+
+                ]
+            },
+            {
+                icon: 'pi pi-vendor',
+                items: [
+                    {
+                        label: 'vendoredit',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/vendor-edit']
                     },
 
                 ]
