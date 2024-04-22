@@ -4,6 +4,7 @@ import { Vendor } from '../../../model/vendor';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NodeService } from 'src/app/demo/service/node.service';
+import { Table } from 'primeng/table';
 
 interface ExpandedRows {
   [key: string]: boolean;
@@ -58,6 +59,14 @@ export class VendorListComponent implements OnInit {
   handleEditVendor(vendor: Vendor, vendorId: number) {
     this.router.navigate(['vendor-edit'], { state: { vendorId: vendorId, vendor: vendor } });
   }
+
+  onGlobalFilter(table: Table, event: Event) {
+    table.filterGlobal(
+        (event.target as HTMLInputElement).value,
+        'contains'
+    );
+}
+
 
   vendorDelete(vendor: Vendor) {
     console.log("vendor id is:" + vendor.id);
