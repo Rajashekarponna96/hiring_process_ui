@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-//import { PreBoardingModule } from './pre-boarding/pre-boarding.module';
 
 @NgModule({
     imports: [
@@ -221,7 +220,7 @@ import { RouterModule } from '@angular/router';
                     import('./menus/menus.module').then((m) => m.MenusModule),
             },
             {
-                path: 'vendor-cretae',
+                path: 'vendor-create',
                 data: { breadcrumb: 'vendor-create' },
                 loadChildren: () =>
                     import('./vendor/vendor-create/vendor-create.module').then((m) => m.VendorCreateModule),
