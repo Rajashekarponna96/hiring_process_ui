@@ -221,19 +221,19 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'vendor-create',
-                data: { breadcrumb: 'vendor-create' },
+                data: { breadcrumb: 'Create Vendor' },
                 loadChildren: () =>
                     import('./vendor/vendor-create/vendor-create.module').then((m) => m.VendorCreateModule),
             },
             {
                 path: 'vendor-list',
-                data: { breadcrumb: 'vendor-list' },
+                data: { breadcrumb: 'Vendor' },
                 loadChildren: () =>
                     import('./vendor/vendor-list/vendor-list.module').then((m) => m.VendorListModule),
             },
             {
                 path: 'vendor-edit',
-                data: { breadcrumb: 'vendor-edit' },
+                data: { breadcrumb: 'Edit Vendor' },
                 loadChildren: () =>
                     import('./vendor/vendor-edit/vendor-edit.module').then((m) => m.VendorEditModule),
             },

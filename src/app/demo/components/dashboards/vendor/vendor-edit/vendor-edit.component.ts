@@ -6,6 +6,8 @@ import { Vendor } from '../../../model/vendor';
 import { Poc } from '../../../model/poc';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { UserAccout } from '../../../model/userAccount';
+import { Role } from '../../../model/role';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -19,6 +21,9 @@ export class VendorEditComponent {
 
   constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
 
+  userAccount = new UserAccout();
+  role = new Role();
+  
   showPocsFields: boolean = false;
   vendor: Vendor = new Vendor(); // Initialize vendor object
   editedPocIndex: number | null = null; // Index of the edited POC
@@ -74,7 +79,16 @@ export class VendorEditComponent {
   }
 
   updateVendor() {
-    this.vendor.pocs = this.vendorPocs;
+
+    let email = this.vendor.email;
+    let mobile = this.vendor.mobile;
+    this.userAccount.userName = email;
+    this.userAccount.password = mobile;
+    this.role.name = 'Admin';
+    this.role.description = 'This is for Admin';
+    this.userAccount.role = this.role;
+    this.vendor.userAccout = this.userAccount;
+    
     this.http.put<Vendor>('http://localhost:9000/vendor/' + this.vendor.id, this.vendor).subscribe(
       res => {
         console.log(res);
@@ -92,7 +106,7 @@ export class VendorEditComponent {
 
     if (vendor) {
       this.vendor = vendor;
-      this.vendorPocs = this.vendor.pocs;
+      
     } else {
       console.error('Vendor data is missing in state.');
     }

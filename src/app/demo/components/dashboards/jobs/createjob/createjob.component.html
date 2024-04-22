@@ -16,7 +16,7 @@
                     <div class="field col-12 md:col-6">
                         <label for="description">Description<span [style.display]="job.description ? 'none' : 'inline'" style="color: red">*</span></label>
                         <textarea pInputText id="description" name="description" type="text" ngModel required
-                            minlength="2" maxlength="100" placeholder="Enter Description" [(ngModel)]="job.description"
+                            minlength="2"  placeholder="Enter Description" [(ngModel)]="job.description"
                             required #description="ngModel"></textarea>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)">
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
