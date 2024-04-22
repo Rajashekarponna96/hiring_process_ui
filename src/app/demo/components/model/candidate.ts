@@ -15,13 +15,14 @@ export class Candidate {
     mobile: string | undefined;
     alterMobile:string | undefined
     source!: Source;
-    stage!: string;
-    current!: Location; 
-    preferred!: Location; 
-    avialToJoin!:string 
+    // stage!: string;
+    stage: string | undefined;
+    current!: Location;
+    preferred!: Location;
+    avialToJoin!:string
     currentSalary!:number
     expectedSalary: number | undefined;
-    currency!: Currency; 
+    currency!: Currency;
     gender: string | undefined;
     dateOfBirth: Date | undefined;
     skills:string[] =['']
@@ -29,7 +30,7 @@ export class Candidate {
     educations!: Education[];
     talentPool!: TalentPool;
     job!:Job
-    
+
 
 
 }

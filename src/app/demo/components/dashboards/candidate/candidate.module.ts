@@ -27,12 +27,13 @@ import { SliderModule } from 'primeng/slider';
 import { CandidateComponent } from './candidate.component';
 import { TableModule } from 'primeng/table';
 
-
-
+import { RippleModule } from 'primeng/ripple';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuModule } from 'primeng/menu';
 @NgModule({
 	declarations: [CandidateComponent],
 	imports: [
-		CommonModule,
+		CommonModule,SplitButtonModule,
 		FormsModule,
 		ReactiveFormsModule,
 		CandidateRoutingModule,
@@ -59,7 +60,9 @@ import { TableModule } from 'primeng/table';
 		SelectButtonModule,
 		CheckboxModule,
 		ButtonModule,
-		TableModule
+		TableModule,
+		ToggleButtonModule,
+		MenuModule
 
 	]
 })
