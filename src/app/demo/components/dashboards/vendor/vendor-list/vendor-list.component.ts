@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Vendor } from '../../../model/vendor';
 import { MessageService, ConfirmationService } from 'primeng/api';
@@ -52,7 +52,29 @@ export class VendorListComponent implements OnInit {
   }
 
   navigateToCreateVendor() {
-    this.router.navigate(['vendor-cretae'])
+    this.router.navigate(['vendor-create']);
+  }
+
+  handleEditVendor(vendor: Vendor, vendorId: number) {
+    this.router.navigate(['vendor-edit'], { state: { vendorId: vendorId, vendor: vendor } });
+  }
+
+  vendorDelete(vendor: Vendor) {
+    console.log("vendor id is:" + vendor.id);
+    this.http.delete<Vendor[]>('http://localhost:9000/vendor/' + vendor.id)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.getAllVendorList();
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occurred.');
+          } else {
+            console.log('Server-side error occurred.');
+          }
+        }
+      );
+  }
 }
 
-}
