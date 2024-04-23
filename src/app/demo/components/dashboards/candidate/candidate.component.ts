@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
@@ -10,10 +10,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
     styleUrls: ['./candidate.component.scss'],
 })
 export class CandidateComponent {
-
+    @ViewChild('dt')
+    dataTable!: Table;
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
     candidate: Candidate = new Candidate();
     candidates: Candidate[] = [];
+    filteredCandidates: Candidate[] = [];
+    displayFilterFields = false;
 
     navigateToCreateCandidate() {
         this.router.navigate(['menus'])
@@ -26,6 +29,59 @@ export class CandidateComponent {
             'contains'
         );
     }
+
+    // onGlobalFilter1(event: Event){
+    //     return this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates');
+
+    // }
+    // getAllCandidatesListForGlobelFilter(){
+    //     return this.getCandidateList().
+    //         subscribe((data) => {
+    //             console.log(data);
+    //             this.candidates = data;
+    //             console.log("candidate list are" + this.candidates)
+    //             this.changeDetectorRefs.markForCheck();
+    //         });
+
+    // }
+
+    // getAllCandidatesListForGlobalFilter(inputValue: any) {
+    //     this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates?firstName=this.inputValue&lastName=this.inputValue&email=this.inputValue')
+    //         .subscribe((data) => {
+    //             console.log(data);
+    //             this.candidates = data;
+    //             this.filteredCandidates = data; // Initialize filteredCandidates with all candidates
+    //         });
+    // }
+
+    getAllCandidatesListForGlobalFilter(inputValue: any) {
+        this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates?firstName=this.inputValue&lastName=this.inputValue&email=this.inputValue')
+            .subscribe((data) => {
+                console.log(data);
+                this.candidates = data;
+                this.filteredCandidates = data; // Initialize filteredCandidates with all candidates
+            });
+    }
+
+    onGlobalFilter1(event: any) {
+        const inputElement = event.target as HTMLInputElement;
+        const inputValue = inputElement.value;
+        console.log('Input Value:', inputValue);
+        this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates', {
+            params: {
+                firstName: inputValue,
+                lastName:inputValue,
+                email: inputValue
+            }
+        }).subscribe((candidates: Candidate[]) => {
+            this.candidates = candidates;
+        });
+
+        // this.getAllCandidatesListForGlobalFilter(inputValue);
+
+        
+    }
+
 
     getCandidateList() {
         return this.http.get<Candidate[]>('http://localhost:9000/candidate/all');
@@ -72,6 +128,15 @@ export class CandidateComponent {
             );
 
     }
+
+
+    toggleFilter() {
+        this.displayFilterFields = !this.displayFilterFields;
+        if (!this.displayFilterFields) {
+          // Reset filtering
+          this.dataTable.reset();
+        }
+      }
 
 
 
