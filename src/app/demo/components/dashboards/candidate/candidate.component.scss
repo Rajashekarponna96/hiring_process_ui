@@ -6,3 +6,43 @@
 .button-container button {
     margin-right: 8px; 
 }
+.button-container {
+    position: relative;
+}
+
+.stages-scroll-container {
+    position: absolute;
+    top: 30px; /* Adjust this value according to your layout */
+    left: 0;
+    z-index: 999;
+}
+
+.stages-container {
+    max-height: 150px; /* Adjust the max-height as needed */
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.stages-container.show {
+    display: block;
+}
+
+.stages-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stages-container ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.stages-container ul li:hover {
+    background-color: #f0f0f0;
+}
+

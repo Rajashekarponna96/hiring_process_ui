@@ -26,8 +26,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { SliderModule } from 'primeng/slider';
 import { CandidateComponent } from './candidate.component';
 import { TableModule } from 'primeng/table';
-
-
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
 	declarations: [CandidateComponent],
@@ -59,7 +60,10 @@ import { TableModule } from 'primeng/table';
 		SelectButtonModule,
 		CheckboxModule,
 		ButtonModule,
-		TableModule
+		TableModule,
+		TieredMenuModule,
+		MenuModule,
+		MenubarModule
 
 	]
 })

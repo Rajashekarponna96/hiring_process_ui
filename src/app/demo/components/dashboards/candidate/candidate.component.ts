@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-candidate',
@@ -10,9 +11,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
     styleUrls: ['./candidate.component.scss'],
 })
 export class CandidateComponent {
-    @ViewChild('dt')
-    dataTable!: Table;
-    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+
+    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+            
+     }
+
+
     candidate: Candidate = new Candidate();
     candidates: Candidate[] = [];
     filteredCandidates: Candidate[] = [];
@@ -129,6 +133,16 @@ export class CandidateComponent {
 
     }
 
+    menuitems: MenuItem[] = [];
+    
+    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+    showStages: boolean = false;
+  
+    toggleStages() {
+      this.showStages = !this.showStages;
+    }
+
+
 
     toggleFilter() {
         this.displayFilterFields = !this.displayFilterFields;
@@ -137,9 +151,6 @@ export class CandidateComponent {
           this.dataTable.reset();
         }
       }
-
-
-
 
 
 
