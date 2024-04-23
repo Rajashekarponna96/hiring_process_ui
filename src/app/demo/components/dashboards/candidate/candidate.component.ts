@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MenuItem } from 'primeng/api';
 
 @Component({
     selector: 'app-candidate',
@@ -11,7 +12,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class CandidateComponent {
 
-    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+
+
+    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+            
+     }
+
+
+
     candidate: Candidate = new Candidate();
     candidates: Candidate[] = [];
 
@@ -72,10 +80,14 @@ export class CandidateComponent {
             );
 
     }
-
-
-
-
+    menuitems: MenuItem[] = [];
+    
+    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+    showStages: boolean = false;
+  
+    toggleStages() {
+      this.showStages = !this.showStages;
+    }
 
 
     ngOnInit() {
