@@ -11,7 +11,8 @@ import { MenuItem } from 'primeng/api';
     styleUrls: ['./candidate.component.scss'],
 })
 export class CandidateComponent {
-
+    @ViewChild('dt')
+    dataTable!: Table;
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
             
      }
