@@ -15,6 +15,7 @@ import { dE } from '@fullcalendar/core/internal-common';
 export class RecruiterComponent {
     recruiter: Recruiter = new Recruiter();
     recrutiers: Recruiter[] = [];
+    
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -37,11 +38,33 @@ export class RecruiterComponent {
         });
     }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal(
-            (event.target as HTMLInputElement).value,
-            'contains'
-        );
+    // onGlobalFilter(table: Table, event: Event) {
+    //     table.filterGlobal(
+    //         (event.target as HTMLInputElement).value,
+    //         'contains'
+    //     );
+    // }
+
+    onGlobalFilter1(event: Event) {
+        const inputElement = event.target as HTMLInputElement;
+        const inputValue = inputElement.value;
+        console.log('Input Value:', inputValue);
+        this.http.get<Recruiter[]>('http://localhost:9000/recruiter/searchpage', {
+            params: {
+                // firstName: inputValue,
+                // lastName:inputValue,
+                // email: inputValue
+                code:inputValue,
+                page: 0,
+                size: 2
+
+            }
+        }).subscribe((data) => {
+            console.log(data);
+            this.recrutiers = data;
+             this.changeDetectorRefs.markForCheck();
+        });
+
     }
 
 
@@ -59,7 +82,7 @@ export class RecruiterComponent {
     ngOnInit() {
         // Retrieve the recruiter object from history.state
 
-        this.getAllRecruiterList();
+         this.getAllRecruiterList();
         const recruiter = history.state.recruiter;
 
         // Check if the recruiter object exists
