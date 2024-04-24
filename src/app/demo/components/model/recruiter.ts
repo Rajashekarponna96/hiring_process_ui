@@ -8,4 +8,5 @@ export class Recruiter {
     mobile!: string;
     userAccout?: UserAccout;
   status: any;
+  content!: any[];
 }
