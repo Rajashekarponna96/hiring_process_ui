@@ -67,14 +67,19 @@ export class CandidateComponent {
         const inputElement = event.target as HTMLInputElement;
         const inputValue = inputElement.value;
         console.log('Input Value:', inputValue);
-        this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates', {
+        this.http.get<any>('http://localhost:9000/candidate/searchpage', {
             params: {
-                firstName: inputValue,
-                lastName:inputValue,
-                email: inputValue
+                // firstName: inputValue,
+                // lastName:inputValue,
+                // email: inputValue
+                code:inputValue,
+                page: 0,
+                size: 3
             }
-        }).subscribe((candidates: Candidate[]) => {
-            this.candidates = candidates;
+        }).subscribe((data) => {
+           
+            this.candidates = data["content"]
+             this.changeDetectorRefs.markForCheck();
         });
 
         // this.getAllCandidatesListForGlobalFilter(inputValue);

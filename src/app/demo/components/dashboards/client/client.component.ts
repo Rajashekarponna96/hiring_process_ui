@@ -66,11 +66,41 @@ export class ClientComponent  implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
+
     table.filterGlobal(
       (event.target as HTMLInputElement).value,
       'contains'
     );
   }
+
+  onGlobalFilter1(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+    console.log('Input Value:', inputValue);
+    this.http.get<any>('http://localhost:9000/client/searchpage', {
+        params: {
+            // firstName: inputValue,
+            // lastName:inputValue,
+            // email: inputValue
+            code:inputValue,
+            page: 0,
+            size: 3
+        }
+    }).subscribe((data) => {
+       
+        this.clients = data["content"]
+         this.changeDetectorRefs.markForCheck();
+    });
+
+    // this.getAllCandidatesListForGlobalFilter(inputValue);
+
+    
+}
+
+  
+
+
+
   getClientList() {
     return this.http.get<Client[]>('http://localhost:9000/client/all');
   }
