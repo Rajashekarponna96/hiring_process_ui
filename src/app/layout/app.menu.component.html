@@ -1,6 +1,17 @@
-<ul class="layout-menu">
-    <ng-container *ngFor="let item of model; let i = index;">
+<!-- <ul class="layout-menu">
+    <ng-container *ngFor="let item of model; let i = index;" isFeatureEnable(item.label);>
         <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>
         <li *ngIf="item.separator" class="menu-separator"></li>
+    </ng-container>
+</ul> -->
+<!-- {{model | json}} -->
+<ul class="layout-menu">
+    <ng-container *ngFor="let item of model; let i = index;">
+        <li *ngIf="item && isPermissionsEnable(item)">
+            <ng-container *ngIf="!item.separator">
+                <li app-menuitem [item]="item" [index]="i" [root]="true"></li>
+            </ng-container>
+            <ng-container *ngIf="item.separator" class="menu-separator"></ng-container>
+        </li>
     </ng-container>
 </ul>
