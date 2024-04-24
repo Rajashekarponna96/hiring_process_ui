@@ -46,6 +46,9 @@ import { ButtonModule } from 'primeng/button';
         RippleModule,
         RouterModule,
         AppConfigModule
-    ]
+    ],
+    exports: [
+        AppLayoutComponent
+      ]
 })
 export class AppLayoutModule { }

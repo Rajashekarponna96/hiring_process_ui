@@ -24,7 +24,7 @@ export class LoginuserComponent implements OnInit {
   constructor(private layoutService: LayoutService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router: Router,private messageService: MessageService) { }
 
   ngOnInit() {
-    
+
   }
 
   rememberMe: boolean = false;
@@ -33,13 +33,13 @@ export class LoginuserComponent implements OnInit {
     return this.layoutService.config.colorScheme !== 'light';
   }
 
-  
+
 
   addLogin() {;
     this.http.post<UserAccout>('http://localhost:9000/userAccount/login', this.userAccount).subscribe(
       res => {
         console.log(res);
-        
+
         this.userAccount = res;
         localStorage.setItem('userDetails', JSON.stringify(this.userAccount));
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'userLogin sucessfully', life: 3000 });
@@ -49,12 +49,12 @@ export class LoginuserComponent implements OnInit {
         if (err.error instanceof Error) {
           console.log("Client-side error occured.");
         } else {
-          console.log("Server-side error occured."); 
+          console.log("Server-side error occured.");
           this.router.navigate(['/loginuser']);
         }
 
       });
-    
+
 
   }
   }

@@ -1,15 +1,80 @@
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../demo/service/auth.service';
+import { MenuItem } from 'primeng/api';
+import { Role } from '../demo/components/model/role'; // Import the Role model
+import { Permission } from '../demo/components/model/permission';
+import { UserAccout } from '../demo/components/model/userAccount';
 
 @Component({
     selector: 'app-menu',
     templateUrl: './app.menu.component.html'
 })
 export class AppMenuComponent implements OnInit {
+    model: MenuItem[] = [];
+    permissions!: Permission;
 
-    model: any[] = [];
+    constructor(private authService: AuthService) { }
+
+    permisionslist() {
+        this.permissions = JSON.parse(localStorage.getItem('userDetails') || '{}');
+        console.log('permission list' + JSON.stringify(this.permissions));
+    }
+
+    // isPermissionsEnable(menuItem: MenuItem) { debugger;
+    //     debugger;
+    //     if(menuItem!=undefined && menuItem?.items!=undefined){
+    //       var permission =  menuItem?.items[0]?.label
+    //       const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    //     console.log("permission array size is" + user.role?.permissions);
+    //     console.log("permission name is" + menuItem);
+    //      let permissions: Permission[] = user.role?.permissions || [];
+    //     for (let i = 0; i <= permissions.length; i++) {
+
+    //         //const featureArray: Features[] = JSON.parse(JSON.stringify(this.feature));
+
+    //         if (menuItem.items[0].label ===permissions[i].name) {
+
+    //             console.log("permission name list are " + permissions[i].name);
+
+    //             return true;
+    //         }
+    //     }
+
+    //     }
+
+
+    //     //console.log("featutre is not found");
+    //     return false;
+
+
+    // }
+
+    isPermissionsEnable(menuItem: MenuItem) {
+        debugger;
+        var found=false;
+        if(menuItem!=undefined && menuItem?.items!=undefined){
+          var permission =  menuItem?.items[0]?.label
+          const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+         let permissions: Permission[] = user.role?.permissions || [];
+
+        for (let i = 0; i <= permissions.length; i++) {
+            if (permission ===permissions[i].name) {
+                console.log("permission name list are " + permissions[i].name);
+                found=true;
+		break;
+            }
+        }
+
+        }
+        return found;
+
+
+    }
+
+
 
     ngOnInit() {
+
         this.model = [
             //home
 
@@ -86,33 +151,6 @@ export class AppMenuComponent implements OnInit {
             },
 
 
-            //pre-boarding
-            // {
-            //     label: 'Pre-Boarding',
-            //     icon: 'pi pi-home',
-            //     items: [
-            //         {
-            //             label: 'pre-boarding',
-            //             icon: 'pi pi-fw pi-home',
-            //             routerLink: ['/pre-boarding']
-            //         }
-
-            //     ]
-            // },
-
-            //reports
-            // {
-            //     label: 'Reports',
-            //     icon: 'pi pi-home',
-            //     items: [
-            //         {
-            //             label: 'Reports',
-            //             icon: 'pi pi-fw pi-home',
-            //             routerLink: ['/reports']
-            //         }
-
-            //     ]
-            // },
 
 
             //settings
