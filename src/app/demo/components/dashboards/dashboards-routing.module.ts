@@ -20,14 +20,14 @@ import { RouterModule } from '@angular/router';
                         (m) => m.BankingDashboardModule
                     ),
             },
-            {
-                path: 'loginuser',
-                data: { breadcrumb: 'Login User' },
-                loadChildren: () =>
-                    import('./loginuser/loginuser.module').then(
-                        (m) => m.LoginuserModule
-                    ),
-            },
+            // {
+            //     path: 'loginuser',
+            //     data: { breadcrumb: 'Login User' },
+            //     loadChildren: () =>
+            //         import('./loginuser/loginuser.module').then(
+            //             (m) => m.LoginuserModule
+            //         ),
+            // },
             {
                 path: 'registeruser',
                 data: { breadcrumb: 'Register User' },

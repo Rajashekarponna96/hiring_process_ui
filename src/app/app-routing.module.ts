@@ -15,6 +15,14 @@ const routes: Routes = [
             { path: '', loadChildren: () => import('./demo/components/dashboards/dashboards.module').then(m => m.DashboardsModule) },
         ]
     },
+    {
+        path: 'loginuser',
+        data: { breadcrumb: 'Login User' },
+        loadChildren: () =>
+            import('./demo/components/dashboards/loginuser/loginuser.module').then(
+                (m) => m.LoginuserModule
+            ),
+    },
     { path: 'notfound', loadChildren: () => import('./demo/components/notfound/notfound.module').then(m => m.NotfoundModule) },
     { path: '**', redirectTo: '/notfound' }
 ];
