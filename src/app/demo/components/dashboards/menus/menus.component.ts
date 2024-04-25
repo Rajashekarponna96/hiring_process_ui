@@ -14,6 +14,7 @@ import { Candidate } from '../../model/candidate';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
+import { UserAccout } from '../../model/userAccount';
 
 
 @Component({
@@ -157,7 +158,7 @@ export class MenusComponent implements OnInit {
   menuItems: MenuItem[] = [];
 
   totalSteps = 4;
-
+  createdBy!: string;
 
   itemss: any[] = [
     { label: 'Profile' },
@@ -220,7 +221,7 @@ export class MenusComponent implements OnInit {
 
   showSuccessMessage: boolean = false;
 
-
+  userAccounts!: UserAccout[];
 
 
 
@@ -261,11 +262,15 @@ export class MenusComponent implements OnInit {
     this.router.navigate(['/candidate'])
 
   }
+  
   addCandidate() {
     console.log("the candidate detailes are " + this.candidate)
     this.candidate.experiences = this.experienceDetails
     this.candidate.educations = this.educationDetails
     this.candidate.skills = this.skills
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    this.createdBy = user.userName;
+    this.candidate.createdBy=this.createdBy;
 
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
       res => {
