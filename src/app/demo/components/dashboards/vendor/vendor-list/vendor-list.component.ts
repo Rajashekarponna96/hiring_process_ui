@@ -67,6 +67,28 @@ export class VendorListComponent implements OnInit {
     );
 }
 
+onGlobalFilter1(event: Event) {
+  const inputElement = event.target as HTMLInputElement;
+  const inputValue = inputElement.value;
+  console.log('Input Value:', inputValue);
+  this.http.get<any>('http://localhost:9000/vendor/searchpage', {
+      params: {
+          // firstName: inputValue,
+          // lastName:inputValue,
+          // email: inputValue
+          code:inputValue,
+          page: 0,
+          size: 3
+
+      }
+  }).subscribe((data) => {
+     
+      this.vendors = data["content"]
+       this.changeDetectorRefs.markForCheck();
+  });
+
+}
+
 
   vendorDelete(vendor: Vendor) {
     console.log("vendor id is:" + vendor.id);
