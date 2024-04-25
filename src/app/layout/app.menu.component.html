@@ -23,10 +23,10 @@
 <ul class="layout-menu">
     <ng-container *ngFor="let item of model; let i = index;">
 
-        <li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true">
+        <li app-menuitem *ngIf="isPermissionsEnable(item.permissionName)" [item]="item" [index]="i" [root]="true">
         </li>
         <!-- <div> {{isPermissionsEnable(i)}}</div> -->
-        <li *ngIf="item.separator" class="menu-separator"></li>
+        <!-- <li *ngIf="item.separator" class="menu-separator"></li> -->
 
     </ng-container>
 </ul>
