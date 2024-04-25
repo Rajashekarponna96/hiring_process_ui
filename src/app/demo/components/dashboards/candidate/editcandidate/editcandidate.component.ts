@@ -12,6 +12,7 @@ import { Experience } from '../../../model/experience';
 import { Job } from '../../../model/job';
 import { Source } from '../../../model/source';
 import { TalentPool } from '../../../model/talentpool';
+import { UserAccout } from '../../../model/userAccount';
 
 @Component({
   selector: 'app-editcandidate',
@@ -217,9 +218,8 @@ export class EditcandidateComponent implements OnInit {
 
   showSuccessMessage: boolean = false;
 
-
-
-
+  userAccounts!: UserAccout[];
+  modifiedBy!: string;
 
   addSkills(event?: any) {
     if (event) {
@@ -262,6 +262,9 @@ export class EditcandidateComponent implements OnInit {
     this.candidate.experiences = this.experienceDetails;
     this.candidate.educations = this.educationDetails;
     this.candidate.skills = this.skills;
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    this.modifiedBy = user.userName;
+    this.candidate.modifiedBy=this.modifiedBy;
 
     this.http.put<Candidate>('http://localhost:9000/candidate/' + this.candidate.id, this.candidate).subscribe(
       res => {

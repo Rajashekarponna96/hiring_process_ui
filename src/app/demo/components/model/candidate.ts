@@ -29,7 +29,8 @@ export class Candidate {
     educations!: Education[];
     talentPool!: TalentPool;
     job!:Job
-    
+    createdBy!: string;
+    modifiedBy!: string;
 
 
 }
