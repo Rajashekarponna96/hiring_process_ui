@@ -49,8 +49,10 @@ export class AppMenuComponent implements OnInit {
 
     // }
 
-    isPermissionsEnable(menuItem: MenuItem) {
+    isPermissionsEnable(i: number) {
         debugger;
+        var menuItem=this.model[i];
+
         var found=false;
         if(menuItem!=undefined && menuItem?.items!=undefined){
           var permission =  menuItem?.items[0]?.label
@@ -131,7 +133,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-home',
                 items: [
                     {
-                        label: 'Client',
+                        label: 'client',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/client']
                     },
@@ -142,7 +144,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-vendor',
                 items: [
                     {
-                        label: 'Vendor',
+                        label: 'vendor',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/vendor-list']
                     },
