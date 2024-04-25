@@ -12,75 +12,52 @@ import { UserAccout } from '../demo/components/model/userAccount';
 export class AppMenuComponent implements OnInit {
     model: MenuItem[] = [];
     permissions!: Permission;
+    permissionList: Permission[] = []
 
     constructor(private authService: AuthService) { }
 
     permisionslist() {
-        this.permissions = JSON.parse(localStorage.getItem('userDetails') || '{}');
-        console.log('permission list' + JSON.stringify(this.permissions));
+        debugger;
+        // this.permissions = JSON.parse(localStorage.getItem('userDetails') || '{}');
+        const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+        this.permissionList = user.role?.permissions || [];
+        console.log('permission list' + this.permissionList);
     }
 
-    // isPermissionsEnable(menuItem: MenuItem) { debugger;
-    //     debugger;
-    //     if(menuItem!=undefined && menuItem?.items!=undefined){
-    //       var permission =  menuItem?.items[0]?.label
-    //       const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    //     console.log("permission array size is" + user.role?.permissions);
-    //     console.log("permission name is" + menuItem);
-    //      let permissions: Permission[] = user.role?.permissions || [];
-    //     for (let i = 0; i <= permissions.length; i++) {
-
-    //         //const featureArray: Features[] = JSON.parse(JSON.stringify(this.feature));
-
-    //         if (menuItem.items[0].label ===permissions[i].name) {
-
-    //             console.log("permission name list are " + permissions[i].name);
-
-    //             return true;
-    //         }
-    //     }
-
-    //     }
 
 
-    //     //console.log("featutre is not found");
-    //     return false;
 
-
-    // }
-
-    isPermissionsEnable(i: number) {
+    isPermissionsEnable(sidemenuname: string) {
         debugger;
-        var menuItem=this.model[i];
 
-        var found=false;
-        if(menuItem!=undefined && menuItem?.items!=undefined){
-          var permission =  menuItem?.items[0]?.label
-          const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-         let permissions: Permission[] = user.role?.permissions || [];
 
-        for (let i = 0; i <= permissions.length; i++) {
-            if (permission ===permissions[i].name) {
-                console.log("permission name list are " + permissions[i].name);
-                found=true;
-		break;
+        var found = false;
+      //  var menuItem=this.model[];
+
+        for (var menuItem of  this.permissionList) {debugger;
+            console.log('menauItemlist :'+menuItem.name)
+            console.log('sidemeanu :'+sidemenuname)
+            console.log('condition :'+menuItem.name == sidemenuname)
+            if (menuItem.name.toLowerCase() == sidemenuname.toLowerCase()) {
+                found = true;
+
             }
-        }
+          }
 
-        }
+
         return found;
 
-
     }
 
 
-
+    //
     ngOnInit() {
-
+        this.permisionslist();
         this.model = [
             //home
 
             {
+                permissionName: 'home',
                 icon: 'pi pi-home',
                 items: [
                     {
@@ -92,9 +69,11 @@ export class AppMenuComponent implements OnInit {
             },
 
             {
+                permissionName: 'job',
                 icon: 'pi pi-th-large',
                 items: [
                     {
+
                         label: 'Job',
                         icon: 'pi pi-briefcase',
                         items: [
@@ -119,6 +98,7 @@ export class AppMenuComponent implements OnInit {
             },
             //candidate
             {
+                permissionName: 'candidate',
                 icon: 'pi pi-home',
                 items: [
                     {
@@ -130,6 +110,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                permissionName: 'client',
                 icon: 'pi pi-home',
                 items: [
                     {
@@ -141,6 +122,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                permissionName: 'vendor',
                 icon: 'pi pi-vendor',
                 items: [
                     {
@@ -157,6 +139,7 @@ export class AppMenuComponent implements OnInit {
 
             //settings
             {
+                permissionName: 'settings',
                 icon: 'pi pi-home',
                 items: [
                     {
