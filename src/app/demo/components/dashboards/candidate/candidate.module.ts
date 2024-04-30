@@ -29,6 +29,7 @@ import { TableModule } from 'primeng/table';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
 	declarations: [CandidateComponent],
@@ -63,7 +64,8 @@ import { MenubarModule } from 'primeng/menubar';
 		TableModule,
 		TieredMenuModule,
 		MenuModule,
-		MenubarModule
+		MenubarModule,
+		DialogModule
 
 	]
 })

@@ -13,12 +13,18 @@ import { MenuItem } from 'primeng/api';
 export class CandidateComponent {
     @ViewChild('dt')
     dataTable!: Table;
+    submitted: boolean = false;
+    productDialog: boolean = false;
+    fetchedCandidateStage!: string;
+    
+    
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
             
      }
 
 
     candidate: Candidate = new Candidate();
+    selectededCandidate!: Candidate;
     candidates: Candidate[] = [];
     filteredCandidates: Candidate[] = [];
     displayFilterFields = false;
@@ -147,7 +153,13 @@ export class CandidateComponent {
     toggleStages() {
       this.showStages = !this.showStages;
     }
-
+    openNew(candidate:Candidate) {
+        console.log("candidate dertails for stage:"+candidate.email)
+       this.candidate.stage = candidate.stage
+       this.selectededCandidate =candidate
+        this.submitted = false;
+        this.productDialog = true;
+    }
 
 
     toggleFilter() {
@@ -158,6 +170,32 @@ export class CandidateComponent {
         }
       }
 
+      hideDialog() {
+        this.productDialog = false;
+        this.submitted = false;
+    }
+
+
+    updateCandidate(candidate:Candidate,stage:string) {debugger
+        
+       candidate.stage  = stage;
+        
+        
+        this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
+          res => {
+            console.log(res);
+            this.productDialog = false;
+            this.submitted = false; 
+          },
+          (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+              console.log("Client-side error occurred:", err.error.message);
+            } else {
+              console.log("Server-side error occurred:", err.status, err.message);
+            }
+          }
+        );
+      }
 
 
     ngOnInit() {
