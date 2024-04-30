@@ -1,0 +1,94 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.add-new-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-container {
+  position: relative;
+  border-radius:4px;
+}
+
+.search-input {
+  padding-left: 30px; /* Adjust as needed */
+   width: 250px;/* Adjust width as needed */
+   height: 40px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;/* Adjust as needed */
+  padding-right: 30px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensure icon doesn't interfere with input */
+  color: #555; /* Adjust color as needed */
+  font-size: 18px; /* Adjust size as needed */
+}
+
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2}
+
+
+
+
+  .pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    padding: auto;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.custom-dropdown {
+    margin-left: 30px; /* Adjust spacing between the last arrow and the dropdown */
+    font-size: 16px; /* Adjust font size of the dropdown */
+    height: 38px;
+    width: 60px;
+}

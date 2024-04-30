@@ -55,6 +55,9 @@ export class VendorListComponent implements OnInit {
   navigateToCreateVendor() {
     this.router.navigate(['vendor-create']);
   }
+  navigateToCreateVendor1() {
+    this.router.navigate(['vendor-create']);
+  }
 
   handleEditVendor(vendor: Vendor, vendorId: number) {
     this.router.navigate(['vendor-edit'], { state: { vendorId: vendorId, vendor: vendor } });
