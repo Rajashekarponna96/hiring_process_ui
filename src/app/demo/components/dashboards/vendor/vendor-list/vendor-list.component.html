@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-***********" crossorigin="anonymous" />
 <div class="card">
   <p-table #dt [value]="vendors" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
       responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -46,9 +47,145 @@
 
                       <button pButton class="p-button-sm p-button-rounded p-button-danger"
                           (click)="vendorDelete(vendor)" pButton icon="pi pi-check" icon="pi pi-trash"></button>
+                          
                   </div>
               </td>
           </tr>
       </ng-template>
   </p-table>
 </div>
+
+
+<!--Sample Table-->
+
+<div class="card">
+    <div>
+        <div class="header-container">
+            <div class="search-container">
+                <input type="text" placeholder="Global Search" class="search-input" (input)="onGlobalFilter1($event)">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            <button class="add-new-button" (click)="navigateToCreateVendor1()">Add New</button>
+        </div>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%">VendorName</th>
+                    <th style="width: 20%">Location</th>
+                    <th style="width: 20%">Email</th>
+                    <th style="width: 20%">Mobile</th>
+                    <th style="width: 20%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vendor of vendors">
+                    <td style="width: 20%">{{ vendor.vendorName }}</td>
+                    <td style="width: 20%">{{ vendor.location }}</td>
+                    <td style="width: 20%">{{ vendor.email }}</td>
+                    <td style="width: 20%">{{ vendor.mobile }}</td>
+                    <td>
+                        <!-- <div class="button-container">
+                            <button class="p-button-sm p-button-rounded p-button-success mr-2" icon="pi pi-pencil"></button>
+                            <button class="p-button-sm p-button-rounded p-button-danger" icon="pi pi-trash"></button>
+                            <button pButton pRipple type="button" label="Primary"></button>
+                        </div> -->
+
+                        <div class="button-container">
+                            <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                icon="pi pi-pencil" (click)="handleEditVendor(vendor,vendor.id)"></button>
+      
+                            <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                 pButton icon="pi pi-check" icon="pi pi-trash" (click)="vendorDelete(vendor)"></button>
+                                
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br><br>
+    <span>Showing 1 to 6 of 6 entries </span> 
+    <div class="pagination">
+        <span></span><span></span>
+        <a href="#" >&laquo;</a>
+        <a href="#">&lsaquo;</a>
+        <a href="#" style="border-radius: 50%;background-color: #ddd ">1</a>
+        <a href="#">&rsaquo;</a>
+        <a href="#">&raquo;</a>
+        <select id="recordsPerPage" class="custom-dropdown">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+    
+
+
+    
+</div>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const itemsPerPage = 3; // Change this to adjust items per page
+        const items = document.querySelectorAll('tbody tr');
+        let totalPages = Math.ceil(items.length / itemsPerPage);
+        let currentPage = 1;
+
+        function showPage(page) {
+            items.forEach((item, index) => {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                if (index >= start && index < end) {
+                    item.style.display = 'table-row'; // Display as table row
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function createPaginationButtons() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = ''; // Clear previous buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.addEventListener('click', function () {
+                    currentPage = i;
+                    showPage(currentPage);
+                    highlightButton(currentPage);
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        function highlightButton(page) {
+            const buttons = document.querySelectorAll('.pagination button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                if (parseInt(button.innerText) === page) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // Update pagination when items change
+        function updatePagination() {
+            totalPages = Math.ceil(items.length / itemsPerPage);
+            createPaginationButtons();
+            highlightButton(currentPage);
+        }
+
+        // Initial setup
+        showPage(currentPage);
+        createPaginationButtons();
+        highlightButton(currentPage);
+
+        // Example function to add new item (You need to call this when adding/removing items)
+        function addItemToTable() {
+            // Add new item to table
+            // Then call updatePagination()
+        }
+    });
+</script> -->
