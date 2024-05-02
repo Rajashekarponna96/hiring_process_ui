@@ -85,7 +85,7 @@ onGlobalFilter1(event: Event) {
 
       }
   }).subscribe((data) => {
-     
+
       this.vendors = data["content"]
        this.changeDetectorRefs.markForCheck();
   });
@@ -110,5 +110,10 @@ onGlobalFilter1(event: Event) {
         }
       );
   }
+
+  goToFirstPage(){}
+  goToPreviousPage(){}
+  goToNextPage(){}
+  goToLastPage(){}
 }
 
