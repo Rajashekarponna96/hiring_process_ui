@@ -1,0 +1,50 @@
+<div class="card">
+    <p-table #dt [value]="candidateEmails" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]" [globalFilterFields]="['subject', 'body', 'title']">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+                <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Global Search"
+                        class="w-full" />
+                </span>
+                <button (click)="navigateToCreateEmail()" pButton
+                    class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus"
+                    label="Add New"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="title" class="white-space-nowrap" style="width: 20%">
+                  Title<p-sortIcon field="candidateEmail.title"></p-sortIcon>
+                </th>
+                <th pSortableColumn="subject" class="white-space-nowrap" style="width: 20%">
+                    Subject<p-sortIcon field="candidateEmail.subject"></p-sortIcon>
+                </th>
+                <th pSortableColumn="body" class="white-space-nowrap" style="width: 40%">
+                    Body<p-sortIcon field="candidateEmail.body"></p-sortIcon>
+                </th>
+                <th class="white-space-nowrap" style="width: 20%">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-candidateEmail>
+            <tr>
+                <td>{{ candidateEmail.title }}</td>
+                <td>
+                    {{ candidateEmail.subject}}
+                </td>
+                <td>{{ candidateEmail.body}}</td>
+                <td>
+                    <div class="button-container">
+                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                            (click)="handleEditEmail(candidateEmail,candidateEmail)" icon="pi pi-pencil"></button>
+  
+                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                            (click)="EmailDelete(candidateEmail)" pButton icon="pi pi-check" icon="pi pi-trash"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
