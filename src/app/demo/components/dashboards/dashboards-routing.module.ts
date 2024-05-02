@@ -237,6 +237,24 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./vendor/vendor-edit/vendor-edit.module').then((m) => m.VendorEditModule),
             },
+            {
+                path: 'email',
+                data: { breadcrumb: 'Email' },
+                loadChildren: () =>
+                    import('./email/email.module').then((m) => m.EmailModule),
+            },
+            {
+                path: 'createemail',
+                data: { breadcrumb: 'Create Email' },
+                loadChildren: () =>
+                    import('./email/createemail/createemail.module').then((m) => m.CreateemailModule),
+            },
+            {
+                path: 'editemail',
+                data: { breadcrumb: 'Edit Email' },
+                loadChildren: () =>
+                    import('./email/editemail/editemail.module').then((m) => m.EditemailModule),
+            },
 
         ]),
     ],

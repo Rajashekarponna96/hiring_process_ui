@@ -133,6 +133,18 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
+            {
+                permissionName: 'email',
+                icon: 'pi pi-mail',
+                items: [
+                    {
+                        label: 'email',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/email']
+                    },
+
+                ]
+            },
 
 
 
