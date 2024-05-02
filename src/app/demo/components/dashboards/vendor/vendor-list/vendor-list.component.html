@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-***********" crossorigin="anonymous" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-***********" crossorigin="anonymous" />
 <div class="card">
   <p-table #dt [value]="vendors" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
       responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -53,7 +53,7 @@
           </tr>
       </ng-template>
   </p-table>
-</div>
+</div> -->
 
 
 <!--Sample Table-->
@@ -105,19 +105,43 @@
             </tbody>
         </table>
     </div><br><br>
-    <span>Showing 1 to 6 of 6 entries </span> 
+    <!-- <span>Showing 1 to 6 of 6 entries </span> 
     <div class="pagination">
         <span></span><span></span>
         <a href="#" >&laquo;</a>
-        <a href="#">&lsaquo;</a>
+        <a  (click)="prevousPage()">previous</a>
         <a href="#" style="border-radius: 50%;background-color: #ddd ">1</a>
-        <a href="#">&rsaquo;</a>
+        <a  (click)="nextPage()">next</a>
         <a href="#">&raquo;</a>
-        <select id="recordsPerPage" class="custom-dropdown">
+        <select id="recordsPerPage" class="custom-dropdown" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
             <option value="10">10</option>
+            <option value="15">15</option>
             <option value="20">20</option>
-            <option value="30">30</option>
-            <!-- Add more options as needed -->
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="15">30</option>
+            <option value="20">40</option>
+           
+        </select>
+        
+    </div> -->
+
+
+
+    <!--<span>Showing {{ (pagination.first ? 1 : (pagination.last ? totalElements - vendors.length + 1 : pagination.first + 1)) }} to {{ (pagination.first ? vendors.length : (pagination.last ? totalElements : pagination.first + vendors.length)) }} of {{ totalElements }} entries</span> -->
+    <div class="pagination">
+        <button (click)="prevPage()" [disabled]="pagination.first">&laquo; Previous</button>
+        <button (click)="nextPage()" [disabled]="pagination.first">Next &raquo;</button>
+        <select id="recordsPerPage" class="custom-dropdown" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
         </select>
     </div>
     
@@ -126,66 +150,3 @@
     
 </div>
 
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const itemsPerPage = 3; // Change this to adjust items per page
-        const items = document.querySelectorAll('tbody tr');
-        let totalPages = Math.ceil(items.length / itemsPerPage);
-        let currentPage = 1;
-
-        function showPage(page) {
-            items.forEach((item, index) => {
-                const start = (page - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                if (index >= start && index < end) {
-                    item.style.display = 'table-row'; // Display as table row
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        function createPaginationButtons() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = ''; // Clear previous buttons
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.innerText = i;
-                button.addEventListener('click', function () {
-                    currentPage = i;
-                    showPage(currentPage);
-                    highlightButton(currentPage);
-                });
-                pagination.appendChild(button);
-            }
-        }
-
-        function highlightButton(page) {
-            const buttons = document.querySelectorAll('.pagination button');
-            buttons.forEach(button => {
-                button.classList.remove('active');
-                if (parseInt(button.innerText) === page) {
-                    button.classList.add('active');
-                }
-            });
-        }
-
-        // Update pagination when items change
-        function updatePagination() {
-            totalPages = Math.ceil(items.length / itemsPerPage);
-            createPaginationButtons();
-            highlightButton(currentPage);
-        }
-
-        // Initial setup
-        showPage(currentPage);
-        createPaginationButtons();
-        highlightButton(currentPage);
-
-        // Example function to add new item (You need to call this when adding/removing items)
-        function addItemToTable() {
-            // Add new item to table
-            // Then call updatePagination()
-        }
-    });
-</script> -->

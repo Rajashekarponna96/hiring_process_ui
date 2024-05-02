@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
     constructor(private authService: AuthService) { }
 
     permisionslist() {
-        debugger;
+        
         // this.permissions = JSON.parse(localStorage.getItem('userDetails') || '{}');
         const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
         this.permissionList = user.role?.permissions || [];
@@ -28,13 +28,13 @@ export class AppMenuComponent implements OnInit {
 
 
     isPermissionsEnable(sidemenuname: string) {
-        debugger;
+        
 
 
         var found = false;
       //  var menuItem=this.model[];
 
-        for (var menuItem of  this.permissionList) {debugger;
+        for (var menuItem of  this.permissionList) {
             console.log('menauItemlist :'+menuItem.name)
             console.log('sidemeanu :'+sidemenuname)
             console.log('condition :'+menuItem.name == sidemenuname)

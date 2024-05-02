@@ -8,4 +8,9 @@ export class Vendor{
     email!: string;
     mobile!: string;
     userAccout?: UserAccout;
+    totalRecords!: number; 
+    recordsPerPage!: number;
+    totalPages!: number;
+    currentPageIndex!: number;
+    size!: number;
 }
