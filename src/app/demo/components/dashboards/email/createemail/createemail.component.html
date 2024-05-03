@@ -7,9 +7,8 @@
                         <label for="title" class="text-900 font-semibold">Title<span [style.display]=" candidateEmail.title ? 'none' : 'inline'" style="color: red">*</span></label>
                         <p-dropdown [options]="titles" [(ngModel)]="candidateEmail.title"
                         [showClear]="true" [filter]="true" placeholder="Select Title"
-                        name="title" optionLabel="name" optionValue="name">
-                       </p-dropdown>
-
+                        name="title" optionLabel="name" optionValue="name" (onChange)="getEmailDataByTitle()">
+                       </p-dropdown>     
                     </div>
                     <div class="col-12 field">
                         <label for="Subject" class="text-900 font-semibold">Subject</label>
@@ -37,5 +36,4 @@
             </form>
         </div>
     </div>
-
 </div>

@@ -114,7 +114,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-home',
                 items: [
                     {
-                        label: 'client',
+                        label: 'Client',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/client']
                     },
@@ -126,7 +126,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-vendor',
                 items: [
                     {
-                        label: 'vendor',
+                        label: 'Vendor',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/vendor-list']
                     },
@@ -138,7 +138,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-mail',
                 items: [
                     {
-                        label: 'email',
+                        label: 'Email-Template',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/email']
                     },
