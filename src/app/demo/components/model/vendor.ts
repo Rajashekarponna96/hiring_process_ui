@@ -1,5 +1,5 @@
 import { UserAccout } from "./userAccount";
-import { VendorPoc } from "./vendorPoc";
+
 
 export class Vendor{
     id!: number;
