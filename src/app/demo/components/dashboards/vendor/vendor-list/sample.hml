@@ -1,0 +1,94 @@
+<div class="card">
+    <div>
+        <div class="header-container">
+            <div class="search-container">
+                <input type="text" placeholder="Global Search" class="search-input" (input)="onGlobalFilter1($event)">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            <button class="add-new-button" (click)="navigateToCreateVendor1()">Add New</button>
+        </div>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%">VendorName</th>
+                    <th style="width: 20%">Location</th>
+                    <th style="width: 20%">Email</th>
+                    <th style="width: 20%">Mobile</th>
+                    <th style="width: 20%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vendor of vendors">
+                    <td style="width: 20%">{{ vendor.vendorName }}</td>
+                    <td style="width: 20%">{{ vendor.location }}</td>
+                    <td style="width: 20%">{{ vendor.email }}</td>
+                    <td style="width: 20%">{{ vendor.mobile }}</td>
+                    <td>
+                        <!-- <div class="button-container">
+                            <button class="p-button-sm p-button-rounded p-button-success mr-2" icon="pi pi-pencil"></button>
+                            <button class="p-button-sm p-button-rounded p-button-danger" icon="pi pi-trash"></button>
+                            <button pButton pRipple type="button" label="Primary"></button>
+                        </div> -->
+
+                        <div class="button-container">
+                            <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                icon="pi pi-pencil" (click)="handleEditVendor(vendor,vendor.id)"></button>
+      
+                            <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                 pButton icon="pi pi-check" icon="pi pi-trash" (click)="vendorDelete(vendor)"></button>
+                                
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br><br>
+    <!-- <span>Showing 1 to 6 of 6 entries </span> 
+    <div class="pagination">
+        <span></span><span></span>
+        <a href="#" >&laquo;</a>
+        <a  (click)="prevousPage()">previous</a>
+        <a href="#" style="border-radius: 50%;background-color: #ddd ">1</a>
+        <a  (click)="nextPage()">next</a>
+        <a href="#">&raquo;</a>
+        <select id="recordsPerPage" class="custom-dropdown" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="15">30</option>
+            <option value="20">40</option>
+           
+        </select>
+        
+    </div> -->
+
+
+
+    <!--<span>Showing {{ (pagination.first ? 1 : (pagination.last ? totalElements - vendors.length + 1 : pagination.first + 1)) }} to {{ (pagination.first ? vendors.length : (pagination.last ? totalElements : pagination.first + vendors.length)) }} of {{ totalElements }} entries</span> -->
+    <div class="pagination">
+        <button (click)="prevPage()" [disabled]="pagination.first">&laquo; Previous</button>
+        <button (click)="nextPage()" [disabled]="pagination.first">Next &raquo;</button>
+        <select id="recordsPerPage" class="custom-dropdown" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+    
+
+
+    
+</div>
+
+
+
