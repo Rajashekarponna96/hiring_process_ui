@@ -34,16 +34,17 @@
                     <td>{{ candidate.lastName }}</td>
                     <td>{{ candidate.email }}</td>
                     <td>{{ candidate.mobile }}</td>
-                    <td>{{ candidate?.source?.name }}</td>
-                    <!-- <td>{{ candidate?.current?.name }}</td>
-                    <td>{{ candidate?.preferred?.name }}</td>
-                    <td>{{ candidate.availToJoin }}</td>
-                    <td>{{ candidate.stage }}</td> -->
+                    <td>{{candidate.source.name}}</td>
+                    <td>{{candidate.current}}</td>
+                    <td>{{candidate.preferred}}</td>
+                    <td>{{ candidate?.avialToJoin }}</td>
+                    <td>{{ candidate.stage }}</td>
                     <td>
                         <div class="button-container">
                             <!-- <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate.id, candidate)" icon="pi pi-pencil"></button> -->
                             <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
                             <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
+                           
                         </div>
                     </td>
                 </tr>
@@ -55,21 +56,24 @@
  <!-- Pagination Container -->
  <div class="pagination-container">
     <div class="pagination-info">
-        Showing entries
+         Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
     </div>
     <div class="pagination">
-        <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-        <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="">&laquo; Prev</a>
-        <a class="next" (click)="goToNextPage()" [attr.disabled]="">Next &raquo;</a>
-        <a class="last" (click)="goToLastPage()">Last &raquo;</a>
+        <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
+        <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+        <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+        <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
     </div>
 
     <!-- Page Size Selector -->
     <div class="page-size-selector">
-        <select class="custom-select">
+        <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
             <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
         </select>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MenuItem } from 'primeng/api';
+import { Pagination } from '../../model/pagination';
 
 @Component({
     selector: 'app-candidate',
@@ -16,7 +17,12 @@ export class CandidateComponent {
     submitted: boolean = false;
     productDialog: boolean = false;
     fetchedCandidateStage!: string;
-
+    pagination!: Pagination;
+    totalElements: number = 0;
+    totalPages: number = 0;
+    currentPage: number = 0;
+    selectedRecordsOption1: number = 5;
+  
 
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
 
@@ -74,36 +80,30 @@ export class CandidateComponent {
             });
     }
 
-    onGlobalFilter1(event: any) {
+    onGlobalFilter1(event: Event) {
         const inputElement = event.target as HTMLInputElement;
         const inputValue = inputElement.value;
         console.log('Input Value:', inputValue);
         this.http.get<any>('http://localhost:9000/candidate/searchpage', {
-            params: {
-                // firstName: inputValue,
-                // lastName:inputValue,
-                // email: inputValue
-                code:inputValue,
-                page: 0,
-                size: 3
-            }
+          params: {
+            code: inputValue,
+            page: '0', // Reset to first page when applying filter
+            size: this.selectedRecordsOption1.toString()
+          }
         }).subscribe((data) => {
-
-            this.candidates = data["content"]
-             this.changeDetectorRefs.markForCheck();
+          this.candidates = data["content"];
+          this.totalElements = data.totalElements;
+          this.totalPages = data.totalPages;
+          this.currentPage = 0; // Reset to first page
+          this.changeDetectorRefs.markForCheck();
         });
-
-        // this.getAllCandidatesListForGlobalFilter(inputValue);
-
-
-    }
-
+      }
 
     getCandidateList() {
         return this.http.get<Candidate[]>('http://localhost:9000/candidate/all');
     }
 
-    getAllCandidateList() {
+    getAllCandidate() {
         return this.getCandidateList().
             subscribe((data) => {
                 console.log(data);
@@ -112,7 +112,22 @@ export class CandidateComponent {
                 this.changeDetectorRefs.markForCheck();
             });
     }
-
+  
+    getAllCandidateList() {
+        this.http.get<any>('http://localhost:9000/candidate/candidatelistwithpagination', {
+    
+          params: {
+            page: this.currentPage.toString(),
+            size: this.selectedRecordsOption1.toString()
+          }
+        }).subscribe((data) => {
+          this.candidates = data.content;
+          this.pagination = data;
+          this.totalElements = data.totalElements;
+          this.totalPages = data.totalPages;
+          this.changeDetectorRefs.markForCheck();
+        });
+      }
 
     handleEditcandidate(candidateId: number, candidate: Candidate) {
 
@@ -204,10 +219,36 @@ export class CandidateComponent {
     }
 
 
-goToFirstPage(){};
-goToPreviousPage(){};
-goToNextPage(){};
-goToLastPage(){};
+    goToFirstPage() {
+        this.currentPage = 0;
+        this.getAllCandidateList();
+      }
+    
+      goToPreviousPage() {
+        if (this.currentPage > 0) {
+          this.currentPage--;
+          this.getAllCandidateList();
+        }
+      }
+    
+      goToNextPage() {
+        if (this.currentPage < this.totalPages - 1) {
+          this.currentPage++;
+          this.getAllCandidateList();
+        }
+      }
+    
+      goToLastPage() {
+        this.currentPage = this.totalPages - 1;
+        this.getAllCandidateList();
+      }
+    
+      onRecordsPerPageChange(event: Event) {
+        this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+        this.currentPage = 0; // Reset to first page when changing page size
+        this.getAllCandidateList();
+      }
+    
 
 }
 
