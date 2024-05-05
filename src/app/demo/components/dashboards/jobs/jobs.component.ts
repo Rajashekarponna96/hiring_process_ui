@@ -88,17 +88,23 @@ onGlobalFilter1(event: any) {
           size: 3
       }
   }).subscribe((data) => {
-     
+
       this.jobs = data["content"]
        this.changeDetectorRefs.markForCheck();
   });
 
   // this.getAllCandidatesListForGlobalFilter(inputValue);
 
-  
+
 }
 
   navigateToCreateJob(){
     this.router.navigate(['createjob'])
 }
+
+
+goToFirstPage(){};
+goToPreviousPage(){};
+goToNextPage(){};
+goToLastPage(){};
 }

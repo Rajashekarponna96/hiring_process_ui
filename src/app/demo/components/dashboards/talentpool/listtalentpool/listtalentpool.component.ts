@@ -6,7 +6,7 @@ import { TalentPoolOne } from '../../../model/talentpoolone';
 @Component({
   //selector: 'app-listtalentpool',
   templateUrl: './listtalentpool.component.html',
-  //styleUrls: ['./listtalentpool.component.scss']
+  styleUrls: ['./listtalentpool.component.scss']
 })
 export class ListtalentpoolComponent {
 
@@ -51,7 +51,7 @@ export class ListtalentpoolComponent {
 
         }
     }).subscribe((data) => {
-       
+
         this.talentPools = data["content"]
          this.changeDetectorRefs.markForCheck();
     });
@@ -96,4 +96,8 @@ export class ListtalentpoolComponent {
   }
 
 
+  goToFirstPage(){};
+  goToPreviousPage(){};
+  goToNextPage(){};
+  goToLastPage(){};
 }

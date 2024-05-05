@@ -16,10 +16,10 @@ export class CandidateComponent {
     submitted: boolean = false;
     productDialog: boolean = false;
     fetchedCandidateStage!: string;
-    
-    
+
+
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
-            
+
      }
 
 
@@ -88,14 +88,14 @@ export class CandidateComponent {
                 size: 3
             }
         }).subscribe((data) => {
-           
+
             this.candidates = data["content"]
              this.changeDetectorRefs.markForCheck();
         });
 
         // this.getAllCandidatesListForGlobalFilter(inputValue);
 
-        
+
     }
 
 
@@ -114,7 +114,7 @@ export class CandidateComponent {
     }
 
 
-    handleEditcandidate(candidateId: number, candidate: Candidate) { 
+    handleEditcandidate(candidateId: number, candidate: Candidate) {
 
         console.log("Candidate ID:", candidateId);
         console.log("Candidate object:", candidate);
@@ -146,10 +146,10 @@ export class CandidateComponent {
     }
 
     menuitems: MenuItem[] = [];
-    
+
     stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
     showStages: boolean = false;
-  
+
     toggleStages() {
       this.showStages = !this.showStages;
     }
@@ -177,15 +177,15 @@ export class CandidateComponent {
 
 
     updateCandidate(candidate:Candidate,stage:string) {debugger
-        
+
        candidate.stage  = stage;
-        
-        
+
+
         this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
           res => {
             console.log(res);
             this.productDialog = false;
-            this.submitted = false; 
+            this.submitted = false;
           },
           (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
@@ -203,6 +203,11 @@ export class CandidateComponent {
 
     }
 
+
+goToFirstPage(){};
+goToPreviousPage(){};
+goToNextPage(){};
+goToLastPage(){};
 
 }
 
