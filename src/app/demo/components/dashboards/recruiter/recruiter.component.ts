@@ -14,10 +14,13 @@ import { Pagination } from '../../model/pagination';
     providers: [ConfirmationService, MessageService],
 })
 export class RecruiterComponent {
+    // recruiter: Recruiter = new Recruiter();
+    // recrutiers: Recruiter[] = [];
+    // myPagination!: Pagination;
+
     recruiter: Recruiter = new Recruiter();
-    recrutiers: Recruiter[] = [];
-    myPagination!: Pagination; 
-    
+    recruiters: Recruiter[] = []; // Corrected variable name
+    myPagination!: Pagination;
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -35,7 +38,7 @@ export class RecruiterComponent {
     getAllRecruiterList() {
         return this.getRecruiterList().subscribe((data) => {
             console.log(data);
-            this.recrutiers = data;
+            this.recruiters = data;
             this.changeDetectorRefs.markForCheck();
         });
     }
@@ -62,8 +65,8 @@ export class RecruiterComponent {
 
             }
         }).subscribe((data) => {
-           
-            this.recrutiers = data["content"]
+
+            this.recruiters = data["content"]
              this.changeDetectorRefs.markForCheck();
         });
 
@@ -152,5 +155,10 @@ export class RecruiterComponent {
         });
     }
 
+
+    goToFirstPage(){};
+    goToPreviousPage(){};
+    goToNextPage(){};
+    goToLastPage(){};
     //
 }

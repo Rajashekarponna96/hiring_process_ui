@@ -87,17 +87,17 @@ export class ClientComponent  implements OnInit {
             size: 3
         }
     }).subscribe((data) => {
-       
+
         this.clients = data["content"]
          this.changeDetectorRefs.markForCheck();
     });
 
     // this.getAllCandidatesListForGlobalFilter(inputValue);
 
-    
+
 }
 
-  
+
 
 
 
@@ -199,7 +199,7 @@ export class ClientComponent  implements OnInit {
         //     { field: 'type', header: 'Type' }
         // ];
     }
-  
+
 
 
 
@@ -268,4 +268,9 @@ export class ClientComponent  implements OnInit {
 
     cols: any[] = [];
 
+
+goToFirstPage(){};
+goToPreviousPage(){};
+goToNextPage(){};
+goToLastPage(){};
 }

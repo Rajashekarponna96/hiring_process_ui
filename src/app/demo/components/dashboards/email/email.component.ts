@@ -74,4 +74,9 @@ ngOnInit() {
   this.getAllEmailList();
 }
 
+
+goToFirstPage(){};
+goToPreviousPage(){};
+goToNextPage(){};
+goToLastPage(){};
 }
