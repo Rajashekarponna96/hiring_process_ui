@@ -44,21 +44,24 @@
  <!-- Pagination Container -->
  <div class="pagination-container">
     <div class="pagination-info">
-        Showing entries
+         Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
     </div>
     <div class="pagination">
-        <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-        <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="">&laquo; Prev</a>
-        <a class="next" (click)="goToNextPage()" [attr.disabled]="">Next &raquo;</a>
-        <a class="last" (click)="goToLastPage()">Last &raquo;</a>
+        <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
+        <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+        <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+        <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
     </div>
 
     <!-- Page Size Selector -->
     <div class="page-size-selector">
-        <select class="custom-select">
+        <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5" selected>5</option>
             <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
         </select>
     </div>
 </div>
@@ -66,7 +69,7 @@
 
 
 <!--  -->
-<div class="card">
+<!-- <div class="card">
     <p-table #dt [value]="jobs" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
         [globalFilterFields]="['title','description','openings','targetHireDate','experience']">
@@ -105,4 +108,4 @@
             </tr>
         </ng-template>
     </p-table>
-</div>
+</div> -->

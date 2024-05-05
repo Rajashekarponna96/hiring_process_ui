@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { TalentPoolOne } from '../../../model/talentpoolone';
+import { Pagination } from '../../../model/pagination';
 @Component({
   //selector: 'app-listtalentpool',
   templateUrl: './listtalentpool.component.html',
@@ -12,6 +13,11 @@ export class ListtalentpoolComponent {
 
 
   talentPools: TalentPoolOne[] = [];
+  selectedRecordsOption1: number = 5;
+  pagination!: Pagination;
+  totalElements: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 0;
 
   constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
 
@@ -47,20 +53,38 @@ export class ListtalentpoolComponent {
             // email: inputValue
             code:inputValue,
             page: 0,
-            size: 3
+            size: this.selectedRecordsOption1.toString()
 
         }
     }).subscribe((data) => {
 
-        this.talentPools = data["content"]
+        this.talentPools = data["content"],
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.currentPage = 0; // Reset to first page
          this.changeDetectorRefs.markForCheck();
     });
 
 }
-
-
   ngOnInit() {
     this.getAllTalentPools();
+    this.getAllTalentPoolList();
+  }
+
+  getAllTalentPoolList() {
+    this.http.get<any>('http://localhost:9000/talentPool/talentpoollistwithpagination', {
+
+      params: {
+        page: this.currentPage.toString(),
+        size: this.selectedRecordsOption1.toString()
+      }
+    }).subscribe((data) => {
+      this.talentPools = data.content;
+      this.pagination = data;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.changeDetectorRefs.markForCheck();
+    });
   }
 
   navigateToCreateTalentPool() {
@@ -84,7 +108,7 @@ export class ListtalentpoolComponent {
     return this.http.delete<TalentPoolOne>('http://localhost:9000/talentpool/' + recruiter.id).subscribe(
       res => {
         console.log(res);
-        this.getAllTalentPools();
+        this.getAllTalentPoolList();
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -96,8 +120,34 @@ export class ListtalentpoolComponent {
   }
 
 
-  goToFirstPage(){};
-  goToPreviousPage(){};
-  goToNextPage(){};
-  goToLastPage(){};
+  goToFirstPage() {
+    this.currentPage = 0;
+    this.getAllTalentPoolList();
+  }
+
+  goToPreviousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.getAllTalentPoolList();
+    }
+  }
+
+  goToNextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.getAllTalentPoolList();
+    }
+  }
+
+  goToLastPage() {
+    this.currentPage = this.totalPages - 1;
+    this.getAllTalentPoolList();
+  }
+
+  onRecordsPerPageChange(event: Event) {
+    this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+    this.currentPage = 0; // Reset to first page when changing page size
+    this.getAllTalentPoolList();
+  }
+
 }

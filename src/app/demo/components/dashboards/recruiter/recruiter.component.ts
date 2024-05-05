@@ -20,7 +20,11 @@ export class RecruiterComponent {
 
     recruiter: Recruiter = new Recruiter();
     recruiters: Recruiter[] = []; // Corrected variable name
-    myPagination!: Pagination;
+    pagination!: Pagination;
+    totalElements: number = 0;
+    totalPages: number = 0;
+    currentPage: number = 0;
+    selectedRecordsOption1: number = 5;
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -35,7 +39,7 @@ export class RecruiterComponent {
             'http://localhost:9000/recruiter/all'
         );
     }
-    getAllRecruiterList() {
+    getAllRecruiter() {
         return this.getRecruiterList().subscribe((data) => {
             console.log(data);
             this.recruiters = data;
@@ -55,23 +59,19 @@ export class RecruiterComponent {
         const inputValue = inputElement.value;
         console.log('Input Value:', inputValue);
         this.http.get<any>('http://localhost:9000/recruiter/searchpage', {
-            params: {
-                // firstName: inputValue,
-                // lastName:inputValue,
-                // email: inputValue
-                code:inputValue,
-                page: 0,
-                size: 3
-
-            }
+          params: {
+            code: inputValue,
+            page: '0', // Reset to first page when applying filter
+            size: this.selectedRecordsOption1.toString()
+          }
         }).subscribe((data) => {
-
-            this.recruiters = data["content"]
-             this.changeDetectorRefs.markForCheck();
+          this.recruiters = data["content"];
+          this.totalElements = data.totalElements;
+          this.totalPages = data.totalPages;
+          this.currentPage = 0; // Reset to first page
+          this.changeDetectorRefs.markForCheck();
         });
-
-    }
-
+      }
 
     // handleEditRecruiter(recruiter: Recruiter) {debugger;
     //     // Navigate to the 'editrecruiter' route with the recruiter object as a parameter in the state
@@ -84,9 +84,25 @@ export class RecruiterComponent {
         this.router.navigate(['editrecruiter'], { state: { recruiter: recruiter } });
     }
 
+    getAllRecruiterList() {
+        this.http.get<any>('http://localhost:9000/recruiter/recruiterlistwithpagination', {
+    
+          params: {
+            page: this.currentPage.toString(),
+            size: this.selectedRecordsOption1.toString()
+          }
+        }).subscribe((data) => {
+          this.recruiters = data.content;
+          this.pagination = data;
+          this.totalElements = data.totalElements;
+          this.totalPages = data.totalPages;
+          this.changeDetectorRefs.markForCheck();
+        });
+      }
+
     ngOnInit() {
         // Retrieve the recruiter object from history.state
-
+         this.getAllRecruiter();
          this.getAllRecruiterList();
         const recruiter = history.state.recruiter;
 
@@ -156,9 +172,33 @@ export class RecruiterComponent {
     }
 
 
-    goToFirstPage(){};
-    goToPreviousPage(){};
-    goToNextPage(){};
-    goToLastPage(){};
-    //
+    goToFirstPage() {
+        this.currentPage = 0;
+        this.getAllRecruiterList();
+      }
+    
+      goToPreviousPage() {
+        if (this.currentPage > 0) {
+          this.currentPage--;
+          this.getAllRecruiterList();
+        }
+      }
+    
+      goToNextPage() {
+        if (this.currentPage < this.totalPages - 1) {
+          this.currentPage++;
+          this.getAllRecruiterList();
+        }
+      }
+    
+      goToLastPage() {
+        this.currentPage = this.totalPages - 1;
+        this.getAllRecruiterList();
+      }
+    
+      onRecordsPerPageChange(event: Event) {
+        this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+        this.currentPage = 0; // Reset to first page when changing page size
+        this.getAllRecruiterList();
+      }
 }

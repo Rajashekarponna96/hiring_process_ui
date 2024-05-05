@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Job } from '../../model/job';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Table } from 'primeng/table';
+import { Pagination } from '../../model/pagination';
 
 @Component({
   selector: 'app-jobs',
@@ -12,6 +13,11 @@ import { Table } from 'primeng/table';
 export class JobsComponent implements OnInit {
  job: Job = new Job();
  jobs: Job[] = [];
+ pagination!: Pagination;
+  totalElements: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 0;
+  selectedRecordsOption1: number = 5;
 
   constructor(private http:HttpClient,private changeDetectorRefs: ChangeDetectorRef,private router: Router) { }
 
@@ -19,7 +25,7 @@ export class JobsComponent implements OnInit {
     return this.http.get<Job[]>('http://localhost:9000/job/all');
 
   }
-  getAllJobList(){
+  getAllJobs(){
     return this.getJobList().
     subscribe((data) => {
        console.log(data);
@@ -63,6 +69,22 @@ handleEditJob(job: Job) {
         );
 }
 
+getAllJobList() {
+  this.http.get<any>('http://localhost:9000/job/joblistwithpagination', {
+
+    params: {
+      page: this.currentPage.toString(),
+      size: this.selectedRecordsOption1.toString()
+    }
+  }).subscribe((data) => {
+    this.jobs = data.content;
+    this.pagination = data;
+    this.totalElements = data.totalElements;
+    this.totalPages = data.totalPages;
+    this.changeDetectorRefs.markForCheck();
+  });
+}
+
   ngOnInit() {
     this.getAllJobList();
   }
@@ -74,28 +96,23 @@ handleEditJob(job: Job) {
     );
 }
 
-onGlobalFilter1(event: any) {
+onGlobalFilter1(event: Event) {
   const inputElement = event.target as HTMLInputElement;
   const inputValue = inputElement.value;
   console.log('Input Value:', inputValue);
   this.http.get<any>('http://localhost:9000/job/searchpage', {
-      params: {
-          // firstName: inputValue,
-          // lastName:inputValue,
-          // email: inputValue
-          code:inputValue,
-          page: 0,
-          size: 3
-      }
+    params: {
+      code: inputValue,
+      page: '0', // Reset to first page when applying filter
+      size: this.selectedRecordsOption1.toString()
+    }
   }).subscribe((data) => {
-
-      this.jobs = data["content"]
-       this.changeDetectorRefs.markForCheck();
+    this.jobs = data["content"];
+    this.totalElements = data.totalElements;
+    this.totalPages = data.totalPages;
+    this.currentPage = 0; // Reset to first page
+    this.changeDetectorRefs.markForCheck();
   });
-
-  // this.getAllCandidatesListForGlobalFilter(inputValue);
-
-
 }
 
   navigateToCreateJob(){
@@ -103,8 +120,34 @@ onGlobalFilter1(event: any) {
 }
 
 
-goToFirstPage(){};
-goToPreviousPage(){};
-goToNextPage(){};
-goToLastPage(){};
+goToFirstPage() {
+  this.currentPage = 0;
+  this.getAllJobList()
+}
+
+goToPreviousPage() {
+  if (this.currentPage > 0) {
+    this.currentPage--;
+    this.getAllJobList()
+  }
+}
+
+goToNextPage() {
+  if (this.currentPage < this.totalPages - 1) {
+    this.currentPage++;
+    this.getAllJobList()
+  }
+}
+
+goToLastPage() {
+  this.currentPage = this.totalPages - 1;
+  this.getAllJobList()
+}
+
+onRecordsPerPageChange(event: Event) {
+  this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+  this.currentPage = 0; // Reset to first page when changing page size
+  this.getAllJobList()
+}
+
 }
