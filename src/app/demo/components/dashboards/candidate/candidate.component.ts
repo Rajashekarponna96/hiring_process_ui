@@ -129,9 +129,9 @@ export class CandidateComponent {
         });
       }
 
-    handleEditcandidate(candidateId: number, candidate: Candidate) {
-
-        console.log("Candidate ID:", candidateId);
+    handleEditcandidate(candidate: Candidate) {
+     const candidateId=candidate.id;
+        
         console.log("Candidate object:", candidate);
         // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
         this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
