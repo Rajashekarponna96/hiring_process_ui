@@ -45,7 +45,8 @@ navigateToCreateEmail() {
   this.router.navigate(['createemail']);
 }
 
-handleEditEmail(candidateEmail:CandidateEmail , candidateEmailId: number) {
+handleEditEmail(candidateEmail:CandidateEmail) {
+  const candidateEmailId=candidateEmail.id;
   this.router.navigate(['editemail'], { state: { candidateEmailId: candidateEmailId, candidateEmail: candidateEmail } });
 }
 
