@@ -5,6 +5,7 @@ import { Experience } from "./experience";
 import { Job } from "./job";
 import { Source } from "./source";
 import { TalentPool } from "./talentpool";
+import { Vendor } from "./vendor";
 
 export class Candidate {
     id: number | undefined;
@@ -16,12 +17,12 @@ export class Candidate {
     alterMobile:string | undefined
     source!: Source;
     stage!: string;
-    current!: Location; 
-    preferred!: Location; 
-    avialToJoin!:string 
+    current!: Location;
+    preferred!: Location;
+    avialToJoin!:string
     currentSalary!:number
     expectedSalary: number | undefined;
-    currency!: Currency; 
+    currency!: Currency;
     gender: string | undefined;
     dateOfBirth: Date | undefined;
     skills:string[] =['']
@@ -29,6 +30,7 @@ export class Candidate {
     educations!: Education[];
     talentPool!: TalentPool;
     job!:Job
+    vendor!: Vendor;
     createdBy!: string;
     modifiedBy!: string;
 

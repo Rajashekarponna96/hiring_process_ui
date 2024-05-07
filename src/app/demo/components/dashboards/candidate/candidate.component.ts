@@ -22,7 +22,7 @@ export class CandidateComponent {
     totalPages: number = 0;
     currentPage: number = 0;
     selectedRecordsOption1: number = 5;
-  
+
 
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
 
@@ -112,10 +112,10 @@ export class CandidateComponent {
                 this.changeDetectorRefs.markForCheck();
             });
     }
-  
+
     getAllCandidateList() {
         this.http.get<any>('http://localhost:9000/candidate/candidatelistwithpagination', {
-    
+
           params: {
             page: this.currentPage.toString(),
             size: this.selectedRecordsOption1.toString()
@@ -131,7 +131,7 @@ export class CandidateComponent {
 
     handleEditcandidate(candidate: Candidate) {
      const candidateId=candidate.id;
-        
+
         console.log("Candidate object:", candidate);
         // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
         this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
@@ -213,42 +213,120 @@ export class CandidateComponent {
       }
 
 
+    // ngOnInit() {
+    //     this.getAllCandidateList();
+
+    // }
+
+
+
+    // one
+  //   getvendorDetailsById() {debugger;
+
+  //     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+  //     // Checking if the user is a vendor
+  //     if (user.role?.name === 'vendor') {
+  //         this.getVendorDetailBasedOnUserId(user.id);
+  //     }
+  // }
+  // // Method to get vendor details based on user ID
+  // getVendorDetailBasedOnUserId(userId: any) {debugger;
+  //     this.http.get<any>("http://localhost:9000/vendor/user/" + userId).subscribe(
+  //         (data) => {
+  //             console.log("Vendor details:", data);
+  //             this.vendor=data;
+
+  //         },
+
+  //     );
+
+
+  // }
+
+  // // Method to get candidates by vendor ID
+  // getCandidatesByVendorId(vendorId: number) {debugger
+  //     debugger;
+
+  //     this.http.get<Candidate[]>('http://localhost:9000/vendor/' + this.vendor.id).subscribe(
+
+
+  //         // this.http.get<Candidate[]>(`http://localhost:9000/vendor/${vendorId}/candidates`)
+  //         // .subscribe(
+  //         (data) => {
+  //             console.log(data);
+  //             this.candidates = data;
+  //         },
+  //         (error: HttpErrorResponse) => {
+  //             console.error("Error fetching candidates by vendor ID:", error);
+  //         }
+  //     );
+  // }
+    //one
+
+
+    vendorId: number=52;
+
     ngOnInit() {
-        this.getAllCandidateList();
+        // Retrieve the vendor ID from localStorage
+        // this.vendorId = parseInt(localStorage.getItem('vendorId') || '0');
+        // if (this.vendorId !== 0) {
+        //     this.getCandidatesByVendorId(this.vendorId);
+        // }
+        this.getCandidatesByVendorId(this.vendorId);
 
     }
 
+    // Method to get candidates by vendor ID
+    getCandidatesByVendorId(vendorId: number) {debugger;
+
+        this.http.get<Candidate[]>('http://localhost:9000/vendor/' + this.vendorId).subscribe(
+
+
+       // this.http.get<Candidate[]>(`http://localhost:9000/vendor/${vendorId}/candidates`)
+            // .subscribe(
+                (data) => {
+                    console.log(data);
+                    this.candidates = data;
+                },
+                (error: HttpErrorResponse) => {
+                    console.error("Error fetching candidates by vendor ID:", error);
+                }
+            );
+    }
+
+    //
 
     goToFirstPage() {
         this.currentPage = 0;
         this.getAllCandidateList();
       }
-    
+
       goToPreviousPage() {
         if (this.currentPage > 0) {
           this.currentPage--;
           this.getAllCandidateList();
         }
       }
-    
+
       goToNextPage() {
         if (this.currentPage < this.totalPages - 1) {
           this.currentPage++;
           this.getAllCandidateList();
         }
       }
-    
+
       goToLastPage() {
         this.currentPage = this.totalPages - 1;
         this.getAllCandidateList();
       }
-    
+
       onRecordsPerPageChange(event: Event) {
         this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
         this.currentPage = 0; // Reset to first page when changing page size
         this.getAllCandidateList();
       }
-    
+
 
 }
 
