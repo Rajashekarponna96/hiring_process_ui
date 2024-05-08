@@ -9,6 +9,7 @@ import { Product } from 'src/app/demo/api/product';
 import { CustomerService } from 'src/app/demo/service/customer.service';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { NodeService } from 'src/app/demo/service/node.service';
+import { Poc } from '../../model/poc';
 
 
 
@@ -22,6 +23,8 @@ interface expandedRows {
   providers: [MessageService, ConfirmationService]
 })
 export class ClientComponent  implements OnInit {
+  editMode!: boolean;
+  selectedIndex!: number;
 
   //
 
@@ -29,7 +32,23 @@ export class ClientComponent  implements OnInit {
 
 
   clients: Client[] = [];
+  client: Client = new Client(); 
+  pocs: Poc = new Poc(); // Initialize pointToContact object
+  pointToContacts: Poc[] = []; // Initialize pointToContacts array
+  productDialog: boolean = false;
+  submitted: boolean = false;
 
+  openNew(client:Client) { debugger
+    this.client.pocs = this.client.pocs;
+  console.log("client dertails for pocs:"+client.pocs)
+    this.submitted = false;
+    this.productDialog = true;
+}
+
+hideDialog() {
+  this.productDialog = false;
+  this.submitted = false;
+}
 
 
   handleEditclient(client: Client, clientId: number) {
@@ -159,45 +178,19 @@ export class ClientComponent  implements OnInit {
 
 
   ngOnInit() {
-    this.getAllClientList()
-    this.customerService.getCustomersLarge().then(customers => {
-      this.customers1 = customers;
-      this.loading = false;
+    this.getAllClientList();
+    const stateData = history.state || {}; // Retrieve state data
+  const client = stateData.client; // Get candidate object from state
 
-      // @ts-ignore
-      this.customers1.forEach(customer => customer.date = new Date(customer.date));
-    });
-    this.customerService.getCustomersMedium().then(customers => this.customers2 = customers);
-    this.customerService.getCustomersLarge().then(customers => this.customers3 = customers);
-    this.productService.getProductsWithOrdersSmall().then(data => this.products = data);
+  if (client) {
+    this.client = client; // Assign candidate object to component property
+    this.pointToContacts = this.client.pocs;
 
+  } else {
+    console.error('Candidate data is missing in state.');
+  }
 
-
-    this.statuses = [
-      { label: 'Unqualified', value: 'unqualified' },
-      { label: 'Qualified', value: 'qualified' },
-      { label: 'New', value: 'new' },
-      { label: 'Negotiation', value: 'negotiation' },
-      { label: 'Renewal', value: 'renewal' },
-      { label: 'Proposal', value: 'proposal' }
-    ];
-
-
-
-    // this.nodeService.getFiles().then(files => this.files1 = files);
-    //     this.nodeService.getFilesystem().then(files => this.files2 = files);
-        this.nodeService.getFiles().then(files => {
-            this.files3 = [{
-                label: 'Client',
-                children: files
-            }];
-        });
-
-        // this.cols = [
-        //     { field: 'name', header: 'Name' },
-        //     { field: 'size', header: 'Size' },
-        //     { field: 'type', header: 'Type' }
-        // ];
+   
     }
 
 

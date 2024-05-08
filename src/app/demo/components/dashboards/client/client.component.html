@@ -20,8 +20,6 @@
           <thead>
               <tr>
                   <th style="width: 25%">Client Name</th>
-                  <th style="width: 25%">POC Name</th>
-                  <th style="width: 25%">POC MobileNo</th>
                   <th style="width: 25%">Location</th>
                   <th style="width: 20%">Actions</th>
               </tr>
@@ -29,21 +27,14 @@
           <tbody>
               <tr *ngFor="let client of clients">
                   <td>{{ client.companyName }}</td>
-                  <td>
-                      <ul>
-                          <li *ngFor="let contact of client.pocs">{{ contact.name }}</li>
-                      </ul>
-                  </td>
-                  <td>
-                      <ul>
-                          <li *ngFor="let contact of client.pocs">{{ contact.mobile }}</li>
-                      </ul>
-                  </td>
                   <td>{{ client.location }}</td>
                   <td>
                       <div class="button-container">
                           <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client, client.id)" icon="pi pi-pencil"></button>
                           <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
+                          <button pButton class="p-button-sm p-button-rounded p-button-info" (click)="openNew(client)" icon="pi pi-plus"></button>
+
+
                       </div>
                   </td>
               </tr>
@@ -72,6 +63,45 @@
           </select>
       </div>
   </div>
+  <p-dialog [(visible)]="productDialog"  [style]="{width: '450px'}" header="HiringFlow Stages" [modal]="true" class="p-fluid">
+    <ng-template pTemplate="content">
+        <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+        <div class="field" >
+            <div class="formgrid grid" >
+              <div class="field col-12 md:col-6">
+                <label for="name">Name<span [style.display]="pocs.name ? 'none' : 'inline'" style="color: red">*</span></label>
+                <input pInputText id="name" name="name" type="text" placeholder="Enter POC Name"
+                  [(ngModel)]="pocs.name" #name="ngModel" />
+              </div>
+              <div class="field col-12 md:col-6">
+                <label for="mobile">Mobile<span [style.display]="pocs.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
+                <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter Mobile Number"
+                    [(ngModel)]="pocs.mobile" pattern="[0-9]{10}" #mobile="ngModel" />
+                <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-danger">
+                    <div style="color: red" *ngIf="mobile.errors">Invalid Mobile Number format.</div>
+                </div>
+            </div>
+            
+              <div class="field col-12 md:col-6">
+                <label for="email">Email<span [style.display]="pocs.email ? 'none' : 'inline'" style="color: red">*</span></label>
+                <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
+                    [(ngModel)]="pocs.email" email #email="ngModel" />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                    <div style="color: red" *ngIf="email.errors">Invalid Email Format.</div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" ></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button>
+    </ng-template>
+</p-dialog>
+
+
 </div>
 
 
