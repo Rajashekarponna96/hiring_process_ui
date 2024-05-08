@@ -7,9 +7,11 @@
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
             </span>
-            <button (click)="navigateToCreateJob()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-plus" label="Add New"></button>
         </div>
+        <!-- Add New Vendor Button -->
+        <button (click)="navigateToCreateJob()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
     </div>
+    
 
     <!-- Table Container -->
     <div class="table-container">
