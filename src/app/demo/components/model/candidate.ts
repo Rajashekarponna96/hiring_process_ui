@@ -5,6 +5,7 @@ import { Experience } from "./experience";
 import { Job } from "./job";
 import { Source } from "./source";
 import { TalentPool } from "./talentpool";
+import { Location } from "./location";
 
 export class Candidate {
     id: number | undefined;

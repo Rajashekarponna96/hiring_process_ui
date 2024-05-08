@@ -7,11 +7,15 @@
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
             </span>
-            <button (click)="navigateToCreateEmail()" pButton
+            </div>
+            <!-- <button (click)="navigateToCreateEmail()" pButton
                 class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-plus"
-                label="Add New"></button>
+                label="Add New"></button> -->
+
+                <button (click)="navigateToCreateEmail()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+
         </div>
-    </div>
+    
 
     <!-- Table Container -->
     <div class="table-container">
