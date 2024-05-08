@@ -31,7 +31,7 @@ import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
-
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -80,7 +80,8 @@ import { TreeTableModule } from 'primeng/treetable';
 		ProgressBarModule,
 		ToastModule,
 		TreeModule,
-		TreeTableModule
+		TreeTableModule,
+		DialogModule
   ]
 })
 export class ClientModule { }
