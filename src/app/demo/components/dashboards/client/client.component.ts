@@ -34,13 +34,14 @@ export class ClientComponent  implements OnInit {
   clients: Client[] = [];
   client: Client = new Client(); 
   pocs: Poc = new Poc(); // Initialize pointToContact object
-  pointToContacts: Poc[] = []; // Initialize pointToContacts array
+  pointToContacts!: Poc[]; // Initialize pointToContacts array
   productDialog: boolean = false;
   submitted: boolean = false;
+  
 
   openNew(client:Client) { debugger
-    this.client.pocs = this.client.pocs;
-  console.log("client dertails for pocs:"+client.pocs)
+    this.pointToContacts= client.pocs;
+    console.log(" dertails for pocs:"+this.pointToContacts)
     this.submitted = false;
     this.productDialog = true;
 }
