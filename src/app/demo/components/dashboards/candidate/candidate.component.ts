@@ -5,6 +5,8 @@ import { Candidate } from '../../model/candidate';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MenuItem } from 'primeng/api';
 import { Pagination } from '../../model/pagination';
+import { UserAccout } from '../../model/userAccount';
+import { Vendor } from '../../model/vendor';
 
 @Component({
     selector: 'app-candidate',
@@ -22,7 +24,7 @@ export class CandidateComponent {
     totalPages: number = 0;
     currentPage: number = 0;
     selectedRecordsOption1: number = 5;
-  
+
 
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
 
@@ -112,10 +114,10 @@ export class CandidateComponent {
                 this.changeDetectorRefs.markForCheck();
             });
     }
-  
+
     getAllCandidateList() {
         this.http.get<any>('http://localhost:9000/candidate/candidatelistwithpagination', {
-    
+
           params: {
             page: this.currentPage.toString(),
             size: this.selectedRecordsOption1.toString()
@@ -131,7 +133,7 @@ export class CandidateComponent {
 
     handleEditcandidate(candidate: Candidate) {
      const candidateId=candidate.id;
-        
+
         console.log("Candidate object:", candidate);
         // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
         this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
@@ -213,42 +215,139 @@ export class CandidateComponent {
       }
 
 
-    ngOnInit() {
-        this.getAllCandidateList();
 
+
+
+// added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
+
+ngOnInit() {
+   // this.getAllCandidateList();
+  this.getvendorDetailsById();
+
+}
+vendor!: Vendor;
+getvendorDetailsById() {
+  debugger;
+
+  const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+  // Checking if the user is a vendor
+  if (user.role?.name === 'vendor') {
+    this.getVendorDetailBasedOnUserId(user.id);
+  }
+  else if (user.role?.name === 'admin') { // If user is admin
+    this.getAllCandidateList(); // Call method to get all candidates
+  }
+  else if (user.role?.name === 'recruiter') { // If user is recruiter
+    console.log("User is a recruiter.");
+    this.getAllCandidateList(); // Call method to get all candidates for recruiters
+  } else { // If user role is not recognized or no action specified
+    console.log("User role not recognized or no action specified.");
+  }
+  // else if (user.role?.name === 'admin') { // If user is admin
+  //   this.getAllCandidateList(); // Call method to get all candidates
+  // }
+}
+// Method to get vendor details based on user ID
+getVendorDetailBasedOnUserId(userId: any) {
+  this.http.get<any>("http://localhost:9000/vendor/user/" + userId).subscribe(
+    (data) => {
+      console.log("Vendor details:", data);
+      this.vendor = data;
+      this.getCandidatesByVendorId(this.vendor.id)
+
+    },
+
+  );
+
+
+}
+
+getCandidatesByVendorId(vendorId: any) {
+  debugger;
+  this.http.get<any>('http://localhost:9000/vendor/candidates/' + vendorId, {
+    params: {
+      page: this.currentPage.toString(),
+      size: this.selectedRecordsOption1.toString()
     }
+  }).subscribe((data) => {
+    this.candidates = data.content;
+    this.pagination = data;
+    this.totalElements = data.totalElements;
+    this.totalPages = data.totalPages;
+    this.changeDetectorRefs.markForCheck();
+  });
+}
 
+goToFirstPage() {
+  this.currentPage = 0;
+  //this.getAllCandidateList();
+  this.getvendorDetailsById();
+}
 
-    goToFirstPage() {
-        this.currentPage = 0;
-        this.getAllCandidateList();
-      }
-    
-      goToPreviousPage() {
-        if (this.currentPage > 0) {
-          this.currentPage--;
-          this.getAllCandidateList();
-        }
-      }
-    
-      goToNextPage() {
-        if (this.currentPage < this.totalPages - 1) {
-          this.currentPage++;
-          this.getAllCandidateList();
-        }
-      }
-    
-      goToLastPage() {
-        this.currentPage = this.totalPages - 1;
-        this.getAllCandidateList();
-      }
-    
-      onRecordsPerPageChange(event: Event) {
-        this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
-        this.currentPage = 0; // Reset to first page when changing page size
-        this.getAllCandidateList();
-      }
-    
+goToPreviousPage() {
+  if (this.currentPage > 0) {
+    this.currentPage--;
+    //this.getAllCandidateList();
+    this.getvendorDetailsById();
+  }
+}
+
+goToNextPage() {
+  if (this.currentPage < this.totalPages - 1) {
+    this.currentPage++;
+    // this.getAllCandidateList();
+    this.getvendorDetailsById();
+  }
+}
+
+goToLastPage() {
+  this.currentPage = this.totalPages - 1;
+  //this.getAllCandidateList();
+  this.getvendorDetailsById();
+}
+
+onRecordsPerPageChange(event: Event) {
+  this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+  this.currentPage = 0; // Reset to first page when changing page size
+  //this.getAllCandidateList();
+  this.getvendorDetailsById();
+}
+
+//
+// added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
+//
+
+    // goToFirstPage() {
+    //     this.currentPage = 0;
+    //     this.getAllCandidateList();
+    //   }
+
+    //   goToPreviousPage() {
+    //     if (this.currentPage > 0) {
+    //       this.currentPage--;
+    //       this.getAllCandidateList();
+    //     }
+    //   }
+
+    //   goToNextPage() {
+    //     if (this.currentPage < this.totalPages - 1) {
+    //       this.currentPage++;
+    //       this.getAllCandidateList();
+    //     }
+    //   }
+
+    //   goToLastPage() {
+    //     this.currentPage = this.totalPages - 1;
+    //     this.getAllCandidateList();
+    //   }
+
+    //   onRecordsPerPageChange(event: Event) {
+    //     this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+    //     this.currentPage = 0; // Reset to first page when changing page size
+    //     this.getAllCandidateList();
+    //   }
+
 
 }
 
