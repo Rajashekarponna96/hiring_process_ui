@@ -219,7 +219,7 @@ export class EditcandidateComponent implements OnInit {
   showSuccessMessage: boolean = false;
 
   userAccounts!: UserAccout[];
-  modifiedBy!: string;
+  modifiedBy!: UserAccout;
 
   addSkills(event?: any) {
     if (event) {
@@ -263,8 +263,8 @@ export class EditcandidateComponent implements OnInit {
     this.candidate.educations = this.educationDetails;
     this.candidate.skills = this.skills;
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    this.modifiedBy = user.userName;
-    this.candidate.modifiedBy=this.modifiedBy;
+    //this.modifiedBy = user;
+    this.candidate.modifiedBy=user;
 
     this.http.put<Candidate>('http://localhost:9000/candidate/' + this.candidate.id, this.candidate).subscribe(
       res => {

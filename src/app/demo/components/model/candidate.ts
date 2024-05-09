@@ -6,6 +6,7 @@ import { Job } from "./job";
 import { Source } from "./source";
 import { TalentPool } from "./talentpool";
 import { Location } from "./location";
+import { UserAccout } from "./userAccount";
 
 export class Candidate {
     id: number | undefined;
@@ -30,9 +31,9 @@ export class Candidate {
     educations!: Education[];
     talentPool!: TalentPool;
     job!:Job
-    createdBy!: string;
-    modifiedBy!: string;
-
+    createdBy!: UserAccout;
+    //modifiedBy!: string;
+    modifiedBy!: UserAccout;
 
 }
 
