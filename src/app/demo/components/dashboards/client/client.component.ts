@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/demo/service/customer.service';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { NodeService } from 'src/app/demo/service/node.service';
 import { Poc } from '../../model/poc';
+import { Pagination } from '../../model/pagination';
 
 
 
@@ -103,8 +104,8 @@ hideDialog() {
             // lastName:inputValue,
             // email: inputValue
             code:inputValue,
-            page: 0,
-            size: 3
+            page: this.currentPage.toString(),
+          size: this.selectedRecordsOption1.toString()
         }
     }).subscribe((data) => {
 
@@ -179,7 +180,8 @@ hideDialog() {
 
 
   ngOnInit() {
-    this.getAllClientList();
+    // this.getAllClientList();
+    this.getAllClientListWithPagination()
     const stateData = history.state || {}; // Retrieve state data
   const client = stateData.client; // Get candidate object from state
 
@@ -261,10 +263,58 @@ hideDialog() {
     selectedFiles3: TreeNode = {};
 
     cols: any[] = [];
+    pagination!: Pagination;
+  totalElements: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 0;
+  selectedRecordsOption1: number = 5;
 
 
-goToFirstPage(){};
-goToPreviousPage(){};
-goToNextPage(){};
-goToLastPage(){};
+    getAllClientListWithPagination() {
+      this.http.get<any>('http://localhost:9000/client/clientlistwithpagination', {
+  
+        params: {
+          page: this.currentPage.toString(),
+          size: this.selectedRecordsOption1.toString()
+        }
+      }).subscribe((data) => {
+        this.clients = data.content;
+        this.pagination = data;
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.changeDetectorRefs.markForCheck();
+      });
+    }
+
+
+    goToFirstPage() {
+      this.currentPage = 0;
+      this.getAllClientListWithPagination();
+    }
+  
+    goToPreviousPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--;
+        this.getAllClientListWithPagination();
+      }
+    }
+  
+    goToNextPage() {
+      if (this.currentPage < this.totalPages - 1) {
+        this.currentPage++;
+        this.getAllClientListWithPagination();
+      }
+    }
+  
+    goToLastPage() {
+      this.currentPage = this.totalPages - 1;
+      this.getAllClientListWithPagination();
+    }
+  
+    onRecordsPerPageChange(event: Event) {
+      this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+      this.currentPage = 0; // Reset to first page when changing page size
+      this.getAllClientListWithPagination();
+    }
+  
 }
