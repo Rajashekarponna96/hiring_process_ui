@@ -7,7 +7,7 @@
       <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
           <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
               <i class="pi pi-search"></i>
-              <input pInputText type="text"   placeholder="Global Search" class="w-full" />
+              <input pInputText type="text"   (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
           </span>
           </div>
           <button (click)="navigateToCreateClient()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
@@ -32,7 +32,7 @@
                       <div class="button-container">
                           <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client, client.id)" icon="pi pi-pencil"></button>
                           <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
-                          <button pButton class="p-button-sm p-button-rounded p-button-info" (click)="openNew(client)" icon="pi pi-plus"></button>
+                          <button pButton class="p-button-sm p-button-rounded p-button-info" (click)="openNew(client)" icon="pi pi-eye"></button>
 
 
                       </div>
@@ -42,62 +42,70 @@
       </table>
   </div>
 
-  <!-- Pagination Container -->
-  <div class="pagination-container">
+  
+  
+
+     <!-- Pagination Container -->
+    <div class="pagination-container">
       <div class="pagination-info">
-           Showing   entries
+           Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
       </div>
       <div class="pagination">
-          <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-          <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="">&laquo; Prev</a>
-          <a class="next" (click)="goToNextPage()" [attr.disabled]="">Next &raquo;</a>
-          <a class="last" (click)="goToLastPage()">Last &raquo;</a>
+          <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
+          <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
+          <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+          <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
       </div>
 
       <!-- Page Size Selector -->
       <div class="page-size-selector">
-          <select class="custom-select" >
+          <select class="custom-select" (change)="onRecordsPerPageChange($event)">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
               <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
           </select>
       </div>
   </div>
-  <p-dialog [(visible)]="productDialog"  [style]="{width: '450px'}" header="HiringFlow Stages" [modal]="true" class="p-fluid">
+ 
+  <p-dialog [(visible)]="productDialog"  [style]="{width: '450px'}" header="POC's Details" [modal]="true" class="p-fluid">
     <ng-template pTemplate="content">
-        <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
-        <div class="field" >
-            <div class="formgrid grid" >
-              <div class="field col-12 md:col-6">
-                <label for="name">Name<span [style.display]="pocs.name ? 'none' : 'inline'" style="color: red">*</span></label>
-                <input pInputText id="name" name="name" type="text" placeholder="Enter POC Name"
-                  [(ngModel)]="pocs.name" #name="ngModel" />
-              </div>
-              <div class="field col-12 md:col-6">
-                <label for="mobile">Mobile<span [style.display]="pocs.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
-                <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter Mobile Number"
-                    [(ngModel)]="pocs.mobile" pattern="[0-9]{10}" #mobile="ngModel" />
-                <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-danger">
-                    <div style="color: red" *ngIf="mobile.errors">Invalid Mobile Number format.</div>
-                </div>
-            </div>
-            
-              <div class="field col-12 md:col-6">
-                <label for="email">Email<span [style.display]="pocs.email ? 'none' : 'inline'" style="color: red">*</span></label>
-                <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
-                    [(ngModel)]="pocs.email" email #email="ngModel" />
-                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
-                    <div style="color: red" *ngIf="email.errors">Invalid Email Format.</div>
-                </div>
-            </div>
-            </div>
-        </div>
+        <div class="table-container">
+          <table>
+              <thead>
+                  <tr>
+                      <th style="width: 25%">Name</th>
+                      <th style="width: 25%">Mobile</th>
+                      <th style="width: 25%">Email</th>
+                      <!-- <th style="width: 25%">Actions</th> -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let pointToContact of pointToContacts">
+                      <td>{{  pointToContact.name }}</td>
+                      <td>{{  pointToContact.mobile }}</td>
+                      <td>{{  pointToContact.email }}</td>
+                      <!-- <td>
+                          <div class="button-container">
+                              <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client, client.id)" icon="pi pi-pencil"></button>
+                              <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
+                              
+    
+                          </div>
+                      </td> -->
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+        
 
     </ng-template>
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" ></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button>
+        <!-- <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button> -->
     </ng-template>
 </p-dialog>
 
@@ -107,145 +115,3 @@
 
 <!--  -->
 
-<div class="grid">
-    <div class="col-12">
-      <div class="card">
-        <p-toast></p-toast>
-        <!-- <p-table [value]="clients" dataKey="name" [expandedRowKeys]="expandedRows" responsiveLayout="scroll"> -->
-          <p-table [value]="clients" dataKey="id" [expandedRowKeys]="expandedRows" responsiveLayout="scroll">
-
-          <ng-template pTemplate="caption">
-              <button pButton icon="pi pi-fw {{isExpanded ? 'pi-minus' : 'pi-plus'}}"
-              label="{{isExpanded ? 'Collapse All' : 'Expand All'}}" (click)="expandAll()"></button>
-              <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
-            </span>
-
-              <button (click)="navigateToCreateClient()" pButton class="p-button-outlined align-right" icon="pi pi-user-plus" label="Add New"></button>
-
-              <div class="flex table-header">
-            </div>
-          </ng-template>
-          <ng-template pTemplate="header">
-            <tr>
-              <th style="width: 3rem"></th>
-              <th pSortableColumn="companyName">Name <p-sortIcon field="companyName"></p-sortIcon></th>
-              <th pSortableColumn="location">Location <p-sortIcon field="location"></p-sortIcon></th>
-              <th pSortableColumn="location">Actions <p-sortIcon field="action"></p-sortIcon></th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-client let-expanded="expanded">
-            <tr>
-              <td>
-                <button type="button" pButton pRipple [pRowToggler]="client"
-                  class="p-button-text p-button-rounded p-button-plain"
-                  [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-              </td>
-              <td style="min-width: 12rem;">{{client.companyName}}</td>
-              <td style="min-width: 8rem;">{{client.location}}</td>
-              <td>
-                <div class="button-container">
-                    <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client,client.id)" icon="pi pi-pencil"></button>
-                    <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
-                </div>
-            </td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="rowexpansion" let-client>
-            <tr>
-              <td colspan="7">
-                <div class="p-3">
-                  <p-table [value]="client.pocs" dataKey="name" responsiveLayout="scroll">
-                    <ng-template pTemplate="header">
-            <tr>
-              <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-              <th pSortableColumn="mobile">Mobile <p-sortIcon field="mobile"></p-sortIcon></th>
-              <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-              <!-- <th style="width: 4rem"></th> -->
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-contact>
-            <tr>
-              <td>{{contact.name}}</td>
-              <td>{{contact.mobile}}</td>
-              <td>{{contact.email}}</td>
-              <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="emptymessage">
-            <tr>
-              <td colspan="4">No POCs available for this client.</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
-      </td>
-      </tr>
-      </ng-template>
-      </p-table>
-    </div>
-  </div>
-  </div>
-
-  <!-- <div class="col-12">
-		<div class="card">
-			<h5>Horizontal Tree</h5>
-			<p-tree [value]="files3" layout="horizontal" selectionMode="single" [(selection)]="selectedFiles3"></p-tree>
-		</div>
-	</div> -->
-
-
-  <!--  -->
-  <!-- -->
-
-  <!-- <div class="card">
-  <p-table #dt [value]="clients" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
-      [globalFilterFields]="['name','contactPocs','location']">
-      <ng-template pTemplate="caption">
-          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
-              <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
-                  <i class="pi pi-search"></i>
-                  <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Global Search" class="w-full" />
-              </span>
-              <button (click)="navigateToCreateClient()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
-          </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-          <tr>
-              <th pSortableColumn="name" class="white-space-nowrap" style="width:25%">Name<p-sortIcon field="client.name"></p-sortIcon></th>
-              <th pSortableColumn="contactPocs" class="white-space-nowrap" style="width:25%">POC Name<p-sortIcon field="client.contactPocs.name"></p-sortIcon></th>
-              <th pSortableColumn="contactPocs" class="white-space-nowrap" style="width:25%">POC MobileNo<p-sortIcon field="client.contactPocs.mobileNo"></p-sortIcon></th>
-
-              <th pSortableColumn="location" class="white-space-nowrap" style="width:25%">Location<p-sortIcon field="client.location"></p-sortIcon></th>
-              <th class="white-space-nowrap" style="width:20%">Actions</th>
-
-
-          </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-client>
-          <tr>
-              <td>{{client.companyName}}</td>
-              <td>
-                <ul>
-                    <li *ngFor="let contact of client.pocs">{{ contact.name }}</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li *ngFor="let contact of client.pocs">{{ contact.mobile }}</li>
-                </ul>
-            </td>
-              <td>{{client.location}}</td>
-              <td>
-                  <div class="button-container">
-                      <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditclient(client,client.id)" icon="pi pi-pencil"></button>
-                      <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="clientDelete(client)" icon="pi pi-trash"></button>
-                  </div>
-              </td>
-
-      </ng-template>
-  </p-table>
-</div> -->
