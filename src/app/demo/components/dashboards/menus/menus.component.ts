@@ -159,7 +159,7 @@ export class MenusComponent implements OnInit {
   menuItems: MenuItem[] = [];
 
   totalSteps = 4;
-  createdBy!: string;
+  createdBy!: UserAccout;
 
   itemss: any[] = [
     { label: 'Profile' },
@@ -315,6 +315,8 @@ export class MenusComponent implements OnInit {
 
     // Getting user details from local storage
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+
+    
     this.createdBy = user.userName;
     this.candidate.createdBy = this.createdBy;
 
@@ -347,6 +349,7 @@ export class MenusComponent implements OnInit {
   // Method to save candidate with vendor details
   saveCandidateWithVendorDto(vendor: any) {
     this.candidate.vendor = vendor;
+
 
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
       (res) => {

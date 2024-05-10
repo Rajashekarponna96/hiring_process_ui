@@ -8,6 +8,7 @@ import { TalentPool } from "./talentpool";
 import { Location } from "./location";
 import { Vendor } from "./vendor";
 
+
 export class Candidate {
     id: number | undefined;
     firstName: string | undefined;
@@ -31,7 +32,6 @@ export class Candidate {
     educations!: Education[];
     talentPool!: TalentPool;
     job!:Job
-
     vendor!: Vendor;
     createdBy!: string;
     modifiedBy!: string;
