@@ -316,9 +316,12 @@ export class MenusComponent implements OnInit {
     // Getting user details from local storage
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
+    // this.createdBy = user;
+    this.candidate.createdBy=user;
+    this.candidate.modifiedBy=user;
+
     
-    this.createdBy = user.userName;
-    this.candidate.createdBy = this.createdBy;
+    
 
     // Checking if the user is a vendor
     if (user.role?.name === 'vendor') {
@@ -349,6 +352,7 @@ export class MenusComponent implements OnInit {
   // Method to save candidate with vendor details
   saveCandidateWithVendorDto(vendor: any) {
     this.candidate.vendor = vendor;
+
 
 
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(

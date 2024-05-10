@@ -196,7 +196,9 @@ export class CandidateComponent {
     updateCandidate(candidate:Candidate,stage:string) {debugger
 
        candidate.stage  = stage;
-
+       const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+       //this.modifiedBy = user;
+       this.candidate.modifiedBy=user;
 
         this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
           res => {
