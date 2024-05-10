@@ -52,6 +52,7 @@
                             <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
                             <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
                             <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
+                            <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-eye"></button>
                            
                         </div>
                     </td>
@@ -187,5 +188,8 @@
             <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="updateCandidate(selectededCandidate,selectededCandidate.stage)" ></button>
         </ng-template>
     </p-dialog>
+
+   
+
 </div>
  

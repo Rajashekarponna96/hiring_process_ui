@@ -271,6 +271,7 @@ export class MenusComponent implements OnInit {
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
     // this.createdBy = user;
     this.candidate.createdBy=user;
+    this.candidate.modifiedBy=user;
 
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
       res => {
