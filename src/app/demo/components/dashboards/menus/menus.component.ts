@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
 import { UserAccout } from '../../model/userAccount';
+import { Vendor } from '../../model/vendor';
 
 
 @Component({
@@ -262,45 +263,119 @@ export class MenusComponent implements OnInit {
     this.router.navigate(['/candidate'])
 
   }
-  
+
+  // addCandidate() {
+  //   console.log("the candidate detailes are " + this.candidate)
+  //   this.candidate.experiences = this.experienceDetails
+  //   this.candidate.educations = this.educationDetails
+  //   this.candidate.skills = this.skills
+  //   const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+  //   this.createdBy = user.userName;
+  //   this.candidate.createdBy=this.createdBy;
+
+  //   this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.getAllCandidateList();
+  //       this.candidateForm.reset();
+  //       this.educationDetails = ['']
+  //       this.experienceDetails = ['']
+  //       this.showSuccessMessage = true
+
+  //       setTimeout(() => {
+  //         this.showSuccessMessage = false;
+  //       }, 5000); // Hide the message after 5 seconds (5000 milliseconds)
+
+  //       this.router.navigate(['/candidate']);
+  //     },
+  //     (err: HttpErrorResponse) => {
+  //       if (err.error instanceof Error) {
+  //         console.log("Client-side error occured.");
+  //       } else {
+  //         console.log("Server-side error occured.");
+  //       }
+  //       //this.service.typeWarning();
+
+  //     });
+  //   console.log(JSON.stringify(this.candidate));
+  //   this.getAllCandidateList();
+
+  // }
+
+
+  // strat save candiate with vendor
+
+  vendor: Vendor = new Vendor();
   addCandidate() {
-    console.log("the candidate detailes are " + this.candidate)
-    this.candidate.experiences = this.experienceDetails
-    this.candidate.educations = this.educationDetails
-    this.candidate.skills = this.skills
+    debugger;
+    // Assuming this.experienceDetails, this.educationDetails, and this.skills are properly defined
+    this.candidate.experiences = this.experienceDetails;
+    this.candidate.educations = this.educationDetails;
+    this.candidate.skills = this.skills;
+
+    // Getting user details from local storage
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    // this.createdBy = user;
-    this.candidate.createdBy=user;
+
+    
+    this.createdBy = user.userName;
+    this.candidate.createdBy = this.createdBy;
+
+    // Checking if the user is a vendor
+    if (user.role?.name === 'vendor') {
+      this.getVendorDetailBasedOnUserId(user.id);
+    } else {
+      this.saveCandidateWithVendorDto(null);
+    }
+  }
+  // Method to get vendor details based on user ID
+  getVendorDetailBasedOnUserId(userId: any) {
+    this.http.get<any>("http://localhost:9000/vendor/user/" + userId).subscribe(
+      (data) => {
+        console.log("Vendor details:", data);
+        if (data) {
+          this.saveCandidateWithVendorDto(data); // Pass the vendor data to the next step
+        } else {
+          console.log("Vendor details not found for the user.");
+          this.saveCandidateWithVendorDto(null);
+        }
+      },
+      (error) => {
+        console.error("Error fetching vendor details:", error);
+        this.saveCandidateWithVendorDto(null);
+      }
+    );
+  }
+
+  // Method to save candidate with vendor details
+  saveCandidateWithVendorDto(vendor: any) {
+    this.candidate.vendor = vendor;
+
 
     this.http.post<Candidate>('http://localhost:9000/candidate/', this.candidate).subscribe(
-      res => {
+      (res) => {
         console.log(res);
         this.getAllCandidateList();
         this.candidateForm.reset();
-        this.educationDetails = ['']
-        this.experienceDetails = ['']
-        this.showSuccessMessage = true
+        this.educationDetails = [];
+        this.experienceDetails = [];
+        this.showSuccessMessage = true;
 
         setTimeout(() => {
           this.showSuccessMessage = false;
-        }, 5000); // Hide the message after 5 seconds (5000 milliseconds)
-
+        }, 5000);
         this.router.navigate(['/candidate']);
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
+          console.log("Client-side error occurred.");
         } else {
-          console.log("Server-side error occured.");
+          console.log("Server-side error occurred.");
         }
-        //this.service.typeWarning();
-
-      });
-    console.log(JSON.stringify(this.candidate));
-    this.getAllCandidateList();
-
+      }
+    );
   }
 
+  //end ;save candiate with vendor
   getCandidateList() {
     return this.http.get<Candidate[]>('http://localhost:9000/candidate/all');
   }
@@ -707,7 +782,7 @@ export class MenusComponent implements OnInit {
       const startDate = new Date(this.experience.dateOfJoining);
       if (this.experience.dateOfRelieving) {
         const endDate = new Date(this.experience.dateOfRelieving);
-      
+
       if (endDate < startDate) {
         this.experience.dateOfRelieving = this.experience.dateOfJoining;
       }
