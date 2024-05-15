@@ -1,0 +1,64 @@
+
+<div class="grid p-fluid">
+  <div class="col-12">
+    <div class="grid">
+      <div class="col-12">
+        <div class="card">
+          <p-steps [model]="steps" [(activeIndex)]="currentStep" [readonly]="false" orientation="horizontal"></p-steps>
+          <div class="step-content">
+            <div *ngIf="currentStep === 0">
+              <h1>Step 0</h1>
+              <div class="button-container">
+                <button (click)="nextStep()" class="p-button-primary p-button-text next-button" pButton pRipple
+                  label="Next"></button>
+              </div>
+            </div>
+            <div *ngIf="currentStep === 1">
+              <h1>Step 1</h1>
+              <div class="button-container" style="justify-content: space-between;">
+                <button (click)="prevStep()" class="p-button-secondary p-button-text" pButton pRipple
+                  label="Previous"></button>
+                <button (click)="nextStep()" class="p-button-primary p-button-text" pButton pRipple
+                  label="Next"></button>
+              </div>
+            </div>
+            <div *ngIf="currentStep === 2">
+              <h1>Step 2</h1>
+              <div class="button-container" style="justify-content: space-between;">
+                <button (click)="prevStep()" class="p-button-secondary p-button-text" pButton pRipple
+                  label="Previous"></button>
+                <button (click)="nextStep()" class="p-button-primary p-button-text" pButton pRipple
+                  label="Next"></button>
+              </div>
+            </div>
+            <div *ngIf="currentStep === 3">
+              <h1>Step 3</h1>
+              <div class="button-container" style="justify-content: space-between;">
+                <button (click)="prevStep()" class="p-button-secondary p-button-text" pButton pRipple
+                  label="Previous"></button>
+                <button (click)="nextStep()" class="p-button-primary p-button-text" pButton pRipple
+                  label="Next"></button>
+              </div>
+            </div>
+            <div *ngIf="currentStep === 4">
+              <h1>Step 4</h1>
+              <div class="button-container" style="justify-content: space-between;">
+                <button (click)="prevStep()" class="p-button-secondary p-button-text" pButton pRipple
+                  label="Previous"></button>
+                <button (click)="nextStep()" class="p-button-primary p-button-text" pButton pRipple
+                  label="Next"></button>
+              </div>
+            </div>
+            <div *ngIf="currentStep === 5">
+              <h1>Step 5</h1>
+              <div class="button-container" style="justify-content: flex-start;">
+                <button (click)="prevStep()" class="p-button-secondary p-button-text" pButton pRipple
+                  label="Previous"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
