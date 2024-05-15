@@ -7,6 +7,7 @@ import { Source } from "./source";
 import { TalentPool } from "./talentpool";
 import { Location } from "./location";
 import { Vendor } from "./vendor";
+import { UserAccout } from "./userAccount";
 
 
 export class Candidate {
@@ -33,8 +34,8 @@ export class Candidate {
     talentPool!: TalentPool;
     job!:Job
     vendor!: Vendor;
-    createdBy!: string;
-    modifiedBy!: string;
+    createdBy!: UserAccout;
+    modifiedBy!: UserAccout;
 
 
 }
