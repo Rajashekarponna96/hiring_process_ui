@@ -137,6 +137,15 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'hiringflowactivity',
+                data: { breadcrumb: 'hiringflowactivity Candidate' },
+                loadChildren: () =>
+                    import('./candidate/hiringflowactivity/hiringflowactivity.module').then(
+                        (m) => m.HiringflowactivityModule
+                    ),
+            },
+
+            {
                 path: 'createrecandidate',
                 data: { breadcrumb: 'Create Candidate' },
                 loadChildren: () =>
@@ -255,6 +264,7 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./email/editemail/editemail.module').then((m) => m.EditemailModule),
             },
+
 
         ]),
     ],
