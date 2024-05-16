@@ -11,14 +11,14 @@ export class HiringflowactivityComponent implements OnInit {
   currentStep: number = 0;
   totalSteps = 6;
 
-  steps: MenuItem[] = [
-    { label: 'Sourced', command: (event) => { this.goToStep(0); } },
-    { label: 'Screening', command: (event) => { this.goToStep(1); } },
-    { label: 'Interview', command: (event) => { this.goToStep(2); } },
-    { label: 'Preboarding', command: (event) => { this.goToStep(3); } },
-    { label: 'Hired', command: (event) => { this.goToStep(4); } },
-    { label: 'Archived', command: (event) => { this.goToStep(5); } }
-  ];
+  // steps: MenuItem[] = [
+  //   { label: 'Sourced', command: (event) => { this.goToStep(0); } },
+  //   { label: 'Screening', command: (event) => { this.goToStep(1); } },
+  //   { label: 'Interview', command: (event) => { this.goToStep(2); } },
+  //   { label: 'Preboarding', command: (event) => { this.goToStep(3); } },
+  //   { label: 'Hired', command: (event) => { this.goToStep(4); } },
+  //   { label: 'Archived', command: (event) => { this.goToStep(5); } }
+  // ];
 
   constructor() { }
 
@@ -37,7 +37,9 @@ export class HiringflowactivityComponent implements OnInit {
   goToStep(step: number) {
     this.currentStep = step;
   }
-
+  complete() {
+    console.log('Wizard completed');
+  }
   ngOnInit() { }
 }
 
