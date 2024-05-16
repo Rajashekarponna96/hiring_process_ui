@@ -8,19 +8,16 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
   providers: [ConfirmationService, MessageService]
 })
 export class HiringflowactivityComponent implements OnInit {
-  currentStep: number = 0;
-  totalSteps = 6;
 
-  steps: MenuItem[] = [
-    { label: 'Sourced', command: (event) => { this.goToStep(0); } },
-    { label: 'Screening', command: (event) => { this.goToStep(1); } },
-    { label: 'Interview', command: (event) => { this.goToStep(2); } },
-    { label: 'Preboarding', command: (event) => { this.goToStep(3); } },
-    { label: 'Hired', command: (event) => { this.goToStep(4); } },
-    { label: 'Archived', command: (event) => { this.goToStep(5); } }
-  ];
+
+  currentStep: number = 0; totalSteps = 7;
+  tabs: string[] = ['Profile', 'Hiring Flow', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+
 
   constructor() { }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   nextStep() {
     if (this.currentStep < this.totalSteps - 1) {
@@ -33,11 +30,8 @@ export class HiringflowactivityComponent implements OnInit {
       this.currentStep--;
     }
   }
-
   goToStep(step: number) {
     this.currentStep = step;
   }
-
-  ngOnInit() { }
 }
 
