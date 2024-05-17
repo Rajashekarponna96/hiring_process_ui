@@ -163,6 +163,7 @@ export class CandidateComponent {
     }
 
     menuitems: MenuItem[] = [];
+    temporaryStage!: string; 
 
     stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
     showStages: boolean = false;
@@ -172,8 +173,9 @@ export class CandidateComponent {
     }
     openNew(candidate:Candidate) {
         console.log("candidate dertails for stage:"+candidate.email)
-       this.candidate.stage = candidate.stage
-       this.selectededCandidate =candidate
+       //this.candidate.stage = candidate.stage
+       this.selectededCandidate =candidate;
+       this.temporaryStage = candidate.stage;
         this.submitted = false;
         this.productDialog = true;
     }
@@ -195,7 +197,9 @@ export class CandidateComponent {
 
     updateCandidate(candidate:Candidate,stage:string) {debugger
 
-       candidate.stage  = stage;
+       //candidate.stage  = stage;
+       this.selectededCandidate.stage = this.temporaryStage;
+       console.log("Candidate updated:", this.selectededCandidate, "New Stage:", this.temporaryStage);
        const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
        //this.modifiedBy = user;
        this.candidate.modifiedBy=user;

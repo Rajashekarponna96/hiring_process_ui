@@ -149,47 +149,29 @@
         </ng-template>
     </p-table>
 
-    <p-dialog [(visible)]="productDialog"  [style]="{width: '450px'}" header="HiringFlow Stages" [modal]="true" class="p-fluid">
+    <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="HiringFlow Stages" [modal]="true" class="p-fluid">
         <ng-template pTemplate="content">
-            <!-- <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
-            <div class="field" >
-                <div class="formgrid grid" >
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="sourced" name="stage" value="Sourced" [(ngModel)]="selectededCandidate.stage" ngModel  #sourcedStage="ngModel"></p-radioButton>
-                        <label for="Sourced">Sourced</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="screening" name="stage" value="Screening" [(ngModel)]="selectededCandidate.stage" ngModel  #screeningStage="ngModel"></p-radioButton>
-                        <label for="screening">Screening</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="interview" name="stage" value="Interview" [(ngModel)]="selectededCandidate.stage" ngModel  #interviewStage="ngModel"></p-radioButton>
-                        <label for="interview">Interview</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="preboarding" name="stage" value="Preboarding" [(ngModel)]="selectededCandidate.stage" ngModel  #preboardingStage="ngModel"></p-radioButton>
-                        <label for="preboarding">Preboarding</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="hired" name="stage" value="Hired" [(ngModel)]="selectededCandidate.stage" ngModel  #hiredStage="ngModel"></p-radioButton>
-                        <label for="hired">Hired</label>
-                    </div>
-                    <div class="field-radiobutton col-6">
-                        <p-radioButton id="archived" name="stage" value="Archived" [(ngModel)]="selectededCandidate.stage" ngModel  #archivedStage="ngModel"></p-radioButton>
-                        <label for="archived">Archived</label>
-                    </div>
-                </div>
+          <div class="field">
+            <div class="formgrid grid">
+              <div class="field-radiobutton col-6" *ngFor="let stage of stages">
+                <p-radioButton
+                  [id]="stage.toLowerCase()"
+                  name="stage"
+                  [value]="stage"
+                  [(ngModel)]="temporaryStage"
+                  [disabled]="stages.indexOf(stage) < stages.indexOf(selectededCandidate.stage)"
+                ></p-radioButton>
+                <label [for]="stage.toLowerCase()">{{ stage }}</label>
+              </div>
             </div>
-
+          </div>
         </ng-template>
-
         <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()" ></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="updateCandidate(selectededCandidate,selectededCandidate.stage)" ></button>
+          <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+          <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="updateCandidate(selectededCandidate,selectededCandidate.stage)"></button>
         </ng-template>
-    </p-dialog>
-
-   
+      </p-dialog>
+        
 
 </div>
  
