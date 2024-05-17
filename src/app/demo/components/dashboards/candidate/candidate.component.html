@@ -11,7 +11,7 @@
         <!-- Add New Vendor Button -->
         <button (click)="navigateToCreateCandidate()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
     </div>
-    
+
 
 
     <!-- Table Container -->
@@ -52,8 +52,10 @@
                             <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
                             <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
                             <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
-                            <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-eye"></button>
-                           
+                            <!-- <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-eye"></button> -->
+                            <!-- <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="handleHiringFlowActivity()" icon="pi pi-eye"></button> -->
+                            <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="handleHiringFlowActivity(candidate)" icon="pi pi-eye"></button>
+
                         </div>
                     </td>
                 </tr>
@@ -65,7 +67,7 @@
  <!-- Pagination Container -->
  <div class="pagination-container">
     <div class="pagination-info">
-         Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
+         Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
     </div>
     <div class="pagination">
         <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
@@ -170,8 +172,8 @@
           <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
           <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="updateCandidate(selectededCandidate,selectededCandidate.stage)"></button>
         </ng-template>
-      </p-dialog>
-        
+ 
+    </p-dialog>
+ 
 
 </div>
- 

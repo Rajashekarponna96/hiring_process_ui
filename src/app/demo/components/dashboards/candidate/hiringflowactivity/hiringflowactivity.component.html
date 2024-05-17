@@ -1,3 +1,49 @@
+<!--
+<div>
+  <h2>Candidate Hiring Flow Activities</h2>
+  <div *ngIf="activities.length > 0">
+    <ul>
+      <li *ngFor="let activity of activities">
+        {{ activity.hiringFlowType }} - {{ activity.createdDate | date:'short' }} by {{ activity.userAccount.userName }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="activities.length === 0">
+    <p>No activities found for this candidate.</p>
+  </div>
+
+  <button (click)="prevStep()" [disabled]="currentStep === 0">Previous</button>
+  <button (click)="nextStep()" [disabled]="currentStep === totalSteps - 1">Next</button>
+
+  <div *ngFor="let tab of tabs; let i = index" (click)="goToStep(i)" [class.active]="currentStep === i">
+    {{ tab }}
+  </div>
+</div>
+
+
+
+<div>
+  <h2>Candidate Hiring Flow Activities</h2>
+  <div *ngIf="activities.length > 0">
+    <ul>
+      <li *ngFor="let activity of activities">
+        {{ activity.hiringFlowType }} - {{ activity.createdDate | date:'short' }} by {{ activity.userAccount.userName }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="activities.length === 0">
+    <p>No activities found for this candidate.</p>
+  </div>
+
+  <button (click)="prevStep()" [disabled]="currentStep === 0">Previous</button>
+  <button (click)="nextStep()" [disabled]="currentStep === totalSteps - 1">Next</button>
+
+  <div *ngFor="let tab of tabs; let i = index" (click)="goToStep(i)" [class.active]="currentStep === i">
+    {{ tab }}
+  </div>
+</div> -->
+
+
 <div class="container">
   <div class="tab-menu">
     <div class="tab" *ngFor="let tab of tabs; index as i" [class.active]="currentStep === i" (click)="goToStep(i)">
@@ -13,22 +59,27 @@
       <p>This is the Hiringflow step content.</p>
     </div>
     <div *ngIf="currentStep === 2">
-      <p>This is the Screening step content.</p>
+      <p>This is the Sourced step content.</p>
     </div>
     <div *ngIf="currentStep === 3">
-      <p>This is the Interview step content.</p>
+      <p>This is the Screening step content.</p>
     </div>
     <div *ngIf="currentStep === 4">
-      <p>This is the Preboarding step content.</p>
+      <p>This is the Interview step content.</p>
     </div>
     <div *ngIf="currentStep === 5">
-      <p>This is the Hired step content.</p>
+      <p>This is the Preboarding step content.</p>
     </div>
     <div *ngIf="currentStep === 6">
-      <p>This is the Archived step content.</p>
+      <p>This is the Hired step content.</p>
     </div>
     <div *ngIf="currentStep === 7">
+      <p>This is the Archived step content.</p>
+    </div>
+    <div *ngIf="currentStep === 8">
       <p>This is the Sourced step content.</p>
     </div>
   </div>
 </div>
+
+
