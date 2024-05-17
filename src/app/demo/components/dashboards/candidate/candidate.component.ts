@@ -158,16 +158,33 @@ export class CandidateComponent {
   //   this.router.navigate(['/hiringflowactivity']);
 
 
+    menuitems: MenuItem[] = [];
+    temporaryStage!: string; 
+
+
   // }
   handleHiringFlowActivity(candidate: Candidate) {
     this.router.navigate(['/hiringflowactivity'], { queryParams: { candidateId: candidate.id } });
   }
 
+ 
   toggleFilter() {
     this.displayFilterFields = !this.displayFilterFields;
     if (!this.displayFilterFields) {
       // Reset filtering
       this.dataTable.reset();
+ 
+    toggleStages() {
+      this.showStages = !this.showStages;
+    }
+    openNew(candidate:Candidate) {
+        console.log("candidate dertails for stage:"+candidate.email)
+       //this.candidate.stage = candidate.stage
+       this.selectededCandidate =candidate;
+       this.temporaryStage = candidate.stage;
+        this.submitted = false;
+        this.productDialog = true;
+ 
     }
   }
 
@@ -175,28 +192,29 @@ export class CandidateComponent {
     this.productDialog = false;
     this.submitted = false;
   }
+  updateCandidate(candidate:Candidate,stage:string) {debugger
+       //candidate.stage  = stage;
+       this.selectededCandidate.stage = this.temporaryStage;
+       console.log("Candidate updated:", this.selectededCandidate, "New Stage:", this.temporaryStage);
+       const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+       //this.modifiedBy = user;
+       this.candidate.modifiedBy=user;
 
+        this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
+          res => {
+            console.log(res);
+            this.productDialog = false;
+            this.submitted = false;
+          },
+          (err: HttpErrorResponse) => {
+            if (err.error instanceof Error) {
+              console.log("Client-side error occurred:", err.error.message);
+            } else {
+              console.log("Server-side error occurred:", err.status, err.message);
+            }
+          }
+        );
 
-  updateCandidate(candidate: Candidate, stage: string) {
-    debugger
-
-    candidate.stage = stage;
-    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-    //this.modifiedBy = user;
-    this.candidate.modifiedBy = user;
-
-    this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
-      res => {
-        console.log(res);
-        this.productDialog = false;
-        this.submitted = false;
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occurred:", err.error.message);
-        } else {
-          console.log("Server-side error occurred:", err.status, err.message);
-        }
       }
     );
   }
