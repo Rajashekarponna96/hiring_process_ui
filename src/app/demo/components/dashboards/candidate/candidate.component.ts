@@ -24,6 +24,10 @@ export class CandidateComponent {
     totalPages: number = 0;
     currentPage: number = 0;
     selectedRecordsOption1: number = 5;
+    message: string = '';
+    selectedFile:any
+    selectedFile1!:any;
+
 
 
     constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
@@ -319,6 +323,83 @@ onRecordsPerPageChange(event: Event) {
   //this.getAllCandidateList();
   this.getvendorDetailsById();
 }
+
+
+
+
+onFileSelected(event:any) {
+      this.selectedFile = <File>event.target.files[0];
+    }
+  
+    onUpload() {debugger;
+      if (this.selectedFile) {
+        const formData: FormData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+  
+        this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
+          (data) => {
+           
+            this.message = data;
+          },
+          (error) => {
+            console.error('Error uploading file:', error);
+            this.message = 'Failed to upload file';
+          }
+        );
+      } else {
+        console.error('No file selected');
+        this.message = 'Please select a file first';
+      }
+    }
+
+
+
+    onFileSelected1(event: any): void {
+      const file: File = event.target.files[0];
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+  
+      if (allowedTypes.includes(file.type)) {
+        this.selectedFile = file;
+        this.message = ''; // Clear any previous error messages
+      } else {
+        this.selectedFile1 = null;
+        this.message = 'Invalid file type. Please select a PDF or Word document.';
+      }
+    }
+  
+    onUpload1(): void {
+      if (this.selectedFile) {
+        const formData: FormData = new FormData();
+        formData.append('file', this.selectedFile, this.selectedFile.name);
+  
+        this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
+          data => {
+            this.message = data;
+          },
+          error => {
+            console.error('Error uploading file:', error);
+            this.message = 'Failed to upload file';
+          }
+        );
+      } else {
+        console.error('No file selected or invalid file type');
+        this.message = 'Please select a valid file first';
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //
 // added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
