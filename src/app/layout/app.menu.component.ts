@@ -106,11 +106,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-user-plus',
                         routerLink: ['/candidate']
                     },
-                    {
-                        label: 'hiringflowactivity',
-                        icon: 'pi pi-fw pi-user-plus',
-                        routerLink: ['/hiringflowactivity']
-                    },
+                    // {
+                    //     label: 'hiringflowactivity',
+                    //     icon: 'pi pi-fw pi-user-plus',
+                    //     routerLink: ['/hiringflowactivity']
+                    // },
 
 
 
