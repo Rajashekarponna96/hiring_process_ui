@@ -166,6 +166,10 @@ export class CandidateComponent {
 
     }
 
+    openHiringFlow(candidate:Candidate) {
+      this.router.navigate(['hiringflowactivity']);
+    }
+
     menuitems: MenuItem[] = [];
     temporaryStage!: string; 
 
