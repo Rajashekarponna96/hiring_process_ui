@@ -33,5 +33,30 @@ export class HiringflowactivityComponent implements OnInit {
   goToStep(step: number) {
     this.currentStep = step;
   }
+
+  onGlobalFilter1(event:any){
+
+  }
+
+  goToFirstPage(){
+
+  }
+
+  goToPreviousPage(){
+
+  }
+
+  goToNextPage(){
+
+  }
+
+  goToLastPage(){
+
+  }
+
+  onRecordsPerPageChange(event:any){
+    
+  }
+
 }
 
