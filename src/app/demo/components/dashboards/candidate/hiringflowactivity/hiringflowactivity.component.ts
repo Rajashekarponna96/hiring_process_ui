@@ -43,6 +43,7 @@ export class HiringflowactivityComponent implements OnInit {
   goToStep(step: number) {
     this.currentStep = step;
   }
+
   getCandidateId(){
     this.candidateId = JSON.parse(localStorage.getItem('candidateid') || '{}');
     console.log("candidateid in hiringflow activity............."+this.candidateId)
@@ -60,6 +61,31 @@ getAllHiringFlowList() { debugger
       this.changeDetectorRefs.markForCheck();
     });
 }
+
+
+  onGlobalFilter1(event:any){
+
+  }
+
+  goToFirstPage(){
+
+  }
+
+  goToPreviousPage(){
+
+  }
+
+  goToNextPage(){
+
+  }
+
+  goToLastPage(){
+
+  }
+
+  onRecordsPerPageChange(event:any){
+    
+  }
 
 }
 
