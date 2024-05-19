@@ -167,6 +167,7 @@ export class CandidateComponent {
     }
 
     openHiringFlow(candidate:Candidate) {
+      localStorage.setItem('candidateid',JSON.stringify(candidate.id));
       this.router.navigate(['hiringflowactivity']);
     }
 

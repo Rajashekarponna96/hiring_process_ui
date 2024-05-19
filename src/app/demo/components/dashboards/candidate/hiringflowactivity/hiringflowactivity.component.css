@@ -80,3 +80,24 @@ body {
   background-color: #4346f1;
   color: #fff;
 }
+
+.primary-color {
+  color: #007bff; /* Bootstrap primary color */
+}
+
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1rem;
+}
+
+.value {
+  font-weight: bold;
+  color: #343a40;
+}

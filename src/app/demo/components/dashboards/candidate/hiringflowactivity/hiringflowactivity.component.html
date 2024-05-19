@@ -6,9 +6,37 @@
   </div>
 
   <div class="step-content">
-    <div *ngIf="currentStep === 0">
-      <p>This is the Profile step content.</p>
-    </div>
+    <div *ngIf="currentStep === 0" class="container mt-4">
+      <div class="row">
+        <div class="col-6 col-md-6">
+          <!-- Left Side -->
+          <div class="card p-3">
+            <h5 class="primary-color mb-4">Candidate Details</h5>
+            <div class="form-grid">              
+              <div class="mb-3">
+                <h6 class="primary-color">Name : <span class="value">{{ hiringFlowActivity.candidate.firstName }}</span></h6>    
+              </div>    
+              <div class="mb-3">
+                <h6 class="primary-color">Skills : <span class="value">{{ hiringFlowActivity.candidate.skills }}</span></h6>
+              </div>
+              <div class="mb-3">
+                <h6 class="primary-color">Source : <span class="value">{{ hiringFlowActivity.candidate.source.name }}</span></h6>
+              </div>
+              <div class="mb-3">
+                <h6 class="primary-color">Current Location : <span class="value">{{ hiringFlowActivity.candidate.current.name }}</span></h6>
+              </div>
+              <div class="mb-3">
+                <h6 class="primary-color">Preffered Location : <span class="value">{{ hiringFlowActivity.candidate.preferred.name }}</span></h6>
+              </div>
+              <div class="mb-3">
+                <h6 class="primary-color">Available To Join : <span class="value">{{ hiringFlowActivity.candidate.avialToJoin }}</span></h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
     <div *ngIf="currentStep === 1">
       <p>This is the Hiringflow step content.</p>
     </div>
