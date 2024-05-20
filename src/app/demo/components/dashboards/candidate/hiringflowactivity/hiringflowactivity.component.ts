@@ -22,7 +22,9 @@ export class HiringflowactivityComponent implements OnInit {
   tabs: string[] = ['Profile', 'Hiring Flow', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
 
 
-  constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { 
+    
+  }
   ngOnInit(): void {
     this.getCandidateId();
     this.getAllHiringFlowList();
@@ -53,14 +55,17 @@ export class HiringflowactivityComponent implements OnInit {
     return this.http.get<HiringFlowActivity[]>(
         'http://localhost:9000/hiringFlowActivities/candidate/'+this.candidateId);
 }
-getAllHiringFlowList() { debugger
+getAllHiringFlowList() { debugger;
     return  this.getHiringFlowList().subscribe((data: HiringFlowActivity[]) => {
       console.log('Fetched Data:', data);
       this.hiringFlowActivity = data[0];
+      this.hiringFlowActivitys = data
       console.log('Assigned Data:', this.hiringFlowActivity);
       this.changeDetectorRefs.markForCheck();
     });
 }
+
+
 
 
   onGlobalFilter1(event:any){

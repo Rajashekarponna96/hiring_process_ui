@@ -3,7 +3,7 @@ import { UserAccout } from "./userAccount";
 
 export class HiringFlowActivity{
     id!: number;
-    userAccout!: UserAccout;
+    userAccount!: UserAccout;
     createdDate: any;
     hiringFlowType!: string;
     candidate!: Candidate;
