@@ -26,6 +26,8 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
   currentPage: number = 0;
   selectedRecordsOption1: number = 5;
   message: string = '';
+  selectedFile: any
+  selectedFile1!: any;
 
 
 
@@ -40,10 +42,10 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
   filteredCandidates: Candidate[] = [];
   displayFilterFields = false;
 
-  // navigateToCreateCandidate() {
-  //   this.router.navigate(['menus'])
+  navigateToCreateCandidate() {
+    this.router.navigate(['menus'])
 
-  // }
+  }
 
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal(
@@ -111,6 +113,43 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
     });
   }
 
+  handleEditcandidate(candidate: Candidate) {
+    const candidateId = candidate.id;
+
+    console.log("Candidate object:", candidate);
+    // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
+    this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
+  }
+
+  candidateDelete(candidate: Candidate) {
+
+    console.log("candidate is is:" + candidate.id)
+    this.http
+      .delete<Candidate[]>(
+        'http://localhost:9000/candidate/' + candidate.id
+      )
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.getAllCandidateList();
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side error occurred.');
+          } else {
+            console.log('Server-side error occurred.');
+          }
+        }
+      );
+
+  }
+
+  openHiringFlow(candidate: Candidate) {
+    localStorage.setItem('candidateid', JSON.stringify(candidate.id));
+    this.router.navigate(['hiringflowactivity']);
+  }
+
+  menuitems: MenuItem[] = [];
   temporaryStage!: string;
 
   stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
@@ -118,6 +157,14 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
 
   toggleStages() {
     this.showStages = !this.showStages;
+  }
+  openNew(candidate: Candidate) {
+    console.log("candidate dertails for stage:" + candidate.email)
+    //this.candidate.stage = candidate.stage
+    this.selectededCandidate = candidate;
+    this.temporaryStage = candidate.stage;
+    this.submitted = false;
+    this.productDialog = true;
   }
 
 
@@ -164,6 +211,9 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
 
 
 
+
+  // added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
+
   ngOnInit() {
     // this.getAllCandidateList();
     this.getvendorDetailsById();
@@ -188,6 +238,9 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
     } else { // If user role is not recognized or no action specified
       console.log("User role not recognized or no action specified.");
     }
+    // else if (user.role?.name === 'admin') { // If user is admin
+    //   this.getAllCandidateList(); // Call method to get all candidates
+    // }
   }
   // Method to get vendor details based on user ID
   getVendorDetailBasedOnUserId(userId: any) {
@@ -253,6 +306,70 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
     this.currentPage = 0; // Reset to first page when changing page size
     //this.getAllCandidateList();
     this.getvendorDetailsById();
+  }
+
+
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload() {
+    debugger;
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+
+      this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
+        (data) => {
+
+          this.message = data;
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          this.message = 'Failed to upload file';
+        }
+      );
+    } else {
+      console.error('No file selected');
+      this.message = 'Please select a file first';
+    }
+  }
+
+
+
+  onFileSelected1(event: any): void {
+    const file: File = event.target.files[0];
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if (allowedTypes.includes(file.type)) {
+      this.selectedFile = file;
+      this.message = ''; // Clear any previous error messages
+    } else {
+      this.selectedFile1 = null;
+      this.message = 'Invalid file type. Please select a PDF or Word document.';
+    }
+  }
+
+  onUpload1(): void {
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+
+      this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
+        data => {
+          this.message = data;
+        },
+        error => {
+          console.error('Error uploading file:', error);
+          this.message = 'Failed to upload file';
+        }
+      );
+    } else {
+      console.error('No file selected or invalid file type');
+      this.message = 'Please select a valid file first';
+    }
   }
 
 
