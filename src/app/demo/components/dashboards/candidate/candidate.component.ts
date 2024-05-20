@@ -174,7 +174,7 @@ export class CandidateComponent {
     menuitems: MenuItem[] = [];
     temporaryStage!: string; 
 
-    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived'];
+    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived','Reject'];
     showStages: boolean = false;
 
     toggleStages() {
