@@ -88,9 +88,14 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/recruiter']
                             },
                             {
-                                label: 'TalentPool',
+                                label: 'Pool',
                                 icon: 'pi pi-check',
                                 routerLink: ['/listtalentpool']
+                            },
+                            {
+                                label: 'TalentPool',
+                                icon: 'pi pi-check',
+                                routerLink: ['/talentpoolinactivecandidatelist']
                             }
                         ]
                     },

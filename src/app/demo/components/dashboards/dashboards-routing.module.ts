@@ -163,11 +163,19 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'listtalentpool',
-                data: { breadcrumb: 'TalentPool' },
+                data: { breadcrumb: 'Pool' },
                 loadChildren: () =>
                     import(
                         './talentpool/listtalentpool/listtalentpool.module'
                     ).then((m) => m.ListtalentpoolModule),
+            },
+            {
+                path: 'talentpoolinactivecandidatelist',
+                data: { breadcrumb: 'TalentPool' },
+                loadChildren: () =>
+                    import(
+                        './talentpool/talentpoolinactivecandidatelist/talentpoolinactivecandidatelist.module'
+                    ).then((m) => m.TalentpoolinactivecandidatelistModule),
             },
             {
                 path: 'edittalentpool',
