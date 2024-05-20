@@ -38,7 +38,7 @@
       </div>
 </div>
     <div *ngIf="currentStep === 1">
-      <p>This is the Hiringflow step content.</p>
+      
 
       <div class="card">
         <!-- Header Container -->
@@ -66,10 +66,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let hiringFlowActivity of hiringFlowActivitys" >
+                        <td>{{hiringFlowActivity.createdDate}}</td>
+                        <td>{{hiringFlowActivity.hiringFlowType}}</td>
+                        <!-- <td>{{hiringFlowActivity?.userAccout?.userName}}</td> -->
+                        <td>{{hiringFlowActivity.userAccount.userName }}</td>
+                        
                         
                       
                         <!-- <td>
@@ -111,6 +113,7 @@
   </div> 
 </div>-->
 </div>
+
 </div>
 
 
