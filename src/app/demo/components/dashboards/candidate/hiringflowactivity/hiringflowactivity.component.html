@@ -7,74 +7,256 @@
 
   <div class="step-content">
     <div *ngIf="currentStep === 0" class="container mt-4">
-      <div class="row">
-        <div class="col-6 col-md-6">
-          <!-- Left Side -->
-          <div class="card p-3">
-            <h5 class="primary-color mb-4">Candidate Details</h5>
-            <div class="form-grid">              
-              <div class="mb-3">
-                <h6 class="primary-color">Name : <span class="value">{{ hiringFlowActivity.candidate.firstName }}</span></h6>    
-              </div>    
-              <div class="mb-3">
-                <h6 class="primary-color">Skills : <span class="value">{{ hiringFlowActivity.candidate.skills }}</span></h6>
-              </div>
-              <div class="mb-3">
-                <h6 class="primary-color">Source : <span class="value">{{ hiringFlowActivity.candidate.source.name }}</span></h6>
-              </div>
-              <div class="mb-3">
-                <h6 class="primary-color">Current Location : <span class="value">{{ hiringFlowActivity.candidate.current.name }}</span></h6>
-              </div>
-              <div class="mb-3">
-                <h6 class="primary-color">Preffered Location : <span class="value">{{ hiringFlowActivity.candidate.preferred.name }}</span></h6>
-              </div>
-              <div class="mb-3">
-                <h6 class="primary-color">Available To Join : <span class="value">{{ hiringFlowActivity.candidate.avialToJoin }}</span></h6>
-              </div>
+      <div class="card">
+        <div class="grid">
+          <div class="col-12">
+            <form #candidateForm="ngForm">
+              <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-6">
+                  <label for="firstname">FirstName</label>
+                  <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter FirstName"
+                    [(ngModel)]="
+                                hiringFlowActivity.candidate.firstName
+                            " required #firstname="ngModel" readonly />
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="lastName">LastName</label>
+                  <input pInputText id="lastName" name="lastName" type="text" placeholder="Enter LastName"
+                    [(ngModel)]="hiringFlowActivity.candidate.lastName" required #lastName="ngModel" readonly />
+                  <div *ngIf="
+                                lastName.invalid &&
+                                (lastName.dirty ||
+                                    lastName.touched)
+                            ">
+                    <div style="color: red" *ngIf="lastName.errors">
+                      LastName is Required
+                    </div>
+                  </div>
+                </div>
 
-            </div>
+                <div class="field col-12 md:col-6">
+                  <label for="email">Email</label>
+                  <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
+                    [(ngModel)]="hiringFlowActivity.candidate.email" required email #email="ngModel" readonly />
+                  <div *ngIf="
+                                email.invalid &&
+                                (email.dirty ||
+                                    email.touched)
+                            ">
+                    <div style="color: red" *ngIf="email.errors">
+                      Invalid Email Format
+                    </div>
+                  </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="mobile">Mobile</label>
+                  <input pInputText id="mobile" name="mobile" type="text" placeholder="Enter Mobile Number"
+                    [(ngModel)]="hiringFlowActivity.candidate.mobile" required pattern="[0-9]*" #mobile="ngModel"
+                    readonly />
+                  <div *ngIf="
+                                mobile.invalid &&
+                                (mobile.dirty ||
+                                    mobile.touched)
+                            ">
+                    <div style="color: red" *ngIf="mobile.errors">
+                      Mobile Number is Required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="mobile">Alter Nate MobileNo</label>
+                  <input pInputText id="alterMobile" name="alterMobile" type="text" placeholder="Enter Alt MobileNumber"
+                    [(ngModel)]="hiringFlowActivity.candidate.alterMobile" required pattern="[0-9]{10}*" min
+                    #alterMobile="ngModel" readonly />
+                  <div *ngIf="
+                            alterMobile.invalid &&
+                                (alterMobile.dirty ||
+                                alterMobile.touched)
+                            ">
+                    <div style="color: red" *ngIf="alterMobile.errors">
+                      Alter Mobile Number is Required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="stage">Hiring Stage</label>
+                  <input pInputText id="stage" name="stage" type="text" placeholder="Enter stage" [(ngModel)]="
+                                hiringFlowActivity.candidate.stage
+                            " required #stage="ngModel" readonly />
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="avialToJoin">Notice Period</label>
+                  <input pInputText id="avialToJoin" name="avialToJoin" type="text" placeholder="Enter Notice Period"
+                    [(ngModel)]="
+                               hiringFlowActivity.candidate.avialToJoin
+                            " required #avialToJoin="ngModel" readonly />
+                  <div *ngIf="
+                                avialToJoin.invalid &&
+                                (avialToJoin.dirty ||
+                                    avialToJoin.touched)
+                            ">
+                    <div style="color: red" *ngIf="avialToJoin.errors">
+                      Notice Period is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="currentSalary">Current Salary</label>
+                  <input pInputText id="currentSalary" name="currentSalary" type="number"
+                    placeholder="Enter Current Salary" [(ngModel)]="
+                                hiringFlowActivity.candidate.currentSalary
+                            " required #currentSalary="ngModel" readonly />
+                  <div *ngIf="
+                                currentSalary.invalid &&
+                                (currentSalary.dirty ||
+                                    currentSalary.touched)
+                            ">
+                    <div style="color: red" *ngIf="currentSalary.errors">
+                      Current Salary is required
+                    </div>
+                  </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="expectedSalary">Expected Salary</label>
+                  <input pInputText id="expectedSalary" name="expectedSalary" type="number"
+                    placeholder="Enter ExpectedSalary" [(ngModel)]="
+                               hiringFlowActivity.candidate.expectedSalary
+                            " required #expectedSalary="ngModel" readonly />
+                  <div *ngIf="
+                                expectedSalary.invalid &&
+                                (expectedSalary.dirty ||
+                                    expectedSalary.touched)
+                            ">
+                    <div style="color: red" *ngIf="
+                                    expectedSalary.errors
+                                ">
+                      Expected Salary is Required
+                    </div>
+                  </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                  <label for="skills">Skills</label>
+                  <input pInputText id="skills" name="skills" type="text" placeholder="Enter skills" [(ngModel)]="
+                                hiringFlowActivity.candidate.skills
+                            " required #skills="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="taletpoll">Talent Pool</label>
+                  <input pInputText id="taletpoll" name="taletpoll" type="text" placeholder="Enter taletpoll"
+                    [(ngModel)]="
+                                hiringFlowActivity.candidate.talentPool.name
+                            " required #skills="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="job">Job</label>
+                  <input pInputText id="job" name="job" type="text" placeholder="Enter job" [(ngModel)]="
+                                hiringFlowActivity.candidate.job.title
+                            " required #job="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="source">Source</label>
+                  <input pInputText id="source" name="source" type="text" placeholder="Enter source" [(ngModel)]="
+                                hiringFlowActivity.candidate.source.name
+                            " required #source="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="current">Current Location</label>
+                  <input pInputText id="current" name="current" type="text" placeholder="Enter current" [(ngModel)]="
+                                hiringFlowActivity.candidate.current.name
+                            " required #current="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="preffered">Preffered Location</label>
+                  <input pInputText id="preffered" name="preffered" type="text" placeholder="Enter preffered"
+                    [(ngModel)]="
+                                hiringFlowActivity.candidate.preferred.name
+                            " required #preferred="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                  <label for="currency">Currency</label>
+                  <input pInputText id="currency" name="currency" type="text" placeholder="Enter currency" [(ngModel)]="
+                                hiringFlowActivity.candidate.currency.name
+                            " required #currency="ngModel" readonly />
+                </div>
+
+                <div class="field col-12 md:col-6 readonly-date-of-birth">
+                  <label for="dateOfBirth">Date Of Birth</label>
+                  <div class="readonly-date-of-birth-value">
+                    {{
+                    hiringFlowActivity.candidate.dateOfBirth
+                    | date : "dd/MM/yyyy"
+                    }}
+                  </div>
+                </div>
+
+                <div class="field col-12 md:col-6 readonly-gender">
+                  <label for="gender">Gender</label>
+                  <div class="readonly-gender-value">
+                    {{hiringFlowActivity.candidate.gender }}
+                  </div>
+                </div>
+              </div>
+              <div class="ui-g-12" style="text-align: right">
+                <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+
+
+
+                <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
+                  routerLink="/candidate" label="Cancel"></button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-</div>
+    </div>
     <div *ngIf="currentStep === 1">
-      
+
 
       <div class="card">
         <!-- Header Container -->
         <div class="header-container">
-            <!-- Search Input -->
-            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
-                <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
-                </span>
-            </div>
+          <!-- Search Input -->
+          <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
+            <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
+                class="w-full" />
+            </span>
           </div>
-        
-    
-    
+        </div>
+
+
+
         <!-- Table Container -->
         <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%">Createad Date</th>
-                        <th style="width: 25%">Hiring Flow  Type</th>
-                        <th style="width: 25%">CreatedBy/ModifiedBy</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let hiringFlowActivity of hiringFlowActivitys" >
-                        <td>{{hiringFlowActivity.createdDate}}</td>
-                        <td>{{hiringFlowActivity.hiringFlowType}}</td>
-                        <!-- <td>{{hiringFlowActivity?.userAccout?.userName}}</td> -->
-                        <td>{{hiringFlowActivity.userAccount.userName }}</td>
-                        
-                        
-                      
-                        <!-- <td>
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 25%">Createad Date</th>
+                <th style="width: 25%">Hiring Flow Type</th>
+                <th style="width: 25%">CreatedBy/ModifiedBy</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let hiringFlowActivity of hiringFlowActivitys">
+                <td>{{hiringFlowActivity.createdDate}}</td>
+                <td>{{hiringFlowActivity.hiringFlowType}}</td>
+                <!-- <td>{{hiringFlowActivity?.userAccout?.userName}}</td> -->
+                <td>{{hiringFlowActivity.userAccount.userName }}</td>
+
+
+
+                <!-- <td>
                             <div class="button-container">
                                 <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate()" icon="pi pi-pencil"></button>
                                 <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete()" icon="pi pi-trash"></button>
@@ -83,13 +265,13 @@
                                
                             </div>
                         </td> -->
-                    </tr>
-                </tbody>
-            </table>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- Pagination Container -->
- <!-- <div class="pagination-container">
+        <!-- <div class="pagination-container">
   <div class="pagination-info">
        Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
   </div>
@@ -100,8 +282,8 @@
       <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
   </div> -->
 
-  <!-- Page Size Selector -->
-  <!-- <div class="page-size-selector">
+        <!-- Page Size Selector -->
+        <!-- <div class="page-size-selector">
       <select class="custom-select" (change)="onRecordsPerPageChange($event)">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -112,9 +294,9 @@
       </select>
   </div> 
 </div>-->
-</div>
+      </div>
 
-</div>
+    </div>
 
 
     <div *ngIf="currentStep === 2">
