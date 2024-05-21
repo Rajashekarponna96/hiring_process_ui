@@ -98,7 +98,7 @@ export class TalentpoolinactivecandidatelistComponent implements OnInit {
   }
 
   getAllCandidateList() {
-    this.http.get<any>('http://localhost:9000/candidate/candidatelistwithpagination', {
+    this.http.get<any>('http://localhost:9000/candidate/inactivecandidatelistwithpagination', {
 
       params: {
         page: this.currentPage.toString(),
