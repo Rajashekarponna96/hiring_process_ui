@@ -138,7 +138,7 @@ import { RouterModule } from '@angular/router';
             },
             {
                 path: 'hiringflowactivity',
-                data: { breadcrumb: 'hiringflowactivity Candidate' },
+                data: { breadcrumb: 'Hiringflow -Activity ' },
                 loadChildren: () =>
                     import('./candidate/hiringflowactivity/hiringflowactivity.module').then(
                         (m) => m.HiringflowactivityModule
