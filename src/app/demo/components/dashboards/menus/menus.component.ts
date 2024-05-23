@@ -214,6 +214,10 @@ export class MenusComponent implements OnInit {
       "id": 7,
       "name": 'Reject'
     },
+    {
+      "id": 8,
+      "name": 'Hold'
+    },
   ]
 
 
