@@ -43,12 +43,20 @@ export class CreateemailComponent {
       "name": 'Preboarding'
     },
     {
-      "id": 1,
+      "id": 5,
       "name": 'Hired'
     },
     {
-      "id": 1,
+      "id": 6,
       "name": 'Archived'
+    },
+    {
+      "id": 7,
+      "name": 'Reject'
+    },
+    {
+      "id": 8,
+      "name": 'Hold'
     },
   ]
 
