@@ -280,6 +280,12 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./email/editemail/editemail.module').then((m) => m.EditemailModule),
             },
+            {
+                path: 'uploadfile',
+                data: { breadcrumb: 'Upload-File' },
+                loadChildren: () =>
+                    import('./candidate/uploadfile/uploadfile.module').then((m) => m.UploadfileModule),
+            },
 
 
         ]),

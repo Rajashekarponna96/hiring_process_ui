@@ -110,18 +110,3 @@
 
 
 
-<!-- File-Upload-code-->
-
-<div class="file-upload">
-    <h2>File Upload</h2>
-    <input type="file" (change)="onFileSelected1($event)" accept=".pdf,.doc,.docx" />
-    <button (click)="onUpload1()">Upload</button>
-    <p>{{ message }}</p>
-  </div>
-
-  <div class="file-upload">
-    <h2>File Upload</h2>
-    <input type="file" (change)="onFileSelected($event)" />
-    <button (click)="onUpload()">Upload</button>
-    <p>{{ message }}</p>
-  </div>

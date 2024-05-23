@@ -156,7 +156,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: 'Email-Template',
-                        icon: 'pi pi-fw pi-users',
+                        icon: 'pi pi-envelope',
                         routerLink: ['/email']
                     },
 
@@ -175,6 +175,18 @@ export class AppMenuComponent implements OnInit {
                         label: 'Settings',
                         icon: 'pi pi-cog',
                         routerLink: ['/settings']
+                    }
+
+                ]
+            },
+            {
+                permissionName: 'uploadfile',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Uploadfile',
+                        icon: 'pi pi-upload',
+                        routerLink: ['/uploadfile']
                     }
 
                 ]
