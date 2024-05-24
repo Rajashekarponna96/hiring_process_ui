@@ -9,20 +9,25 @@ import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RippleModule } from 'primeng/ripple';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CreatejobRoutingModule } from '../createjob/createjob-routing.module';
+import { AssignjobstovendorComponent } from './assignjobstovendor.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AssignjobstovendorComponent],
   imports: [
     CommonModule,
     AssignjobstovendorRoutingModule,
     CommonModule,
+    CreatejobRoutingModule,
     FormsModule,
     ButtonModule,
-    RippleModule,
-    InputTextModule,
-    DropdownModule,
-    InputTextareaModule,
+		RippleModule,
+		InputTextModule,
+		DropdownModule,
+		FileUploadModule,
+		InputTextareaModule,
     EditorModule
   ]
 })
