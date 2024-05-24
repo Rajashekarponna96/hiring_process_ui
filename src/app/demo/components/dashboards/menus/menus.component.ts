@@ -137,8 +137,8 @@ export class MenusComponent implements OnInit {
   visibleSidebar4: boolean = false;
 
   visibleSidebar5: boolean = false;
-
-
+  email!: string;
+  mobile!: string;
   //
 
   breadcrumbItems: MenuItem[] = [];
@@ -227,6 +227,7 @@ export class MenusComponent implements OnInit {
   showSuccessMessage: boolean = false;
 
   userAccounts!: UserAccout[];
+  userAccount = new UserAccout();
 
 
 
@@ -319,7 +320,10 @@ export class MenusComponent implements OnInit {
 
     // Getting user details from local storage
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-
+    //  this.email = this.candidate.email;
+    //  this.mobile = this.candidate.mobile;
+    // this.userAccount.userName = this.email;
+    // this.userAccount.password = this.mobile;
     // this.createdBy = user;
     this.candidate.createdBy=user;
     this.candidate.modifiedBy=user;

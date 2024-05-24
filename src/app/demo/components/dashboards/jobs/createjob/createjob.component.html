@@ -13,7 +13,7 @@
                         </div>
 
                     </div>
-                    <div class="field col-12 md:col-6">
+                    <!-- <div class="field col-12 md:col-6">
                         <label for="description">Description<span [style.display]="job.description ? 'none' : 'inline'" style="color: red">*</span></label>
                         <textarea pInputText id="description" name="description" type="text" ngModel required
                             minlength="2"  placeholder="Enter Description" [(ngModel)]="job.description"
@@ -21,14 +21,14 @@
                         <div *ngIf="description.invalid && (description.dirty || description.touched)">
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
-                    </div>
-                    <!-- <div class="col-12 field">
-                        <label for="description">Description</label>
-                        <p-editor id="description" [(ngModel)]="job.description" [style]="{'height':'250px'}" name="description" placeholder="Enter Description" #description="ngModel" required></p-editor>
+                    </div> -->
+                    <div class="col-12 field">
+                        <label for="description"class="text-900 font-semibold">Description</label>
+                        <p-editor id="description" [(ngModel)]="job.description" [style]="{'height':'250px'}" name="description"  #description="ngModel" required></p-editor>
                         <div *ngIf="description.invalid && (description.dirty || description.touched)">
                             <div style="color: red" *ngIf="description.errors">Description is required </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="field col-12 md:col-6">
                         <label for="primarySkills">Primary Skills<span [style.display]="job.primarySkills ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="primarySkills" name="primarySkills" type="text" ngModel required 

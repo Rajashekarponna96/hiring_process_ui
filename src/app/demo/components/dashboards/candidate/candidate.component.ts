@@ -256,7 +256,11 @@ getvendorDetailsById() {
   else if (user.role?.name === 'recruiter') { // If user is recruiter
     console.log("User is a recruiter.");
     this.getAllCandidateList(); // Call method to get all candidates for recruiters
-  } else { // If user role is not recognized or no action specified
+  } 
+  else if (user.role?.name === 'candidate') { // If user is admin
+    this.getAllCandidateList(); // Call method to get all candidates
+  }
+  else { // If user role is not recognized or no action specified
     console.log("User role not recognized or no action specified.");
   }
   // else if (user.role?.name === 'admin') { // If user is admin

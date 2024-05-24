@@ -1,68 +1,64 @@
 .container {
-    padding: 20px;
-  }
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9; /* Light gray background */
-  }
+.flex {
+  display: flex;
+}
 
-  .mb-3 {
-    margin-bottom: 15px;
-  }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 
-  .formgrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
-  }
+.gap-2 {
+  gap: 0.5rem;
+}
 
-  .value {
-    font-weight: bold;
-  }
+.justify-content-end {
+  justify-content: flex-end;
+}
 
-  h5, h6 {
-    margin-bottom: 10px;
-    color: #333; /* Dark gray text */
-  }
+.grid {
+  display: grid;
+  gap: 1rem;
+}
 
-  label {
-    color: #666; /* Medium gray text */
-  }
+.p-fluid {
+  width: 100%;
+}
 
-  .primary-color {
-    color: #007bff; /* Primary color - Blue */
-  }
+.card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
 
-  .success-color {
-    color: #28a745; /* Success color - Green */
-  }
+.primary-color {
+  color: #007bff;
+}
 
-  .button-primary {
-    background-color: #007bff; /* Primary color - Blue */
-    color: #fff; /* White text */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.formgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
 
-  .button-primary:hover {
-    background-color: #0056b3; /* Darker shade of blue on hover */
-  }
+.formgrid > div {
+  display: flex;
+  flex-direction: column;
+}
 
-  .button-success {
-    background-color: #28a745; /* Success color - Green */
-    color: #fff; /* White text */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.full-width {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+}
 
-  .button-success:hover {
-    background-color: #218838; /* Darker shade of green on hover */
-  }
+.value {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
