@@ -1,107 +1,67 @@
-<!--  -->
-
-
 <div class="container">
   <div class="flex flex-wrap gap-2 justify-content-end">
-    <button pButton pRipple type="button" label="Apply" class="p-button-outlined p-button-success" routerLink="/menus"
-      icon="pi pi-user-plus"></button>
+    <button pButton pRipple type="button" label="Apply" class="p-button-outlined p-button-success" routerLink="/menus" icon="pi pi-user-plus"></button>
   </div>
   <br>
-
+  
   <div class="grid p-fluid">
-    <div class="col-12 md:col-6">
+    <div class="col-12 md:col-12">
       <!-- Left Side -->
       <div class="card">
         <h5 class="primary-color">Job Details</h5>
+        
+        <!-- Description spans full width -->
+        <div class="full-width">
+          <h6 class="primary-color">Description:</h6>
+          <span class="value">{{ job?.description }}</span>
+        </div>
+        <br>
+        <!-- Rest of the fields in a grid -->
         <div class="formgrid">
-          <div class="mb-3">
-            <h6 class="primary-color">Clients:</h6>
-            <span class="value">{{ job?.clients?.companyName }}</span>
-          </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Title:</h6>
             <span class="value">{{ job?.title }}</span>
           </div>
-
-          <div class="mb-3">
-            <h6 class="primary-color">Description:</h6>
-            <span class="value">{{ job?.description }}</span>
-          </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Expected Notice Period:</h6>
             <span class="value">{{ job?.expectedNoticePeriod }}</span>
           </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Openings:</h6>
             <span class="value">{{ job?.openings }}</span>
           </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Target Hire Date:</h6>
             <span class="value">{{ job?.targetHireDate }}</span>
           </div>
-
-          <div class="mb-3">
-            <h6 class="primary-color">Currency:</h6>
-            <span class="value">{{ job?.currney?.name }}</span>
-          </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Salary Maximum:</h6>
             <span class="value">{{ job?.salaryMaximum }}</span>
           </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Type:</h6>
             <span class="value">{{ job?.type }}</span>
           </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Locations:</h6>
-            <span class="value">{{ job?.locations?.name }}</span>
+            <span class="value">{{ job?.locations }}</span>
           </div>
-
-          <div class="mb-3">
+          <div>
             <h6 class="primary-color">Experience:</h6>
             <span class="value">{{ job?.experience }}</span>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 md:col-6">
-      <!-- Right Side -->
-      <div class="card">
-        <h5 class="success-color">Skills</h5>
-        <div class="mb-3">
-          <h6 class="success-color">Primary Skills:</h6>
-          <span class="value">{{ job?.primarySkills }}</span>
-        </div>
-
-        <div class="mb-3">
-          <h6 class="success-color">Secondary Skills:</h6>
-          <span class="value">{{ job?.secondarySkills }}</span>
-        </div>
-
-        <div class="mb-3">
-          <h6 class="success-color">Good To Have:</h6>
-          <span class="value">{{ job?.goodToHave }}</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h5 class="success-color">Additional Details</h5>
-        <div class="mb-3">
-          <h6 class="success-color">Recruiter:</h6>
-          <span class="value">{{ job?.recruiters?.firstName }}</span>
-        </div>
-
-        <div class="mb-3">
-          <h6 class="success-color">Department:</h6>
-          <span class="value">{{ job?.department?.name }}</span>
+          <div>
+            <h6 class="primary-color">Primary Skills:</h6>
+            <span class="value">{{ job?.primarySkills }}</span>
+          </div>
+          <div>
+            <h6 class="primary-color">Secondary Skills:</h6>
+            <span class="value">{{ job?.secondarySkills }}</span>
+          </div>
+          <div>
+            <h6 class="primary-color">Good To Have:</h6>
+            <span class="value">{{ job?.goodToHave }}</span>
+          </div>
         </div>
       </div>
     </div>

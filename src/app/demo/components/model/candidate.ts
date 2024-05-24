@@ -15,8 +15,8 @@ export class Candidate {
     firstName: string | undefined;
     lastName: string | undefined;
     middleName:string | undefined
-    email: string | undefined;
-    mobile: string | undefined;
+    email!: string; 
+    mobile!: string; 
     alterMobile:string | undefined
     source!: Source;
     stage!: string;
