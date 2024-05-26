@@ -155,13 +155,13 @@
                                         </div>
 
 
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="taletpoll">Hiring Stage<span [style.display]=" candidate.stage ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
                                                 [showClear]="true" [filter]="true" placeholder="Select Stages"
                                                 name="stage" optionLabel="name" optionValue="name">
                                             </p-dropdown>
-                                        </div>
+                                        </div> -->
 
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin">Notice Period<span [style.display]=" candidate.avialToJoin ? 'none' : 'inline'" style="color: red">*</span></label>
@@ -283,7 +283,7 @@
 
 
                                         <!-- TalentPoll  dropdown -->
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="taletpoll">Talent Pool<span [style.display]=" candidate.talentPool ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="talentpools" [(ngModel)]="
                                                     candidate.talentPool
@@ -293,7 +293,7 @@
                                             <div *ngIf="!candidate.talentPool && (candidateForm.controls['talentPool'].dirty || candidateForm.controls['talentPool'].touched)"
                                                 style="color: red;">TalentPool is required</div>
 
-                                        </div>
+                                        </div> -->
 
                                         <!-- Job  dropdown -->
                                         <div class="field col-12 md:col-6">
@@ -339,14 +339,14 @@
                                         </div>
 
                                         <!-- Currency dropdown -->
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="currency">Currency<span [style.display]=" candidate.currency ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency"
                                                 [showClear]="true" [filter]="true" placeholder="Select Currency"
                                                 name="currency" optionLabel="name"></p-dropdown>
                                             <div *ngIf="!candidate.currency && (candidateForm.controls['currency'].dirty || candidateForm.controls['currency'].touched)"
                                                 style="color: red;">Currency is required</div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
                                             <label htmlFor="skills">Skills:<span [style.display]=" candidate.skills ? 'none' : 'inline'" style="color: red">*</span></label>
@@ -716,7 +716,7 @@ name="stage" optionLabel="name" optionValue="name">
 </p-dropdown>
 </div> -->
 
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="taletpoll">Hiring Stage</label>
                                             <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
                                                 [showClear]="true" [filter]="true" placeholder="Select Stages"
@@ -724,7 +724,7 @@ name="stage" optionLabel="name" optionValue="name">
                                             </p-dropdown>
                                             <div *ngIf="!candidate.stage && (candidateForm.controls['stage'].dirty || candidateForm.controls['stage'].touched)"
                                                 style="color: red;">HiringStage is Required</div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="field col-12 md:col-6">
                                             <label for="avialToJoin">Notice period</label>
@@ -832,14 +832,14 @@ name="stage" optionLabel="name" optionValue="name">
 
 
                                         <!-- TalentPoll  dropdown -->
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="taletpoll">Talent Pool</label>
                                             <p-dropdown [options]="talentpools" [(ngModel)]="
                                                     candidate.talentPool
                                                 " [showClear]="true" [filter]="true" placeholder="Select TalentPoll"
                                                 name="talentPool" optionLabel="name">
                                             </p-dropdown>
-                                        </div>
+                                        </div> -->
 
                                         <div class="field col-12 md:col-6 readonly-job">
                                             <label for="job">Job</label>
@@ -887,12 +887,12 @@ name="stage" optionLabel="name" optionValue="name">
 
                                         <!-- Currency dropdown -->
 
-                                        <div class="field col-12 md:col-6">
+                                        <!-- <div class="field col-12 md:col-6">
                                             <label for="currency">Currency</label>
                                             <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency"
                                                 [showClear]="true" [filter]="true" placeholder="Select Currency"
                                                 name="currency" optionLabel="name"></p-dropdown>
-                                        </div>
+                                        </div> -->
                                     </div>
 
                                     <!-- edu -->

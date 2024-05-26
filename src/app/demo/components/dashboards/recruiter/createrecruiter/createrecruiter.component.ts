@@ -72,14 +72,14 @@ export class CreaterecruiterComponent {
 
   // }
   addRecruiter() {
-    let email = this.recruiter.email;
-    let mobile = this.recruiter.mobile;
-    this.userAccount.userName = email;
-    this.userAccount.password = mobile;
-    this.role.name = 'Admin';
-    this.role.description = 'This is for Admin';
-    this.userAccount.role = this.role;
-    this.recruiter.userAccout = this.userAccount;
+    // let email = this.recruiter.email;
+    // let mobile = this.recruiter.mobile;
+    // this.userAccount.userName = email;
+    // this.userAccount.password = mobile;
+    // this.role.name = 'Admin';
+    // this.role.description = 'This is for Admin';
+    // this.userAccount.role = this.role;
+    // this.recruiter.userAccout = this.userAccount;
 
     this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
       res => {
