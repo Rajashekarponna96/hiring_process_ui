@@ -4,7 +4,7 @@
       <form #talentPoolForm="ngForm">
         <div class="p-fluid p-formgrid grid">
           <div class="field col-12 md:6">
-            <label for="talentPoolName">Talent Pool Name</label>
+            <label for="talentPoolName">Skill</label>
             <input pInputText id="talentPoolName" name="talentPoolName" type="text" placeholder="Enter Talent Pool Name"
               [(ngModel)]="talentPool.name" required #talentPoolName="ngModel" />
             <div *ngIf="talentPoolName.invalid && (talentPoolName.dirty || talentPoolName.touched)">
@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="field col-12 md:6">
-            <label for="talentPoolDescription">Talent Pool Description</label>
+            <label for="talentPoolDescription">Description</label>
             <textarea pInputTextarea id="talentPoolDescription" name="talentPoolDescription" rows="5"
               placeholder="Enter Talent Pool Description" [(ngModel)]="talentPool.description" required
               #talentPoolDescription="ngModel"></textarea>

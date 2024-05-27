@@ -4,7 +4,7 @@
             <form #talentpoolForm="ngForm">
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12">
-                        <label for="name">Name<span [style.display]="talentpool.name ? 'none' : 'inline'" style="color: red">*</span></label>
+                        <label for="name">Skill<span [style.display]="talentpool.name ? 'none' : 'inline'" style="color: red">*</span></label>
                         <input pInputText id="name" name="name" type="text" placeholder="Enter Name"
                             [(ngModel)]="talentpool.name" required #name="ngModel" />
                         <div *ngIf="name.invalid && (name.dirty || name.touched)">

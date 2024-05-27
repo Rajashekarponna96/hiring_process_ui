@@ -184,7 +184,7 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-home',
                 items: [
                     {
-                        label: 'Uploadfile',
+                        label: 'Upload-File',
                         icon: 'pi pi-upload',
                         routerLink: ['/uploadfile']
                     }
