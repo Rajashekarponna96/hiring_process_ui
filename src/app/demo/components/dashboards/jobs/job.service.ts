@@ -10,7 +10,7 @@ import { Vendor } from '../../model/vendor';
 export class JobService {
   private baseUrl = 'http://localhost:9000/job';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(`${this.baseUrl}/alljobslist`);
@@ -36,5 +36,9 @@ export class JobService {
 
   deleteJob(jobId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${jobId}`);
+  }
+
+  getUnassignedJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.baseUrl}/unassigned-jobs`);
   }
 }
