@@ -27,5 +27,6 @@ export class Job {
     primarySkills!: string;
     secondarySkills!: string;
     goodToHave!: string;
+    assigned!: boolean;
 
 }
