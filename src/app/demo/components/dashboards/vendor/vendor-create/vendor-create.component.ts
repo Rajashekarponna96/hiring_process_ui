@@ -25,14 +25,14 @@ export class VendorCreateComponent implements OnInit {
 
   addVendor() {
 
-    let email = this.vendor.email;
-    let mobile = this.vendor.mobile;
-    this.userAccount.userName = email;
-    this.userAccount.password = mobile;
-    this.role.name = 'Admin';
-    this.role.description = 'This is for Admin';
-    this.userAccount.role = this.role;
-    this.vendor.userAccout = this.userAccount;
+    // let email = this.vendor.email;
+    // let mobile = this.vendor.mobile;
+    // this.userAccount.userName = email;
+    // this.userAccount.password = mobile;
+    // this.role.name = 'Admin';
+    // this.role.description = 'This is for Admin';
+    // this.userAccount.role = this.role;
+    // this.vendor.userAccout = this.userAccount;
 
     // Post the vendor data to the server
     this.http.post<Vendor>('http://localhost:9000/vendor/', this.vendor).subscribe(
@@ -47,13 +47,6 @@ export class VendorCreateComponent implements OnInit {
     );
   }
   
-
-
-
- 
-
-  
-
   ngOnInit() {
   }
 }
