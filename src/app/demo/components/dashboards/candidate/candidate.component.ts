@@ -27,6 +27,10 @@ export class CandidateComponent {
     message: string = '';
     selectedFile:any
     selectedFile1!:any;
+    isCandidateLoggedIn: boolean = false;
+    isAdmin :boolean =false;
+    isRecruiter :boolean =false;
+    isVendor :boolean =false;
 
 
 
@@ -36,6 +40,7 @@ export class CandidateComponent {
 
 
     candidate: Candidate = new Candidate();
+    candidate1!: Candidate;
     selectededCandidate!: Candidate;
     candidates: Candidate[] = [];
     filteredCandidates: Candidate[] = [];
@@ -242,30 +247,34 @@ ngOnInit() {
 }
 vendor!: Vendor;
 getvendorDetailsById() {
-  debugger;
+  
 
   const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
   // Checking if the user is a vendor
   if (user.role?.name === 'vendor') {
+    this.isVendor = true;
     this.getVendorDetailBasedOnUserId(user.id);
   }
   else if (user.role?.name === 'admin') { // If user is admin
+    this.isAdmin =  true;
     this.getAllCandidateList(); // Call method to get all candidates
   }
   else if (user.role?.name === 'recruiter') { // If user is recruiter
     console.log("User is a recruiter.");
+    this.isRecruiter = true;
     this.getAllCandidateList(); // Call method to get all candidates for recruiters
   } 
   else if (user.role?.name === 'candidate') { // If user is admin
-    this.getAllCandidateList(); // Call method to get all candidates
+    //this.getAllCandidateList(); // Call method to get all candidates
+
+    this.isCandidateLoggedIn =true
+    this.getCandidatesByCandidateId(user.id);
   }
   else { // If user role is not recognized or no action specified
     console.log("User role not recognized or no action specified.");
   }
-  // else if (user.role?.name === 'admin') { // If user is admin
-  //   this.getAllCandidateList(); // Call method to get all candidates
-  // }
+  
 }
 // Method to get vendor details based on user ID
 getVendorDetailBasedOnUserId(userId: any) {
@@ -331,6 +340,24 @@ onRecordsPerPageChange(event: Event) {
   this.currentPage = 0; // Reset to first page when changing page size
   //this.getAllCandidateList();
   this.getvendorDetailsById();
+}
+
+
+
+getCandidatesByCandidateId(candiadteId: any) {
+  debugger;
+  
+  this.http.get<any>("http://localhost:9000/candidate/userid/" + candiadteId).subscribe(
+    (data) => {
+      console.log("Vendor details:", data);
+      this.candidate1 = data;
+      
+
+    }
+
+  );
+
+
 }
 
 
