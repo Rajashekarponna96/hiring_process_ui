@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Job } from '../../model/job';
 import { Vendor } from '../../model/vendor';
+import { Recruiter } from '../../model/recruiter';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,11 @@ export class JobService {
   getAllVendors(): Observable<Vendor[]> {
     return this.http.get<Vendor[]>(`${this.baseUrl}/allvendorslist`);
   }
+
+  getAllRecruiters(): Observable<Recruiter[]> {
+    return this.http.get<Recruiter[]>(`${this.baseUrl}/allrecruiterslist`);
+  }
+
 
   assignVendorToJob(jobId: number, vendorId: number): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/${jobId}/vendors`, { vendorId });
