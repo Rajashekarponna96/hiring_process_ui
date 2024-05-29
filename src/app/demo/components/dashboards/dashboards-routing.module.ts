@@ -286,6 +286,13 @@ import { RouterModule } from '@angular/router';
                 loadChildren: () =>
                     import('./candidate/uploadfile/uploadfile.module').then((m) => m.UploadfileModule),
             },
+            {
+                path: 'candidate-list',
+                data: { breadcrumb: 'Candidates' },
+                loadChildren: () =>
+                    import('./candidate/createcandidate2/createcandidate2.module').then((m) => m.Createcandidate2Module),
+            },
+
 
 
         ]),

@@ -191,6 +191,18 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
+            {
+                permissionName: 'candidate-list',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Candidates',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/candidate-list']
+                    }
+
+                ]
+            },
 
         ];
     }
