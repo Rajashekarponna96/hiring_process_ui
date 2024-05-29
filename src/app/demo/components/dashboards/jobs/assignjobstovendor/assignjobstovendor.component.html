@@ -9,21 +9,38 @@
       <div class="card">
         <form #jobForm="ngForm">
           <div class="p-fluid p-formgrid grid">
-            <div class="field col-12 md:col-6">
+            <!-- <div class="field col-12 md:col-6">
               <label for="vendor">Select Vendor<span></span></label>
               <p-dropdown [showClear]="true" [filter]="true" placeholder="Select Vendor" name="vendor"
                           optionLabel="vendorName" optionValue="id" [(ngModel)]="selectedVendorId" [options]="vendors"
                           [ngModelOptions]="{standalone: true}">
               </p-dropdown>
+            </div> -->
+            <div class="field col-12 md:col-6">
+              <label for="vendor">Select Vendor<span></span></label>
+            <p-multiSelect [showClear]="true" [filter]="true" placeholder="Select Vendor" name="vendor"
+            optionLabel="vendorName" optionValue="id" [(ngModel)]="selectedVendorId" [options]="vendors"
+            [ngModelOptions]="{standalone: true}" class="multiselect-custom" display="chip">
+              
+            </p-multiSelect>
             </div>
 
             <div class="field col-12 md:col-6">
+              <label for="job">Select Job<span></span></label>
+              <p-multiSelect [showClear]="true" [filter]="true" placeholder="Select Job" name="job"
+              optionLabel="title" optionValue="id" [(ngModel)]="selectedJobId" [options]="jobs"
+              [ngModelOptions]="{standalone: true}" class="multiselect-custom" display="chip">
+                
+              </p-multiSelect>
+            </div>
+
+            <!-- <div class="field col-12 md:col-6">
               <label for="job">Select Job<span></span></label>
               <p-dropdown [showClear]="true" [filter]="true" placeholder="Select Job" name="job"
                           optionLabel="title" optionValue="id" [(ngModel)]="selectedJobId" [options]="jobs"
                           [ngModelOptions]="{standalone: true}">
               </p-dropdown>
-            </div>
+            </div> -->
 
             <div class="ui-g-12" style="text-align: right">
               <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>

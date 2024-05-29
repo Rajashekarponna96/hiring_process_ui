@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AssignjobstovendorRoutingModule } from './assignjobstovendor-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -10,17 +8,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RippleModule } from 'primeng/ripple';
 import { FileUploadModule } from 'primeng/fileupload';
-import { CreatejobRoutingModule } from '../createjob/createjob-routing.module';
-import { AssignjobstovendorComponent } from './assignjobstovendor.component';
 import { MultiSelectModule } from "primeng/multiselect";
+import { AssignjobstorecruiterRoutingModule } from './assignjobstorecruiter-routing.module';
+import { AssignjobstorecruiterComponent } from './assignjobstorecruiter.component';
+
 
 @NgModule({
-  declarations: [AssignjobstovendorComponent],
+  declarations: [AssignjobstorecruiterComponent],
   imports: [
     CommonModule,
-    AssignjobstovendorRoutingModule,
-    CommonModule,
-    CreatejobRoutingModule,
+    AssignjobstorecruiterRoutingModule,
     FormsModule,
     ButtonModule,
 		RippleModule,
@@ -32,4 +29,4 @@ import { MultiSelectModule } from "primeng/multiselect";
     MultiSelectModule
   ]
 })
-export class AssignjobstovendorModule { }
+export class AssignjobstorecruiterModule { }

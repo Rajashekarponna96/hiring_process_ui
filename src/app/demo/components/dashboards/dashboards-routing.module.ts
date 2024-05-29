@@ -73,6 +73,14 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'assignjobstorecruiter',
+                data: { breadcrumb: 'Assign Jobs To Recruiter' },
+                loadChildren: () =>
+                    import('./jobs/assignjobstorecruiter/assignjobstorecruiter.module').then(
+                        (m) => m.AssignjobstorecruiterModule
+                    ),
+            },
+            {
                 path: 'jobview',
                 data: { breadcrumb: 'Job View' },
                 loadChildren: () =>

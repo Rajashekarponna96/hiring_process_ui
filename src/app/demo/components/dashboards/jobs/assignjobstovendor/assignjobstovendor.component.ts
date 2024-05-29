@@ -21,12 +21,12 @@ export class AssignjobstovendorComponent implements OnInit {
   constructor(private jobService: JobService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit() {
-    this.getUnassignedJobs();
+    this.getAllJobs();
     this.getAllVendors();
   }
 
-  getUnassignedJobs() {
-    this.jobService.getUnassignedJobs().subscribe((data: Job[]) => {
+  getAllJobs() {
+    this.jobService. getAllJobs().subscribe((data: Job[]) => {
       this.jobs = data;
       this.changeDetectorRefs.markForCheck();
     });
