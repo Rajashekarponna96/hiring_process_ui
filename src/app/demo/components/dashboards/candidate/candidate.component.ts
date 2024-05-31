@@ -179,7 +179,7 @@ export class CandidateComponent {
     menuitems: MenuItem[] = [];
     temporaryStage!: string; 
 
-    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived','Reject','Hold'];
+    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived','Hold','Reject'];
     showStages: boolean = false;
 
     toggleStages() {
@@ -211,18 +211,18 @@ export class CandidateComponent {
 
     updateCandidate(candidate:Candidate,stage:string) {debugger
 
-       //candidate.stage  = stage;
+       
        this.selectededCandidate.stage = this.temporaryStage;
        console.log("Candidate updated:", this.selectededCandidate, "New Stage:", this.temporaryStage);
-       const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-       //this.modifiedBy = user;
-       this.candidate.modifiedBy=user;
+       let userDetails: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+       candidate.modifiedBy=userDetails;
 
         this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
           res => {
             console.log(res);
             this.productDialog = false;
             this.submitted = false;
+            this.getvendorDetailsById();
           },
           (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
