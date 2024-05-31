@@ -1,11 +1,10 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { UserAccout } from '../../model/userAccount';
 import { Router } from '@angular/router';
-//import { MessageService } from 'primeng/api/public_api';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { dE } from '@fullcalendar/core/internal-common';
+import { UseraccountService } from 'src/app/demo/service/useraccount.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-loginuser',
@@ -16,45 +15,39 @@ import { dE } from '@fullcalendar/core/internal-common';
 export class LoginuserComponent implements OnInit {
 
   userAccount = new UserAccout();
-  userAccounts:UserAccout[] | undefined
+  userAccounts: UserAccout[] | undefined;
   userName: any;
   password: any;
-
-
-  constructor(private layoutService: LayoutService,private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router: Router,private messageService: MessageService) { }
-
-  ngOnInit() {
-
-  }
-
   rememberMe: boolean = false;
+
+  constructor(
+    private layoutService: LayoutService,
+    private userAccountService: UseraccountService,
+    private changeDetectorRefs: ChangeDetectorRef,
+    private router: Router,
+    private messageService: MessageService
+  ) { }
+
+  ngOnInit() { }
 
   get dark(): boolean {
     return this.layoutService.config.colorScheme !== 'light';
   }
 
-
-
-  addLogin() {;
-    this.http.post<UserAccout>('http://localhost:9000/userAccount/login', this.userAccount).subscribe(
+  addLogin() {
+    this.userAccountService.login(this.userAccount).subscribe(
       res => {
         console.log(res);
-
         this.userAccount = res;
         localStorage.setItem('userDetails', JSON.stringify(this.userAccount));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'userLogin sucessfully', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User logged in successfully', life: 3000 });
         this.router.navigate(['/home']);
       },
       (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
-        } else {
-          console.log("Server-side error occured.");
-          this.router.navigate(['/loginuser']);
-        }
-
-      });
-
-
+        console.error('Error occurred:', err);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Login failed', life: 3000 });
+        this.router.navigate(['/loginuser']);
+      }
+    );
   }
-  }
+}
