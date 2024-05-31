@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CandidateEmail } from '../../model/candidateEmail';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { NodeService } from 'src/app/demo/service/node.service';
-import { Table } from 'primeng/table';
+import { EmailtemplateService } from 'src/app/demo/service/emailtemplateervice.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Pagination } from '../../model/pagination';
 
 @Component({
@@ -11,8 +10,7 @@ import { Pagination } from '../../model/pagination';
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss']
 })
-export class EmailComponent {
-
+export class EmailComponent implements OnInit {
 
   candidateEmails: CandidateEmail[] = [];
   pagination!: Pagination;
@@ -23,40 +21,57 @@ export class EmailComponent {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private nodeService: NodeService
+    private emailService: EmailtemplateService,
+    private changeDetectorRefs: ChangeDetectorRef
   ) { }
 
-  getEmailList() {
-    return this.http.get<CandidateEmail[]>(
-        'http://localhost:9000/email/all'
-    );
-}
-getAllEmailList() {
-    return this.getEmailList().subscribe((data) => {
+  ngOnInit() {
+    this.getAllEmailList();
+    this.getAllEmailTemplateList();
+  }
+
+  getAllEmailList() {
+    this.emailService.getEmailList().subscribe(
+      (data) => {
         console.log(data);
         this.candidateEmails = data;
         this.changeDetectorRefs.markForCheck();
-    });
-}
-
-navigateToCreateEmail() {
-  this.router.navigate(['createemail']);
-}
-
-handleEditEmail(candidateEmail:CandidateEmail) {
-  const candidateEmailId=candidateEmail.id;
-  this.router.navigate(['editemail'], { state: { candidateEmailId: candidateEmailId, candidateEmail: candidateEmail } });
-}
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Error fetching email list:', err);
+      }
+    );
+  }
 
 
+  getAllEmailTemplateList() {
+    this.emailService.getEmailTemplateListWithPagination(this.currentPage, this.selectedRecordsOption1).subscribe(
+      (data: Pagination) => { // Ensure proper typing here
+        this.candidateEmails = data.content || []; // Use empty array as fallback
+        this.pagination = data;
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.changeDetectorRefs.markForCheck();
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Error fetching email template list:', err);
+      }
+    );
+  }
 
 
-EmailDelete(candidateEmail: CandidateEmail) {
-  console.log("email id is:" + candidateEmail.id);
-  this.http.delete<CandidateEmail[]>('http://localhost:9000/email/' + candidateEmail.id)
-    .subscribe(
+  navigateToCreateEmail() {
+    this.router.navigate(['createemail']);
+  }
+
+  handleEditEmail(candidateEmail: CandidateEmail) {
+    const candidateEmailId = candidateEmail.id;
+    this.router.navigate(['editemail'], { state: { candidateEmailId: candidateEmailId, candidateEmail: candidateEmail } });
+  }
+
+  EmailDelete(candidateEmail: CandidateEmail) {
+    console.log("email id is:" + candidateEmail.id);
+    this.emailService.deleteEmail(candidateEmail.id).subscribe(
       (res) => {
         console.log(res);
         this.getAllEmailTemplateList();
@@ -69,77 +84,54 @@ EmailDelete(candidateEmail: CandidateEmail) {
         }
       }
     );
-}
+  }
 
-onGlobalFilter1(event: Event) {
-  const inputElement = event.target as HTMLInputElement;
-  const inputValue = inputElement.value;
-  console.log('Input Value:', inputValue);
-  this.http.get<any>('http://localhost:9000/email/searchpage', {
-    params: {
-      code: inputValue,
-      page: '0', // Reset to first page when applying filter
-      size: this.selectedRecordsOption1.toString()
-    }
-  }).subscribe((data) => {
-    this.candidateEmails = data["content"];
-    this.totalElements = data.totalElements;
-    this.totalPages = data.totalPages;
-    this.currentPage = 0; // Reset to first page
-    this.changeDetectorRefs.markForCheck();
-  });
-}
+  onGlobalFilter1(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+    console.log('Input Value:', inputValue);
+    this.emailService.searchEmail(inputValue, 0, this.selectedRecordsOption1).subscribe(
+      (data) => {
+        this.candidateEmails = data.content;
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.currentPage = 0; // Reset to first page
+        this.changeDetectorRefs.markForCheck();
+      },
+      (err: HttpErrorResponse) => {
+        console.error('Error searching email:', err);
+      }
+    );
+  }
 
-getAllEmailTemplateList() {
-  this.http.get<any>('http://localhost:9000/email/emaillistwithpagination', {
-
-    params: {
-      page: this.currentPage.toString(),
-      size: this.selectedRecordsOption1.toString()
-    }
-  }).subscribe((data) => {
-    this.candidateEmails = data.content;
-    this.pagination = data;
-    this.totalElements = data.totalElements;
-    this.totalPages = data.totalPages;
-    this.changeDetectorRefs.markForCheck();
-  });
-}
-
-ngOnInit() {
-  this.getAllEmailList();
-  this.getAllEmailTemplateList();
-}
-
-goToFirstPage() {
-  this.currentPage = 0;
-  this.getAllEmailTemplateList();
-}
-
-goToPreviousPage() {
-  if (this.currentPage > 0) {
-    this.currentPage--;
+  goToFirstPage() {
+    this.currentPage = 0;
     this.getAllEmailTemplateList();
   }
-}
 
-goToNextPage() {
-  if (this.currentPage < this.totalPages - 1) {
-    this.currentPage++;
+  goToPreviousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.getAllEmailTemplateList();
+    }
+  }
+
+  goToNextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.getAllEmailTemplateList();
+    }
+  }
+
+  goToLastPage() {
+    this.currentPage = this.totalPages - 1;
     this.getAllEmailTemplateList();
   }
-}
 
-goToLastPage() {
-  this.currentPage = this.totalPages - 1;
-  this.getAllEmailTemplateList();
-}
-
-onRecordsPerPageChange(event: Event) {
-  this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
-  this.currentPage = 0; // Reset to first page when changing page size
-  this.getAllEmailTemplateList();
-}
-
+  onRecordsPerPageChange(event: Event) {
+    this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+    this.currentPage = 0; // Reset to first page when changing page size
+    this.getAllEmailTemplateList();
+  }
 
 }
