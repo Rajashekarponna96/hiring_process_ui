@@ -1,12 +1,10 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Recruiter } from '../../../model/recruiter';
 import { RecruiterService } from 'src/app/demo/service/recruiter.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Subscriber } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { UserAccout } from '../../../model/userAccount';
 import { Role } from '../../../model/role';
-
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,63 +13,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./createrecruiter.component.scss']
 })
 export class CreaterecruiterComponent {
-
   recruiter: Recruiter = new Recruiter();
-  recrutiers: Recruiter[] | undefined
-  @ViewChild("recruiterForm")
-  recruiterForm!: NgForm;
+  recruiters: Recruiter[] | undefined;
+  @ViewChild("recruiterForm") recruiterForm!: NgForm;
 
   userAccount = new UserAccout();
-
   role = new Role();
 
+  constructor(
+    private recruiterService: RecruiterService,
+    private changeDetectorRefs: ChangeDetectorRef,
+    private router: Router
+  ) { }
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,private router: Router) {
-
-  }
-  getRecruiterList() {
-    return this.http.get<Recruiter[]>('http://localhost:9000/recruiter/all');
-
-  }
   getAllRecruiterList() {
-    return this.getRecruiterList().
-      subscribe((data) => {
+    this.recruiterService.getRecruiterList().subscribe(
+      (data) => {
         console.log(data);
-        this.recrutiers = data;
+        this.recruiters = data;
         this.changeDetectorRefs.markForCheck();
-      });
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log("Client-side error occurred.");
+        } else {
+          console.log("Server-side error occurred.");
+        }
+      }
+    );
   }
 
-  // addRecruiter() {
-  //  let email =this.recruiter.email;
-  //  let mobile = this.recruiter.mobile;
-  //  this.userAccount.userName=email;
-  //  this.userAccount.password=mobile;
-  //  this.role.name='Admin';
-  //  this.role.description='This is for Admin';
-  //  this.userAccount.role=this.role;
-  //  this.recruiter.userAccout=this.userAccount;
-  //   this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.getAllRecruiterList();
-  //       this.recruiterForm.reset();
-
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       if (err.error instanceof Error) {
-  //         console.log("Client-side error occured.");
-  //       } else {
-  //         console.log("Server-side error occured.");
-  //       }
-  //       //this.service.typeWarning();
-
-  //     });
-  //   console.log(JSON.stringify(this.recruiter));
-  //   this.getAllRecruiterList();
-
-  // }
   addRecruiter() {
+    // Uncomment and set user account and role details if necessary
     // let email = this.recruiter.email;
     // let mobile = this.recruiter.mobile;
     // this.userAccount.userName = email;
@@ -81,7 +54,7 @@ export class CreaterecruiterComponent {
     // this.userAccount.role = this.role;
     // this.recruiter.userAccout = this.userAccount;
 
-    this.http.post<Recruiter>('http://localhost:9000/recruiter/', this.recruiter).subscribe(
+    this.recruiterService.addRecruiter(this.recruiter).subscribe(
       res => {
         console.log(res);
         this.getAllRecruiterList();
@@ -103,11 +76,9 @@ export class CreaterecruiterComponent {
   ngOnInit() {
     this.getAllRecruiterList();
   }
+
   onSubmit() {
     throw new Error('Method not implemented.');
   }
-
-
 }
-
 
