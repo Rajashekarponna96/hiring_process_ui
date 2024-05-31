@@ -1,15 +1,17 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TalentPoolOne } from '../../model/talentpoolone';
 import { Table } from 'primeng/table';
+import { TalentpoolService } from 'src/app/demo/service/talentpool.service';
+
 @Component({
   selector: 'app-talentpool',
   templateUrl: './talentpool.component.html',
   styleUrls: ['./talentpool.component.scss']
 })
-export class TalentpoolComponent {
+export class TalentpoolComponent implements OnInit {
 
   talentpool: TalentPoolOne = { id: 0, name: '', description: '', candidates: [] };
   talentpools: TalentPoolOne[] | undefined;
@@ -17,19 +19,25 @@ export class TalentpoolComponent {
   @ViewChild("talentpoolForm")
   talentpoolForm!: NgForm;
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
+  constructor(
+    private talentpoolService: TalentpoolService,
+    private changeDetectorRefs: ChangeDetectorRef,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.getAllTalentPoolList();
+  }
+
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal(
       (event.target as HTMLInputElement).value,
       'contains'
     );
   }
-  getTalentPoolList() {
-    return this.http.get<TalentPoolOne[]>('http://localhost:9000/talentpool/all');
-  }
 
   getAllTalentPoolList() {
-    this.getTalentPoolList().subscribe((data) => {
+    this.talentpoolService.getTalentPoolList().subscribe((data) => {
       console.log(data);
       this.talentpools = data;
       this.changeDetectorRefs.markForCheck();
@@ -37,7 +45,7 @@ export class TalentpoolComponent {
   }
 
   addTalentPool() {
-    this.http.post<TalentPoolOne>('http://localhost:9000/talentPool/', this.talentpool).subscribe(
+    this.talentpoolService.addTalentPool(this.talentpool).subscribe(
       res => {
         console.log(res);
         this.getAllTalentPoolList();
@@ -54,14 +62,10 @@ export class TalentpoolComponent {
       }
     );
     console.log(JSON.stringify(this.talentpool));
-    this.getAllTalentPoolList();
-  }
-
-  ngOnInit() {
-    this.getAllTalentPoolList();
   }
 
   onSubmit() {
     // Implement onSubmit logic if needed
   }
 }
+
