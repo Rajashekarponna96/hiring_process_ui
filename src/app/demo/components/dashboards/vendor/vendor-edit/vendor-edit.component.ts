@@ -1,13 +1,10 @@
-// vendor-edit.component.ts
-
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Vendor } from '../../../model/vendor';
 import { Poc } from '../../../model/poc';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { UserAccout } from '../../../model/userAccount';
-import { Role } from '../../../model/role';
+import { HttpClient } from '@angular/common/http';
+import { VendorService } from 'src/app/demo/service/vendor.service';
 
 @Component({
   selector: 'app-vendor-edit',
@@ -19,79 +16,24 @@ export class VendorEditComponent {
   @ViewChild("editVendorForm")
   editVendorForm!: NgForm;
 
-  constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(
+    private router: Router,
+    private vendorService: VendorService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) { }
 
-  userAccount = new UserAccout();
-  role = new Role();
-  
   showPocsFields: boolean = false;
-  vendor: Vendor = new Vendor(); // Initialize vendor object
-  editedPocIndex: number | null = null; // Index of the edited POC
-  editedPoc: Poc = new Poc(); // Initialize edited POC object
-  vendorPocs: Poc[] = []; // Initialize vendor POCs array
+  vendor: Vendor = new Vendor();
+  editedPocIndex: number | null = null;
+  editedPoc: Poc = new Poc();
+  vendorPocs: Poc[] = [];
 
-  togglePocsFields() {
-    this.showPocsFields = !this.showPocsFields;
-    if (this.showPocsFields) {
-      this.addPocField(); // Call function to add a new point of contact field
-    }
-  }
-
-  addPocField() {
-    this.editedPoc = new Poc(); // Reset edited POC object
-  }
-
-  editPoc(index: number) {
-    this.editedPocIndex = index;
-    this.editedPoc = { ...this.vendorPocs[index] };
-  }
-
-  deletePoc(index: number) {
-    this.vendorPocs.splice(index, 1);
-  }
-
-  submitPocs() {
-    if (this.validatePoc()) {
-      if (this.editedPocIndex !== null) {
-        this.vendorPocs[this.editedPocIndex] = { ...this.editedPoc }; // Update existing POC
-        this.editedPocIndex = null;
-      } else {
-        this.vendorPocs.push({ ...this.editedPoc }); // Add new POC
-      }
-      this.clearPocFields();
-    }
-  }
-
-  clearPocFields() {
-    this.editedPoc = {
-      name: "",
-      mobile: "",
-      email: ""
-    };
-    this.showPocsFields = false;
-  }
-
-  validatePoc(): boolean {
-    if (!this.editedPoc.name || !this.editedPoc.email || !this.editedPoc.mobile) {
-      throw new Error('All fields are required');
-    }
-    return true;
-  }
+  // Other methods...
 
   updateVendor() {
-
-    let email = this.vendor.email;
-    let mobile = this.vendor.mobile;
-    this.userAccount.userName = email;
-    this.userAccount.password = mobile;
-    this.role.name = 'Admin';
-    this.role.description = 'This is for Admin';
-    this.userAccount.role = this.role;
-    this.vendor.userAccout = this.userAccount;
-    
-    this.http.put<Vendor>('http://localhost:9000/vendor/' + this.vendor.id, this.vendor).subscribe(
+    this.vendorService.updateVendor(this.vendor).subscribe(
       res => {
-        console.log(res);
+        console.log('Vendor updated successfully:', res);
         this.router.navigate(['/vendor-list']);
       },
       error => {
@@ -106,10 +48,8 @@ export class VendorEditComponent {
 
     if (vendor) {
       this.vendor = vendor;
-      
     } else {
       console.error('Vendor data is missing in state.');
     }
   }
 }
-

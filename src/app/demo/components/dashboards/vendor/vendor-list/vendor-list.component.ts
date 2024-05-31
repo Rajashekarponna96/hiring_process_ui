@@ -1,16 +1,13 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Vendor } from '../../../model/vendor';
-import { MessageService, ConfirmationService } from 'primeng/api';
-import { Router } from '@angular/router';
-import { NodeService } from 'src/app/demo/service/node.service';
+import { VendorService } from 'src/app/demo/service/vendor.service';// Import the VendorService
 import { Pagination } from '../../../model/pagination';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-list',
   templateUrl: './vendor-list.component.html',
-  styleUrls: ['./vendor-list.component.css'],
-  providers: [MessageService, ConfirmationService]
+  styleUrls: ['./vendor-list.component.css']
 })
 export class VendorListComponent implements OnInit {
   vendors: Vendor[] = [];
@@ -21,10 +18,8 @@ export class VendorListComponent implements OnInit {
   selectedRecordsOption1: number = 5;
 
   constructor(
-    private router: Router,
-    private http: HttpClient,
-    private changeDetectorRefs: ChangeDetectorRef,
-    private nodeService: NodeService
+    private vendorService: VendorService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,19 +27,11 @@ export class VendorListComponent implements OnInit {
   }
 
   getAllVendorList() {
-    this.http.get<any>('http://localhost:9000/vendor/vendorlistwithpagination', {
-
-      params: {
-        page: this.currentPage.toString(),
-        size: this.selectedRecordsOption1.toString()
-      }
-    }).subscribe((data) => {
-      this.vendors = data.content;
-      this.pagination = data;
-      this.totalElements = data.totalElements;
-      this.totalPages = data.totalPages;
-      this.changeDetectorRefs.markForCheck();
-    });
+    this.vendorService.getVendorListWithPagination(this.currentPage, this.selectedRecordsOption1)
+      .subscribe((data) => {
+        this.vendors = data.content;
+        this.pagination = data;
+      });
   }
 
   navigateToCreateVendor() {
@@ -57,18 +44,14 @@ export class VendorListComponent implements OnInit {
 
   vendorDelete(vendor: Vendor) {
     console.log("vendor id is:" + vendor.id);
-    this.http.delete<Vendor[]>('http://localhost:9000/vendor/' + vendor.id)
+    this.vendorService.deleteVendor(vendor.id)
       .subscribe(
         (res) => {
           console.log(res);
           this.getAllVendorList();
         },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side error occurred.');
-          } else {
-            console.log('Server-side error occurred.');
-          }
+        (err) => {
+          console.error('Error occurred while deleting vendor:', err);
         }
       );
   }
@@ -103,46 +86,18 @@ export class VendorListComponent implements OnInit {
     this.getAllVendorList();
   }
 
-  // onGlobalFilter1(event: Event) {
-  //   const inputElement = event.target as HTMLInputElement;
-  //   const inputValue = inputElement.value;
-  //   console.log('Input Value:', inputValue);
-  //   this.http.get<any>('http://localhost:9000/vendor/searchpage', {
-  //       params: {
-  //           // firstName: inputValue,
-  //           // lastName:inputValue,
-  //           // email: inputValue
-  //           code:inputValue,
-  //           page:this.currentPage.toString(),
-  //           size: this.selectedRecordsOption1
-  
-  //       }
-  //   }).subscribe((data) => {
-       
-  //       this.vendors = data["content"]
-        
-  //        this.changeDetectorRefs.markForCheck();
-  //   });
-  
-  // }
-
-
   onGlobalFilter1(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
     console.log('Input Value:', inputValue);
-    this.http.get<any>('http://localhost:9000/vendor/searchpage', {
-      params: {
-        code: inputValue,
-        page: '0', // Reset to first page when applying filter
-        size: this.selectedRecordsOption1.toString()
-      }
-    }).subscribe((data) => {
-      this.vendors = data["content"];
-      this.totalElements = data.totalElements;
-      this.totalPages = data.totalPages;
-      this.currentPage = 0; // Reset to first page
-      this.changeDetectorRefs.markForCheck();
-    });
+
+    this.vendorService.searchVendorByCode(inputValue, 0, this.selectedRecordsOption1)
+      .subscribe((data) => {
+        this.vendors = data.content;
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.currentPage = 0; // Reset to first page
+      });
   }
 }
+
