@@ -110,7 +110,7 @@
                 <th style="width: 10%">PreferredLocation</th>
                 <th style="width: 10%">AvailableToJoin</th>
                 <th style="width: 10%">Stage</th>
-                <th style="width: 10%">Actions</th>
+                <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter )">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -124,8 +124,8 @@
                 <td>{{ candidate.preferred.name }}</td>
                 <td>{{ candidate.avialToJoin }}</td>
                 <td>{{ candidate.stage }}</td>
-                <td>
-                  <div class="button-container">
+                <td *ngIf="!isVendor && (isAdmin || isRecruiter )">
+                  <div class="button-container" >
                     <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
                     <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
                     <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
