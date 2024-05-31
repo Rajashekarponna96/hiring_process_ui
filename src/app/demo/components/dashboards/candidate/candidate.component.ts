@@ -2,408 +2,227 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Candidate } from '../../model/candidate';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MenuItem } from 'primeng/api';
 import { Pagination } from '../../model/pagination';
 import { UserAccout } from '../../model/userAccount';
 import { Vendor } from '../../model/vendor';
+import { CandidateService } from 'src/app/demo/service/candidate.service';
 
 @Component({
-    selector: 'app-candidate',
-    templateUrl: './candidate.component.html',
-    styleUrls: ['./candidate.component.scss'],
+  selector: 'app-candidate',
+  templateUrl: './candidate.component.html',
+  styleUrls: ['./candidate.component.scss'],
 })
-export class CandidateComponent {
-    @ViewChild('dt')
-    dataTable!: Table;
-    submitted: boolean = false;
-    productDialog: boolean = false;
-    fetchedCandidateStage!: string;
-    pagination!: Pagination;
-    totalElements: number = 0;
-    totalPages: number = 0;
-    currentPage: number = 0;
-    selectedRecordsOption1: number = 5;
-    message: string = '';
-    selectedFile:any
-    selectedFile1!:any;
-    isCandidateLoggedIn: boolean = false;
-    isAdmin :boolean =false;
-    isRecruiter :boolean =false;
-    isVendor :boolean =false;
+export class CandidateComponent implements OnInit {
+  @ViewChild('dt')
+  dataTable!: Table;
+  submitted: boolean = false;
+  productDialog: boolean = false;
+  fetchedCandidateStage!: string;
+  pagination!: Pagination;
+  totalElements: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 0;
+  selectedRecordsOption1: number = 5;
+  message: string = '';
+  selectedFile: any;
+  selectedFile1!: any;
 
+  candidate: Candidate = new Candidate();
+  selectedCandidate!: Candidate;
+  candidates: Candidate[] = [];
+  filteredCandidates: Candidate[] = [];
+  displayFilterFields = false;
+  vendor!: Vendor;
+  menuitems: MenuItem[] = [];
+  temporaryStage!: string;
+  showStages: boolean = false;
+  stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived', 'Hold', 'Reject'];
 
+  constructor(
+    private router: Router,
+    private candidateService: CandidateService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) { }
 
-    constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+  ngOnInit() {
+    this.getvendorDetailsById();
+  }
 
-     }
+  handleEditcandidate(candidate: Candidate) {
+    const candidateId = candidate.id;
 
+    console.log("Candidate object:", candidate);
+    // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
+    this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
+  }
 
-    candidate: Candidate = new Candidate();
-    candidate1!: Candidate;
-    selectededCandidate!: Candidate;
-    candidates: Candidate[] = [];
-    filteredCandidates: Candidate[] = [];
-    displayFilterFields = false;
+  navigateToCreateCandidate() {
+    this.router.navigate(['createrecandidate']);
+  }
 
-    navigateToCreateCandidate() {
-        this.router.navigate(['menus'])
+  onGlobalFilter(table: Table, event: Event) {
+    table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  }
 
+  getAllCandidatesListForGlobalFilter(inputValue: any) {
+    this.candidateService.searchCandidates(inputValue, 0, this.selectedRecordsOption1).subscribe((data) => {
+      this.candidates = data.content;
+      this.filteredCandidates = data.content;
+    });
+  }
+
+  onGlobalFilter1(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+    this.candidateService.searchCandidates(inputValue, 0, this.selectedRecordsOption1).subscribe((data) => {
+      this.candidates = data.content;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.currentPage = 0;
+      this.changeDetectorRefs.markForCheck();
+    });
+  }
+
+  getAllCandidateList() {
+    this.candidateService.getAllCandidates().subscribe((data) => {
+      this.candidates = data;
+      this.changeDetectorRefs.markForCheck();
+    });
+  }
+
+  getAllCandidateListWithPagination() {
+    this.candidateService.getCandidatesWithPagination(this.currentPage, this.selectedRecordsOption1).subscribe((data) => {
+      this.candidates = data.content;
+      this.pagination = data;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.changeDetectorRefs.markForCheck();
+    });
+  }
+
+  handleEditCandidate(candidate: Candidate) {
+    const candidateId = candidate.id;
+    this.router.navigate(['editcandidate'], { state: { candidateId, candidate } });
+  }
+
+  candidateDelete(candidate: Candidate) {
+    // this.candidateService.deleteCandidate(candidate.id).subscribe(
+    //   () => {
+    //     this.getAllCandidateListWithPagination();
+    //   },
+    //   (err: HttpErrorResponse) => {
+    //     if (err.error instanceof Error) {
+    //       console.log('Client-side error occurred.');
+    //     } else {
+    //       console.log('Server-side error occurred.');
+    //     }
+    //   }
+    // );
+  }
+
+  openHiringFlow(candidate: Candidate) {
+    localStorage.setItem('candidateid', JSON.stringify(candidate.id));
+    this.router.navigate(['hiringflowactivity']);
+  }
+
+  toggleStages() {
+    this.showStages = !this.showStages;
+  }
+
+  openNew(candidate: Candidate) {
+    this.selectedCandidate = candidate;
+    this.temporaryStage = candidate.stage;
+    this.submitted = false;
+    this.productDialog = true;
+  }
+
+  toggleFilter() {
+    this.displayFilterFields = !this.displayFilterFields;
+    if (!this.displayFilterFields) {
+      this.dataTable.reset();
     }
+  }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal(
-            (event.target as HTMLInputElement).value,
-            'contains'
-        );
-    }
+  hideDialog() {
+    this.productDialog = false;
+    this.submitted = false;
+  }
 
-    // onGlobalFilter1(event: Event){
-    //     return this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates');
+  updateCandidate(candidate: Candidate, stage: string) {
+    this.selectedCandidate.stage = this.temporaryStage;
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    candidate.modifiedBy = user;
 
-    // }
-    // getAllCandidatesListForGlobelFilter(){
-    //     return this.getCandidateList().
-    //         subscribe((data) => {
-    //             console.log(data);
-    //             this.candidates = data;
-    //             console.log("candidate list are" + this.candidates)
-    //             this.changeDetectorRefs.markForCheck();
-    //         });
-
-    // }
-
-    // getAllCandidatesListForGlobalFilter(inputValue: any) {
-    //     this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates?firstName=this.inputValue&lastName=this.inputValue&email=this.inputValue')
-    //         .subscribe((data) => {
-    //             console.log(data);
-    //             this.candidates = data;
-    //             this.filteredCandidates = data; // Initialize filteredCandidates with all candidates
-    //         });
-    // }
-
-    getAllCandidatesListForGlobalFilter(inputValue: any) {
-        this.http.get<Candidate[]>('http://localhost:9000/candidate/candidates?firstName=this.inputValue&lastName=this.inputValue&email=this.inputValue')
-            .subscribe((data) => {
-                console.log(data);
-                this.candidates = data;
-                this.filteredCandidates = data; // Initialize filteredCandidates with all candidates
-            });
-    }
-
-    onGlobalFilter1(event: Event) {
-        const inputElement = event.target as HTMLInputElement;
-        const inputValue = inputElement.value;
-        console.log('Input Value:', inputValue);
-        this.http.get<any>('http://localhost:9000/candidate/searchpage', {
-          params: {
-            code: inputValue,
-            page: '0', // Reset to first page when applying filter
-            size: this.selectedRecordsOption1.toString()
-          }
-        }).subscribe((data) => {
-          this.candidates = data["content"];
-          this.totalElements = data.totalElements;
-          this.totalPages = data.totalPages;
-          this.currentPage = 0; // Reset to first page
-          this.changeDetectorRefs.markForCheck();
-        });
-      }
-
-    getCandidateList() {
-        return this.http.get<Candidate[]>('http://localhost:9000/candidate/all');
-    }
-
-    getAllCandidate() {
-        return this.getCandidateList().
-            subscribe((data) => {
-                console.log(data);
-                this.candidates = data;
-                console.log("candidate list are" + this.candidates)
-                this.changeDetectorRefs.markForCheck();
-            });
-    }
-
-    getAllCandidateList() {
-        this.http.get<any>('http://localhost:9000/candidate/candidatelistwithpagination', {
-
-          params: {
-            page: this.currentPage.toString(),
-            size: this.selectedRecordsOption1.toString()
-          }
-        }).subscribe((data) => {
-          this.candidates = data.content;
-          this.pagination = data;
-          this.totalElements = data.totalElements;
-          this.totalPages = data.totalPages;
-          this.changeDetectorRefs.markForCheck();
-        });
-      }
-
-    handleEditcandidate(candidate: Candidate) {
-     const candidateId=candidate.id;
-
-        console.log("Candidate object:", candidate);
-        // Instead of using local storage, navigate to the 'editcandidate' route with the candidate object as a parameter in the state
-        this.router.navigate(['editcandidate'], { state: { candidateId: candidateId, candidate: candidate } });
-    }
-
-    candidateDelete(candidate: Candidate) {
-
-        console.log("candidate is is:" + candidate.id)
-        this.http
-            .delete<Candidate[]>(
-                'http://localhost:9000/candidate/' + candidate.id
-            )
-            .subscribe(
-                (res) => {
-                    console.log(res);
-                    this.getAllCandidateList();
-                },
-                (err: HttpErrorResponse) => {
-                    if (err.error instanceof Error) {
-                        console.log('Client-side error occurred.');
-                    } else {
-                        console.log('Server-side error occurred.');
-                    }
-                }
-            );
-
-    }
-
-    openHiringFlow(candidate:Candidate) {
-      localStorage.setItem('candidateid',JSON.stringify(candidate.id));
-      this.router.navigate(['hiringflowactivity']);
-    }
-
-    menuitems: MenuItem[] = [];
-    temporaryStage!: string; 
-
-    stages: string[] = ['Sourced', 'Screening', 'Interview', 'Preboarding', 'Hired', 'Archived','Hold','Reject'];
-    showStages: boolean = false;
-
-    toggleStages() {
-      this.showStages = !this.showStages;
-    }
-    openNew(candidate:Candidate) {
-        console.log("candidate dertails for stage:"+candidate.email)
-       //this.candidate.stage = candidate.stage
-       this.selectededCandidate =candidate;
-       this.temporaryStage = candidate.stage;
-        this.submitted = false;
-        this.productDialog = true;
-    }
-
-
-    toggleFilter() {
-        this.displayFilterFields = !this.displayFilterFields;
-        if (!this.displayFilterFields) {
-          // Reset filtering
-          this.dataTable.reset();
-        }
-      }
-
-      hideDialog() {
+    this.candidateService.updateCandidate(candidate).subscribe(
+      () => {
         this.productDialog = false;
         this.submitted = false;
-    }
-
-
-    updateCandidate(candidate:Candidate,stage:string) {debugger
-
-       
-       this.selectededCandidate.stage = this.temporaryStage;
-       console.log("Candidate updated:", this.selectededCandidate, "New Stage:", this.temporaryStage);
-       let userDetails: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-       candidate.modifiedBy=userDetails;
-
-        this.http.put<Candidate>('http://localhost:9000/candidate/' + candidate.id, candidate).subscribe(
-          res => {
-            console.log(res);
-            this.productDialog = false;
-            this.submitted = false;
-            this.getvendorDetailsById();
-          },
-          (err: HttpErrorResponse) => {
-            if (err.error instanceof Error) {
-              console.log("Client-side error occurred:", err.error.message);
-            } else {
-              console.log("Server-side error occurred:", err.status, err.message);
-            }
-          }
-        );
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log("Client-side error occurred:", err.error.message);
+        } else {
+          console.log("Server-side error occurred:", err.status, err.message);
+        }
       }
-
-
-
-
-
-// added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
-
-ngOnInit() {
-   // this.getAllCandidateList();
-  this.getvendorDetailsById();
-
-}
-vendor!: Vendor;
-getvendorDetailsById() {
-  
-
-  const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
-
-  // Checking if the user is a vendor
-  if (user.role?.name === 'vendor') {
-    this.isVendor = true;
-    this.getVendorDetailBasedOnUserId(user.id);
+    );
   }
-  else if (user.role?.name === 'admin') { // If user is admin
-    this.isAdmin =  true;
-    this.getAllCandidateList(); // Call method to get all candidates
-  }
-  else if (user.role?.name === 'recruiter') { // If user is recruiter
-    console.log("User is a recruiter.");
-    this.isRecruiter = true;
-    this.getAllCandidateList(); // Call method to get all candidates for recruiters
-  } 
-  else if (user.role?.name === 'candidate') { // If user is admin
-    //this.getAllCandidateList(); // Call method to get all candidates
 
-    this.isCandidateLoggedIn =true
-    this.getCandidatesByCandidateId(user.id);
-  }
-  else { // If user role is not recognized or no action specified
-    console.log("User role not recognized or no action specified.");
-  }
-  
-}
-// Method to get vendor details based on user ID
-getVendorDetailBasedOnUserId(userId: any) {
-  this.http.get<any>("http://localhost:9000/vendor/user/" + userId).subscribe(
-    (data) => {
-      console.log("Vendor details:", data);
-      this.vendor = data;
-      this.getCandidatesByVendorId(this.vendor.id)
+  getvendorDetailsById() {
+    const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
 
-    },
-
-  );
-
-
-}
-
-getCandidatesByVendorId(vendorId: any) {
-  debugger;
-  this.http.get<any>('http://localhost:9000/vendor/candidates/' + vendorId, {
-    params: {
-      page: this.currentPage.toString(),
-      size: this.selectedRecordsOption1.toString()
+    if (user.role?.name === 'vendor') {
+      this.candidateService.getVendorDetailsByUserId(user.id).subscribe((data) => {
+        this.vendor = data;
+        this.getCandidatesByVendorId(this.vendor.id);
+      });
+    } else if (user.role?.name === 'admin' || user.role?.name === 'recruiter' || user.role?.name === 'candidate') {
+      this.getAllCandidateListWithPagination();
+    } else {
+      console.log("User role not recognized or no action specified.");
     }
-  }).subscribe((data) => {
-    this.candidates = data.content;
-    this.pagination = data;
-    this.totalElements = data.totalElements;
-    this.totalPages = data.totalPages;
-    this.changeDetectorRefs.markForCheck();
-  });
-}
+  }
 
-goToFirstPage() {
-  this.currentPage = 0;
-  //this.getAllCandidateList();
-  this.getvendorDetailsById();
-}
+  getCandidatesByVendorId(vendorId: any) {
+    this.candidateService.getCandidatesByVendorId(vendorId, this.currentPage, this.selectedRecordsOption1).subscribe((data) => {
+      this.candidates = data.content;
+      this.pagination = data;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.changeDetectorRefs.markForCheck();
+    });
+  }
 
-goToPreviousPage() {
-  if (this.currentPage > 0) {
-    this.currentPage--;
-    //this.getAllCandidateList();
+  goToFirstPage() {
+    this.currentPage = 0;
+    this.getvendorDetailsById();
+  }
+
+  goToPreviousPage() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.getvendorDetailsById();
+    }
+  }
+
+  goToNextPage() {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.getvendorDetailsById();
+    }
+  }
+
+  goToLastPage() {
+    this.currentPage = this.totalPages - 1;
+    this.getvendorDetailsById();
+  }
+
+  onRecordsPerPageChange(event: Event) {
+    this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
+    this.currentPage = 0;
     this.getvendorDetailsById();
   }
 }
-
-goToNextPage() {
-  if (this.currentPage < this.totalPages - 1) {
-    this.currentPage++;
-    // this.getAllCandidateList();
-    this.getvendorDetailsById();
-  }
-}
-
-goToLastPage() {
-  this.currentPage = this.totalPages - 1;
-  //this.getAllCandidateList();
-  this.getvendorDetailsById();
-}
-
-onRecordsPerPageChange(event: Event) {
-  this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
-  this.currentPage = 0; // Reset to first page when changing page size
-  //this.getAllCandidateList();
-  this.getvendorDetailsById();
-}
-
-
-
-getCandidatesByCandidateId(candiadteId: any) {
-  debugger;
-  
-  this.http.get<any>("http://localhost:9000/candidate/userid/" + candiadteId).subscribe(
-    (data) => {
-      console.log("Vendor details:", data);
-      this.candidate1 = data;
-      
-
-    }
-
-  );
-
-
-}
-
-
-
-
-
-
-
-
-
-
-//
-// added myc code login based on vendor login cand list only related vemdor list no other list and recriter login all ;and admin all
-//
-
-    // goToFirstPage() {
-    //     this.currentPage = 0;
-    //     this.getAllCandidateList();
-    //   }
-
-    //   goToPreviousPage() {
-    //     if (this.currentPage > 0) {
-    //       this.currentPage--;
-    //       this.getAllCandidateList();
-    //     }
-    //   }
-
-    //   goToNextPage() {
-    //     if (this.currentPage < this.totalPages - 1) {
-    //       this.currentPage++;
-    //       this.getAllCandidateList();
-    //     }
-    //   }
-
-    //   goToLastPage() {
-    //     this.currentPage = this.totalPages - 1;
-    //     this.getAllCandidateList();
-    //   }
-
-    //   onRecordsPerPageChange(event: Event) {
-    //     this.selectedRecordsOption1 = +(event.target as HTMLSelectElement).value;
-    //     this.currentPage = 0; // Reset to first page when changing page size
-    //     this.getAllCandidateList();
-    //   }
-
-
-}
-
 
