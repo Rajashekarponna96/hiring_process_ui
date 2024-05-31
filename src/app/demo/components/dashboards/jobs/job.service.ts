@@ -9,6 +9,7 @@ import { Recruiter } from '../../model/recruiter';
   providedIn: 'root'
 })
 export class JobService {
+  
   private baseUrl = 'http://localhost:9000/job';
 
   constructor(private http: HttpClient) { }
@@ -46,5 +47,15 @@ export class JobService {
 
   getUnassignedJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(`${this.baseUrl}/unassigned-jobs`);
+  }
+
+  assignJobsToVendor(vendorIds: number[], jobIds: number[]): Observable<void> {
+    const payload = { vendorIds, jobIds };
+    return this.http.post<void>(`${this.baseUrl}/assign-jobs-to-vendors`, payload);
+  }
+
+  assignJobsToRecruiter(recruiterIds: number[], jobIds: number[]): Observable<void> {
+    const payload = { recruiterIds, jobIds };
+    return this.http.post<void>(`${this.baseUrl}/assign-jobs-to-recruiters`, payload);
   }
 }

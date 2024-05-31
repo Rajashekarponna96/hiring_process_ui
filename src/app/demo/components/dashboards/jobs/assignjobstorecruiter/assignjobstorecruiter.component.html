@@ -6,7 +6,7 @@
             <div class="field col-12 md:col-6">
               <label for="vendor">Recruiters<span></span></label>
             <p-multiSelect [showClear]="true" [filter]="true" placeholder="Select Recruiters" name="recruiter"
-            optionLabel="firstName" optionValue="id" [(ngModel)]="selectedRecruiterId" [options]="recruiters"
+            optionLabel="firstName" optionValue="id" [(ngModel)]="selectedRecruiterIds" [options]="recruiters"
             [ngModelOptions]="{standalone: true}" class="multiselect-custom" display="chip">
               
             </p-multiSelect>
@@ -15,7 +15,7 @@
             <div class="field col-12 md:col-6">
               <label for="job">Jobs<span></span></label>
               <p-multiSelect [showClear]="true" [filter]="true" placeholder="Select Jobs" name="job"
-              optionLabel="title" optionValue="id" [(ngModel)]="selectedJobId" [options]="jobs"
+              optionLabel="title" optionValue="id" [(ngModel)]="selectedJobIds" [options]="jobs"
               [ngModelOptions]="{standalone: true}" class="multiselect-custom" display="chip">
                 
               </p-multiSelect>
@@ -24,7 +24,7 @@
               <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
               <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
                       label="Assign Jobs To Recruiter" (click)="assignJobsToRecruiter()"
-                      [disabled]="!selectedRecruiterId || !selectedJobId">
+                      [disabled]="!selectedRecruiterIds || !selectedJobIds">
               </button>
               <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
                       routerLink="/jobs" label="Cancel">

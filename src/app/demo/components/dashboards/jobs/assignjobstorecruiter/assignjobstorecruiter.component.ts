@@ -14,9 +14,8 @@ export class AssignjobstorecruiterComponent implements OnInit{
   job: Job = new Job();
   jobs: Job[] = [];
   recruiters: Recruiter[] = [];
-  selectedRecruiterId: number | null = null;
-  selectedJobId: number | null = null;
-
+  selectedRecruiterIds: number[] = [];
+  selectedJobIds: number[] = [];
   
  constructor(private jobService: JobService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
  
@@ -41,27 +40,16 @@ export class AssignjobstorecruiterComponent implements OnInit{
   }
 
   assignJobsToRecruiter() {
-    if (this.selectedJobId && this.selectedRecruiterId) {
-      this.jobService.assignVendorToJob(this.selectedJobId, this.selectedRecruiterId).subscribe(
-        () => {
-          console.log(`Assigned job ${this.selectedJobId} to vendor ${this.selectedRecruiterId}`);
-          // Remove the assigned job from the jobs list
-          this.jobs = this.jobs.filter(job => job.id !== this.selectedJobId);
-          this.changeDetectorRefs.markForCheck();
-          // Reset the form fields
-          this.selectedJobId = null;
-          this.selectedRecruiterId = null;
-        },
-        (error) => {
-          if (error.status === 409) {
-            alert('Vendor is already assigned to this job.');
-          } else {
-            console.error('An error occurred:', error);
-          }
-        }
-      );
-    } else {
-      console.warn('Both job and vendor must be selected for assignment.');
-    }
+    this.jobService.assignJobsToRecruiter(this.selectedRecruiterIds, this.selectedJobIds)
+    .subscribe(
+      () => {
+        console.log('Jobs assigned successfully');
+        this.router.navigateByUrl('/home');
+      },
+      error => {
+        console.error('Error assigning jobs', error);
+        // Add your error handling code here
+      }
+    );
   }
 }
