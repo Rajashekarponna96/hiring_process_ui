@@ -1,398 +1,1050 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<div class="grid">
+<div class="grid p-fluid" class="p-fluid p-formgrid grid">
     <div class="col-12">
-        <div class="card">
-            <h5>Create Candidate</h5>
-            <form #candidateForm="ngForm">
-            <div class="p-fluid p-formgrid grid">
-                <div class="field col-12 md:col-6">
-                    <label for="firstname">FirstName</label>
-                    <input pInputText id="firstname" name="firstname" type="text" placeholder="Enter Firstname"
-                        [(ngModel)]="candidate.firstName" required #firstname="ngModel" />
-                    <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
-                        <div style="color: red" *ngIf="firstname.errors">Firstname is required </div>
-                    </div>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label for="lastName">Lastname</label>
-                    <input pInputText id="lastName" name="lastName" type="text" placeholder="Enter lastName"
-                        [(ngModel)]="candidate.lastName" required #lastName="ngModel" />
-                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                        <div style="color: red;" *ngIf="lastName.errors">Lastname is required</div>
-                    </div>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label for="middleName">MiddleName</label>
-                    <input pInputText id="middleName" name="middleName" type="text" placeholder="Enter middleName"
-                        [(ngModel)]="candidate.middleName" required #middleName="ngModel" />
-                    <div *ngIf="middleName.invalid && (middleName.dirty || middleName.touched)">
-                        <div style="color: red;" *ngIf="middleName.errors">MiddleNameis required</div>
-                    </div>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label for="email">Email</label>
-                    <input pInputText id="email" name="email" type="email" placeholder="Enter Email"
-                        [(ngModel)]="candidate.email" required email #email="ngModel" />
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)">
-                        <div style="color: red;" *ngIf="email.errors">Invalid email format</div>
-                    </div>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label for="mobile">Mobile</label>
-                    <input pInputText id="mobile" name="mobile" type="number" placeholder="Enter MobileNumber"
-                        [(ngModel)]="candidate.mobile" required pattern="[0-9]{10}" #mobile="ngModel" />
-                    <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
-                        <div style="color: red;" *ngIf="mobile.errors">Mobile number is required</div>
-                    </div>
-                </div>
-                
-                <!-- <div class="field col-12 md:col-6">
-                    <label for="hiringFlowType">HiringFlowType</label>
-                    <input pInputText id="stage" name="stage" type="text"
-                        placeholder="Enter HiringFlowType" [(ngModel)]="candidate.stage" required
-                        #stage="ngModel" />
-                    <div *ngIf="stage.invalid && (stage.dirty || stage.touched)">
-                        <div style="color: red;" *ngIf="stage.errors">HiringFlowType is required</div>
-                    </div>
-                </div> -->
-
-                <div class="field col-12 md:col-6">
-                    <label for="taletpoll">HiringFlowType</label>
-                    <p-dropdown [options]="stages" [(ngModel)]="candidate.stage" [showClear]="true" [filter]="true" placeholder="Select Stages" name="stage" optionLabel="stage">
-                    </p-dropdown>
-                </div>
-                
-                <div class="field col-12 md:col-6">
-                    <label for="avialToJoin">AvailbleToJoin</label>
-                    <input pInputText id="avialToJoin" name="avialToJoin" type="number"
-                        placeholder="Enter avialToJoin" [(ngModel)]="candidate.avialToJoin" required
-                        #avialToJoin="ngModel" />
-                    <div *ngIf="avialToJoin.invalid && (avialToJoin.dirty || avialToJoin.touched)">
-                        <div style="color: red;" *ngIf="avialToJoin.errors">AvailToJoin is required</div>
-                    </div>
-                </div>
-
-                
-                
-                <div class="field col-12 md:col-6">
-                    <label for="currentSalary">CurrecntSalary</label>
-                    <input pInputText id="currentSalary" name="currentSalary" type="number"
-                        placeholder="Enter CurrentSalary" [(ngModel)]="candidate.currentSalary" required
-                        #currentSalary="ngModel" />
-                    <div *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)">
-                        <div style="color: red;" *ngIf="currentSalary.errors">CurrentSalary is required</div>
-                    </div>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label for="expectedSalary">ExpectedSalary</label>
-                    <input pInputText id="expectedSalary" name="expectedSalary" type="number"
-                        placeholder="Enter ExpectedSalary" [(ngModel)]="candidate.expectedSalary" required
-                        #expectedSalary="ngModel" />
-                    <div *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)">
-                        <div style="color: red;" *ngIf="expectedSalary.errors">ExpectedSalary is required</div>
-                    </div>
-                </div>
-                
-                <div class="field col-12 md:col-6">
-                    <label for="gender">Select Gender</label>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="male" name="gender"
-                            [(ngModel)]="candidate.gender" value="Male" ngModel #maleGender="ngModel" required>
-                        <label class="form-check-label" for="Male">Male</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="female" name="gender"
-                            [(ngModel)]="candidate.gender" value="Female" ngModel #femaleGender="ngModel" required>
-                        <label class="form-check-label" for="female">Female</label>
-                    </div>
-                    <div style="color: red;" *ngIf="(maleGender.invalid || femaleGender.invalid) && ((maleGender.dirty || maleGender.touched) || (femaleGender.dirty || femaleGender.touched))">
-                        <div style="color: red;">Please select a gender</div>
-                    </div>
-                </div>
-
-                <!--Date of Birth field-->
-            <div class="field col-12 md:col-6">
-                <label for="dateOfBirth">Date Of Birth</label>
-                <input pInputText id="dateOfBirth" name="dateOfBirth" type="date" [(ngModel)]="candidate.dateOfBirth"  placeholder="Select Date of Birth">
-                <div style="color: red;" *ngIf="candidateForm.controls['dateOfBirth'].invalid && (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
-                    <small class="text-danger">Date of Birth is required.</small>
-                </div>
-            </div>
-                
-
-                <!-- <div class="field col-12 md:col-6">
-                    <label htmlFor="skills">Skills</label>
-                    <div *ngFor="let skill of candidate.skills; let i = index">
-                        <div class="p-inputgroup">
-                            <input pInputText id="skill{{i}}" type="text" [(ngModel)]="candidate.skills[i]" />
-                            <button pButton type="button" icon="pi pi-minus" (click)="removeSkill(i)" *ngIf="i > 0"></button>
-                        </div><br><br>
-                    </div>
-                    <button pButton type="button" icon="pi pi-plus" (click)="addSkill()">Add Skill</button>
-                </div> -->
-                
-                
-                
-
-                
-                <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
-                    <label htmlFor="skills">Skills</label>
-                    <p-chips [ngModel]="skills" (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)" (onBlur)="addSkills()"></p-chips>
-                  </div>
-                
-
-                <!-- TalentPoll  dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="taletpoll">TalentPoll</label>
-                    <p-dropdown [options]="talentpools" [(ngModel)]="candidate.talentPool" [showClear]="true" [filter]="true" placeholder="Select TalentPoll" name="talentPool"  optionLabel="name">
-                       
-                    </p-dropdown>
-                    <div *ngIf="!candidate.talentPool && (candidateForm.controls['talentPool'].dirty || candidateForm.controls['talentPool'].touched)" style="color: red;">TalentPool is required</div>
-
-                </div>
-
-                <!-- Job  dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="job">Job</label>
-                    <p-dropdown [options]="jobs" [(ngModel)]="candidate.job" [showClear]="true" [filter]="true" placeholder="Select Job" name="job"  optionLabel="title">
-                        
-                    </p-dropdown>
-                </div>
-                <!-- Source dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="source">Source</label>
-                    <p-dropdown [options]="sources" [(ngModel)]="candidate.source" [showClear]="true" [filter]="true" placeholder="Select Source"   name="source" optionLabel="name">
-     
-                    </p-dropdown>
-                </div>
-    
-                <!-- Current Location dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="current">Current Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="candidate.current" [showClear]="true" [filter]="true" placeholder="Select Current Location" name="current" optionLabel="name">
-                        
-                    </p-dropdown>
-                </div>
-
-                <!-- Preffed Location dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="Preffered">Prefferd Location</label>
-                    <p-dropdown [options]="locations" [(ngModel)]="candidate.preferred" [showClear]="true" [filter]="true" placeholder="Select PrefferedLocation Location" name="prefferd" optionLabel="name">
-                        
-                    </p-dropdown>
-                </div>
-                   
-
-            <!-- Currency dropdown -->
-                <div class="field col-12 md:col-6">
-                    <label for="currency">Currency</label>
-                    <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency" [showClear]="true" [filter]="true" placeholder="Select Currency" name="currency" optionLabel="name"></p-dropdown>
-                </div>
-            </div>
-            
-
-            <!--Education details-->
-            <div class="grid">
-                <div class="col-12">
-                    <div class="card">
-            <div class="field col-12 md:col-6">
-                <button pButton type="button" (click)="toggleEducationFields()">Add Education Details</button>
-            </div>
-            
-            <!-- Education fields (initially hidden) -->
-            
-                <div>
-                    <div class="p-fluid p-formgrid grid">
-                        <div class="field col-12 md:col-6">
-                                <label for="course">Course</label>
-                                <input pInputText id="course" name="course" type="text" [(ngModel)]="education.course" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <label for="branch">Branch</label>
-                                <input pInputText id="branch" name="branch" type="text" [(ngModel)]="education.branch" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <label for="startOfCourse">StartOfCourse</label>
-                                <input pInputText id="startOfCourse" name="startOfCourse" type="date" [(ngModel)]="education.startOfCourse"  placeholder="Select startOfCourse">
-                                <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
-                                    <small class="text-danger">Date of Birth is required.</small>
-                                </div> -->
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <label for="startOfCourse">EndOfCourse</label>
-                                <input pInputText id=" endOfCourse" name="endOfCourse" type="date" [(ngModel)]="education.endOfCourse"  placeholder="Select  endOfCourse">
-                                <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
-                                    <small class="text-danger">Date of Birth is required.</small>
-                                </div> -->
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <label for="college">College</label>
-                                <input pInputText id="college" name="college" type="text" [(ngModel)]="education.college" />
-                            </div>
-                            <div class="field col-12 md:col-6">
-                                <label for="location">Location</label>
-                                <input pInputText id="location" name="location" type="text" [(ngModel)]="education.location" />
-                            </div>
-                        </div>
-
-                        <!-- Submit button -->
-<div class="field col-12">
-    <button pButton type="button" (click)="submitEducation()">Submit</button>
-</div>
-
-<!-- Education table -->
-<div *ngIf="educationDetails.length > 0">
-    <table>
-        <thead>
-            <tr>
-                <th>Course</th>
-                <th>Branch</th>
-                <th>Start of Course</th>
-                <th>End of Course</th>
-                <th>College</th>
-                <th>Location</th>
-                <!-- <th>Edit</th>
-                <th>Delete</th> -->
-                <th>Modify</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let edu of educationDetails,let i=index ">
-                <td>{{ edu.course }}</td>
-                <td>{{ edu.branch }}</td>
-                <td>{{ edu.startOfCourse }}</td>
-                <td>{{ edu.endOfCourse }}</td>
-                <td>{{ edu.college }}</td>
-                <td>{{ edu.location }}</td>
-                <td>
-                    <div class="button-container">
-                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="EditEducation(i)"  icon="pi pi-pencil"></button>
-                        <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deleteEducation(i)" icon="pi pi-trash"></button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="grid">
+            <div class="col-12">
+                <div class="card">
+                    <!-- <div class="tab-menu">
+                        <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
+                            Profile
+                        </button>
+                        <button (click)="currentStep = 2" [ngClass]="{ active: currentStep === 2 }">
+                            Education
+                        </button>
+                        <button (click)="currentStep = 3" [ngClass]="{ active: currentStep === 3 }">
+                            Experience
+                        </button>
+                        <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
+                            Confirm Details
+                        </button>
+                    </div> -->
+                    <!-- <div class="tab-menu">
+                        <button (click)="currentStep = 1" [ngClass]="{ active: currentStep === 1 }">
+                             Profile
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 2" [ngClass]="{ active: currentStep === 2 }">
+                             Education
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 3" [ngClass]="{ active: currentStep === 3 }">
+                             Experience
+                        </button>
+                        <div class="line"></div>
+                        <button (click)="currentStep = 4" [ngClass]="{ active: currentStep === 4 }">
+                             Confirm Details
+                        </button>
+                    </div> -->
+                    <p-steps [model]="itemss" [(activeIndex)]="currentStep" [readonly]="true"
+                        orientation="vertical"></p-steps><br><br>
 
 
-
-
-
-                    </div>
-                 </div>
-            </div>
-            </div>
-
-
-            <!--Experience details-->
-            
-            <div class="grid">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="field col-12 md:col-6">
-                            <button pButton type="button" (click)="toggleExperienceFields()">Add Experience Details</button>
-                        </div>
-            
-                        <!-- Experience fields (initially hidden) -->
-                        <div>
-                            <div class="p-fluid p-formgrid grid">
-                                <div class="field col-12 md:col-6">
-                                    <label for="company">Company</label>
-                                    <input pInputText id="company" name="company" type="text" [(ngModel)]="experience.company" />
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="jobTitle">Job Title</label>
-                                    <input pInputText id="jobTitle" name="jobTitle" type="text" [(ngModel)]="experience.jobTitle" />
-                                </div>
-                                <!-- <div class="field col-12 md:col-6">
-                                    <label for="currentlyWorking">Currently Working</label>
-                                    <input pInputText id="currentlyWorking" name="currentlyWorking" type="text" [(ngModel)]="experience.currentlyWorking" />
-                                </div> -->
-                                <div class="field col-12 md:col-6">
-                                    <label for="dateOfJoining">DateOfJoining</label>
-                                    <input pInputText id="dateOfJoining" name="dateOfJoining" type="date" [(ngModel)]="experience.dateOfJoining"  placeholder="Select DateOfJoining">
-                                    <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
-                                        <small class="text-danger">Date of Birth is required.</small>
-                                    </div> -->
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="dateOfJoining">DateOfRelieving</label>
-                                    <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date" [(ngModel)]="experience.dateOfRelieving"  placeholder="Select DateOfRelieving">
-                                    <!-- <div style="color: red;" *ngIf="education.controls['startOfCourse'].invalid && (education.controls['startOfCourse'].dirty ||education.controls['startOfCourse'].touched)">
-                                        <small class="text-danger">Date of Birth is required.</small>
-                                    </div> -->
-                                </div>
-                                <div class="field col-12 md:col-6">
-                                    <label for="location">Location</label>
-                                    <input pInputText id="location" name="location" type="text" [(ngModel)]="experience.location" />
-                                </div>
-                                
-                            </div>
-
-                            <div class="field col-12">
-                                <button pButton type="button" (click)="submitExceperience()">SubmitExp</button>
-                            </div>
-                            
-                            <!-- Experience table -->
-                            <div *ngIf=" experienceDetails.length > 0">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Company</th>
-                                            <th>JobTitle</th>
-                                            <th>CurrentlyWokring</th>
-                                            <th>DateOfJoining</th>
-                                            <th>DateOfRelieving</th>
-                                            <th>Location</th>
-                                            <th>Modify</th>
-                                            
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let exp of  experienceDetails,let i=index">
-                                            <td>{{ exp.company  }}</td>
-                                            <td>{{ exp.jobTitle}}</td>
-                                            <td>{{ exp.currentlyWokring}}</td>
-                                            <td>{{ exp.dateOfJoining }}</td>
-                                            <td>{{ exp.dateOfRelieving }}</td>
-                                            <td>{{ exp.location }}</td>
-                                            <td>
-                                                <div class="button-container">
-                                                    <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="editExperience(i)" icon="pi pi-pencil"></button>
-                                                    <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="deleteExperience(i)" icon="pi pi-trash"></button>
+                    <div *ngIf="currentStep === 0">
+                        <div class="grid">
+                            <div class="col-12">
+                                <form #candidateForm="ngForm">
+                                    <div class="p-fluid p-formgrid grid">
+                                        <div class="field col-12 md:col-6">
+                                            <label for="firstname">FirstName<span [style.display]=" candidate.firstName ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="firstname" name="firstname" type="text"
+                                                placeholder="Enter FirstName" [(ngModel)]="
+                                                    candidate.firstName
+                                                " required #firstname="ngModel" />
+                                            <div *ngIf="
+                                                    firstname.invalid &&
+                                                    (firstname.dirty ||
+                                                        firstname.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="firstname.errors">
+                                                    FirstName is Required
                                                 </div>
-                                            </td>
-                                            
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="lastName">LastName<span [style.display]=" candidate.lastName ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="lastName" name="lastName" type="text"
+                                                placeholder="Enter LastName" [(ngModel)]="candidate.lastName" required
+                                                #lastName="ngModel" />
+                                            <div *ngIf="
+                                                    lastName.invalid &&
+                                                    (lastName.dirty ||
+                                                        lastName.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="lastName.errors">
+                                                    LastName is Required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="middleName"
+                                                >MiddleName<span style="color: red">*</span></label
+                                            >
+                                            <input
+                                                pInputText
+                                                id="middleName"
+                                                name="middleName"
+                                                type="text"
+                                                placeholder="Enter middleName"
+                                                [(ngModel)]="
+                                                    candidate.middleName
+                                                "
+                                                required
+                                                #middleName="ngModel"
+                                            />
+                                            <div
+                                                *ngIf="
+                                                    middleName.invalid &&
+                                                    (middleName.dirty ||
+                                                        middleName.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="middleName.errors"
+                                                >
+                                                    MiddleNameis required
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="email">Email<span [style.display]=" candidate.email ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="email" name="email" type="email"
+                                                placeholder="Enter Email" [(ngModel)]="candidate.email" required email
+                                                #email="ngModel" />
+                                            <div *ngIf="
+                                                    email.invalid &&
+                                                    (email.dirty ||
+                                                        email.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="email.errors">
+                                                    Invalid Email Format
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Mobile<span [style.display]=" candidate.mobile ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="mobile" name="mobile" type="text"
+
+                                                placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile"
+                                                required pattern="[0-9]{10}" min #mobile="ngModel" />
+                                            <div *ngIf="
+                                                    mobile.invalid &&
+                                                    (mobile.dirty ||
+                                                        mobile.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="mobile.errors">
+                                                    Mobile Number is Required & Its accept only 10 digits
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alternate MobileNo</label>
+                                            <input pInputText id="alterMobile" name="alterMobile" type="text"
+                                                placeholder="Enter Alt Mobile Number"
+                                                [(ngModel)]="candidate.alterMobile" required pattern="[0-9]{10}" min
+                                                #alterMobile="ngModel" />
+                                            <div *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="alterMobile.errors">
+                                                   Alternate Mobile Number is Required & Its accept only 10 digits
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="taletpoll">Hiring Stage<span [style.display]=" candidate.stage ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
+                                                [showClear]="true" [filter]="true" placeholder="Select Stages"
+                                                name="stage" optionLabel="name" optionValue="name">
+                                            </p-dropdown>
+                                        </div> -->
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="avialToJoin">Notice Period<span [style.display]=" candidate.avialToJoin ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="avialToJoin" name="avialToJoin" type="text"
+                                                placeholder="Enter Notice Period" [(ngModel)]="
+                                                    candidate.avialToJoin
+                                                " required #avialToJoin="ngModel" />
+                                            <div *ngIf="
+                                                    avialToJoin.invalid &&
+                                                    (avialToJoin.dirty ||
+                                                        avialToJoin.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="avialToJoin.errors">
+                                                    Notice Period is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="currentSalary">Current Salary(LPA)(INR)<span [style.display]=" candidate.currentSalary ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="currentSalary" name="currentSalary" type="number"
+                                                placeholder="Enter Current Salary" [(ngModel)]="
+                                                    candidate.currentSalary
+                                                " required #currentSalary="ngModel" />
+                                            <div *ngIf="
+                                                    currentSalary.invalid &&
+                                                    (currentSalary.dirty ||
+                                                        currentSalary.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="currentSalary.errors">
+                                                    Current Salary is Required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="expectedSalary">Expected Salary(LPA)(INR)<span [style.display]=" candidate.expectedSalary ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="expectedSalary" name="expectedSalary" type="number"
+                                                placeholder="Enter Expected Salary" [(ngModel)]="
+                                                    candidate.expectedSalary
+                                                " required #expectedSalary="ngModel" />
+                                            <div *ngIf="
+                                                    expectedSalary.invalid &&
+                                                    (expectedSalary.dirty ||
+                                                        expectedSalary.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="
+                                                        expectedSalary.errors
+                                                    ">
+                                                    Expected Salary is required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="gender">Gender<span [style.display]=" candidate.gender ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="male" name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    " value="Male" ngModel #maleGender="ngModel" required />
+                                                <label class="form-check-label" for="Male">Male</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="female" name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    " value="Female" ngModel #femaleGender="ngModel" required />
+                                                <label class="form-check-label" for="female">Female</label>
+                                            </div>
+                                            <div style="color: red" *ngIf="
+                                                    (maleGender.invalid ||
+                                                        femaleGender.invalid) &&
+                                                    (maleGender.dirty ||
+                                                        maleGender.touched ||
+                                                        femaleGender.dirty ||
+                                                        femaleGender.touched)
+                                                ">
+                                                <div style="color: red">
+                                                    Please Select Gender
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--Date of Birth field-->
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="dateOfBirth">Date Of Birth<span
+                                                    style="color: red">*</span></label>
+                                            <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
+                                                [(ngModel)]="
+                                                    candidate.dateOfBirth
+                                                " placeholder="Select Date of Birth" />
+                                            <div style="color: red" *ngIf="
+                                                    candidateForm.controls[
+                                                        'dateOfBirth'
+                                                    ].invalid &&
+                                                    (candidateForm.controls[
+                                                        'dateOfBirth'
+                                                    ].dirty ||
+                                                        candidateForm.controls[
+                                                            'dateOfBirth'
+                                                        ].touched)
+                                                ">
+                                                <small class="text-danger">Date of Birth is
+                                                    Required.</small>
+                                            </div>
+                                        </div> -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfBirth">Date Of Birth<span [style.display]=" candidate.dateOfBirth ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
+                                                [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
+                                                [max]="todayDate()" />
+                                            <div style="color: red"
+                                                *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
+                                                (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
+                                                <small class="text-danger">Date of Birth is Required.</small>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- TalentPoll  dropdown -->
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="taletpoll">Talent Pool<span [style.display]=" candidate.talentPool ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="talentpools" [(ngModel)]="
+                                                    candidate.talentPool
+                                                " [showClear]="true" [filter]="true" placeholder="Select TalentPool"
+                                                name="talentPool" optionLabel="name">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.talentPool && (candidateForm.controls['talentPool'].dirty || candidateForm.controls['talentPool'].touched)"
+                                                style="color: red;">TalentPool is required</div>
+
+                                        </div> -->
+
+                                        <!-- Job  dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="job">Job<span [style.display]=" candidate.job ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="jobs" [(ngModel)]="candidate.job" [showClear]="true"
+                                                [filter]="true" placeholder="Select Job" name="job" optionLabel="title">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.job && (candidateForm.controls['job'].dirty || candidateForm.controls['job'].touched)"
+                                                style="color: red;">Job is required</div>
+                                        </div>
+                                        <!-- Source dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="source">Source<span [style.display]=" candidate.source ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="sources" [(ngModel)]="candidate.source"
+                                                [showClear]="true" [filter]="true" placeholder="Select Source"
+                                                name="source" optionLabel="name">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.source && (candidateForm.controls['source'].dirty || candidateForm.controls['source'].touched)"
+                                                style="color: red;">Source is required</div>
+                                        </div>
+
+                                        <!-- Current Location dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="current">Current Location<span [style.display]=" candidate.current ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="locations" [(ngModel)]="candidate.current"
+                                                [showClear]="true" [filter]="true" placeholder="Select Current Location"
+                                                name="current" optionLabel="name">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.current && (candidateForm.controls['current'].dirty || candidateForm.controls['current'].touched)"
+                                                style="color: red;">Current Location is required</div>
+                                        </div>
+
+                                        <!-- Preffed Location dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="Preffered">Preffered Location<span [style.display]=" candidate.preferred ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="locations" [(ngModel)]="candidate.preferred"
+                                                [showClear]="true" [filter]="true"
+                                                placeholder="Select Preffered Location" name="preferred"
+                                                optionLabel="name">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.preferred && (candidateForm.controls['preferred'].dirty || candidateForm.controls['preferred'].touched)"
+                                                style="color: red;">Preferred Location is required</div>
+                                        </div>
+
+                                        <!-- Currency dropdown -->
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="currency">Currency<span [style.display]=" candidate.currency ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency"
+                                                [showClear]="true" [filter]="true" placeholder="Select Currency"
+                                                name="currency" optionLabel="name"></p-dropdown>
+                                            <div *ngIf="!candidate.currency && (candidateForm.controls['currency'].dirty || candidateForm.controls['currency'].touched)"
+                                                style="color: red;">Currency is required</div>
+                                        </div> -->
+
+                                        <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
+                                            <label htmlFor="skills">Skills:<span [style.display]=" candidate.skills ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <div *ngIf="!candidate.skills && (candidateForm.controls['skills'].dirty || candidateForm.controls['skills'].touched)"
+                                                style="color: red;">Skills is required</div>
+                                            <p-chips [ngModel]="skills" name=candidate.skills
+                                                (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)"
+                                                (onBlur)="addSkills()" aria-placeholder="Enter skills here"></p-chips>
+                                        </div>
+
+
+
+
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="skills">Skills</label>
+                                            <input
+                                                pInputText
+                                                id="skills"
+                                                name="candidate.skills"
+                                                type="text"
+                                                placeholder="Enter skills"
+                                                [ngModel]="candidate.skills"
+                                                (ngModelChange)="updateSkills($event)"
+                                                #skills="ngModel"/>
+                                        </div> -->
+
+
+
+
+                                    </div>
+
+                                    <div class="button-container">
+                                        <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                                            class="p-button-primary p-button-text next-button" pButton pRipple
+                                            label="Next"></button>
+                                    </div>
+                                </form>
                             </div>
-                            
-                            
-                            
+                        </div>
+                        <!--end profile  -->
+                    </div>
+                    <div *ngIf="currentStep === 1">
+                        <!--Education details-->
+
+                        <div class="grid">
+                            <div class="col-12">
+                                <!-- Education fields (initially hidden) -->
+                                <div>
+                                    <div class="p-fluid p-formgrid grid">
+                                        <div class="field col-12 md:col-6">
+                                            <label for="course">Course<span [style.display]="education.course  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="course" name="course" type="text"
+                                                [(ngModel)]="education.course" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="branch">Specialization<span [style.display]="education.branch  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="branch" name="branch" type="text"
+                                                [(ngModel)]="education.branch" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="startOfCourse">Start Of Course</label>
+                                            <input pInputText id="startOfCourse" name="startOfCourse" type="date"
+                                                [(ngModel)]="education.startOfCourse" placeholder="Select startOfCourse"
+                                                (ngModelChange)="updateEndDateMinDate()" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="endOfCourse">End Of Course</label>
+                                            <input pInputText id="endOfCourse" name="endOfCourse" type="date"
+                                                [(ngModel)]="education.endOfCourse" placeholder="Select endOfCourse"
+                                                [min]="education.startOfCourse" />
+                                            <div *ngIf="education.endOfCourse < education.startOfCourse"
+                                                style="color: red;">
+                                                End date cannot be before start date.
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="college">College<span [style.display]="education.college  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="college" name="college" type="text"
+                                                [(ngModel)]="education.college" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="college">University<span [style.display]="education.university  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="college" name="college" type="text"
+                                                [(ngModel)]="education.university" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="location">Location<span [style.display]="education.location  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="location" name="location" type="text"
+                                                [(ngModel)]="education.location" />
+                                        </div>
+                                    </div>
+                                    <!-- Submit button -->
+                                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
+                                        (click)="submitEducation()" label="save"></button><br><br><br>
+                                    <!-- Education table -->
+                                    <div *ngIf="educationDetails.length > 0">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Course</th>
+                                                    <th>Specialization</th>
+                                                    <th>Start of Course</th>
+                                                    <th>End of Course</th>
+                                                    <th>College</th>
+                                                    <th>University</th>
+                                                    <th>Location</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let edu of educationDetails; let i = index">
+                                                    <td>{{ edu.course }}</td>
+                                                    <td>{{ edu.branch }}</td>
+                                                    <td>{{ edu.startOfCourse }}</td>
+                                                    <td>{{ edu.endOfCourse }}</td>
+                                                    <td>{{ edu.college }}</td>
+                                                    <td>{{ edu.university }}</td>
+                                                    <td>{{ edu.location }}</td>
+                                                    <td>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="EditEducation(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteEducation(i)" icon="pi pi-trash"></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div style="display: flex;">
+                            <div class="button-container">
+                                <button *ngIf="currentStep > 0" (click)="prevStep()"
+                                    class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
+                            </div>
+                            <div class="button-container">
+                                <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                                    class="p-button-primary p-button-text" pButton pRipple label="Next"></button>
+                            </div>
+                        </div>
+                        <!-- education ends -->
+                    </div>
+
+                    <div *ngIf="currentStep === 2">
+                        <div class="grid">
+                            <div class="col-12">
+                                <!-- Experience fields (initially hidden) -->
+                                <div>
+                                    <div class="p-fluid p-formgrid grid">
+                                        <div class="field col-12 md:col-6">
+                                            <label for="company">Company<span [style.display]="experience.company  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="company" name="company" type="text"
+                                                [(ngModel)]="experience.company" />
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="jobTitle">Job Title<span [style.display]="experience.jobTitle  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="jobTitle" name="jobTitle" type="text"
+                                                [(ngModel)]="experience.jobTitle" />
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfJoining">Date of Joining</label>
+                                            <input pInputText id="dateOfJoining" name="dateOfJoining" type="date"
+                                                [(ngModel)]="experience.dateOfJoining"
+                                                placeholder="Select Date of Joining"
+                                                (ngModelChange)="updateEndDateMinDate1()" />
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfRelieving">Date of Relieving</label>
+                                            <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date"
+                                                [(ngModel)]="experience.dateOfRelieving"
+                                                placeholder="Select Date of Relieving"
+                                                [min]="experience.dateOfJoining" />
+                                            <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining"
+                                                style="color: red;">
+                                                End date cannot be before start date.
+                                            </div>
+                                        </div>
 
 
 
+                                        <div class="field col-12 md:col-6">
+                                            <label for="location">Location<span [style.display]="experience.location  ? 'none' : 'inline'" style="color: red">*</span></label>
+                                            <input pInputText id="location" name="location" type="text" [(ngModel)]="
+                                                    experience.location
+                                                " />
+                                        </div>
+                                    </div>
+                                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-plus"
+                                        (click)="submitExceperience()" label="Save"></button><br><br><br>
+                                    <!-- Experience table -->
+                                    <div *ngIf="experienceDetails.length > 0">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Job Title</th>
+                                                    <th>Currently Working</th>
+                                                    <th>Date Of Joining</th>
+                                                    <th>Date Of Relieving</th>
+                                                    <th>Location</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let exp of experienceDetails; let i = index">
+                                                    <td>{{ exp.company }}</td>
+                                                    <td>{{ exp.jobTitle }}</td>
+                                                    <td>{{ exp.currentlyWorking }}</td>
+                                                    <td>{{ exp.dateOfJoining }}</td>
+                                                    <td>{{ exp.dateOfRelieving }}</td>
+                                                    <td>{{ exp.location }}</td>
+                                                    <td>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
+                                                            (click)="editExperience(i)" icon="pi pi-pencil"></button>
+                                                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
+                                                            (click)="deleteExperience(i)" icon="pi pi-trash"></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div style="display: flex;">
+                            <div class="button-container">
+                                <button *ngIf="currentStep > 1" (click)="prevStep()"
+                                    class="p-button-secondary p-button-text" pButton pRipple label="Previous"></button>
+                            </div>
+                            <div class="button-container">
+                                <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                                    class="p-button-primary p-button-text" pButton pRipple label="Next"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="currentStep === 3">
+                        <!--cofirm starts  -->
+                        <div class="grid">
+                            <div class="col-12">
+                                <!-- <h5>Create Candidate</h5> -->
+                                <form #candidateForm="ngForm">
+                                    <div class="p-fluid p-formgrid grid">
+                                        <div class="field col-12 md:col-6">
+                                            <label for="firstname">FirstName</label>
+                                            <input pInputText id="firstname" name="firstname" type="text"
+                                                placeholder="Enter First Name" [(ngModel)]="
+                                                    candidate.firstName
+                                                " required #firstname="ngModel" readonly />
+                                            <div *ngIf="
+                                                    firstname.invalid &&
+                                                    (firstname.dirty ||
+                                                        firstname.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="firstname.errors">
+                                                    FirstName is required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="lastName">LastName</label>
+                                            <input pInputText id="lastName" name="lastName" type="text"
+                                                placeholder="Enter LastName" [(ngModel)]="candidate.lastName" required
+                                                #lastName="ngModel" readonly />
+                                            <div *ngIf="
+                                                    lastName.invalid &&
+                                                    (lastName.dirty ||
+                                                        lastName.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="lastName.errors">
+                                                    LastName is Gequired
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="middleName"
+                                                >MiddleName</label
+                                            >
+                                            <input
+                                                pInputText
+                                                id="middleName"
+                                                name="middleName"
+                                                type="text"
+                                                placeholder="Enter middleName"
+                                                [(ngModel)]="
+                                                    candidate.middleName
+                                                "
+                                                required
+                                                #middleName="ngModel"
+                                                readonly
+                                            />
+                                            <div
+                                                *ngIf="
+                                                    middleName.invalid &&
+                                                    (middleName.dirty ||
+                                                        middleName.touched)
+                                                "
+                                            >
+                                                <div
+                                                    style="color: red"
+                                                    *ngIf="middleName.errors"
+                                                >
+                                                    MiddleName is required
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="email">Email</label>
+                                            <input pInputText id="email" name="email" type="email"
+                                                placeholder="Enter Email" [(ngModel)]="candidate.email" required email
+                                                #email="ngModel" readonly />
+                                            <div *ngIf="
+                                                    email.invalid &&
+                                                    (email.dirty ||
+                                                        email.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="email.errors">
+                                                    Invalid Email Format
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Mobile</label>
+                                            <input pInputText id="mobile" name="mobile" type="text"
+                                                placeholder="Enter Mobile Number" [(ngModel)]="candidate.mobile"
+                                                required pattern="[0-9]*" #mobile="ngModel" readonly />
+                                            <div *ngIf="
+                                                    mobile.invalid &&
+                                                    (mobile.dirty ||
+                                                        mobile.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="mobile.errors">
+                                                    Mobile Number is Required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="mobile">Alternate MobileNo</label>
+                                            <input pInputText id="alterMobile" name="alterMobile" type="text"
+                                                placeholder="Enter Alt Mobile Number"
+                                                [(ngModel)]="candidate.alterMobile" required pattern="[0-9]{10}*" min
+                                                #alterMobile="ngModel" />
+                                            <div *ngIf="
+                                                alterMobile.invalid &&
+                                                    (alterMobile.dirty ||
+                                                    alterMobile.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="alterMobile.errors">
+                                                    Alter Mobile Number is Required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="field col-12 md:col-6">
+<label for="taletpoll">HiringFlowType</label>
+<p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
+[showClear]="true" [filter]="true" placeholder="Select Stages"
+name="stage" optionLabel="name" optionValue="name">
+</p-dropdown>
+</div> -->
+
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="taletpoll">Hiring Stage</label>
+                                            <p-dropdown [options]="stages" [(ngModel)]="candidate.stage"
+                                                [showClear]="true" [filter]="true" placeholder="Select Stages"
+                                                name="stage" optionLabel="name" optionValue="name">
+                                            </p-dropdown>
+                                            <div *ngIf="!candidate.stage && (candidateForm.controls['stage'].dirty || candidateForm.controls['stage'].touched)"
+                                                style="color: red;">HiringStage is Required</div>
+                                        </div> -->
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="avialToJoin">Notice period</label>
+                                            <input pInputText id="avialToJoin" name="avialToJoin" type="text"
+                                                placeholder="Enter Notice Period" [(ngModel)]="
+                                                    candidate.avialToJoin
+                                                " required #avialToJoin="ngModel" readonly />
+                                            <div *ngIf="
+                                                    avialToJoin.invalid &&
+                                                    (avialToJoin.dirty ||
+                                                        avialToJoin.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="avialToJoin.errors">
+                                                    Notice Period
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="currentSalary">Current Salary(LPA)(INR)</label>
+                                            <input pInputText id="currentSalary" name="currentSalary" type="number"
+                                                placeholder="Enter Current Salary" [(ngModel)]="
+                                                    candidate.currentSalary
+                                                " required #currentSalary="ngModel" readonly />
+                                            <div *ngIf="
+                                                    currentSalary.invalid &&
+                                                    (currentSalary.dirty ||
+                                                        currentSalary.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="currentSalary.errors">
+                                                    Current Salary is Required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="field col-12 md:col-6">
+                                            <label for="expectedSalary">Expected Salary(LPA)(INR)</label>
+                                            <input pInputText id="expectedSalary" name="expectedSalary" type="number"
+                                                placeholder="Enter Expected Salary" [(ngModel)]="
+                                                    candidate.expectedSalary
+                                                " required #expectedSalary="ngModel" readonly />
+                                            <div *ngIf="
+                                                    expectedSalary.invalid &&
+                                                    (expectedSalary.dirty ||
+                                                        expectedSalary.touched)
+                                                ">
+                                                <div style="color: red" *ngIf="
+                                                        expectedSalary.errors
+                                                    ">
+                                                    Expected Salary is Required
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="gender"> Gender</label>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="male" name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    " value="Male" ngModel #maleGender="ngModel" required />
+                                                <label class="form-check-label" for="Male">Male</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" id="female" name="gender"
+                                                    [(ngModel)]="
+                                                        candidate.gender
+                                                    " value="Female" ngModel #femaleGender="ngModel" required />
+                                                <label class="form-check-label" for="female">FeMale</label>
+                                            </div>
+                                            <div style="color: red" *ngIf="
+                                                    (maleGender.invalid ||
+                                                        femaleGender.invalid) &&
+                                                    (maleGender.dirty ||
+                                                        maleGender.touched ||
+                                                        femaleGender.dirty ||
+                                                        femaleGender.touched)
+                                                ">
+                                                <div style="color: red">
+                                                    Please Select a Gender
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-12 md:col-6">
+                                            <label for="dateOfBirth">Date Of Birth<span
+                                                    style="color: red">*</span></label>
+                                            <input pInputText id="dateOfBirth" name="dateOfBirth" type="date"
+                                                [(ngModel)]="candidate.dateOfBirth" placeholder="Select Date of Birth"
+                                                [max]="todayDate()" />
+                                            <div style="color: red"
+                                                *ngIf="candidateForm.controls['dateOfBirth'].invalid &&
+                                                (candidateForm.controls['dateOfBirth'].dirty || candidateForm.controls['dateOfBirth'].touched)">
+                                                <small class="text-danger">Date of Birth is Required.</small>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="flex flex-wrap align-items-center ,field col-12 md:col-6">
+                                            <label htmlFor="skills">Skills:</label>
+                                            <p-chips [ngModel]="skills" name=candidate.skills
+                                                (onRemove)="removeSkills($event)" (onAdd)="addSkills($event)"
+                                                (onBlur)="addSkills()" aria-placeholder="Enter skills here"></p-chips>
+                                        </div>
+
+
+                                        <!-- TalentPoll  dropdown -->
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="taletpoll">Talent Pool</label>
+                                            <p-dropdown [options]="talentpools" [(ngModel)]="
+                                                    candidate.talentPool
+                                                " [showClear]="true" [filter]="true" placeholder="Select TalentPoll"
+                                                name="talentPool" optionLabel="name">
+                                            </p-dropdown>
+                                        </div> -->
+
+                                        <div class="field col-12 md:col-6 readonly-job">
+                                            <label for="job">Job</label>
+                                            <div class="readonly-job-value">
+                                                {{
+                                                candidate.job
+                                                ? candidate.job.title
+                                                : "Select Job"
+                                                }}
+                                            </div>
+                                        </div>
+
+                                        <!-- Source dropdown -->
+
+                                        <div class="field col-12 md:col-6 readonly-source">
+                                            <label for="source">Source</label>
+                                            <div class="readonly-source-value">
+                                                {{
+                                                candidate.source
+                                                ? candidate.source.name
+                                                : "Select Source"
+                                                }}
+                                            </div>
+                                        </div>
+
+                                        <!-- Current Location dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="current">Current Location</label>
+                                            <p-dropdown [options]="locations" [(ngModel)]="candidate.current"
+                                                [showClear]="true" [filter]="true" placeholder="Select Current Location"
+                                                name="current" optionLabel="name">
+                                            </p-dropdown>
+                                        </div>
+
+                                        <!-- Preffed Location dropdown -->
+                                        <div class="field col-12 md:col-6">
+                                            <label for="Preffered">Preffered Location</label>
+                                            <p-dropdown [options]="locations" [(ngModel)]="
+                                                    candidate.preferred
+                                                " [showClear]="true" [filter]="true"
+                                                placeholder="Select Preffered Location " name="prefferd"
+                                                optionLabel="name">
+                                            </p-dropdown>
+                                        </div>
+
+                                        <!-- Currency dropdown -->
+
+                                        <!-- <div class="field col-12 md:col-6">
+                                            <label for="currency">Currency</label>
+                                            <p-dropdown [options]="currencies" [(ngModel)]="candidate.currency"
+                                                [showClear]="true" [filter]="true" placeholder="Select Currency"
+                                                name="currency" optionLabel="name"></p-dropdown>
+                                        </div> -->
+                                    </div>
+
+                                    <!-- edu -->
+                                    <h6>Education Details:</h6>
+                                    <div *ngIf="educationDetails.length > 0">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Course</th>
+                                                    <th>Specialization</th>
+                                                    <th>Start Of Course</th>
+                                                    <th>End Of Course</th>
+                                                    <th>College</th>
+                                                    <th>University</th>
+                                                    <th>Location</th>
+                                                    <!-- <th>Modify</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="
+                                                        let edu of educationDetails;
+                                                        let i = index
+                                                    ">
+                                                    <td>{{ edu.course }}</td>
+                                                    <td>{{ edu.branch }}</td>
+                                                    <td>
+                                                        {{ edu.startOfCourse }}
+                                                    </td>
+                                                    <td>
+                                                        {{ edu.endOfCourse }}
+                                                    </td>
+                                                    <td>{{ edu.college }}</td>
+                                                    <td>{{edu.university}}</td>
+                                                    <td>{{ edu.location }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- edu -->
+
+                                    <!-- exp -->
+                                    <h6>Experience Details:</h6>
+                                    <div *ngIf="experienceDetails.length > 0">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <th>Job Title</th>
+                                                    <th>Currently Wokring</th>
+                                                    <th>Date Of Joining</th>
+                                                    <th>Date Of Relieving</th>
+                                                    <th>Location</th>
+                                                    <!-- <th>Modify</th> -->
+                                                    <!--  -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="
+                                                        let exp of experienceDetails;
+                                                        let i = index
+                                                    ">
+                                                    <td>{{ exp.company }}</td>
+                                                    <td>{{ exp.jobTitle }}</td>
+                                                    <td>
+                                                        {{
+                                                        exp.currentlyWokring
+                                                        }}
+                                                    </td>
+                                                    <td>
+                                                        {{ exp.dateOfJoining }}
+                                                    </td>
+                                                    <td>
+                                                        {{
+                                                        exp.dateOfRelieving
+                                                        }}
+                                                    </td>
+                                                    <td>{{ exp.location }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><br><br>
+                                    <!-- exp -->
+                                    <div class="ui-g-12" style="text-align: right">
+                                        <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
+
+                                        <!-- Previous Button -->
+                                        <span class="button-container">
+                                            <button *ngIf="currentStep > 1" (click)="prevStep()"
+                                                class="p-button-secondary p-button-text" pButton pRipple
+                                                label="Previous"></button>
+                                            <button *ngIf="currentStep < totalSteps" (click)="nextStep()"
+                                                class="p-button-primary p-button-text" pButton pRipple
+                                                label="Next"></button>
+                                        </span>
+
+                                        <!-- Save Button -->
+                                        <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
+                                            (click)="addCandidate()" label="Save"></button>
+
+                                        <!-- Cancel Button -->
+                                        <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger"
+                                            icon="pi pi-times" routerLink="/candidate" label="Cancel"></button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- confirm ends here  -->
+                            <!-- <div class="ui-g-12" style="text-align: right">
+                                <span
+                                    class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"
+                                ></span>
+                                <button
+                                    style="margin-left: 10px"
+                                    pButton
+                                    class="w-auto mt-3"
+                                    icon="pi pi-check"
+                                    (click)="addCandidate()"
+                                    label="save"
+                                      ></button>
+                                <button
+                                    style="margin-left: 10px"
+                                    pButton
+                                    class="w-auto mt-3 p-button-danger"
+                                    icon="pi pi-times"
+                                    routerLink="/candidate"
+                                    label="Cancel"
+                                ></button>
+                            </div>
+                            <span class="p-buttonset">
+                                <button
+                                    *ngIf="currentStep > 1"
+                                    (click)="prevStep()"
+                                    class="p-button-secondary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Previous"
+                                ></button>
+                                <button
+                                    *ngIf="currentStep < totalSteps"
+                                    (click)="nextStep()"
+                                    class="p-button-primary p-button-text"
+                                    pButton
+                                    pRipple
+                                    label="Next"
+                                    icon="pi pi-angle-right"
+                                ></button>
+                            </span>
+                        </div> -->
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
-            
-            <div class="ui-g-12" style="text-align: right">
-                <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-                <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                (click)="addCandidate()" label="save"></button>
-                <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                routerLink="/candidate"  label="Cancel"></button>
-            </div>
-        </form>
         </div>
-    </div>
     </div>

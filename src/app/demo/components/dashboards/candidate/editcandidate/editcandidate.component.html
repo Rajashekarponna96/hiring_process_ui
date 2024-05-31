@@ -806,7 +806,7 @@
                                                 [(ngModel)]="experience.dateOfJoining" placeholder="Select Date of Joining"
                                                 (ngModelChange)="updateEndDateMinDate1()" />
                                         </div>
-                                        
+
                                         <div class="field col-12 md:col-6">
                                             <label for="dateOfRelieving">Date of Relieving</label>
                                             <input pInputText id="dateOfRelieving" name="dateOfRelieving" type="date"
@@ -815,7 +815,7 @@
                                             <div *ngIf="experience.dateOfRelieving && experience.dateOfJoining && experience.dateOfRelieving < experience.dateOfJoining" style="color: red;">
                                                 End date cannot be before start date.
                                             </div>
-                                        </div> 
+                                        </div>
 
 
 
@@ -862,7 +862,7 @@
                                                 <tr *ngFor="let exp of experienceDetails; let i = index">
                                                     <td>{{ exp.company }}</td>
                                                     <td>{{ exp.jobTitle }}</td>
-                                                    <td>{{ exp.currentlyWorking }}</td>
+                                                    <td>{{ exp.currentlyWokring }}</td>
                                                     <td>{{ exp.dateOfJoining }}</td>
                                                     <td>{{ exp.dateOfRelieving }}</td>
                                                     <td>{{ exp.location }}</td>

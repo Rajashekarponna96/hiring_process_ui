@@ -24,12 +24,26 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreatecandidateComponent } from './createcandidate.component';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { MegaMenuModule } from 'primeng/megamenu';
+import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarModule } from 'primeng/sidebar';
+import { StepsModule } from 'primeng/steps';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { TooltipModule } from 'primeng/tooltip';
+import { CreateCandidateComponent } from './createcandidate.component';
 
 
 @NgModule({
-	declarations: [CreatecandidateComponent],
+	declarations: [CreateCandidateComponent],
 	imports: [
+		TableModule,
 		CreatecandiadteRoutingModule,
 		CommonModule,
 		FormsModule,
@@ -52,7 +66,52 @@ import { CreatecandidateComponent } from './createcandidate.component';
 		ProgressBarModule,
 		DialogModule,
 		ConfirmDialogModule,
+		CheckboxModule,CommonModule, FormsModule,
+		BreadcrumbModule,
+		MenubarModule,
+		TabMenuModule,
+		StepsModule,
+		TieredMenuModule,
+		MenuModule,
+		ButtonModule,
+		ContextMenuModule,
+		MegaMenuModule,
+		PanelMenuModule,
+		InputTextModule,CommonModule,
+		FormsModule,
+		AutoCompleteModule,
+		CalendarModule,
+		ChipsModule,
+		DropdownModule,
+		InputMaskModule,
+		InputNumberModule,
+		CascadeSelectModule,
+		MultiSelectModule,
+		InputTextareaModule,
+		InputTextModule,
+		TableModule,
+		ToastModule,
+		ButtonModule,
+		RadioButtonModule,
+		ToggleButtonModule,
+		RippleModule,
+		ProgressBarModule,
+		DialogModule,
+		ConfirmDialogModule,
 		CheckboxModule,
+		ToastModule,
+		DialogModule,
+		FormsModule,
+		TooltipModule,
+		InputTextModule,
+		ButtonModule,
+		OverlayPanelModule,
+		TableModule,
+		ConfirmDialogModule,
+		SidebarModule,
+		RippleModule,
+		ConfirmPopupModule,
+
 	]
 })
 export class CreatecandiadteModule { }

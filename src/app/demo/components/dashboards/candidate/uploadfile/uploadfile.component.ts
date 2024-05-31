@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+// src/app/components/uploadfile/uploadfile.component.ts
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CandidateService } from 'src/app/demo/service/candidate.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-uploadfile',
@@ -8,27 +10,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./uploadfile.component.css']
 })
 export class UploadfileComponent implements OnInit {
+  selectedFile: File | null = null;
+  message: string = '';
 
-  constructor(private router: Router, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef) {
+  constructor(
+    private router: Router,
+    private fileUploadService: CandidateService,
+    private changeDetectorRefs: ChangeDetectorRef
+  ) {}
 
-  }
-  selectedFile:any
-    selectedFile1!:any;
-    message: string = '';
+  ngOnInit(): void {}
 
-  onFileSelected(event:any) {
+  onFileSelected(event: any): void {
     this.selectedFile = <File>event.target.files[0];
   }
 
-  onUpload() {
+  onUpload(): void {
     if (this.selectedFile) {
-      const formData: FormData = new FormData();
-  formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
         (data) => {
-         
-          this.message = data;
+          this.message = 'File uploaded successfully!';
+          this.changeDetectorRefs.detectChanges();
         },
         (error) => {
           console.error('Error uploading file:', error);
@@ -41,8 +43,6 @@ export class UploadfileComponent implements OnInit {
     }
   }
 
-
-
   onFileSelected1(event: any): void {
     const file: File = event.target.files[0];
     const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
@@ -51,21 +51,19 @@ export class UploadfileComponent implements OnInit {
       this.selectedFile = file;
       this.message = ''; // Clear any previous error messages
     } else {
-      this.selectedFile1 = null;
+      this.selectedFile = null;
       this.message = 'Invalid file type. Please select a PDF or Word document.';
     }
   }
 
   onUpload1(): void {
     if (this.selectedFile) {
-      const formData: FormData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      this.http.post<any>('http://localhost:9000/fileupload/', formData).subscribe(
-        data => {
-          this.message = data;
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+        (data) => {
+          this.message = 'File uploaded successfully!';
+          this.changeDetectorRefs.detectChanges();
         },
-        error => {
+        (error) => {
           console.error('Error uploading file:', error);
           this.message = 'Failed to upload file';
         }
@@ -75,9 +73,5 @@ export class UploadfileComponent implements OnInit {
       this.message = 'Please select a valid file first';
     }
   }
-
-
-  ngOnInit() {
-  }
-
 }
+

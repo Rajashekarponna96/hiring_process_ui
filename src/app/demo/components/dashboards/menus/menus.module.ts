@@ -37,7 +37,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { TooltipModule } from 'primeng/tooltip';
 import { RouterModule } from '@angular/router';
-import { CreatecandidateComponent } from '../candidate/createcandidate/createcandidate.component';
+import { CreateCandidateComponent } from '../candidate/createcandidate/createcandidate.component';
 import { CandidateeducationComponent } from './candidateeducation/candidateeducation.component';
 //import { CandidateprofileComponent } from './candidateprofile/candidateprofile.component';
 import { CandidatexperienceComponent } from './candidatexperience/candidatexperience.component';
@@ -100,7 +100,7 @@ import { MenusComponent } from './menus.component';
 					{ path: '', redirectTo: 'candidate', pathMatch: 'full' },
 					{
 						path: 'createrecandidate',
-						component: CreatecandidateComponent,
+						component: CreateCandidateComponent,
 					},
 
 					{
