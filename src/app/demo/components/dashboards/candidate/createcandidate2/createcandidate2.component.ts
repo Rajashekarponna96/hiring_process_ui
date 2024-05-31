@@ -47,7 +47,8 @@ export class Createcandidate2Component implements OnInit {
   goToStep(step: number) {
     this.currentStep = step;
     //this.tabs[this.currentStep];
-    this.getvendorDetailsById();
+    this.getAllCandidateList();
+    //this.getvendorDetailsById();
   }
 
   

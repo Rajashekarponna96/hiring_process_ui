@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Job } from '../../../model/job';
 import { Vendor } from '../../../model/vendor';
 import { JobService } from '../job.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-assignjobstovendor',
@@ -13,12 +15,12 @@ import { JobService } from '../job.service';
 })
 export class AssignjobstovendorComponent implements OnInit {
   job: Job = new Job();
-  jobs: Job[] = [];
-  vendors: Vendor[] = [];
-  selectedVendorId: number | null = null;
-  selectedJobId: number | null = null;
+  jobs: any[] = [];
+  vendors: any[] = [];
+  selectedVendorIds: number[] = [];
+  selectedJobIds: number[] = [];
 
-  constructor(private jobService: JobService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
+  constructor(private jobService: JobService, private changeDetectorRefs: ChangeDetectorRef, private router: Router,private http:HttpClient) { }
 
   ngOnInit() {
     this.getAllJobs();
@@ -40,27 +42,19 @@ export class AssignjobstovendorComponent implements OnInit {
   }
 
   assignJobsToVendor() {
-    if (this.selectedJobId && this.selectedVendorId) {
-      this.jobService.assignVendorToJob(this.selectedJobId, this.selectedVendorId).subscribe(
-        () => {
-          console.log(`Assigned job ${this.selectedJobId} to vendor ${this.selectedVendorId}`);
-          // Remove the assigned job from the jobs list
-          this.jobs = this.jobs.filter(job => job.id !== this.selectedJobId);
-          this.changeDetectorRefs.markForCheck();
-          // Reset the form fields
-          this.selectedJobId = null;
-          this.selectedVendorId = null;
-        },
-        (error) => {
-          if (error.status === 409) {
-            alert('Vendor is already assigned to this job.');
-          } else {
-            console.error('An error occurred:', error);
-          }
-        }
-      );
-    } else {
-      console.warn('Both job and vendor must be selected for assignment.');
-    }
-  }
+     this.jobService.assignJobsToVendor(this.selectedVendorIds, this.selectedJobIds)
+     .subscribe(
+       () => {
+         console.log('Jobs assigned successfully');
+         this.router.navigateByUrl('/home');
+       },
+       error => {
+         console.error('Error assigning jobs', error);
+         // Add your error handling code here
+       }
+     );
+    };
+  
+   
+
 }
