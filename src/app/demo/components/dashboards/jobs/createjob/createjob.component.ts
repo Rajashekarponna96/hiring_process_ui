@@ -1,233 +1,154 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { Job } from '../../../model/job';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Job } from '../../../model/job';
 import { Department } from '../../../model/Department';
 import { Currency } from '../../../model/currency';
 import { Recruiter } from '../../../model/recruiter';
 import { Client } from '../../../model/client';
+import { Location } from '../../../model/location';
+import { JobService } from '../job.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { locations2 } from '../../../model/locations2';
+import { locations1 } from '../../../model/locations1';
 
 @Component({
   selector: 'app-createjob',
   templateUrl: './createjob.component.html',
   styleUrls: ['./createjob.component.scss']
 })
-export class CreatejobComponent {
-
-
+export class CreatejobComponent implements OnInit {
   job: Job = new Job();
   jobs: Job[] = [];
-
   currency = new Currency();
-  //currencies: Currency[] | undefined;
-
-  department = new Department()
+  department = new Department();
   client = new Client();
-  recruiter = new Recruiter()
-  @ViewChild("jobForm")
-  jobForm!: NgForm;
+  recruiter = new Recruiter();
 
-  //selectedCurrency: any;
+  @ViewChild("jobForm") jobForm!: NgForm;
+
   selectedJobType: any;
   selectedDepartments: any;
-  selectedClients:any;
+  selectedClients: any;
   selectedRecruiters: any;
   selectedCurrencys: any;
 
-  types: any[] = [
-    {
-      
-      "name": 'FullTime'
-    },
-    {
-      
-      "name": 'PartTime'
-    },
-    {
-      
-      "name": 'CONTRACT'
-    },
-    {
-      
-      "name": 'FreeLance'
-    },
 
-  ]
+    types: any[] = [
+      { "name": 'FullTime' },
+      { "name": 'PartTime' },
+      { "name": 'CONTRACT' },
+      { "name": 'FreeLance' }
+    ];
 
+    departments: Department[] = [];
+    clients: Client[] = [];
+    recruiters: Recruiter[] = [];
+    currencys: Currency[] = [];
+    locations: Location[] = [];
 
-  departmentOptions: any[] = [
-    { label: 'Select Department', value: null },
-    { label: 'Admin', value: 'admin' },
-    { label: 'Manager', value: 'manager' }
-  ];
+    constructor(
+      private jobService: JobService,
 
-  currencyOptions: any;
-  departments: any[] = [];
-  clients:any[] =[];
-  recruiters: any[] = [];
-  currencys: any[] = [];
-  locations: Location[] = []
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
+      private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef,
+      private router: Router
+    ) { }
 
-  getJobList() {
-    return this.http.get<Job[]>('http://localhost:9000/job/all');
+    ngOnInit() {
+      this.getAllJobList();
+      this.getAllDepartmentList();
+      this.getAllCurrencyList();
+      this.getAllRecruiterList();
+      this.getAllClientList();
+      this.getAllLocationList();
+    }
 
-  }
-  getAllJobList() {
-    return this.getJobList().
-      subscribe((data) => {
-        console.log(data);
+    getAllJobList() {
+      this.jobService.getAllJobs().subscribe((data: Job[]) => {
         this.jobs = data;
         this.changeDetectorRefs.markForCheck();
       });
-  }
+    }
 
-  getDepartmentList() {
-    return this.http.get<Department[]>("http://localhost:9000/department/all")
-  }
-
-  getAllDepartmentList() {
-    return this.getDepartmentList().
-      subscribe((data) => {
-        console.log(data);
+    getAllDepartmentList() {
+      this.jobService.getAllDepartments().subscribe((data: Department[]) => {
         this.departments = data;
         this.changeDetectorRefs.markForCheck();
       });
-  }
+    }
 
-  getRecruiterList() {
-    return this.http.get<Recruiter[]>('http://localhost:9000/recruiter/all');
-
-  }
-  getAllRecruiterList() {
-    return this.getRecruiterList().
-      subscribe((data) => {
-        console.log(data);
-        this.recruiters = data;
-        this.changeDetectorRefs.markForCheck();
-      });
-  }
-
-  getClientList() {
-    return this.http.get<Client[]>('http://localhost:9000/client/all');
-
-  }
-  getAllClientList() {
-    return this.getClientList().
-      subscribe((data) => {
-        console.log(data);
-        this.clients = data;
-        this.changeDetectorRefs.markForCheck();
-      });
-  }
-
-  getCurrencyList() {
-    return this.http.get<Currency[]>("http://localhost:9000/currency/all")
-  }
-  getAllCurrencyList() {
-    return this.getCurrencyList().
-      subscribe((data) => {
-        console.log(data);
+    getAllCurrencyList() {
+      this.jobService.getAllCurrencies().subscribe((data: Currency[]) => {
         this.currencys = data;
         this.changeDetectorRefs.markForCheck();
       });
-  }
-  getLocationList() {
-    return this.http.get<Location[]>("http://localhost:9000/location/all")
-  }
+    }
 
-  getAllLocationList() {
-    return this.getLocationList().
-      subscribe((data) => {
-        console.log(data);
-        this.locations = data;
-        //this.currentLocationOptions = this.locations.map(location => ({ label: location.name, value: location.id }));
-
+    getAllRecruiterList() {
+      this.jobService.getAllRecruiters().subscribe((data: Recruiter[]) => {
+        this.recruiters = data;
         this.changeDetectorRefs.markForCheck();
       });
-  }
-  todayDate(): string {
-    return new Date().toISOString().split('T')[0];
-  }
-  // addJob() {
+    }
 
-  //   this.job.department = this.selectedDepartments;
-  //   this.job.recruiters = this.selectedRecruiters;
-  //   this.job.currney = this.selectedCurrencys;
-  //   this.http.post<Job>('http://localhost:9000/job/', this.job).subscribe(
-  //     res => {
-  //       console.log(res);
-  //       this.getAllJobList();
-  //       this.jobForm.reset();
+    getAllClientList() {
+      this.jobService.getAllClients().subscribe((data: Client[]) => {
+        this.clients = data;
+        this.changeDetectorRefs.markForCheck();
+      });
+    }
+    // locations2: locations2[] = [];
+    getAllLocationList() {
+      this.jobService.getAllLocations().subscribe((data: Location[]) => {
+        this.locations = data;
+        this.changeDetectorRefs.markForCheck();
+      });
+    }
 
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       if (err.error instanceof Error) {
-  //         console.log("Client-side error occured.");
-  //       } else {
-  //         console.log("Server-side error occured.");
-  //       }
-  //       //this.service.typeWarning();
+    addJob() {
+      this.job.department = this.selectedDepartments;
+      this.job.recruiters = this.selectedRecruiters;
+      this.job.currney = this.selectedCurrencys;
+      this.job.clients = this.selectedClients;
 
-  //     });
-  //   console.log(JSON.stringify(this.job));
-  //   this.getAllJobList();
-
-  // }
-
-  addJob() {
-    this.job.department = this.selectedDepartments;
-    this.job.recruiters = this.selectedRecruiters;
-    this.job.currney = this.selectedCurrencys;
-    this.job.clients =this.selectedClients;
-
-    this.http.post<Job>('http://localhost:9000/job/', this.job).subscribe(
-      res => {
-        console.log(res);
-        this.getAllJobList();
-        this.jobForm.reset();
-
-        // Redirect to the "/jobs" route after successfully adding a new job
-        this.router.navigateByUrl('/jobs');
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occurred.");
-        } else {
-          console.log("Server-side error occurred.");
+      this.jobService.addJob(this.job).subscribe(
+        res => {
+          this.getAllJobList();
+          this.jobForm.reset();
+          this.router.navigateByUrl('/jobs');
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log("Client-side error occurred.");
+          } else {
+            console.log("Server-side error occurred.");
+          }
         }
-      }
-    );
-  }
-  onDepartmentChange(data: any) {
-    console.log("selected department:", data);
-    console.log("departments.........." + JSON.stringify(this.selectedDepartments))
-  }
+      );
+    }
 
-  onRecruiterChange(data: any) {
-    console.log("selected recruiter:", data);
-    console.log("Recruiters.........." + JSON.stringify(this.selectedRecruiters))
-  }
+    onDepartmentChange(data: any) {
+      console.log("selected department:", data);
+      console.log("departments: " + JSON.stringify(this.selectedDepartments));
+    }
 
-  onCurrencyChange(data: any) {
-    console.log("selected recruiter:", data);
-    console.log("Recruiters.........." + JSON.stringify(this.selectedCurrencys))
-  }
+    onRecruiterChange(data: any) {
+      console.log("selected recruiter:", data);
+      console.log("Recruiters: " + JSON.stringify(this.selectedRecruiters));
+    }
 
-  onClientChange(data: any) {
-    console.log("selected client:", data);
-    console.log("clients.........." + JSON.stringify(this.selectedClients))
-  }
+    onCurrencyChange(data: any) {
+      console.log("selected recruiter:", data);
+      console.log("Recruiters: " + JSON.stringify(this.selectedCurrencys));
+    }
 
+    onClientChange(data: any) {
+      console.log("selected client:", data);
+      console.log("clients: " + JSON.stringify(this.selectedClients));
+    }
 
-  ngOnInit() {
-    this.getAllJobList();
-    this.getAllDepartmentList();
-    this.getAllCurrencyList();
-    this.getAllRecruiterList();
-    this.getAllClientList(); 
-    this.getAllLocationList();
+    todayDate(): string {
+      return new Date().toISOString().split('T')[0];
+    }
   }
-}
 
