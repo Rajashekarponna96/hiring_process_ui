@@ -14,31 +14,31 @@ export class VendorService {
   constructor(private http: HttpClient) { }
 
   addVendor(vendor: Vendor): Observable<Vendor> {
-    let email = vendor.email;
-    let mobile = vendor.mobile;
-    const userAccount: UserAccout = {
-      userName: email,
-      password: mobile,
-      role: { name: 'Admin', description: 'This is for Admin' } as Role,
-      id: 0,
-      active: false
-    };
-    vendor.userAccout = userAccount;
+    // let email = vendor.email;
+    // let mobile = vendor.mobile;
+    // const userAccount: UserAccout = {
+    //   userName: email,
+    //   password: mobile,
+    //   role: { name: 'Admin', description: 'This is for Admin' } as Role,
+    //   id: 0,
+    //   active: false
+    // };
+    // vendor.userAccout = userAccount;
 
     return this.http.post<Vendor>(`${this.baseUrl}/`, vendor);
   }
 
   updateVendor(vendor: Vendor): Observable<Vendor> {
-    let email = vendor.email;
-    let mobile = vendor.mobile;
-    const userAccount: UserAccout = {
-      userName: email,
-      password: mobile,
-      role: { name: 'Admin', description: 'This is for Admin' } as Role,
-      id: 0,
-      active: false
-    };
-    vendor.userAccout = userAccount;
+    // let email = vendor.email;
+    // let mobile = vendor.mobile;
+    // const userAccount: UserAccout = {
+    //   userName: email,
+    //   password: mobile,
+    //   role: { name: 'Admin', description: 'This is for Admin' } as Role,
+    //   id: 0,
+    //   active: false
+    // };
+    // vendor.userAccout = userAccount;
 
     return this.http.put<Vendor>(`${this.baseUrl}/${vendor.id}`, vendor);
   }
