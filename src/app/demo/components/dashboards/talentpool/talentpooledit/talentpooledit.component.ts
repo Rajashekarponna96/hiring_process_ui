@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TalentPoolOne } from '../../../model/talentpoolone';
+import { TalentpoolService } from 'src/app/demo/service/talentpool.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-talentpooledit',
@@ -16,7 +17,11 @@ export class TalentpooleditComponent implements OnInit {
 
   talentPool = new TalentPoolOne();
 
-  constructor(private http: HttpClient, private router: Router, private changeDetectorRefs: ChangeDetectorRef, private route: ActivatedRoute) { }
+  constructor(
+    private talentPoolService: TalentpoolService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     debugger;
@@ -25,12 +30,26 @@ export class TalentpooleditComponent implements OnInit {
       this.talentPool = state.talentPool;
     } else {
       // Handle if talent pool object is not passed
+      const talentPoolId = this.route.snapshot.paramMap.get('id');
+      if (talentPoolId) {
+        this.getTalentPoolById(Number(talentPoolId));
+      }
     }
   }
 
+  getTalentPoolById(id: number) {
+    this.talentPoolService.getTalentPoolById(id).subscribe(
+      (data: TalentPoolOne) => {
+        this.talentPool = data;
+      },
+      (error: HttpErrorResponse) => {
+        console.error("Error fetching talent pool:", error);
+      }
+    );
+  }
+
   updateTalentPool() {
-    // Update the talent pool with the new data
-    this.http.put<TalentPoolOne>('http://localhost:9000/talentPool/' + this.talentPool.id, this.talentPool).subscribe(
+    this.talentPoolService.updateTalentPool(this.talentPool).subscribe(
       res => {
         console.log("Updated talent pool:", res);
         // Handle success
@@ -48,5 +67,5 @@ export class TalentpooleditComponent implements OnInit {
       }
     );
   }
-
 }
+

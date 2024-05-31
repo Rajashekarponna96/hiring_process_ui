@@ -10,9 +10,11 @@
         </div>
         <!-- Add New Vendor Button -->
         <button (click)="navigateToCreateTalentPool()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+        <button (click)="navigateToCreateCandidate()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+
     </div>
-    
-    
+
+
     <!-- Table Container -->
     <div class="table-container">
         <table>
@@ -43,7 +45,7 @@
     <!-- Pagination Container -->
     <div class="pagination-container">
         <div class="pagination-info">
-             Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
+             Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
         </div>
         <div class="pagination">
             <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
