@@ -3,7 +3,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { UserAccout } from '../../model/userAccount';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { UseraccountService } from 'src/app/demo/service/useraccount.service';
+import { UseraccountService } from 'src/app/demo/hiring-process-services/useraccount.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

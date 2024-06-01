@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Recruiter } from '../../../model/recruiter';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecruiterService } from 'src/app/demo/service/recruiter.service';
+import { RecruiterService } from 'src/app/demo/hiring-process-services/recruiter.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

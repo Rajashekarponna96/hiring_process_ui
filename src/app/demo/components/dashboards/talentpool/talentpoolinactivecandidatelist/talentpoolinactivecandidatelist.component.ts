@@ -6,7 +6,7 @@ import { Candidate } from '../../../model/candidate';
 import { Pagination } from '../../../model/pagination';
 import { UserAccout } from '../../../model/userAccount';
 import { Vendor } from '../../../model/vendor';
-import { CandidateService } from 'src/app/demo/service/candidate.service';
+import { CandidateService } from 'src/app/demo/hiring-process-services/candidate.service';
 
 @Component({
   selector: 'app-talentpoolinactivecandidatelist',

@@ -2,8 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { TalentPoolOne } from '../../../model/talentpoolone';
-import { TalentpoolService } from 'src/app/demo/service/talentpool.service';
-
+import { TalentpoolService } from 'src/app/demo/hiring-process-services/talentpool.service';
 @Component({
   selector: 'app-edittalentpool',
   templateUrl: './edittalentpool.component.html',

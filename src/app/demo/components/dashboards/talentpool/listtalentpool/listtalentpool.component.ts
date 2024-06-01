@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { TalentPoolOne } from '../../../model/talentpoolone';
 import { Pagination } from '../../../model/pagination';
-import { TalentpoolService } from 'src/app/demo/service/talentpool.service';
+import { TalentpoolService } from 'src/app/demo/hiring-process-services/talentpool.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

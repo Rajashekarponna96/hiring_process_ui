@@ -1,7 +1,7 @@
 // src/app/components/uploadfile/uploadfile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CandidateService } from 'src/app/demo/service/candidate.service';
+import { CandidateService } from 'src/app/demo/hiring-process-services/candidate.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({

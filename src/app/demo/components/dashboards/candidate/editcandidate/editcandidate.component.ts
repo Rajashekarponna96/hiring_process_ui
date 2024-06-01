@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { CandidateService } from 'src/app/demo/service/candidate.service';
+import { CandidateService } from 'src/app/demo/hiring-process-services/candidate.service';
 import { Candidate } from '../../../model/candidate';
 import { Currency } from '../../../model/currency';
 import { Education } from '../../../model/education';
