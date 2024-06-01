@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Candidate } from '../components/model/candidate';
@@ -9,6 +9,8 @@ import { TalentPool } from '../components/model/talentpool';
 import { Job } from '../components/model/job';
 import { Source } from '../components/model/source';
 import { environment } from 'src/environments/environment';
+import { Pagination } from '../components/model/pagination';
+import { Vendor } from '../components/model/vendor';
 
 @Injectable({
   providedIn: 'root'
@@ -152,5 +154,29 @@ export class CandidateService {
     console.error('Error uploading file:', error);
     return throwError('Failed to upload file. Please try again later.');
   }
+
+
+  ///
+
+
+  getInactiveCandidates(page: number, size: number): Observable<Pagination> {
+    let params = new HttpParams().set('page', page.toString()).set('size', size.toString());
+    return this.http.get<Pagination>(`${this.baseUrl}/candidate/inactivecandidatelistwithpagination`, { params })
+      .pipe(catchError(this.handleError));
+  }
+
+
+  getVendorByUserId(userId: any): Observable<Vendor> {
+    return this.http.get<Vendor>(`${this.baseUrl}/user/${userId}`).pipe(catchError(this.handleError));
+  }
+
+
+  private handleError2(error: HttpErrorResponse): Observable<never> {
+    console.error('Error uploading file:', error);
+    return throwError('Failed to upload file. Please try again later.');
+  }
 }
+
+
+
 
