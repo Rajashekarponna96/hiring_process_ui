@@ -13,7 +13,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { EdittalentpoolRoutingModule } from '../edittalentpool/edittalentpool-routing.module';
 import { TalentpooleditComponent } from './talentpooledit.component';
 
 
@@ -22,7 +21,6 @@ import { TalentpooleditComponent } from './talentpooledit.component';
   imports: [
     CommonModule,
     TalentpooleditRoutingModule,
-    EdittalentpoolRoutingModule,
     FormsModule,
     AutoCompleteModule,
     CalendarModule,

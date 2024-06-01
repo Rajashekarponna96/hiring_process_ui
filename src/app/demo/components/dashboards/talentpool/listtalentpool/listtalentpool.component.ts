@@ -73,10 +73,6 @@ export class ListtalentpoolComponent implements OnInit {
       });
   }
 
-  navigateToCreateCandidate() {
-    this.router.navigate(['menus']);
-  }
-
   navigateToCreateTalentPool() {
     this.router.navigate(['talentpool']);
   }
