@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Vendor } from '../../../model/vendor';
-import { VendorService } from 'src/app/demo/service/vendor.service';// Import the VendorService
+import { VendorService } from 'src/app/demo/service/vendor.service';
 import { Pagination } from '../../../model/pagination';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,6 @@ export class VendorListComponent implements OnInit {
   totalPages: number = 0;
   currentPage: number = 0;
   selectedRecordsOption1: number = 5;
-
   constructor(
     private vendorService: VendorService,
     private router: Router
@@ -28,8 +27,10 @@ export class VendorListComponent implements OnInit {
 
   getAllVendorList() {
     this.vendorService.getVendorListWithPagination(this.currentPage, this.selectedRecordsOption1)
-      .subscribe((data) => {
+      .subscribe((data: any) => { // Ensure data is of correct type
         this.vendors = data.content;
+        this.totalElements = data.totalElements; // Assign total elements
+        this.totalPages = data.totalPages; // Assign total pages
         this.pagination = data;
       });
   }
@@ -92,7 +93,7 @@ export class VendorListComponent implements OnInit {
     console.log('Input Value:', inputValue);
 
     this.vendorService.searchVendorByCode(inputValue, 0, this.selectedRecordsOption1)
-      .subscribe((data) => {
+      .subscribe((data: any) => { // Ensure data is of correct type
         this.vendors = data.content;
         this.totalElements = data.totalElements;
         this.totalPages = data.totalPages;
@@ -100,4 +101,3 @@ export class VendorListComponent implements OnInit {
       });
   }
 }
-
