@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { TalentPoolOne } from '../components/model/talentpoolone';
 import { Pagination } from '../components/model/pagination';
 import { Candidate } from '../components/model/candidate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TalentpoolService {
 
-  private baseUrl = 'http://localhost:9000/talentPool';
+  private baseUrl = `${environment.hiringprocessurl}/talentPool`;
 
   constructor(private http: HttpClient) { }
 
@@ -43,8 +44,6 @@ export class TalentpoolService {
   updateTalentPool(talentPool: TalentPoolOne): Observable<TalentPoolOne> {
     return this.http.put<TalentPoolOne>(`${this.baseUrl}/${talentPool.id}`, talentPool);
   }
-
-
 
   addTalentPool(talentPool: TalentPoolOne): Observable<TalentPoolOne> {
     return this.http.post<TalentPoolOne>(`${this.baseUrl}/`, talentPool);

@@ -2,17 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recruiter } from '../components/model/recruiter';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecruiterService {
-  private baseUrl: string = 'http://localhost:9000/recruiter';
+
+  private baseUrl = `${environment.hiringprocessurl}/recruiter`;
 
   constructor(private http: HttpClient) { }
 
   getRecruiterList(): Observable<Recruiter[]> {
-    return this.http.get<Recruiter[]>(`${this.baseUrl}/recruiter/all`);
+    return this.http.get<Recruiter[]>(`${this.baseUrl}/all`);
   }
 
   addRecruiter(recruiter: Recruiter): Observable<Recruiter> {

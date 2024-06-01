@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../components/model/client';
 import { Poc } from '../components/model/poc';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-  private baseUrl: string = 'http://localhost:9000/client';
+
+
+  private baseUrl = `${environment.hiringprocessurl}/client`;
 
   constructor(private http: HttpClient) { }
 

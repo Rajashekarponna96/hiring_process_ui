@@ -3,11 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserAccout } from '../components/model/userAccount';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UseraccountService {
-  private baseUrl = 'http://localhost:9000/userAccount';
+
+  private baseUrl = `${environment.hiringprocessurl}/userAccount`;
 
   constructor(private http: HttpClient) { }
 

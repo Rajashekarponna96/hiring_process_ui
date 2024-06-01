@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Candidate } from '../components/model/candidate';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackupService {
 
-constructor(private http: HttpClient) { }
 
-baseurl ='';
-//
+  private baseurl = `${environment.hiringprocessurl}`;
 
-//
+  constructor(private http: HttpClient) { }
+
+  //
+
+  //
   //
 
   // getInactiveCandidates(page: number, size: number): Observable<any> {
