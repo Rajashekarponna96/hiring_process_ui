@@ -201,23 +201,9 @@ import { RouterModule } from '@angular/router';
                         './talentpool/talentpoolinactivecandidatelist/talentpoolinactivecandidatelist.module'
                     ).then((m) => m.TalentpoolinactivecandidatelistModule),
             },
-            {
-                path: 'edittalentpool',
-                data: { breadcrumb: 'Edit TalentPool' },
-                loadChildren: () =>
-                    import(
-                        './talentpool/edittalentpool/edittalentpool.module'
-                    ).then((m) => m.EdittalentpoolModule),
-            },
 
-            {
-                path: 'edittalentpool',
-                data: { breadcrumb: 'Edit Talentpool' },
-                loadChildren: () =>
-                    import(
-                        './talentpool/edittalentpool/edittalentpool.module'
-                    ).then((m) => m.EdittalentpoolModule),
-            },
+
+
 
             {
                 path: 'talentpooledit',
