@@ -7,7 +7,7 @@ import { Candidate } from '../../../model/candidate';
 import { MenuItem } from 'primeng/api';
 import { UserAccout } from '../../../model/userAccount';
 import { Vendor } from '../../../model/vendor';
-import { Candidate2Service } from 'src/app/demo/service/Candidate2.service';
+import { Candidate2Service } from 'src/app/demo/hiring-process-services/Candidate2.service';
 
 @Component({
   selector: 'app-candidateliststageswise',

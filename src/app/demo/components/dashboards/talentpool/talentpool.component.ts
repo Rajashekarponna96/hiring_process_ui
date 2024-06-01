@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TalentPoolOne } from '../../model/talentpoolone';
 import { Table } from 'primeng/table';
-import { TalentpoolService } from 'src/app/demo/service/talentpool.service';
+import { TalentpoolService } from 'src/app/demo/hiring-process-services/talentpool.service';
 
 @Component({
   selector: 'app-talentpool',

@@ -4,7 +4,7 @@ import { Vendor } from '../../../model/vendor';
 import { Poc } from '../../../model/poc';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { VendorService } from 'src/app/demo/service/vendor.service';
+import { VendorService } from 'src/app/demo/hiring-process-services/vendor.service';
 
 @Component({
   selector: 'app-vendor-edit',

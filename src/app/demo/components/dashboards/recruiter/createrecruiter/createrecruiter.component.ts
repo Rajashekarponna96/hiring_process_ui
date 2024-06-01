@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Recruiter } from '../../../model/recruiter';
-import { RecruiterService } from 'src/app/demo/service/recruiter.service';
+import { RecruiterService } from 'src/app/demo/hiring-process-services/recruiter.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { UserAccout } from '../../../model/userAccount';

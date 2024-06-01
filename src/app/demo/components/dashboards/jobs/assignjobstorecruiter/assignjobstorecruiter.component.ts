@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Job } from '../../../model/job';
 import { Recruiter } from '../../../model/recruiter';
 import { Router } from '@angular/router';
-import { JobService } from '../job.service';
+import { JobService } from 'src/app/demo/hiring-process-services/job.service';
 
 @Component({
   selector: 'app-assignjobstorecruiter',
@@ -16,13 +16,13 @@ export class AssignjobstorecruiterComponent implements OnInit{
   recruiters: Recruiter[] = [];
   selectedRecruiterIds: number[] = [];
   selectedJobIds: number[] = [];
-  
+
  constructor(private jobService: JobService, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
- 
+
  ngOnInit() {
     this.getAllRecruiters();
     this.getAllJobs();
-    
+
   }
 
   getAllJobs() {

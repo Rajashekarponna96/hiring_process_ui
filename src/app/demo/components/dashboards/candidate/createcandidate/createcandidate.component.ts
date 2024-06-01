@@ -16,7 +16,7 @@ import { Source } from '../../../model/source';
 import { TalentPool } from '../../../model/talentpool';
 import { UserAccout } from '../../../model/userAccount';
 import { Location } from '@angular/common';
-import { CandidateService } from 'src/app/demo/service/candidate.service';
+import { CandidateService } from 'src/app/demo/hiring-process-services/candidate.service';
 
 @Component({
   selector: 'app-createcandidate',

@@ -5,8 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Pagination } from '../../model/pagination';
-import { RecruiterService } from 'src/app/demo/service/recruiter.service';
-
+import { RecruiterService } from 'src/app/demo/hiring-process-services/recruiter.service';
 @Component({
   selector: 'app-recruiter',
   templateUrl: './recruiter.component.html',

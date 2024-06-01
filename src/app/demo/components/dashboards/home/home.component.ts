@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/api';
 import { DataView } from 'primeng/dataview';
 import { Job } from '../../model/job';
-import { HomeService } from 'src/app/demo/service/home.service';
+import { HomeService } from 'src/app/demo/hiring-process-services/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
