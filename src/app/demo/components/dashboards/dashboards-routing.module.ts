@@ -145,6 +145,14 @@ import { RouterModule } from '@angular/router';
                     ),
             },
             {
+                path: 'candidateliststageswise',
+                data: { breadcrumb: 'Candidates Activity' },
+                loadChildren: () =>
+                    import('./candidate/candidateliststageswise/candidateliststageswise.module').then(
+                        (m) => m.CandidateliststageswiseModule
+                    ),
+            },
+            {
                 path: 'editcandidate',
                 data: { breadcrumb: 'Edit Candidate' },
                 loadChildren: () =>
