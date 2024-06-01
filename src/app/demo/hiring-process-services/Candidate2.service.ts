@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 import { Candidate } from '../components/model/candidate';
 import { Vendor } from '../components/model/vendor';
 import { Pagination } from '../components/model/pagination';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Candidate2Service {
 
-  private baseUrl = 'http://localhost:9000';
+  private baseUrl = `${environment.hiringprocessurl}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getInactiveCandidates(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/candidate/inactive`, {

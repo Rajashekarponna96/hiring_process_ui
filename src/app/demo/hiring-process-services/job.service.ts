@@ -7,12 +7,14 @@ import { Currency } from '../components/model/currency';
 import { Job } from '../components/model/job';
 import { Recruiter } from '../components/model/recruiter';
 import { Vendor } from '../components/model/vendor';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
-  private baseUrl = 'http://localhost:9000';
+
+  private baseUrl = `${environment.hiringprocessurl}`;
 
   constructor(private http: HttpClient) { }
 

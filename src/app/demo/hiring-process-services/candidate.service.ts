@@ -16,7 +16,6 @@ import { Vendor } from '../components/model/vendor';
   providedIn: 'root'
 })
 export class CandidateService {
-  //private baseUrl = 'http://localhost:9000';
 
   private baseUrl = `${environment.hiringprocessurl}`;
 
