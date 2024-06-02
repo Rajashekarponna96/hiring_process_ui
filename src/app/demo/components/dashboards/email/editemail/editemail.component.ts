@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { CandidateEmail } from '../../../model/candidateEmail';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EmailtemplateService } from 'src/app/demo/service/emailtemplateervice.service';
+import { EmailtemplateService } from 'src/app/demo/hiring-process-services/emailtemplateervice.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

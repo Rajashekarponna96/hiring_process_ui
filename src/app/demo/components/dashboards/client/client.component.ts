@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Client } from '../../model/client';
 import { Poc } from '../../model/poc';
 import { Pagination } from '../../model/pagination';
-import { ClientService } from 'src/app/demo/service/client.service';
+import { ClientService } from 'src/app/demo/hiring-process-services/client.service';
 
 interface ExpandedRows {
   [key: string]: boolean;

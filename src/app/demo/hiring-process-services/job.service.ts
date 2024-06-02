@@ -59,6 +59,9 @@ export class JobService {
   getAllClients(): Observable<Client[]> {
     return this.http.get<Client[]>(`${this.baseUrl}/client/all`);
   }
+  // getAllLocations(): Observable<Location[]> {
+  //   return this.http.get<Location[]>(`${this.baseUrl}/location/all`);
+  // }
   getAllLocations(): Observable<Location[]> {
     return this.http.get<Location[]>(`${this.baseUrl}/location/all`);
   }

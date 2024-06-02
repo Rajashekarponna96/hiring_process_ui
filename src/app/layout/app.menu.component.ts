@@ -35,9 +35,9 @@ export class AppMenuComponent implements OnInit {
         //  var menuItem=this.model[];
 
         for (var menuItem of this.permissionList) {
-            console.log('menauItemlist :' + menuItem.name)
-            console.log('sidemeanu :' + sidemenuname)
-            console.log('condition :' + menuItem.name == sidemenuname)
+          //  console.log('menauItemlist :' + menuItem.name)
+            //console.log('sidemeanu :' + sidemenuname)
+            //console.log('condition :' + menuItem.name == sidemenuname)
             if (menuItem.name.toLowerCase() == sidemenuname.toLowerCase()) {
                 found = true;
 
