@@ -9,12 +9,14 @@ import { Currency } from '../../model/currency';
 import { Recruiter } from '../../model/recruiter';
 import { Vendor } from '../../model/vendor';
 import { Location } from '../../model/location';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
-  private baseUrl = 'http://localhost:9000';
+
+  private baseUrl = `${environment.hiringprocessurl}`;
 
   constructor(private http: HttpClient) { }
 
@@ -73,11 +75,11 @@ export class JobService {
   }
   assignJobsToVendor(vendorIds: number[], jobIds: number[]): Observable<void> {
     const payload = { vendorIds, jobIds };
-    return this.http.post<void>(`${this.baseUrl}/assign-jobs-to-vendors`, payload);
+    return this.http.post<void>(`${this.baseUrl}/job/assign-jobs-to-vendors`, payload);
   }
 
   assignJobsToRecruiter(recruiterIds: number[], jobIds: number[]): Observable<void> {
     const payload = { recruiterIds, jobIds };
-    return this.http.post<void>(`${this.baseUrl}/assign-jobs-to-recruiters`, payload);
+    return this.http.post<void>(`${this.baseUrl}/job/assign-jobs-to-recruiters`, payload);
   }
 }

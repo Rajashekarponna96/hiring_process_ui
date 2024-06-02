@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Client } from '../../../model/client';
 import { Poc } from '../../../model/poc';
 import { Router } from '@angular/router';
-import { ClientService } from 'src/app/demo/service/client.service';
+import { ClientService } from 'src/app/demo/hiring-process-services/client.service';
 
 @Component({
   selector: 'app-editclient',

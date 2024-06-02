@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CandidateEmail } from '../../model/candidateEmail';
 import { Router } from '@angular/router';
-import { EmailtemplateService } from 'src/app/demo/service/emailtemplateervice.service';
+import { EmailtemplateService } from 'src/app/demo/hiring-process-services/emailtemplateervice.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Pagination } from '../../model/pagination';
 

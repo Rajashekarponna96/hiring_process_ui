@@ -3,7 +3,7 @@ import { CandidateEmail } from '../../../model/candidateEmail';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { EmailtemplateService } from 'src/app/demo/service/emailtemplateervice.service';
+import { EmailtemplateService } from 'src/app/demo/hiring-process-services/emailtemplateervice.service';
 @Component({
   selector: 'app-createemail',
   templateUrl: './createemail.component.html',
