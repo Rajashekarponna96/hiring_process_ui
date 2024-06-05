@@ -144,14 +144,6 @@
                             " required #skills="ngModel" readonly />
                 </div>
 
-                <!-- <div class="field col-12 md:col-6">
-                  <label for="taletpoll">Talent Pool</label>
-                  <input pInputText id="taletpoll" name="taletpoll" type="text" placeholder="Enter taletpoll"
-                    [(ngModel)]="
-                                hiringFlowActivity.candidate.talentPool.name
-                            " required #skills="ngModel" readonly />
-                </div> -->
-
                 <div class="field col-12 md:col-6">
                   <label for="job">Job</label>
                   <input pInputText id="job" name="job" type="text" placeholder="Enter job" [(ngModel)]="
@@ -181,13 +173,6 @@
                             " required #preferred="ngModel" readonly />
                 </div>
 
-                <!-- <div class="field col-12 md:col-6">
-                  <label for="currency">Currency</label>
-                  <input pInputText id="currency" name="currency" type="text" placeholder="Enter currency" [(ngModel)]="
-                                hiringFlowActivity.candidate.currency.name
-                            " required #currency="ngModel" readonly />
-                </div> -->
-
                 <div class="field col-12 md:col-6 readonly-date-of-birth">
                   <label for="dateOfBirth">Date Of Birth</label>
                   <div class="readonly-date-of-birth-value">
@@ -207,11 +192,6 @@
               </div>
               <div class="ui-g-12" style="text-align: right">
                 <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-
-
-
-                <!-- <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                  routerLink="/candidate" label="Cancel"></button> -->
               </div>
             </form>
           </div>
@@ -222,9 +202,7 @@
 
 
       <div class="card">
-        <!-- Header Container -->
         <div class="header-container">
-          <!-- Search Input -->
           <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
             <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
               <i class="pi pi-search"></i>
@@ -251,49 +229,12 @@
               <tr *ngFor="let hiringFlowActivity of hiringFlowActivitys">
                 <td>{{hiringFlowActivity.createdDate}}</td>
                 <td>{{hiringFlowActivity.hiringFlowType}}</td>
-                <!-- <td>{{hiringFlowActivity?.userAccout?.userName}}</td> -->
                 <td>{{hiringFlowActivity.userAccount.userName }}</td>
-
-
-
-                <!-- <td>
-                            <div class="button-container">
-                                <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate()" icon="pi pi-pencil"></button>
-                                <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete()" icon="pi pi-trash"></button>
-                                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew()" icon="pi pi-ellipsis-v"></button>
-                                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openHiringFlow()" icon="pi pi-eye"></button>
-                               
-                            </div>
-                        </td> -->
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Pagination Container -->
-        <!-- <div class="pagination-container">
-  <div class="pagination-info">
-       Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
-  </div>
-  <div class="pagination">
-      <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
-      <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
-      <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
-      <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
-  </div> -->
-
-        <!-- Page Size Selector -->
-        <!-- <div class="page-size-selector">
-      <select class="custom-select" (change)="onRecordsPerPageChange($event)">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="5" selected>5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-      </select>
-  </div> 
-</div>-->
       </div>
 
     </div>
