@@ -61,6 +61,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th style="width: 5%"><!-- Checkbox column header --></th>
             <th style="width: 10%">Firstname</th>
             <th style="width: 10%">Lastname</th>
             <th style="width: 10%">Email</th>
@@ -75,6 +76,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let candidate of candidates">
+            <td>
+              <input type="checkbox" />
+            </td>
             <td>{{ candidate.firstName }}</td>
             <td>{{ candidate.lastName }}</td>
             <td>{{ candidate.email }}</td>
