@@ -57,7 +57,7 @@ export class CandidateComponent implements OnInit {
   }
 
   navigateToCreateCandidate() {
-    this.router.navigate(['menus']);
+    this.router.navigate(['createrecandidate']);
   }
 
   onGlobalFilter(table: Table, event: Event) {
