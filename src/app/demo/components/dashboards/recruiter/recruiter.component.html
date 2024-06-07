@@ -5,13 +5,15 @@
         <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
             <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
                 <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search" class="w-full" />
+                <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
+                    class="w-full" />
             </span>
         </div>
         <!-- Add New Vendor Button -->
-        <button (click)="navigateToCreateRecruiter()" pButton class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus" label="Add New"></button>
+        <button (click)="navigateToCreateRecruiter()" pButton
+            class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus"
+            label="Add New"></button>
     </div>
-    
 
     <!-- Table Container -->
     <div class="table-container">
@@ -40,21 +42,29 @@
                         </div>
                     </td>
                 </tr>
+                <tr *ngIf="recruiters.length === 0">
+                    <td colspan="5" class="no-records-message">
+                        Records not found
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-
     <!-- Pagination Container -->
-    <div class="pagination-container">
+    <div class="pagination-container" *ngIf="totalElements > 0">
         <div class="pagination-info">
-             Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries 
+            Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }}
+            of {{ totalElements }} entries
         </div>
         <div class="pagination">
-            <a class="first" (click)="goToFirstPage()" >&laquo; First</a>
-            <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
-            <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
-            <a class="last" (click)="goToLastPage()" >Last &raquo;</a>
+            <a class="first" (click)="goToFirstPage()">&laquo; First</a>
+            <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.number === 0 ? true : null">&laquo;
+                Prev</a>
+            <a class="next" (click)="goToNextPage()"
+                [attr.disabled]="(pagination.number + 1) * pagination.size >= totalElements ? true : null">Next
+                &raquo;</a>
+            <a class="last" (click)="goToLastPage()">Last &raquo;</a>
         </div>
 
         <!-- Page Size Selector -->
@@ -69,63 +79,4 @@
             </select>
         </div>
     </div>
-    </div>
-
-
-<!-- <div class="card">
-    <p-table #dt [value]="recruiters" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-        responsiveLayout="scroll" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[10, 25, 50]" >
-        <ng-template pTemplate="caption">
-            <div class="flex flex-wrap gap-2 align-items-center justify-content-between">
-                <span class="p-input-icon-left w-full sm:w-20rem flex-order-1 sm:flex-order-0">
-                    <i class="pi pi-search"></i>
-                    
-                        <input pInputText type="text" (input)="onGlobalFilter1($event)" placeholder="Global Search"
-                        class="w-full" />
-                </span>
-                <button (click)="navigateToCreateRecruiter()" pButton
-                    class="p-button-outlined w-full sm:w-auto flex-order-0 sm:flex-order-1" icon="pi pi-user-plus"
-                    label="Add New"></button>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
-            <tr>
-                <th pSortableColumn="firstName" class="white-space-nowrap" style="width: 25%">
-                    FirstName<p-sortIcon field="recruiter.firstName"></p-sortIcon>
-                </th>
-                <th pSortableColumn="lastName" class="white-space-nowrap" style="width: 25%">
-                    LastName<p-sortIcon field="recruiter.lastName"></p-sortIcon>
-                </th>
-                <th pSortableColumn="email" class="white-space-nowrap" style="width: 25%">
-                    Email<p-sortIcon field="recruiter.email"></p-sortIcon>
-                </th>
-                <th pSortableColumn="mobile" class="white-space-nowrap" style="width: 20%">
-                    Mobile<p-sortIcon field="recruiter.mobile"></p-sortIcon>
-                </th>
-                <th class="white-space-nowrap" style="width: 20%">Actions</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body"  let-recruiter>
-            <tr>
-                <td>{{ recruiter.firstName }}</td>
-                <td>
-                    {{ recruiter.lastName }}
-                </td>
-                <td>{{ recruiter.email }}</td>
-                <td>{{ recruiter.mobile }}</td>
-                <td>
-                    <div class="button-container">
-                        <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
-                            (click)="handleEditRecruiter(recruiter)" icon="pi pi-pencil"></button>
-
-                        <button pButton class="p-button-sm p-button-rounded p-button-danger"
-                            (click)="confirmDelete(recruiter)" pButton icon="pi pi-check" icon="pi pi-trash"></button>
-
-                        <p-confirmPopup key="confirmDelete"></p-confirmPopup>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div> -->
+</div>
