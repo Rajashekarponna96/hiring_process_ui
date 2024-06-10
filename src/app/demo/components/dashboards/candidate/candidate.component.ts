@@ -126,23 +126,24 @@ export class CandidateComponent implements OnInit {
   }
 
   openNew(candidate: Candidate) {
-    console.log("candidate dertails for stage:" + candidate.email)
-    this.candidate.stage = candidate.stage
+    console.log("Candidate details for stage: " + candidate.email);
     this.selectededCandidate = candidate;
     this.temporaryStage = candidate.stage;
     this.submitted = false;
     this.productDialog = true;
-  }
+}
+
+hideDialog() {
+    this.productDialog = false;
+    this.submitted = false;
+}
+
+
   toggleFilter() {
     this.displayFilterFields = !this.displayFilterFields;
     if (!this.displayFilterFields) {
       this.dataTable.reset();
     }
-  }
-
-  hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
   }
   onGlobalFilter1(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -170,7 +171,9 @@ export class CandidateComponent implements OnInit {
 
 
   updateCandidate(candidate: Candidate, stage: string) {
-    this.selectededCandidate.stage = this.temporaryStage;
+    //this.selectededCandidate.stage = this.temporaryStage;
+    candidate.stage = stage;
+    this.hideDialog();
     const user: UserAccout = JSON.parse(localStorage.getItem('userDetails') || '{}');
     candidate.modifiedBy = user;
 
