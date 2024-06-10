@@ -1,3 +1,8 @@
+
+
+<!--  -->
+<!--  -->
+
 <div class="card">
   <!-- Header Container -->
   <div class="header-container">
@@ -14,8 +19,6 @@
       label="Add New"></button>
   </div>
 
-
-
   <div class="table-container" *ngIf="isCandidateLoggedIn; else candidateList">
     <table class="table">
       <thead>
@@ -25,9 +28,9 @@
           <th style="width: 10%">Email</th>
           <th style="width: 10%">Mobile</th>
           <th style="width: 10%">Source</th>
-          <th style="width: 10%">CurrentLocation</th>
-          <th style="width: 10%">PreferredLocation</th>
-          <th style="width: 10%">AvailableToJoin</th>
+          <th style="width: 10%">Current Location</th>
+          <th style="width: 10%">Preferred Location</th>
+          <th style="width: 10%">Available To Join</th>
           <th style="width: 10%">Stage</th>
           <!-- <th style="width: 10%">Actions</th> -->
         </tr>
@@ -44,13 +47,13 @@
           <td>{{ candidate1.avialToJoin }}</td>
           <td>{{ candidate1.stage }}</td>
           <!-- <td>
-              <div class="button-container">
-                <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
-                <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
-                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
-                <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
-              </div>
-            </td> -->
+            <div class="button-container">
+              <button pButton class="p-button-sm p-button-rounded p-button-success mr-2" (click)="handleEditCandidate(candidate)" icon="pi pi-pencil"></button>
+              <button pButton class="p-button-sm p-button-rounded p-button-danger" (click)="candidateDelete(candidate)" icon="pi pi-trash"></button>
+              <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openNew(candidate)" icon="pi pi-ellipsis-v"></button>
+              <button pButton class="p-button-sm p-button-rounded p-button-secondary" (click)="openHiringFlow(candidate)" icon="pi pi-eye"></button>
+            </div>
+          </td> -->
         </tr>
       </tbody>
     </table>
@@ -61,24 +64,20 @@
       <table class="table">
         <thead>
           <tr>
-            <th style="width: 5%"><!-- Checkbox column header --></th>
             <th style="width: 10%">Firstname</th>
             <th style="width: 10%">Lastname</th>
             <th style="width: 10%">Email</th>
             <th style="width: 10%">Mobile</th>
             <th style="width: 10%">Source</th>
-            <th style="width: 10%">CurrentLocation</th>
-            <th style="width: 10%">PreferredLocation</th>
-            <th style="width: 10%">AvailableToJoin</th>
+            <th style="width: 10%">Current Location</th>
+            <th style="width: 10%">Preferred Location</th>
+            <th style="width: 10%">Available To Join</th>
             <th style="width: 10%">Stage</th>
-            <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter )">Actions</th>
+            <th style="width: 10%" *ngIf="!isVendor && (isAdmin || isRecruiter)">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let candidate of candidates">
-            <td>
-              <input type="checkbox" />
-            </td>
             <td>{{ candidate.firstName }}</td>
             <td>{{ candidate.lastName }}</td>
             <td>{{ candidate.email }}</td>
@@ -88,7 +87,7 @@
             <td>{{ candidate.preferred.name }}</td>
             <td>{{ candidate.avialToJoin }}</td>
             <td>{{ candidate.stage }}</td>
-            <td *ngIf="!isVendor && (isAdmin || isRecruiter )">
+            <td *ngIf="!isVendor && (isAdmin || isRecruiter)">
               <div class="button-container">
                 <button pButton class="p-button-sm p-button-rounded p-button-success mr-2"
                   (click)="handleEditcandidate(candidate)" icon="pi pi-pencil"></button>
@@ -101,25 +100,25 @@
               </div>
             </td>
           </tr>
+          <tr *ngIf="candidates.length === 0">
+            <td colspan="10" class="no-records-message">No records found</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </ng-template>
 
-
-
-
-
   <!-- Pagination Container -->
-  <div class="pagination-container" *ngIf="!isCandidateLoggedIn && (isAdmin || isRecruiter || isVendor)">
+  <div class="pagination-container"
+    *ngIf="!isCandidateLoggedIn && (isAdmin || isRecruiter || isVendor) && totalElements > 0">
     <div class="pagination-info">
       Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{
       totalElements }} entries
     </div>
     <div class="pagination">
       <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-      <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
-      <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
+      <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.first ? true : null">&laquo; Prev</a>
+      <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.last ? true : null">Next &raquo;</a>
       <a class="last" (click)="goToLastPage()">Last &raquo;</a>
     </div>
 
@@ -135,6 +134,7 @@
       </select>
     </div>
   </div>
+
   <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="HiringFlow Stages" [modal]="true"
     class="p-fluid">
     <ng-template pTemplate="content">
@@ -153,13 +153,11 @@
         </div>
     </ng-template>
     <ng-template pTemplate="footer">
+
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
             (click)="updateCandidate(selectededCandidate, temporaryStage)"></button>
     </ng-template>
 </p-dialog>
-
-
-
 
 </div>
