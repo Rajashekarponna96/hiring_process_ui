@@ -490,12 +490,24 @@ export class CreateCandidateComponent implements OnInit {
 
 
 
-  prevStep() {
-    this.currentStep--;
-  }
+  // prevStep() {
+  //   this.currentStep--;
+  // }
+
+  // nextStep() {
+  //   this.currentStep++;
+  // }
 
   nextStep() {
-    this.currentStep++;
+    if (this.currentStep < this.totalSteps - 1) {
+      this.currentStep++;
+    }
+  }
+
+  prevStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+    }
   }
 
   todayDate(): string {
