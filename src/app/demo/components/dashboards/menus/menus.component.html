@@ -42,8 +42,16 @@
                         <div class="grid">
                             <div class="col-12">
                                 <form #candidateForm="ngForm">
+                                    <div class="file-upload">
+                                        <h6>File Upload</h6>
+                                        <input type="file" (change)="onFileSelected1($event)" accept=".pdf,.doc,.docx" />
+                                        <button (click)="onUpload1()">Upload</button>
+                                        <p>{{ message }}</p>
+                                      </div>
                                     <div class="p-fluid p-formgrid grid">
+                                        
                                         <div class="field col-12 md:col-6">
+                                            
                                             <label for="firstname">FirstName<span [style.display]=" candidate.firstName ? 'none' : 'inline'" style="color: red">*</span></label>
                                             <input pInputText id="firstname" name="firstname" type="text"
                                                 placeholder="Enter FirstName" [(ngModel)]="

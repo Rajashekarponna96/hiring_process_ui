@@ -144,7 +144,7 @@ export class CandidateService {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
 
-    return this.http.post<any>(`${this.baseUrl}/uploadfile`, formData).pipe(
+    return this.http.post<any>(`${this.baseUrl}/fileupload/`, formData).pipe(
       catchError(this.handleError)
     );
   }

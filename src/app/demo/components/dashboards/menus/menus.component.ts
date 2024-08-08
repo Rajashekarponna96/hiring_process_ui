@@ -16,6 +16,7 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import { Product } from 'src/app/demo/api/product';
 import { UserAccout } from '../../model/userAccount';
 import { Vendor } from '../../model/vendor';
+import { CandidateService } from 'src/app/demo/hiring-process-services/candidate.service';
 
 
 @Component({
@@ -115,7 +116,7 @@ td {
 export class MenusComponent implements OnInit {
 
 
-  constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) {
+  constructor(private productService: ProductService, private confirmationService: ConfirmationService, private messageService: MessageService, private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router,private fileUploadService: CandidateService,) {
 
   }
 
@@ -232,6 +233,10 @@ export class MenusComponent implements OnInit {
 
   userAccounts!: UserAccout[];
   userAccount = new UserAccout();
+
+  selectedFile: File | null = null;
+  message: string = '';
+
 
 
 
@@ -863,6 +868,61 @@ export class MenusComponent implements OnInit {
 
   todayDate(): string {
     return new Date().toISOString().split('T')[0];
+  }
+
+
+
+  onFileSelected(event: any): void {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload(): void {
+    if (this.selectedFile) {
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+        (data) => {
+          this.message = 'File uploaded successfully!';
+          this.changeDetectorRefs.detectChanges();
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          this.message = 'Failed to upload file';
+        }
+      );
+    } else {
+      console.error('No file selected');
+      this.message = 'Please select a file first';
+    }
+  }
+
+  onFileSelected1(event: any): void {
+    const file: File = event.target.files[0];
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if (allowedTypes.includes(file.type)) {
+      this.selectedFile = file;
+      this.message = ''; // Clear any previous error messages
+    } else {
+      this.selectedFile = null;
+      this.message = 'Invalid file type. Please select a PDF or Word document.';
+    }
+  }
+
+  onUpload1(): void {
+    if (this.selectedFile) {
+      this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+        (data) => {
+          this.message = 'File uploaded successfully!';
+          this.changeDetectorRefs.detectChanges();
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          this.message = 'File uploaded successfully';
+        }
+      );
+    } else {
+      console.error('No file selected or invalid file type');
+      this.message = 'Please select a valid file first';
+    }
   }
 }
 
