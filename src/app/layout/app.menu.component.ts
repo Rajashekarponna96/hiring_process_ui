@@ -67,6 +67,17 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
+            {
+                permissionName: 'resumeuploder',
+                icon: 'pi pi-upload',
+                items: [
+                    {
+                        label: 'resumeuploder',
+                        icon: 'pi pi-upload',
+                        routerLink: ['/resumeuploader']
+                    }
+                ]
+            },
 
             {
                 permissionName: 'job',
