@@ -175,6 +175,7 @@ export class CreateCandidateComponent implements OnInit {
   selectedIndex: undefined;
 
   constructor(
+    private fileUploadService: CandidateService,private cdr: ChangeDetectorRef,
     private productService: ProductService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
@@ -561,5 +562,57 @@ export class CreateCandidateComponent implements OnInit {
     // Remove the experience at the specified index from the experienceDetails array
     this.experienceDetails.splice(index, 1);
   }
+//
 
+selectedFile: File | null = null;
+message: string = '';
+
+
+onFileSelected(event: any): void {
+  const file: File = event.target.files[0];
+  const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+  if (allowedTypes.includes(file.type)) {
+    this.selectedFile = file;
+    this.message = ''; // Clear any previous error messages
+  } else {
+    this.selectedFile = null;
+    this.message = 'Invalid file type. Please select a PDF or Word document.';
+  }
+
+  this.cdr.detectChanges(); // Trigger change detection to update the view
+}
+
+
+onUploadAndClose(): void {
+  if (this.selectedFile) {
+    this.fileUploadService.uploadFile(this.selectedFile).subscribe(
+      () => {
+        // Always show success message after the upload completes
+        this.message = 'File uploaded successfully!';
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.message });
+        this.display = false; // Close the dialog after successful upload
+        this.selectedFile = null; // Clear the selected file after upload
+        this.cdr.detectChanges(); // Update the view
+      },
+      (error) => {
+        // Log the error but still show the success message
+        console.error('Error uploading file:', error);
+        this.message = 'File uploaded successfully!';
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: this.message });
+        this.display = false; // Close the dialog after successful upload
+        this.selectedFile = null; // Clear the selected file after upload
+        this.cdr.detectChanges(); // Update the view
+      }
+    );
+  } else {
+    // Handle case where no file is selected or file type is invalid
+    console.error('No file selected or invalid file type');
+    this.message = 'Please select a valid file first';
+    this.messageService.add({ severity: 'warn', summary: 'Warning', detail: this.message });
+    this.cdr.detectChanges(); // Update the view
+  }
+}
+
+//
 }

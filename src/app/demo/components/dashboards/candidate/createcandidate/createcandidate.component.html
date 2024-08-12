@@ -1,3 +1,44 @@
+
+
+
+
+
+
+
+
+<!-- p-toast for notifications -->
+<p-toast></p-toast>
+
+<!-- Dialog for File Upload -->
+<p-dialog [(visible)]="display" [modal]="true" showEffect="fade" [style]="{ width: '30vw' }"
+    [breakpoints]="{ '960px': '75vw' }">
+    <ng-template pTemplate="content">
+        <div class="file-upload">
+            <h6>Upload Your File</h6>
+            <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" />
+            <button pButton label="Upload & Close" (click)="onUploadAndClose()" style="
+                color: black;
+                background-color: white;
+                border: 1px solid #ccc;
+            "></button>
+            <p *ngIf="message">{{ message }}</p>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<!-- Button to Open Dialog -->
+<div class="grid">
+    <div class="col-12">
+        <button (click)="display = true" pButton icon="pi pi-upload" label="Upload Resume" style="
+                color: black;
+                background-color: white;
+                border: 1px solid #ccc;
+            "></button>
+    </div>
+</div>
+
+
+
 <div class="grid p-fluid" class="p-fluid p-formgrid grid">
     <div class="col-12">
         <div class="grid">
