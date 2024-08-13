@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { ResumeuploaderRoutingModule } from './resumeuploader-routing.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
