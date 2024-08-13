@@ -30,7 +30,7 @@ export class FileUploadService {
   }
 
   searchResumeByCode(code: string, page: number, size: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/searchpage`, {
+    return this.http.get<any>(`${this.baseUrl}/fileupload/searchpage`, {
       params: {
         code: code,
         page: page.toString(),

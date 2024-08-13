@@ -72,7 +72,7 @@ export class ResumeviewerComponent {
     this.getAllResumeList();
   }
 
-  onGlobalFilter1(event: Event) {
+  onGlobalFilter1(event: Event) {debugger
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
     console.log('Input Value:', inputValue);
