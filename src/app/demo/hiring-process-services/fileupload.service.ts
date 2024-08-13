@@ -29,6 +29,15 @@ export class FileUploadService {
     return this.http.get<any>(`${this.baseUrl}/fileupload/resumeslistwithpagination`, { params });
   }
 
+  searchResumeByCode(code: string, page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/searchpage`, {
+      params: {
+        code: code,
+        page: page.toString(),
+        size: size.toString()
+      }
+    });
+  }
   
 
   

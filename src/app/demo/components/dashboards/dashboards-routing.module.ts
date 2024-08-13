@@ -186,6 +186,14 @@ import { RouterModule } from '@angular/router';
                     ).then((m) => m.ResumeuploaderModule),
             },
             {
+                path: 'resumeviewer',
+                data: { breadcrumb: 'Candidate Resume Viewer' },
+                loadChildren: () =>
+                    import(
+                        './candidate/resumeviewer/resumeviewer.module'
+                    ).then((m) => m.ResumeviewerModule),
+            },
+            {
                 path: 'talentpool',
                 data: { breadcrumb: 'Create TalentPool' },
                 loadChildren: () =>
