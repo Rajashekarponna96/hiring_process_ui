@@ -14,7 +14,7 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
-  
+
 
   getAllResumes(): Observable<FileUpload[]> {
     return this.http.get<FileUpload[]>(`${this.baseUrl}/fileupload/all`);
@@ -38,7 +38,12 @@ export class FileUploadService {
       }
     });
   }
-  
 
-  
+  viewFile(fileName: string): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/fileupload/view/${fileName}`, {
+      responseType: 'blob'
+    });
+  }
+
+
 }

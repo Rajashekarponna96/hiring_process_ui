@@ -1,3 +1,9 @@
+
+
+
+<!--  -->
+
+
 <div class="card">
     <!-- Header Container -->
     <div class="header-container">
@@ -24,14 +30,14 @@
             </thead>
             <tbody>
                 <tr *ngFor="let fileupload of fileuploads">
-                    <td>{{ fileupload .id }}</td>
-                    <td>{{ fileupload .fileName }}</td>
+                    <td>{{ fileupload.id }}</td>
+                    <td>{{ fileupload.fileName }}</td>
                     <td>
                         <div class="button-container">
                             <button pButton class="p-button-sm p-button-rounded p-button-danger mr-2"
                                  icon="pi pi-trash"></button>
-                            <button pButton class="p-button-sm p-button-rounded p-button-info" 
-                                icon="pi pi-eye"></button>
+                            <button pButton class="p-button-sm p-button-rounded p-button-info"
+                                icon="pi pi-eye" (click)="viewFile(fileupload.fileName)"></button>
                         </div>
                     </td>
                 </tr>
@@ -44,29 +50,4 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Pagination Container -->
-    <!-- <div *ngIf="totalElements > 0">
-        <div class="pagination-container">
-            <div class="pagination-info">
-                Showing {{ pagination.number * pagination.size + 1 }} to {{ (pagination.number + 1) * pagination.size }} of {{ totalElements }} entries
-            </div>
-            <div class="pagination">
-                <a class="first" (click)="goToFirstPage()">&laquo; First</a>
-                <a class="prev" (click)="goToPreviousPage()" [attr.disabled]="pagination.last ? true : null">&laquo; Prev</a>
-                <a class="next" (click)="goToNextPage()" [attr.disabled]="pagination.first ? true : null">Next &raquo;</a>
-                <a class="last" (click)="goToLastPage()">Last &raquo;</a>
-            </div>
-            <div class="dropdown-wrapper">
-                <select class="custom-select" (change)="onRecordsPerPageChange($event)">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="5" selected>5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
-            </div>
-        </div>
-    </div> -->
 </div>
