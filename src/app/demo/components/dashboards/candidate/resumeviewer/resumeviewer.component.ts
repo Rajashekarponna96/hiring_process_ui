@@ -41,23 +41,6 @@ export class ResumeviewerComponent {
     this.router.navigate(['createrecandidate']);
   }
 
-  // handleEditVendor(vendor: Vendor, vendorId: number) {
-  //   this.router.navigate(['vendor-edit'], { state: { vendorId: vendorId, vendor: vendor } });
-  // }
-
-  // vendorDelete(vendor: Vendor) {
-  //   console.log("vendor id is:" + vendor.id);
-  //   this.vendorService.deleteVendor(vendor.id)
-  //     .subscribe(
-  //       (res) => {
-  //         console.log(res);
-  //         this.getAllVendorList();
-  //       },
-  //       (err) => {
-  //         console.error('Error occurred while deleting vendor:', err);
-  //       }
-  //     );
-  // }
 
   goToFirstPage() {
     this.currentPage = 0;
@@ -102,5 +85,15 @@ export class ResumeviewerComponent {
         this.currentPage = 0; // Reset to first page
       });
   }
+
+
+  // New method to view PDF
+  viewFile(fileName: string) {
+    this.fileUploadService.viewFile(fileName).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
 }
 
