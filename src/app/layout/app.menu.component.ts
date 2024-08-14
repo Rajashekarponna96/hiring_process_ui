@@ -67,17 +67,17 @@ export class AppMenuComponent implements OnInit {
                     }
                 ]
             },
-            {
-                permissionName: 'resumeuploder',
-                icon: 'pi pi-upload',
-                items: [
-                    {
-                        label: 'resumeuploder',
-                        icon: 'pi pi-upload',
-                        routerLink: ['/resumeuploader']
-                    }
-                ]
-            },
+            // {
+            //     permissionName: 'resumeuploder',
+            //     icon: 'pi pi-upload',
+            //     items: [
+            //         {
+            //             label: 'resumeuploder',
+            //             icon: 'pi pi-upload',
+            //             routerLink: ['/resumeuploader']
+            //         }
+            //     ]
+            // },
             {
                 permissionName: 'resumeviewer',
                 icon: 'pi pi-upload',
@@ -104,16 +104,16 @@ export class AppMenuComponent implements OnInit {
                                 icon: 'pi pi-briefcase',
                                 routerLink: ['/jobs']
                             },
-                            {
-                                label: 'Recruiter',
-                                icon: 'pi pi-user',
-                                routerLink: ['/recruiter']
-                            },
-                            {
-                                label: 'Pool',
-                                icon: 'pi pi-check',
-                                routerLink: ['/listtalentpool']
-                            },
+                            // {
+                            //     label: 'Recruiter',
+                            //     icon: 'pi pi-user',
+                            //     routerLink: ['/recruiter']
+                            // },
+                            // {
+                            //     label: 'Pool',
+                            //     icon: 'pi pi-check',
+                            //     routerLink: ['/listtalentpool']
+                            // },
                             {
                                 label: 'Assign Jobs To Vendor',
                                 icon: 'pi pi-check',
@@ -124,13 +124,25 @@ export class AppMenuComponent implements OnInit {
                                 icon: 'pi pi-check',
                                 routerLink: ['/assignjobstorecruiter']
                             },
-                            {
-                                label: 'TalentPool',
-                                icon: 'pi pi-check',
-                                routerLink: ['/talentpoolinactivecandidatelist']
-                            }
+                            // {
+                            //     label: 'TalentPool',
+                            //     icon: 'pi pi-check',
+                            //     routerLink: ['/talentpoolinactivecandidatelist']
+                            // }
                         ]
                     },
+                ]
+            },
+            {
+                permissionName: 'recruiter',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Reruiter',
+                        icon: 'pi pi-fw pi-user-plus',
+                        routerLink: ['/recruiter']
+                    },
+                    
                 ]
             },
             //candidate
@@ -151,6 +163,30 @@ export class AppMenuComponent implements OnInit {
 
 
 
+                ]
+            },
+            {
+                permissionName: 'talentpool',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'TalentPool',
+                        icon: 'pi pi-fw pi-user-plus',
+                        routerLink: ['/talentpoolinactivecandidatelist']
+                    },
+                    
+                ]
+            },
+            {
+                permissionName: 'pool',
+                icon: 'pi pi-home',
+                items: [
+                    {
+                        label: 'Pool',
+                        icon: 'pi pi-fw pi-user-plus',
+                        routerLink: ['/listtalentpool']
+                    },
+                    
                 ]
             },
             {
@@ -206,18 +242,18 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
-            {
-                permissionName: 'uploadfile',
-                icon: 'pi pi-home',
-                items: [
-                    {
-                        label: 'Upload-File',
-                        icon: 'pi pi-upload',
-                        routerLink: ['/uploadfile']
-                    }
+            // {
+            //     permissionName: 'uploadfile',
+            //     icon: 'pi pi-home',
+            //     items: [
+            //         {
+            //             label: 'Upload-File',
+            //             icon: 'pi pi-upload',
+            //             routerLink: ['/uploadfile']
+            //         }
 
-                ]
-            },
+            //     ]
+            // },
             {
                 permissionName: 'candidateList',
                 icon: 'pi pi-home',
