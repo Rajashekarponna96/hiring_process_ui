@@ -1,176 +1,159 @@
-<div class="grid">
-    <div class="col-12">
-        <div class="card">
-            <form #jobForm="ngForm">
-                <div class="p-fluid p-formgrid grid">
-                    <div class="field col-12 md:col-6">
-                        <label for="title">Title</label>
-                        <input pInputText id="title" name="title" type="text" ngModel required minlength="2" maxlength="50" placeholder="Enter Title"
-                        [(ngModel)]="job.title" required #title="ngModel"/>
-                        <div *ngIf="title.invalid && (title.dirty || title.touched)">
-                            <div style="color: red" *ngIf="title.errors">Title is required </div>
-                        </div>
-
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="description">Description</label>
-                        <textarea pInputText id="description" name="description" type="text" ngModel required minlength="2" maxlength="100" placeholder="Enter Description"
-                        [(ngModel)]="job.description" required #description="ngModel"></textarea>
-                        <div *ngIf="description.invalid && (description.dirty || description.touched)">
-                            <div style="color: red" *ngIf="description.errors">Description is required </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-12 field">
-                        <label for="description">Description</label>
-                        <p-editor id="description" [(ngModel)]="job.description" [style]="{'height':'250px'}" name="description" placeholder="Enter Description" #description="ngModel" required></p-editor>
-                        <div *ngIf="description.invalid && (description.dirty || description.touched)">
-                            <div style="color: red" *ngIf="description.errors">Description is required </div>
-                        </div>
-                    </div> -->
-
-                    <div class="field col-12 md:col-6">
-                        <label for="primarySkills">Primary Skills</label>
-                        <input pInputText id="primarySkills" name="primarySkills" type="text" ngModel required 
-                             placeholder="Enter PrimarySkills" [(ngModel)]="job.primarySkills" required
-                            #primarySkills="ngModel" />
-                        <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)">
-                            <div style="color: red" *ngIf="primarySkills.errors">PrimarySkills is required </div>
-                        </div>
-                    </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="secondarySkills">Secondary Skills</label>
-                        <input pInputText id="secondarySkills" name="secondarySkills" type="text" ngModel required 
-                             placeholder="Enter secondarySkills" [(ngModel)]="job.secondarySkills" required
-                            #secondarySkills="ngModel" />
-                        <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)">
-                            <div style="color: red" *ngIf="secondarySkills.errors">SecondarySkills is required </div>
-                        </div>
-                    </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="goodToHave">Good To Have</label>
-                        <input pInputText id="goodToHave" name="goodToHave" type="text" ngModel required 
-                             placeholder="Enter GoodToHave" [(ngModel)]="job.goodToHave" required
-                            #goodToHave="ngModel" />
-                        <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)">
-                            <div style="color: red" *ngIf="goodToHave.errors">GoodToHave is required </div>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="department">Department</label>
-                        <p-dropdown [options]="departments" [(ngModel)]="selectedDepartments" [showClear]="true" [filter]="true" placeholder="Select Department" (onChange)="onDepartmentChange(selectedDepartments)" name="department" optionLabel="name">
-                            <ng-template let-Department pTemplate="item">
-                                {{ Department.name }}
-                            </ng-template>
-                        </p-dropdown>
-                    </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="clients">Client Name</label>
-                        <p-dropdown [options]="clients" [(ngModel)]="selectedClients" [showClear]="true" [filter]="true" placeholder="Select ClientName" (onChange)="onClientChange(selectedClients)" name="client" optionLabel="companyName">
-                            <ng-template let-Client pTemplate="item">
-                                {{ Client.companyName }}
-                            </ng-template>
-                        </p-dropdown>
-                    </div>
 
 
-                    <div class="field col-12 md:col-6">
-                        <label for="openings">Openings</label>
-                        <input pInputText id="openings" name="openings" type="number" ngModel required min="1" placeholder="Enter openings"
-                        [(ngModel)]="job.openings"  #openings="ngModel">
-                        <div *ngIf="openings.invalid && (openings.dirty || openings.touched)">
-                            <div style="color: red" *ngIf="openings.errors">Openings is required </div>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="targetHireDate">Target Hire Date<span style="color: red">*</span></label>
-                        <input pInputText id="targetHireDate" name="targetHireDate" type="date"
-                            [(ngModel)]="job.targetHireDate" #targetHireDate="ngModel" required
-                            [min]="todayDate()">
-                        <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)">
-                            <div style="color: red" *ngIf="targetHireDate.errors">Target Hire Date is required</div>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="currency">Currency</label>
-                        <p-dropdown [options]="currencys" [(ngModel)]="selectedCurrencys" [showClear]="true" [filter]="true" placeholder="Select Currency" (onChange)="onCurrencyChange(selectedCurrencys)" name="currency" optionLabel="name">
-                        </p-dropdown>
-                    </div>
+<div class="col-md-6 mb-3">
+    <label for="department">Department</label>
+    <select class="form-control" id="department" [(ngModel)]="selectedDepartments" name="department" (change)="onDepartmentChange(selectedDepartments)">
+      <option *ngFor="let department of departments" [value]="department">{{ department.name }}</option>
+    </select>
+    <p>Selected Department: {{ selectedDepartments?.name }}</p>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="clients">Client Name</label>
+    <select class="form-control" id="clients" [(ngModel)]="selectedClients" name="clients" (change)="onClientChange(selectedClients)">
+      <option *ngFor="let client of clients" [value]="client">{{ client.companyName }}</option>
+    </select>
+    <p>Selected Client: {{ selectedClients?.companyName }}</p>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="currency">Currency</label>
+    <select class="form-control" id="currency" [(ngModel)]="selectedCurrencys" name="currency" (change)="onCurrencyChange(selectedCurrencys)">
+      <option *ngFor="let currency of currencys" [value]="currency">{{ currency.name }}</option>
+    </select>
+    <p>Selected Currency: {{ selectedCurrencys?.name }}</p>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <label for="recruiters">Recruiter</label>
+    <select class="form-control" id="recruiters" [(ngModel)]="selectedRecruiters" name="recruiters" (change)="onRecruiterChange(selectedRecruiters)">
+      <option *ngFor="let recruiter of recruiters" [value]="recruiter">{{ recruiter.firstName }}</option>
+    </select>
+    <p>Selected Recruiter: {{ selectedRecruiters?.firstName }}</p>
+  </div>
 
 
-                    <!-- <div class="field col-12 md:col-6">
-                        <label for="salaryMinimum">Salary Minimum</label>
-                        <input pInputText id="salaryMinimum" name="salaryMinimum" type="number" required min="0" placeholder="Enter Min salary" [(ngModel)]="job.salaryMinimum"  #salaryMinimum="ngModel">
-                        <div *ngIf="salaryMinimum.invalid && (salaryMinimum.dirty || salaryMinimum.touched)">
-                            <div style="color: red" *ngIf="salaryMinimum.errors">Openings is required </div>
-                        </div>
-                    </div> -->
-                    <div class="field col-12 md:col-6">
-                        <label for="salaryMaximum">Salary Maximun</label>
-                        <input pInputText id="salaryMaximum" name="salaryMaximum" type="number" required min="0" placeholder="Enter Max salary" [(ngModel)]="job.salaryMaximum"  #salaryMaximum="ngModel">
-                        <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)">
-                            <div style="color: red" *ngIf="salaryMaximum.errors">Openings is required </div>
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="type">Job Type</label>
-                        <p-dropdown [options]="types" [(ngModel)]="job.type" #type="ngModel" [showClear]="true" [filter]="true" placeholder="Select Job Type"
-                        name="type" optionLabel="name" optionValue="name">
-                    </p-dropdown>
-                    </div>
 
+<!--  -->
+<!--  -->
 
-                    <div class="field col-12 md:col-6">
-                        <label for="locations">Location<span [style.display]="job.locations ? 'none' : 'inline'" style="color: red">*</span></label>
-                        <input pInputText id="locations" name="locations" type="text" ngModel required 
-                             placeholder="Enter Location" [(ngModel)]="job.locations" required
-                            #locations="ngModel" />
-                        <div *ngIf="locations.invalid && (locations.dirty || locations.touched)">
-                            <div style="color: red" *ngIf="locations.errors">Location is required </div>
-                        </div>
-                    </div>
-                    <!-- <div class="field col-12 md:col-6">
-                        <label for="current">Location</label>
-                        <p-dropdown [options]="locations" [(ngModel)]="job.locations" [showClear]="true" [filter]="true"
-                            placeholder="Select Location" name="locations" optionLabel="name">
-                        </p-dropdown>
-                        <div *ngIf="!job.locations && (jobForm.controls['locations'].dirty || jobForm.controls['locations'].touched)"
-                            style="color: red;">Location is Required</div>
-                    </div> -->
-                    <div class="field col-12 md:col-6">
-                        <label for="experience">Experience</label>
-                        <input pInputText id="flows" name="flows" type="text"  placeholder="Enter Experience" [(ngModel)]="job.experience"  #experience="ngModel" required>
-                        <div  *ngIf="experience.invalid &&  (experience.dirty || experience.touched)">
-                            <div style="color: red" *ngIf="experience.errors">Experience is required </div>
-                     </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="recruiters">Recruiter</label>
-                        <p-dropdown [options]="recruiters" [(ngModel)]="selectedRecruiters" [showClear]="true" [filter]="true" placeholder="Select Recruiter" (onChange)="onRecruiterChange(selectedRecruiters)" name="recruiters" optionLabel="firstName">
-                            <ng-template let-Recruiter pTemplate="item">
-                                {{ Recruiter.firstName }}
-                            </ng-template>
-                        </p-dropdown>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="experience">Expected Notice Period</label>
-                        <input pInputText id="expectedNoticePeriod" name="expectedNoticePeriod" type="text"  placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod"  #expectedNoticePeriod="ngModel" required>
-                        <div  *ngIf="expectedNoticePeriod.invalid &&  (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)">
-                            <div style="color: red" *ngIf="expectedNoticePeriod.errors">Expected Notice Period is required </div>
-                     </div>
-                </div>
-                </div>
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <form #jobForm="ngForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" name="title" placeholder="Enter Title" [(ngModel)]="job.title" required minlength="2" maxlength="50" #title="ngModel" />
+              <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger">Title is required</div>
+            </div>
 
-                <div class="ui-g-12" style="text-align: right">
-                    <span class="w-full sm:w-20rem flex-order-1 sm:flex-order-0"></span>
-                    <button style="margin-left: 10px" pButton class="w-auto mt-3" icon="pi pi-check"
-                    (click)="updateJob() " label="Update"></button>
-                    <button style="margin-left: 10px" pButton class="w-auto mt-3 p-button-danger" icon="pi pi-times"
-                    routerLink="/jobs" label="Cancel"></button>
-                </div>
-            </form>
-        </div>
+            <div class="col-md-6 mb-3">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" name="description" placeholder="Enter Description" [(ngModel)]="job.description" required minlength="2" maxlength="100" #description="ngModel"></textarea>
+              <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">Description is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="primarySkills">Primary Skills</label>
+              <input type="text" id="primarySkills" class="form-control" name="primarySkills" placeholder="Enter Primary Skills" [(ngModel)]="job.primarySkills" required #primarySkills="ngModel" />
+              <div *ngIf="primarySkills.invalid && (primarySkills.dirty || primarySkills.touched)" class="text-danger">Primary Skills is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="secondarySkills">Secondary Skills</label>
+              <input type="text" id="secondarySkills" class="form-control" name="secondarySkills" placeholder="Enter Secondary Skills" [(ngModel)]="job.secondarySkills" required #secondarySkills="ngModel" />
+              <div *ngIf="secondarySkills.invalid && (secondarySkills.dirty || secondarySkills.touched)" class="text-danger">Secondary Skills is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="goodToHave">Good To Have</label>
+              <input type="text" id="goodToHave" class="form-control" name="goodToHave" placeholder="Enter Good To Have Skills" [(ngModel)]="job.goodToHave" required #goodToHave="ngModel" />
+              <div *ngIf="goodToHave.invalid && (goodToHave.dirty || goodToHave.touched)" class="text-danger">Good To Have is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="department">Department</label>
+              <select class="form-control" id="department" [(ngModel)]="selectedDepartments" name="department" (change)="onDepartmentChange(selectedDepartments)">
+                <option *ngFor="let department of departments" [value]="department">{{ department.name }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="clients">Client Name</label>
+              <select class="form-control" id="clients" [(ngModel)]="selectedClients" name="clients" (change)="onClientChange(selectedClients)">
+                <option *ngFor="let client of clients" [value]="client">{{ client.companyName }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="openings">Openings</label>
+              <input type="number" id="openings" class="form-control" name="openings" placeholder="Enter Openings" [(ngModel)]="job.openings" required min="1" #openings="ngModel" />
+              <div *ngIf="openings.invalid && (openings.dirty || openings.touched)" class="text-danger">Openings is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="targetHireDate">Target Hire Date</label>
+              <input type="date" id="targetHireDate" class="form-control" name="targetHireDate" [(ngModel)]="job.targetHireDate" required [min]="todayDate()" #targetHireDate="ngModel" />
+              <div *ngIf="targetHireDate.invalid && (targetHireDate.dirty || targetHireDate.touched)" class="text-danger">Target Hire Date is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="currency">Currency</label>
+              <select class="form-control" id="currency" [(ngModel)]="selectedCurrencys" name="currency" (change)="onCurrencyChange(selectedCurrencys)">
+                <option *ngFor="let currency of currencys" [value]="currency">{{ currency.name }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="salaryMaximum">Salary Maximum</label>
+              <input type="number" id="salaryMaximum" class="form-control" name="salaryMaximum" placeholder="Enter Max Salary" [(ngModel)]="job.salaryMaximum" required min="0" #salaryMaximum="ngModel" />
+              <div *ngIf="salaryMaximum.invalid && (salaryMaximum.dirty || salaryMaximum.touched)" class="text-danger">Salary Maximum is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="type">Job Type</label>
+              <!-- <select class="form-control" id="type" [(ngModel)]="job.type" name="type" (change)="onTypeChange()">
+                <option *ngFor="let type of types" [value]="type.name">{{ type.name }}</option>
+              </select> -->
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="locations">Location</label>
+              <input type="text" id="locations" class="form-control" name="locations" placeholder="Enter Location" [(ngModel)]="job.locations" required #locations="ngModel" />
+              <div *ngIf="locations.invalid && (locations.dirty || locations.touched)" class="text-danger">Location is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="experience">Experience</label>
+              <input type="text" id="experience" class="form-control" name="experience" placeholder="Enter Experience" [(ngModel)]="job.experience" required #experience="ngModel" />
+              <div *ngIf="experience.invalid && (experience.dirty || experience.touched)" class="text-danger">Experience is required</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="recruiters">Recruiter</label>
+              <select class="form-control" id="recruiters" [(ngModel)]="selectedRecruiters" name="recruiters" (change)="onRecruiterChange(selectedRecruiters)">
+                <option *ngFor="let recruiter of recruiters" [value]="recruiter">{{ recruiter.firstName }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="expectedNoticePeriod">Expected Notice Period</label>
+              <input type="text" id="expectedNoticePeriod" class="form-control" name="expectedNoticePeriod" placeholder="Enter Expected Notice Period" [(ngModel)]="job.expectedNoticePeriod" required #expectedNoticePeriod="ngModel" />
+              <div *ngIf="expectedNoticePeriod.invalid && (expectedNoticePeriod.dirty || expectedNoticePeriod.touched)" class="text-danger">Expected Notice Period is required</div>
+            </div>
+          </div>
+
+          <div class="text-right mt-3">
+            <button class="btn btn-primary" type="button" (click)="updateJob()">Update</button>
+            <button class="btn btn-danger" type="button" routerLink="/jobs">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+
+
+
+<!--  -->
+
